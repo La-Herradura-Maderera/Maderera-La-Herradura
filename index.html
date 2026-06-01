@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Maderera La Herradura - Cabañas Woodframe</title>
-    <!-- Tipografías de marca: Playfair Display y Montserrat -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
     <style>
@@ -154,7 +153,7 @@
             margin-bottom: 30px;
         }
 
-        /* Contenedor de Tarjetas Horizontales (Una al lado de la otra) */
+        /* Contenedor de Tarjetas Horizontales */
         .cards-container-disney {
             display: flex;
             justify-content: center;
@@ -166,7 +165,6 @@
             padding: 0 20px;
         }
 
-        /* Estructura Base de cada Tarjeta */
         .card-disney {
             position: relative;
             width: 230px;
@@ -181,7 +179,6 @@
             transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s ease;
         }
 
-        /* Efecto Flotante del PNG / Render */
         .png-popout {
             position: absolute;
             top: -55px;
@@ -196,13 +193,6 @@
             z-index: 2;
         }
 
-        .png-popout img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-
-        /* Caja contenedora provisoria para cuando no hay imagen cargada */
         .placeholder-text-png {
             font-size: 0.8rem;
             font-weight: 600;
@@ -219,7 +209,6 @@
             justify-content: center;
         }
 
-        /* Textos inferiores de la Tarjeta */
         .card-disney-info {
             color: white;
             text-shadow: 0 2px 4px rgba(0,0,0,0.2);
@@ -240,7 +229,6 @@
             opacity: 0.9;
         }
 
-        /* ANIMACIÓN HOVER: Incrementa el tamaño al pasar el cursor */
         .card-disney:hover {
             transform: translateY(-10px) scale(1.04);
             box-shadow: 0 20px 40px rgba(59, 34, 16, 0.25);
@@ -250,17 +238,14 @@
             transform: translateX(-50%) scale(1.15) translateY(-8px);
         }
 
-        /* Colores de Degradados Corporativos para Fondos de Tarjeta */
         .color-18 { background: linear-gradient(135deg, #A05C2C, #3B2210); }
         .color-28 { background: linear-gradient(135deg, #C8833A, #A05C2C); }
         .color-36 { background: linear-gradient(135deg, #D9C4A0, #3B2210); }
         .color-48 { background: linear-gradient(135deg, #3B2210, #1C1C1B); }
 
-        /* ==========================================================================
-           PANELES DE DETALLES DESPLEGABLES (Bajo los modelos)
-           ========================================================================== */
+        /* Paneles Desplegables de Información */
         .panel-detail-disney {
-            display: none; /* Inician ocultos */
+            display: none;
             max-width: 1140px;
             margin: 40px auto;
             border-radius: 24px;
@@ -270,7 +255,6 @@
             animation: slideDown 0.4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
         }
 
-        /* Fondos claros con bordes de color del modelo */
         .color-18-bg { background-color: #fcf9f5; border: 2px solid #A05C2C; }
         .color-28-bg { background-color: #fefcf9; border: 2px solid #C8833A; }
         .color-36-bg { background-color: #f7f4ee; border: 2px solid #D9C4A0; }
@@ -282,29 +266,11 @@
             align-items: center;
         }
 
-        .panel-text {
-            flex: 1;
-        }
+        .panel-text { flex: 1; }
+        .panel-text h3 { font-size: 2.4rem; margin-bottom: 5px; }
+        .panel-precio-big { font-size: 2rem; font-weight: 700; color: var(--cedro-calido); margin-bottom: 20px; }
+        .panel-text p { line-height: 1.7; color: var(--carbon); font-size: 0.95rem; }
 
-        .panel-text h3 {
-            font-size: 2.4rem;
-            margin-bottom: 5px;
-        }
-
-        .panel-precio-big {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--cedro-calido);
-            margin-bottom: 20px;
-        }
-
-        .panel-text p {
-            line-height: 1.7;
-            color: var(--carbon);
-            font-size: 0.95rem;
-        }
-
-        /* Galería de fotos e interiores del panel */
         .panel-galeria {
             flex: 1.2;
             display: grid;
@@ -332,7 +298,6 @@
             border: 2px solid var(--arena-patagonica);
         }
 
-        /* Botón de Cierre */
         .panel-close {
             position: absolute;
             top: 20px;
@@ -343,7 +308,6 @@
             color: #999;
             transition: color 0.2s;
         }
-
         .panel-close:hover { color: var(--roble-oscuro); }
 
         .btn-wsp-panel {
@@ -366,7 +330,7 @@
         }
 
         /* ==========================================================================
-           OTRAS SECCIONES
+           SECCIÓN A MEDIDA Y MATERIALES
            ========================================================================== */
         .a-medida {
             background-color: var(--arena-patagonica);
@@ -374,12 +338,7 @@
             text-align: center;
         }
 
-        .medida-p {
-            max-width: 700px;
-            margin: 0 auto 25px;
-            line-height: 1.7;
-        }
-
+        .medida-p { max-width: 700px; margin: 0 auto 25px; line-height: 1.7; }
         .medida-lista {
             list-style: none;
             max-width: 520px;
@@ -416,52 +375,142 @@
             text-align: left;
         }
 
-        .material-card h3 {
-            font-size: 1.4rem;
-            margin-bottom: 12px;
-        }
+        .material-card h3 { font-size: 1.4rem; margin-bottom: 12px; }
+        .material-card p { font-size: 0.95rem; line-height: 1.6; color: #444; }
 
-        .material-card p {
-            font-size: 0.95rem;
-            line-height: 1.6;
-            color: #444;
-        }
-
+        /* ==========================================================================
+           REDISEÑO EXCLUSIVO: SECCIÓN CONTACTO CON MASCOTA (CASTOR)
+           ========================================================================== */
         .contacto {
             background-color: var(--roble-oscuro);
             color: var(--crema-mdera);
-            text-align: center;
             padding: 100px 20px;
         }
 
-        .contacto h2 { color: var(--crema-mdera); }
-
-        .contacto-canales {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 15px;
-            margin-top: 40px;
+        .contacto h2 {
+            color: var(--crema-mdera);
+            text-align: left;
         }
 
-        .contacto-link {
+        .contacto .subtitle {
+            color: var(--pino-miel);
+            text-align: left;
+            margin-bottom: 35px;
+        }
+
+        .contacto-grid {
+            display: flex;
+            max-width: 1100px;
+            margin: 0 auto;
+            gap: 60px;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .contacto-info {
+            flex: 1.2;
+        }
+
+        /* Tarjetas de enlaces de contacto */
+        .contacto-list {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .contacto-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: rgba(255, 255, 255, 0.04);
+            padding: 18px 24px;
+            border-radius: 16px;
+            border: 1px solid rgba(200, 131, 58, 0.2);
+            text-decoration: none;
+            color: var(--crema-mdera);
+            transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), background 0.3s, border-color 0.3s;
+        }
+
+        /* Destacado especial para WhatsApp */
+        .contacto-item.wsp-destacado {
+            border: 1px solid #25D366;
+            background: rgba(37, 211, 102, 0.06);
+        }
+
+        .contacto-item:hover {
+            transform: translateX(8px);
+            background: rgba(200, 131, 58, 0.12);
+            border-color: var(--pino-miel);
+        }
+
+        .contacto-item.wsp-destacado:hover {
+            background: rgba(37, 211, 102, 0.15);
+            border-color: #25D366;
+        }
+
+        .contacto-icono {
+            font-size: 1.6rem;
+        }
+
+        .contacto-texto h4 {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--arena-patagonica);
+            margin-bottom: 2px;
+            font-weight: 500;
+        }
+
+        .contacto-item.wsp-destacado .contacto-texto h4 {
+            color: #25D366;
+        }
+
+        .contacto-texto p {
+            font-size: 1.05rem;
+            font-weight: 600;
+        }
+
+        /* Contenedor del Castor */
+        .contacto-castor-box {
+            flex: 0.8;
             display: flex;
             justify-content: center;
             align-items: center;
-            width: 100%;
-            max-width: 355px;
-            padding: 16px;
-            text-decoration: none;
-            font-weight: 600;
-            border-radius: 8px;
-            transition: transform 0.2s;
+            position: relative;
         }
 
-        .contacto-link.wsp { background-color: #25D366; color: white; }
-        .contacto-link.ig { background-color: transparent; color: var(--crema-mdera); border: 2px solid var(--pino-miel); }
-        .contacto-link:hover { transform: scale(1.03); }
+        .castor-img {
+            max-width: 340px;
+            width: 100%;
+            height: auto;
+            filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.4));
+            animation: flotarCastor 4s ease-in-out infinite;
+        }
 
-        /* Animación suave estructural general */
+        /* Contenedor provisorio por si todavía no subiste el castor.png */
+        .castor-placeholder {
+            width: 280px;
+            height: 280px;
+            border: 2px dashed var(--pino-miel);
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: var(--arena-patagonica);
+            text-align: center;
+            padding: 20px;
+            background: rgba(255,255,255,0.02);
+            font-size: 0.9rem;
+            animation: flotarCastor 4s ease-in-out infinite;
+        }
+
+        @keyframes flotarCastor {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
+            100% { transform: translateY(0px); }
+        }
+
         .fade-in-section {
             opacity: 0;
             transform: translateY(20px);
@@ -483,12 +532,30 @@
             .navbar { padding: 15px 5%; }
             .nav-links { display: none; }
             h2 { font-size: 2.2rem; }
+            
+            /* Ajustes móviles de contacto */
+            .contacto-grid {
+                flex-direction: column;
+                gap: 40px;
+            }
+            .contacto h2, .contacto .subtitle {
+                text-align: center;
+            }
+            .contacto-info {
+                width: 100%;
+            }
+            .contacto-castor-box {
+                order: -1; /* El castor sale arriba en los celulares para dar la bienvenida */
+            }
+            .castor-img, .castor-placeholder {
+                max-width: 240px;
+                height: auto;
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- Barra de Navegación -->
     <nav class="navbar">
         <div class="logo">MADERERA LA HERRADURA</div>
         <div class="nav-links">
@@ -499,7 +566,6 @@
         </div>
     </nav>
 
-    <!-- Sección Hero de Presentación -->
     <section class="hero fade-in-section">
         <div class="hero-content">
             <h1>Maderera La Herradura</h1>
@@ -509,20 +575,16 @@
         </div>
     </section>
 
-    <!-- Sección de Modelos Estándar Interactivos -->
     <section id="modelos" class="modelos-section">
         <div class="modelos-intro fade-in-section">
             <h2>Modelos Estándar</h2>
             <p class="subtitle">Hacé clic en un modelo para desplegar planos y galerías de fotos</p>
         </div>
 
-        <!-- CONTENEDOR DE TARJETAS HORIZONTALES (Disney Pop-out Layout) -->
         <div class="cards-container-disney fade-in-section">
             
-            <!-- Modelo 18mt2 -->
             <div class="card-disney color-18" onclick="selectModel('18')">
                 <div class="png-popout">
-                    <!-- Cuando tengas el render en PNG transparente lo pones acá: <img src="cabana18.png"> -->
                     <p class="placeholder-text-png">PNG Cabaña<br>18 mt²</p>
                 </div>
                 <div class="card-disney-info">
@@ -531,7 +593,6 @@
                 </div>
             </div>
 
-            <!-- Modelo 28mt2 -->
             <div class="card-disney color-28" onclick="selectModel('28')">
                 <div class="png-popout">
                     <p class="placeholder-text-png">PNG Cabaña<br>28 mt²</p>
@@ -542,7 +603,6 @@
                 </div>
             </div>
 
-            <!-- Modelo 36mt2 -->
             <div class="card-disney color-36" onclick="selectModel('36')">
                 <div class="png-popout">
                     <p class="placeholder-text-png">PNG Cabaña<br>36 mt²</p>
@@ -553,7 +613,6 @@
                 </div>
             </div>
 
-            <!-- Modelo 48mt2 -->
             <div class="card-disney color-48" onclick="selectModel('48')">
                 <div class="png-popout">
                     <p class="placeholder-text-png">PNG Cabaña<br>48 mt²</p>
@@ -566,160 +625,10 @@
 
         </div>
 
-        <!-- PANELES DESPLEGABLES DE INFORMACIÓN DETALLADA (Se abren justo debajo) -->
         <div class="panels-container-disney">
 
-            <!-- Detalle 18m2 -->
             <div id="panel-18" class="panel-detail-disney color-18-bg">
                 <div class="panel-close" onclick="closeAllPanels()">✕ Cerrar</div>
                 <div class="panel-grid-layout">
                     <div class="panel-text">
                         <h3>Modelo 18 mt²</h3>
-                        <p class="panel-precio-big">$7.100.000</p>
-                        <p>Un diseño compacto, eficiente y optimizado bajo el sistema Woodframe. Ideal para anexos, oficinas de jardín o complejos turísticos de alta rotación en la Patagonia.</p>
-                        <a href="https://wa.me/542944898755?text=Hola!%20Quiero%20consultar%20por%20el%20Modelo%2018m2" target="_blank" class="btn-wsp-panel">Consultar por WhatsApp</a>
-                    </div>
-                    <div class="panel-galeria">
-                        <div class="img-box-disney"><p>Foto Interior 1</p></div>
-                        <div class="img-box-disney"><p>Foto Interior 2</p></div>
-                        <div class="img-box-disney plano-img"><p>Plano Técnico de Distribución</p></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Detalle 28m2 -->
-            <div id="panel-28" class="panel-detail-disney color-28-bg">
-                <div class="panel-close" onclick="closeAllPanels()">✕ Cerrar</div>
-                <div class="panel-grid-layout">
-                    <div class="panel-text">
-                        <h3>Modelo 28 mt²</h3>
-                        <p class="panel-precio-big">$11.000.000</p>
-                        <p>Perfecto equilibrio entre confort y funcionalidad. Cuenta con una distribución inteligente que maximiza la iluminación natural y los espacios comunes del hogar.</p>
-                        <a href="https://wa.me/542944898755?text=Hola!%20Quiero%20consultar%20por%20el%20Modelo%2028m2" target="_blank" class="btn-wsp-panel">Consultar por WhatsApp</a>
-                    </div>
-                    <div class="panel-galeria">
-                        <div class="img-box-disney"><p>Foto Interior 1</p></div>
-                        <div class="img-box-disney"><p>Foto Interior 2</p></div>
-                        <div class="img-box-disney plano-img"><p>Plano Técnico de Distribución</p></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Detalle 36m2 -->
-            <div id="panel-36" class="panel-detail-disney color-36-bg">
-                <div class="panel-close" onclick="closeAllPanels()">✕ Cerrar</div>
-                <div class="panel-grid-layout">
-                    <div class="panel-text">
-                        <h3>Modelo 36 mt²</h3>
-                        <p class="panel-precio-big">$14.100.000</p>
-                        <p>Pensada para estancias prolongadas o vivienda permanente de tamaño moderado. Excelente aislamiento térmico estructural que caracteriza nuestras calidades de construcción.</p>
-                        <a href="https://wa.me/542944898755?text=Hola!%20Quiero%20consultar%20por%20el%20Modelo%2036m2" target="_blank" class="btn-wsp-panel">Consultar por WhatsApp</a>
-                    </div>
-                    <div class="panel-galeria">
-                        <div class="img-box-disney"><p>Foto Interior 1</p></div>
-                        <div class="img-box-disney"><p>Foto Interior 2</p></div>
-                        <div class="img-box-disney plano-img"><p>Plano Técnico de Distribución</p></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Detalle 48m2 -->
-            <div id="panel-48" class="panel-detail-disney color-48-bg">
-                <div class="panel-close" onclick="closeAllPanels()">✕ Cerrar</div>
-                <div class="panel-grid-layout">
-                    <div class="panel-text">
-                        <h3>Modelo 48 mt²</h3>
-                        <p class="panel-precio-big">$18.750.000</p>
-                        <p>Nuestra propuesta estándar más amplia. Comodidad familiar completa con ambientes definidos, terminaciones premium y toda la solidez estructural de la madera seleccionada.</p>
-                        <a href="https://wa.me/542944898755?text=Hola!%20Quiero%20consultar%20por%20el%20Modelo%2048m2" target="_blank" class="btn-wsp-panel">Consultar por WhatsApp</a>
-                    </div>
-                    <div class="panel-galeria">
-                        <div class="img-box-disney"><p>Foto Interior 1</p></div>
-                        <div class="img-box-disney"><p>Foto Interior 2</p></div>
-                        <div class="img-box-disney plano-img"><p>Plano Técnico de Distribución</p></div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- Sección A Medida -->
-    <section id="medida" class="a-medida fade-in-section">
-        <div class="medida-content">
-            <h2>Proyectos Personalizados</h2>
-            <p class="subtitle">Construimos la cabaña de tus sueños a medida</p>
-            <p class="medida-p">Si las medidas estándar no se adaptan a lo que buscás, desarrollamos planos desde cero adaptados completamente a la topografía de tu terreno y a tus necesidades habitacionales.</p>
-            <ul class="medida-lista">
-                <li>✓ Adaptación geométrica y de ambientes total</li>
-                <li>✓ Elección de aberturas y paneles customizados</li>
-                <li>✓ Presupuestos dinámicos llave en mano</li>
-            </ul>
-        </div>
-    </section>
-
-    <!-- Sección Materiales -->
-    <section id="materiales" class="materiales fade-in-section">
-        <h2>Materiales de Alta Gama</h2>
-        <p class="subtitle">Estructuras sólidas, terminaciones impecables.</p>
-        <div class="grid-materiales">
-            <div class="material-card">
-                <h3>Aberturas</h3>
-                <p>Ventanas y cerramientos de alta prestación acústica y térmica ideales para climas exigentes.</p>
-            </div>
-            <div class="material-card">
-                <h3>Puertas</h3>
-                <p>Puertas principales e internas fabricadas en madera maciza seleccionada de primera calidad.</p>
-            </div>
-            <div class="material-card">
-                <h3>Paneles</h3>
-                <p>Estructuras modulares eficientes con capas de aislamiento climático avanzado.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Sección Contacto -->
-    <section id="contacto" class="contacto fade-in-section">
-        <h2>Iniciá tu proyecto con nosotros</h2>
-        <p>Escribinos para recibir asesoramiento personalizado en tu obra.</p>
-        
-        <div class="contacto-canales">
-            <a href="https://wa.me/542944898755" target="_blank" class="contacto-link wsp">
-                💬 WhatsApp: +54 2944 898755
-            </a>
-            <a href="https://instagram.com" target="_blank" class="contacto-link ig">
-                📸 Síguenos en Instagram
-            </a>
-        </div>
-    </section>
-
-    <!-- LÓGICA DE INTERACCIÓN INTEGRADA -->
-    <script>
-        function selectModel(modelSize) {
-            // Oculta todos los paneles abiertos actualmente
-            const allPanels = document.querySelectorAll('.panel-detail-disney');
-            allPanels.forEach(panel => {
-                panel.style.display = 'none';
-            });
-
-            // Apunta y muestra el bloque seleccionado
-            const targetPanel = document.getElementById('panel-' + modelSize);
-            if (targetPanel) {
-                targetPanel.style.display = 'block';
-                
-                // Centra la vista de la pantalla suavemente sobre el panel abierto
-                setTimeout(() => {
-                    targetPanel.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }, 100);
-            }
-        }
-
-        function closeAllPanels() {
-            const allPanels = document.querySelectorAll('.panel-detail-disney');
-            allPanels.forEach(panel => {
-                panel.style.display = 'none';
-            });
-        }
-    </script>
-</body>
-</html>
