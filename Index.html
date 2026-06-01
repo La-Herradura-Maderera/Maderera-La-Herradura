@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maderera la Herradura - Cabañas Woodframe</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">LA HERRADURA</div>
+        <div class="nav-links">
+            <a href="#modelos">Modelos</a>
+            <a href="#medida">A Medida</a>
+            <a href="#materiales">Materiales</a>
+            <a href="#contacto">Contacto</a>
+        </div>
+    </nav>
+
+    <section class="hero fade-in-section">
+        <div class="hero-content">
+            <h1>Cabañas de madera <br><span class="italic">hechas para durar.</span></h1>
+            <p>Diseñamos y construimos cabañas con estándares superiores de calidad, diseño y confort.</p>
+            <a href="#modelos" class="btn">Ver modelos estándar</a>
+        </div>
+    </section>
+
+    <section id="modelos" class="modelos fade-in-section">
+        <h2>Modelos Estándar</h2>
+        <p class="subtitle">Cuatro propuestas, un estándar superior.</p>
+        
+        <div class="grid-modelos">
+            <div class="card">
+                <div class="img-placeholder"></div>
+                <h3>Refugio 3x6</h3>
+                <p>Ideal para parejas o escapadas de fin de semana.</p>
+                <ul>
+                    <li>1 Dormitorio</li>
+                    <li>1 Baño</li>
+                </ul>
+            </div>
+            <div class="card">
+                <div class="img-placeholder"></div>
+                <h3>Bosque 6x6</h3>
+                <p>El equilibrio perfecto entre espacio y calidez.</p>
+                <ul>
+                    <li>2 Dormitorios</li>
+                    <li>1 Baño</li>
+                </ul>
+            </div>
+            <div class="card">
+                <div class="img-placeholder"></div>
+                <h3>Horizonte 6x8</h3>
+                <p>Amplia, cómoda y pensada para la familia.</p>
+                <ul>
+                    <li>2 Dormitorios</li>
+                    <li>2 Baños</li>
+                </ul>
+            </div>
+            <div class="card">
+                <div class="img-placeholder"></div>
+                <h3>Altura 7x4</h3>
+                <p>Diseño alargado ideal para terrenos con vista.</p>
+                <ul>
+                    <li>2 Dormitorios</li>
+                    <li>1 Baño</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="medida" class="a-medida fade-in-section">
+        <div class="medida-content">
+            <h2>Cabañas a medida</h2>
+            <p>¿Tenés un proyecto en mente? Lo hacemos realidad.</p>
+            <ul>
+                <li>✓ Diseño personalizado</li>
+                <li>✓ Adaptado a tu terreno</li>
+                <li>✓ Acompañamiento integral</li>
+            </ul>
+            <a href="#contacto" class="btn">Quiero mi cabaña a medida</a>
+        </div>
+        <div class="medida-img-placeholder">
+            </div>
+    </section>
+
+    <section id="materiales" class="materiales fade-in-section">
+        <h2>Materiales que se sienten</h2>
+        <p class="subtitle">Componentes de alta calidad para garantizar durabilidad.</p>
+        
+        <div class="grid-materiales">
+            <div class="material-item">
+                <div class="img-placeholder"></div>
+                <h3>Aberturas</h3>
+                <p>Aberturas de alta prestación para un aislamiento óptimo.</p>
+            </div>
+            <div class="material-item">
+                <div class="img-placeholder"></div>
+                <h3>Puertas</h3>
+                <p>Madera maciza seleccionada para mayor seguridad y estética.</p>
+            </div>
+            <div class="material-item">
+                <div class="img-placeholder"></div>
+                <h3>Paneles</h3>
+                <p>Tecnología térmica y acústica en cada rincón.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contacto" class="contacto fade-in-section">
+        <h2>Hablemos de tu próximo proyecto</h2>
+        <form class="form-contacto" onsubmit="event.preventDefault();">
+            <input type="text" placeholder="Nombre y Apellido" required>
+            <input type="email" placeholder="Email" required>
+            <textarea placeholder="Contanos sobre tu proyecto..." rows="5" required></textarea>
+            <button type="submit" class="btn">Enviar consulta</button>
+        </form>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
