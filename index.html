@@ -3,14 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maderera la Herradura - Cabañas Woodframe</title>
+    <title>Maderera La Herradura - Cabañas Woodframe</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Tipografías de marca: Playfair Display y Montserrat -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 </head>
 <body>
 
+    <!-- Navegación -->
     <nav class="navbar">
-        <div class="logo">LA HERRADURA</div>
+        <div class="logo">
+            <!-- Espacio para el logo de la herradura logo vectores (1).pdf.png -->
+            <!-- <img src="logo.png" alt="La Herradura Logo" class="logo-img"> -->
+            LA HERRADURA
+        </div>
         <div class="nav-links">
             <a href="#modelos">Modelos</a>
             <a href="#medida">A Medida</a>
@@ -19,104 +25,146 @@
         </div>
     </nav>
 
+    <!-- Sección 1: Hero / Inicio -->
     <section class="hero fade-in-section">
         <div class="hero-content">
-            <h1>Cabañas de madera <br><span class="italic">hechas para durar.</span></h1>
-            <p>Diseñamos y construimos cabañas con estándares superiores de calidad, diseño y confort.</p>
-            <a href="#modelos" class="btn">Ver modelos estándar</a>
+            <h1>Maderera La Herradura</h1>
+            <p class="hero-subtitle">Cabañas Woodframe</p>
+            <p class="hero-tagline">Diseñamos y construimos cabañas con estándares superiores de calidad, diseño y confort.</p>
+            <a href="#modelos" class="btn">Ver Modelos Estándar</a>
         </div>
     </section>
 
-    <section id="modelos" class="modelos fade-in-section">
-        <h2>Modelos Estándar</h2>
-        <p class="subtitle">Cuatro propuestas, un estándar superior.</p>
+    <!-- Sección 2: Modelos Estándar (Contenedor Principal) -->
+    <section id="modelos" class="modelos-section">
+        <div class="modelos-intro fade-in-section">
+            <h2>Modelos Estándar</h2>
+            <p class="subtitle">Elegí la medida ideal para tu próximo proyecto</p>
+            
+            <!-- Selector interactivo tipo barra de categorías -->
+            <div class="modelos-selector">
+                <a href="#modelo-18" class="selector-btn">Modelo 18m²</a>
+                <a href="#modelo-28" class="selector-btn">Modelo 28m²</a>
+                <a href="#modelo-36" class="selector-btn">Modelo 36m²</a>
+                <a href="#modelo-48" class="selector-btn">Modelo 48m²</a>
+            </div>
+        </div>
+
+        <!-- STACK VERTICAL DE MODELOS -->
         
-        <div class="grid-modelos">
-            <div class="card">
-                <div class="img-placeholder"></div>
-                <h3>Refugio 3x6</h3>
-                <p>Ideal para parejas o escapadas de fin de semana.</p>
-                <ul>
-                    <li>1 Dormitorio</li>
-                    <li>1 Baño</li>
-                </ul>
+        <!-- Modelo 18m2 -->
+        <div id="modelo-18" class="modelo-block fade-in-section">
+            <div class="modelo-info">
+                <h3>Modelo 18 mt²</h3>
+                <p class="precio">$7.100.000</p>
+                <p class="descripcion">Un diseño compacto, eficiente y optimizado bajo el sistema Woodframe. Ideal para anexos, oficinas de jardín o complejos turísticos de alta rotación.</p>
+                <a href="https://wa.me/542944898755?text=Hola!%20Quiero%20consultar%20por%20el%20Modelo%2018m2" target="_blank" class="btn">Consultar por WhatsApp</a>
             </div>
-            <div class="card">
-                <div class="img-placeholder"></div>
-                <h3>Bosque 6x6</h3>
-                <p>El equilibrio perfecto entre espacio y calidez.</p>
-                <ul>
-                    <li>2 Dormitorios</li>
-                    <li>1 Baño</li>
-                </ul>
+            <div class="modelo-galeria">
+                <div class="img-box principal"><p>Foto Principal (18m²)</p></div>
+                <div class="img-box"><p>Interior 1</p></div>
+                <div class="img-box"><p>Interior 2</p></div>
+                <div class="img-box plano"><p>Plano Técnico</p></div>
             </div>
-            <div class="card">
-                <div class="img-placeholder"></div>
-                <h3>Horizonte 6x8</h3>
-                <p>Amplia, cómoda y pensada para la familia.</p>
-                <ul>
-                    <li>2 Dormitorios</li>
-                    <li>2 Baños</li>
-                </ul>
+        </div>
+
+        <!-- Modelo 28m2 -->
+        <div id="modelo-28" class="modelo-block fade-in-section">
+            <div class="modelo-info">
+                <h3>Modelo 28 mt²</h3>
+                <p class="precio">$11.000.000</p>
+                <p class="descripcion">Perfecto equilibrio entre confort y funcionalidad. Cuenta con una distribución inteligente que maximiza la iluminación natural y los espacios comunes.</p>
+                <a href="https://wa.me/542944898755?text=Hola!%20Quiero%20consultar%20por%20el%20Modelo%2028m2" target="_blank" class="btn">Consultar por WhatsApp</a>
             </div>
-            <div class="card">
-                <div class="img-placeholder"></div>
-                <h3>Altura 7x4</h3>
-                <p>Diseño alargado ideal para terrenos con vista.</p>
-                <ul>
-                    <li>2 Dormitorios</li>
-                    <li>1 Baño</li>
-                </ul>
+            <div class="modelo-galeria">
+                <div class="img-box principal"><p>Foto Principal (28m²)</p></div>
+                <div class="img-box"><p>Interior 1</p></div>
+                <div class="img-box"><p>Interior 2</p></div>
+                <div class="img-box plano"><p>Plano Técnico</p></div>
+            </div>
+        </div>
+
+        <!-- Modelo 36m2 -->
+        <div id="modelo-36" class="modelo-block fade-in-section">
+            <div class="modelo-info">
+                <h3>Modelo 36 mt²</h3>
+                <p class="precio">$14.100.000</p>
+                <p class="descripcion">Pensada para estancias prolongadas o vivienda permanente de tamaño moderado. Excelente aislamiento térmico estructural que caracteriza nuestras calidades.</p>
+                <a href="https://wa.me/542944898755?text=Hola!%20Quiero%20consultar%20por%20el%20Modelo%2036m2" target="_blank" class="btn">Consultar por WhatsApp</a>
+            </div>
+            <div class="modelo-galeria">
+                <div class="img-box principal"><p>Foto Principal (36m²)</p></div>
+                <div class="img-box"><p>Interior 1</p></div>
+                <div class="img-box"><p>Interior 2</p></div>
+                <div class="img-box plano"><p>Plano Técnico</p></div>
+            </div>
+        </div>
+
+        <!-- Modelo 48m2 -->
+        <div id="modelo-48" class="modelo-block fade-in-section">
+            <div class="modelo-info">
+                <h3>Modelo 48 mt²</h3>
+                <p class="precio">$18.750.000</p>
+                <p class="descripcion">Nuestra propuesta estándar más amplia. Comodidad familiar completa con ambientes definidos, terminaciones premium y toda la solidez estructural de la madera seleccionada.</p>
+                <a href="https://wa.me/542944898755?text=Hola!%20Quiero%20consultar%20por%20el%20Modelo%2048m2" target="_blank" class="btn">Consultar por WhatsApp</a>
+            </div>
+            <div class="modelo-galeria">
+                <div class="img-box principal"><p>Foto Principal (48m²)</p></div>
+                <div class="img-box"><p>Interior 1</p></div>
+                <div class="img-box"><p>Interior 2</p></div>
+                <div class="img-box plano"><p>Plano Técnico</p></div>
             </div>
         </div>
     </section>
 
+    <!-- Sección 3: A Medida -->
     <section id="medida" class="a-medida fade-in-section">
         <div class="medida-content">
-            <h2>Cabañas a medida</h2>
-            <p>¿Tenés un proyecto en mente? Lo hacemos realidad.</p>
-            <ul>
-                <li>✓ Diseño personalizado</li>
-                <li>✓ Adaptado a tu terreno</li>
-                <li>✓ Acompañamiento integral</li>
+            <h2>Proyectos Personalizados</h2>
+            <p class="subtitle">Construimos la cabaña de tus sueños a medida</p>
+            <p>Si las medidas estándar no se adaptan a lo que buscás, desarrollamos planos desde cero adaptados completamente a la topografía de tu terreno y a tus necesidades habitacionales.</p>
+            <ul class="medida-lista">
+                <li>✓ Adaptación geométrica total</li>
+                <li>✓ Elección de aberturas y paneles customizados</li>
+                <li>✓ Presupuestos dinámicos llave en mano</li>
             </ul>
-            <a href="#contacto" class="btn">Quiero mi cabaña a medida</a>
         </div>
-        <div class="medida-img-placeholder">
-            </div>
     </section>
 
+    <!-- Sección 4: Materiales -->
     <section id="materiales" class="materiales fade-in-section">
         <h2>Materiales que se sienten</h2>
-        <p class="subtitle">Componentes de alta calidad para garantizar durabilidad.</p>
-        
+        <p class="subtitle">Estructuras sólidas, terminaciones impecables.</p>
         <div class="grid-materiales">
-            <div class="material-item">
-                <div class="img-placeholder"></div>
+            <div class="material-card">
                 <h3>Aberturas</h3>
-                <p>Aberturas de alta prestación para un aislamiento óptimo.</p>
+                <p>Ventanas y cerramientos de alta prestación acústica y térmica.</p>
             </div>
-            <div class="material-item">
-                <div class="img-placeholder"></div>
+            <div class="material-card">
                 <h3>Puertas</h3>
-                <p>Madera maciza seleccionada para mayor seguridad y estética.</p>
+                <p>Puertas principales e internas de madera maciza seleccionada.</p>
             </div>
-            <div class="material-item">
-                <div class="img-placeholder"></div>
+            <div class="material-card">
                 <h3>Paneles</h3>
-                <p>Tecnología térmica y acústica en cada rincón.</p>
+                <p>Estructuras modulares Woodframe con capas de aislamiento climático avanzado.</p>
             </div>
         </div>
     </section>
 
+    <!-- Sección 5: Contacto -->
     <section id="contacto" class="contacto fade-in-section">
-        <h2>Hablemos de tu próximo proyecto</h2>
-        <form class="form-contacto" onsubmit="event.preventDefault();">
-            <input type="text" placeholder="Nombre y Apellido" required>
-            <input type="email" placeholder="Email" required>
-            <textarea placeholder="Contanos sobre tu proyecto..." rows="5" required></textarea>
-            <button type="submit" class="btn">Enviar consulta</button>
-        </form>
+        <h2>Iniciá tu proyecto con nosotros</h2>
+        <p>Estamos en Bariloche, consultanos desde cualquier punto del país.</p>
+        
+        <div class="contacto-canales">
+            <a href="https://wa.me/542944898755" target="_blank" class="contacto-link wsp">
+                💬 WhatsApp: +54 2944 898755
+            </a>
+            <!-- Reemplazar el '#' de abajo por tu enlace real de Instagram corporativo -->
+            <a href="https://instagram.com" target="_blank" class="contacto-link ig">
+                📸 Síguenos en Instagram
+            </a>
+        </div>
     </section>
 
     <script src="script.js"></script>
