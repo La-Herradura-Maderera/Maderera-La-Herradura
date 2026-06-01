@@ -1,23 +1,31 @@
-/* Estilos Generales */
+/* Paleta de colores basada en Manual de Marca (#image_ef6f9b.png) */
+:root {
+    --roble-oscuro: #3B2210;       /* Color Principal / Fondos oscuros / Títulos */
+    --pino-miel: #C8833A;          /* Acento Cálido / Botones / Destacados */
+    --cedro-calido: #A05C2C;       /* Secundario / Subtítulos / Detalles */
+    --arena-patagonica: #D9C4A0;   /* Neutro Cálido / Fondos alternativos */
+    --crema-mdera: #F2EAD8;        /* Base Clara / Fondo principal */
+    --carbon: #1C1C1B;             /* Tipografía principal sobre fondo claro */
+}
+
+/* Configuración General */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    scroll-behavior: smooth; /* Logra un salto suave al seleccionar modelos */
 }
 
 body {
-    font-family: 'Poppins', sans-serif;
-    background-color: #f4f1ea; /* Fondo crema claro como la foto */
-    color: #2c2520; /* Texto marrón muy oscuro */
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--crema-mdera);
+    color: var(--carbon);
     overflow-x: hidden;
 }
 
-h1, h2, h3 {
+h1, h2, h3, .precio {
     font-family: 'Playfair Display', serif;
-}
-
-.italic {
-    font-style: italic;
+    color: var(--roble-oscuro);
 }
 
 /* Navegación */
@@ -25,142 +33,336 @@ h1, h2, h3 {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 50px;
-    background-color: #2c2520;
-    color: #f4f1ea;
+    padding: 20px 8%;
+    background-color: var(--roble-oscuro);
     position: fixed;
     width: 100%;
     z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.logo {
+    color: var(--crema-mdera);
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 1.3rem;
+    letter-spacing: 1px;
 }
 
 .nav-links a {
-    color: #f4f1ea;
+    color: var(--crema-mdera);
     text-decoration: none;
-    margin-left: 20px;
+    margin-left: 25px;
     font-size: 0.9rem;
+    font-weight: 500;
     transition: color 0.3s;
 }
 
 .nav-links a:hover {
-    color: #d4a373;
+    color: var(--pino-miel);
 }
 
-/* Efecto de Animación Scroll (Interactivo) */
-.fade-in-section {
-    opacity: 0;
-    transform: translateY(60px);
-    visibility: hidden;
-    transition: opacity 1s ease-out, transform 1.2s ease-out, visibility 1s ease-out;
-    will-change: opacity, transform;
-    padding: 100px 50px;
-    min-height: 80vh;
+/* Héroe de entrada */
+.hero {
+    background-color: var(--roble-oscuro);
+    color: var(--crema-mdera);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.hero h1 {
+    color: var(--crema-mdera);
+    font-size: 4rem;
+    margin-bottom: 5px;
+}
+
+.hero-subtitle {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 2.2rem;
+    color: var(--pino-miel);
+    margin-bottom: 25px;
+}
+
+.hero-tagline {
+    max-width: 600px;
+    font-size: 1.1rem;
+    font-weight: 300;
+    line-height: 1.6;
+}
+
+/* Botones */
+.btn {
+    display: inline-block;
+    padding: 14px 35px;
+    background-color: var(--pino-miel);
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 600;
+    margin-top: 30px;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.btn:hover {
+    background-color: var(--cedro-calido);
+    transform: translateY(-2px);
+}
+
+/* Sección e Introducción de Modelos */
+.modelos-section {
+    padding: 60px 0;
+}
+
+.modelos-intro {
+    text-align: center;
+    padding: 60px 20px 20px;
+}
+
+h2 {
+    font-size: 2.8rem;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    color: var(--cedro-calido);
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-bottom: 30px;
+}
+
+/* Selector Interactivo de Medidas */
+.modelos-selector {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.selector-btn {
+    padding: 10px 25px;
+    background-color: transparent;
+    color: var(--roble-oscuro);
+    border: 2px solid var(--arena-patagonica);
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.selector-btn:hover {
+    background-color: var(--roble-oscuro);
+    color: var(--crema-mdera);
+    border-color: var(--roble-oscuro);
+}
+
+/* Maquetación del Bloque Vertical de un Modelo */
+.modelo-block {
+    display: flex;
+    flex-direction: row;
+    gap: 5%;
+    max-width: 1200px;
+    margin: 80px auto;
+    padding: 40px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(59, 34, 16, 0.04);
+}
+
+/* Hacer que alterne la foto a izquierda y derecha interactivamente */
+.modelo-block:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+.modelo-info {
+    flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
 }
 
-/* Cuando la sección está visible, se activa esta clase */
+.modelo-info h3 {
+    font-size: 2.3rem;
+    margin-bottom: 10px;
+}
+
+.precio {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--cedro-calido);
+    margin-bottom: 20px;
+}
+
+.descripcion {
+    line-height: 1.7;
+    color: #4a4a4a;
+}
+
+/* Grilla de Imágenes Avanzada por Modelo (3 Fotos + 1 Plano Técnico) */
+.modelo-galeria {
+    flex: 1.3;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 160px);
+    gap: 12px;
+}
+
+.img-box {
+    background-color: var(--crema-mdera);
+    border: 1px dashed var(--arena-patagonica);
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--cedro-calido);
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-align: center;
+    padding: 10px;
+}
+
+/* Distribución de fotos destacadas */
+.img-box.principal {
+    grid-column: span 2;
+    grid-row: span 2;
+    min-height: 332px;
+}
+
+.img-box.plano {
+    border: 2px solid var(--arena-patagonica);
+    background-color: #faf8f5;
+}
+
+/* Secciones Complementarias */
+.a-medida {
+    background-color: var(--arena-patagonica);
+    text-align: center;
+}
+
+.medida-lista {
+    list-style: none;
+    max-width: 500px;
+    margin: 30px auto 0;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    font-weight: 500;
+}
+
+.materiales {
+    background-color: white;
+}
+
+.grid-materiales {
+    display: flex;
+    gap: 30px;
+    max-width: 1100px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.material-card {
+    flex: 1;
+    min-width: 280px;
+    padding: 30px;
+    background: var(--crema-mdera);
+    border-radius: 6px;
+    border-left: 4px solid var(--pino-miel);
+}
+
+.material-card h3 {
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+}
+
+/* Contacto Canales */
+.contacto {
+    background-color: var(--roble-oscuro);
+    color: var(--crema-mdera);
+    text-align: center;
+}
+
+.contacto h2 {
+    color: var(--crema-mdera);
+}
+
+.contacto-canales {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin-top: 40px;
+}
+
+.contacto-link {
+    display: block;
+    width: 100%;
+    max-width: 350px;
+    padding: 15px;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 6px;
+    transition: transform 0.2s;
+}
+
+.contacto-link.wsp {
+    background-color: #25D366;
+    color: white;
+}
+
+.contacto-link.ig {
+    background-color: transparent;
+    color: var(--crema-mdera);
+    border: 2px solid var(--pino-miel);
+}
+
+.contacto-link:hover {
+    transform: scale(1.03);
+}
+
+/* INTERSECTION OBSERVER (Transiciones de Desplazamiento) */
+.fade-in-section {
+    opacity: 0;
+    transform: translateY(50px);
+    visibility: hidden;
+    transition: opacity 0.8s ease-out, transform 1s ease-out, visibility 0.8s ease-out;
+    will-change: opacity, transform;
+    padding: 100px 8%;
+}
+
 .fade-in-section.is-visible {
     opacity: 1;
     transform: translateY(0);
     visibility: visible;
 }
 
-/* Secciones específicas */
-.hero {
-    background-color: #2c2520; /* Simula el fondo oscuro de la foto */
-    color: #f4f1ea;
-    text-align: center;
-    height: 100vh;
-}
-
-.hero h1 {
-    font-size: 3.5rem;
-    margin-bottom: 20px;
-}
-
-.btn {
-    display: inline-block;
-    padding: 12px 30px;
-    background-color: #d4a373; /* Tono madera/dorado */
-    color: white;
-    text-decoration: none;
-    border-radius: 30px;
-    margin-top: 20px;
-    border: none;
-    cursor: pointer;
-    font-weight: 600;
-    transition: background 0.3s;
-}
-
-.btn:hover {
-    background-color: #b5835a;
-}
-
-/* Placeholders para las imágenes */
-.img-placeholder, .medida-img-placeholder {
-    background-color: #e0d9cc;
-    border: 2px dashed #b5835a;
-    width: 100%;
-    height: 250px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 8px;
-    margin-bottom: 15px;
-}
-
-/* Grillas */
-.grid-modelos, .grid-materiales {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 30px;
-    width: 100%;
-    max-width: 1200px;
-    margin-top: 40px;
-}
-
-.card, .material-item {
-    background: white;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-}
-
-.a-medida {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 50px;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.medida-content {
-    flex: 1;
-    min-width: 300px;
-}
-
-.medida-img-placeholder {
-    flex: 1;
-    min-width: 300px;
-    height: 400px;
-}
-
-/* Formulario */
-.form-contacto {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    width: 100%;
-    max-width: 500px;
-    margin-top: 30px;
-}
-
-.form-contacto input, .form-contacto textarea {
-    padding: 15px;
-    border: 1px solid #ccbfb0;
-    border-radius: 8px;
-    background-color: white;
-    font-family: inherit;
+/* Adaptación para pantallas de Celular */
+@media (max-width: 768px) {
+    .modelo-block, .modelo-block:nth-child(even) {
+        flex-direction: column;
+        padding: 20px;
+    }
+    .modelo-galeria {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: auto;
+        margin-top: 20px;
+    }
+    .img-box.principal {
+        grid-column: span 2;
+        height: 200px;
+    }
+    .hero h1 { font-size: 2.5rem; }
+    .hero-subtitle { font-size: 1.5rem; }
+    .navbar { padding: 15px 4%; }
+    .nav-links { display: none; } /* Simplificado para móviles */
 }
