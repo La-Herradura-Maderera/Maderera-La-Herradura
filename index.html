@@ -13,9 +13,9 @@
     <!-- Navegación -->
     <nav class="navbar">
         <div class="logo">
-            <!-- Espacio para el logo de la herradura logo vectores (1).pdf.png -->
+            <!-- Cuando subas tu logo en PNG transparente, descomentá la línea de abajo borrando los caracteres <!-- y -->
             <!-- <img src="logo.png" alt="La Herradura Logo" class="logo-img"> -->
-            LA HERRADURA
+            MADERERA LA HERRADURA
         </div>
         <div class="nav-links">
             <a href="#modelos">Modelos</a>
@@ -35,85 +35,138 @@
         </div>
     </section>
 
-    <!-- Sección 2: Modelos Estándar (Contenedor Principal) -->
+    <!-- Sección 2: Modelos Estándar Interactivos (Estilo Disney UI) -->
     <section id="modelos" class="modelos-section">
         <div class="modelos-intro fade-in-section">
             <h2>Modelos Estándar</h2>
-            <p class="subtitle">Elegí la medida ideal para tu próximo proyecto</p>
+            <p class="subtitle">Hacé clic en un modelo para desplegar planos y galerías de fotos</p>
+        </div>
+
+        <!-- CONTENEDOR DE TARJETAS (Una al lado de la otra) -->
+        <div class="cards-container-disney fade-in-section">
             
-            <!-- Selector interactivo tipo barra de categorías -->
-            <div class="modelos-selector">
-                <a href="#modelo-18" class="selector-btn">Modelo 18m²</a>
-                <a href="#modelo-28" class="selector-btn">Modelo 28m²</a>
-                <a href="#modelo-36" class="selector-btn">Modelo 36m²</a>
-                <a href="#modelo-48" class="selector-btn">Modelo 48m²</a>
+            <!-- Tarjeta 18m2 -->
+            <div class="card-disney color-18" onclick="selectModel('18')">
+                <div class="png-popout">
+                    <!-- Cuando tengas el render en PNG transparente lo ponés acá, ej: <img src="cabana18.png"> -->
+                    <p class="placeholder-text-png">PNG Cabaña<br>18 mt²</p>
+                </div>
+                <div class="card-disney-info">
+                    <h3>18 mt²</h3>
+                    <p class="card-precio">$7.100.000</p>
+                </div>
             </div>
+
+            <!-- Tarjeta 28m2 -->
+            <div class="card-disney color-28" onclick="selectModel('28')">
+                <div class="png-popout">
+                    <p class="placeholder-text-png">PNG Cabaña<br>28 mt²</p>
+                </div>
+                <div class="card-disney-info">
+                    <h3>28 mt²</h3>
+                    <p class="card-precio">$11.000.000</p>
+                </div>
+            </div>
+
+            <!-- Tarjeta 36m2 -->
+            <div class="card-disney color-36" onclick="selectModel('36')">
+                <div class="png-popout">
+                    <p class="placeholder-text-png">PNG Cabaña<br>36 mt²</p>
+                </div>
+                <div class="card-disney-info">
+                    <h3>36 mt²</h3>
+                    <p class="card-precio">$14.100.000</p>
+                </div>
+            </div>
+
+            <!-- Tarjeta 48m2 -->
+            <div class="card-disney color-48" onclick="selectModel('48')">
+                <div class="png-popout">
+                    <p class="placeholder-text-png">PNG Cabaña<br>48 mt²</p>
+                </div>
+                <div class="card-disney-info">
+                    <h3>48 mt²</h3>
+                    <p class="card-precio">$18.750.000</p>
+                </div>
+            </div>
+
         </div>
 
-        <!-- STACK VERTICAL DE MODELOS -->
-        
-        <!-- Modelo 18m2 -->
-        <div id="modelo-18" class="modelo-block fade-in-section">
-            <div class="modelo-info">
-                <h3>Modelo 18 mt²</h3>
-                <p class="precio">$7.100.000</p>
-                <p class="descripcion">Un diseño compacto, eficiente y optimizado bajo el sistema Woodframe. Ideal para anexos, oficinas de jardín o complejos turísticos de alta rotación.</p>
-                <a href="https://wa.me/542944898755?text=Hola!%20Quiero%20consultar%20por%20el%20Modelo%2018m2" target="_blank" class="btn">Consultar por WhatsApp</a>
-            </div>
-            <div class="modelo-galeria">
-                <div class="img-box principal"><p>Foto Principal (18m²)</p></div>
-                <div class="img-box"><p>Interior 1</p></div>
-                <div class="img-box"><p>Interior 2</p></div>
-                <div class="img-box plano"><p>Plano Técnico</p></div>
-            </div>
-        </div>
+        <!-- CONTENEDOR DE DETALLES DINÁMICOS (Se abren justo abajo) -->
+        <div class="panels-container-disney">
 
-        <!-- Modelo 28m2 -->
-        <div id="modelo-28" class="modelo-block fade-in-section">
-            <div class="modelo-info">
-                <h3>Modelo 28 mt²</h3>
-                <p class="precio">$11.000.000</p>
-                <p class="descripcion">Perfecto equilibrio entre confort y funcionalidad. Cuenta con una distribución inteligente que maximiza la iluminación natural y los espacios comunes.</p>
-                <a href="https://wa.me/542944898755?text=Hola!%20Quiero%20consultar%20por%20el%20Modelo%2028m2" target="_blank" class="btn">Consultar por WhatsApp</a>
+            <!-- Detalle 18m2 -->
+            <div id="panel-18" class="panel-detail-disney color-18-bg">
+                <div class="panel-close" onclick="closeAllPanels()">✕ Cerrar</div>
+                <div class="panel-grid-layout">
+                    <div class="panel-text">
+                        <h3>Modelo 18 mt²</h3>
+                        <p class="panel-precio-big">$7.100.000</p>
+                        <p>Un diseño compacto, eficiente y optimizado bajo el sistema Woodframe. Ideal para anexos, oficinas de jardín o complejos turísticos de alta rotación en la Patagonia.</p>
+                        <a href="https://wa.me/542944898755?text=Hola!%20Quiero%20consultar%20por%20el%20Modelo%2018m2" target="_blank" class="btn-wsp-panel">Consultar por WhatsApp</a>
+                    </div>
+                    <div class="panel-galeria">
+                        <div class="img-box-disney"><p>Foto Interior 1</p></div>
+                        <div class="img-box-disney"><p>Foto Interior 2</p></div>
+                        <div class="img-box-disney plano-img"><p>Plano Técnico de Distribución</p></div>
+                    </div>
+                </div>
             </div>
-            <div class="modelo-galeria">
-                <div class="img-box principal"><p>Foto Principal (28m²)</p></div>
-                <div class="img-box"><p>Interior 1</p></div>
-                <div class="img-box"><p>Interior 2</p></div>
-                <div class="img-box plano"><p>Plano Técnico</p></div>
-            </div>
-        </div>
 
-        <!-- Modelo 36m2 -->
-        <div id="modelo-36" class="modelo-block fade-in-section">
-            <div class="modelo-info">
-                <h3>Modelo 36 mt²</h3>
-                <p class="precio">$14.100.000</p>
-                <p class="descripcion">Pensada para estancias prolongadas o vivienda permanente de tamaño moderado. Excelente aislamiento térmico estructural que caracteriza nuestras calidades.</p>
-                <a href="https://wa.me/542944898755?text=Hola!%20Quiero%20consultar%20por%20el%20Modelo%2036m2" target="_blank" class="btn">Consultar por WhatsApp</a>
+            <!-- Detalle 28m2 -->
+            <div id="panel-28" class="panel-detail-disney color-28-bg">
+                <div class="panel-close" onclick="closeAllPanels()">✕ Cerrar</div>
+                <div class="panel-grid-layout">
+                    <div class="panel-text">
+                        <h3>Modelo 28 mt²</h3>
+                        <p class="panel-precio-big">$11.000.000</p>
+                        <p>Perfecto equilibrio entre confort y funcionalidad. Cuenta con una distribución inteligente que maximiza la iluminación natural y los espacios comunes del hogar.</p>
+                        <a href="https://wa.me/542944898755?text=Hola!%20Quiero%20consultar%20por%20el%20Modelo%2028m2" target="_blank" class="btn-wsp-panel">Consultar por WhatsApp</a>
+                    </div>
+                    <div class="panel-galeria">
+                        <div class="img-box-disney"><p>Foto Interior 1</p></div>
+                        <div class="img-box-disney"><p>Foto Interior 2</p></div>
+                        <div class="img-box-disney plano-img"><p>Plano Técnico de Distribución</p></div>
+                    </div>
+                </div>
             </div>
-            <div class="modelo-galeria">
-                <div class="img-box principal"><p>Foto Principal (36m²)</p></div>
-                <div class="img-box"><p>Interior 1</p></div>
-                <div class="img-box"><p>Interior 2</p></div>
-                <div class="img-box plano"><p>Plano Técnico</p></div>
-            </div>
-        </div>
 
-        <!-- Modelo 48m2 -->
-        <div id="modelo-48" class="modelo-block fade-in-section">
-            <div class="modelo-info">
-                <h3>Modelo 48 mt²</h3>
-                <p class="precio">$18.750.000</p>
-                <p class="descripcion">Nuestra propuesta estándar más amplia. Comodidad familiar completa con ambientes definidos, terminaciones premium y toda la solidez estructural de la madera seleccionada.</p>
-                <a href="https://wa.me/542944898755?text=Hola!%20Quiero%20consultar%20por%20el%20Modelo%2048m2" target="_blank" class="btn">Consultar por WhatsApp</a>
+            <!-- Detalle 36m2 -->
+            <div id="panel-36" class="panel-detail-disney color-36-bg">
+                <div class="panel-close" onclick="closeAllPanels()">✕ Cerrar</div>
+                <div class="panel-grid-layout">
+                    <div class="panel-text">
+                        <h3>Modelo 36 mt²</h3>
+                        <p class="panel-precio-big">$14.100.000</p>
+                        <p>Pensada para estancias prolongadas o vivienda permanente de tamaño moderado. Excelente aislamiento térmico estructural que caracteriza nuestras calidades de construcción.</p>
+                        <a href="https://wa.me/542944898755?text=Hola!%20Quiero%20consultar%20por%20el%20Modelo%2036m2" target="_blank" class="btn-wsp-panel">Consultar por WhatsApp</a>
+                    </div>
+                    <div class="panel-galeria">
+                        <div class="img-box-disney"><p>Foto Interior 1</p></div>
+                        <div class="img-box-disney"><p>Foto Interior 2</p></div>
+                        <div class="img-box-disney plano-img"><p>Plano Técnico de Distribución</p></div>
+                    </div>
+                </div>
             </div>
-            <div class="modelo-galeria">
-                <div class="img-box principal"><p>Foto Principal (48m²)</p></div>
-                <div class="img-box"><p>Interior 1</p></div>
-                <div class="img-box"><p>Interior 2</p></div>
-                <div class="img-box plano"><p>Plano Técnico</p></div>
+
+            <!-- Detalle 48m2 -->
+            <div id="panel-48" class="panel-detail-disney color-48-bg">
+                <div class="panel-close" onclick="closeAllPanels()">✕ Cerrar</div>
+                <div class="panel-grid-layout">
+                    <div class="panel-text">
+                        <h3>Modelo 48 mt²</h3>
+                        <p class="panel-precio-big">$18.750.000</p>
+                        <p>Nuestra propuesta estándar más amplia. Comodidad familiar completa con ambientes definidos, terminaciones premium y toda la solidez estructural de la madera seleccionada.</p>
+                        <a href="https://wa.me/542944898755?text=Hola!%20Quiero%20consultar%20por%20el%20Modelo%2048m2" target="_blank" class="btn-wsp-panel">Consultar por WhatsApp</a>
+                    </div>
+                    <div class="panel-galeria">
+                        <div class="img-box-disney"><p>Foto Interior 1</p></div>
+                        <div class="img-box-disney"><p>Foto Interior 2</p></div>
+                        <div class="img-box-disney plano-img"><p>Plano Técnico de Distribución</p></div>
+                    </div>
+                </div>
             </div>
+
         </div>
     </section>
 
@@ -121,10 +174,10 @@
     <section id="medida" class="a-medida fade-in-section">
         <div class="medida-content">
             <h2>Proyectos Personalizados</h2>
-            <p class="subtitle">Construimos la cabaña de tus sueños a medida</p>
-            <p>Si las medidas estándar no se adaptan a lo que buscás, desarrollamos planos desde cero adaptados completamente a la topografía de tu terreno y a tus necesidades habitacionales.</p>
+            <p class="subtitle">Construimos la cabaña de tus dreams a medida</p>
+            <p class="medida-p">Si las medidas estándar no se adaptan a lo que buscás, desarrollamos planos desde cero adaptados completamente a la topografía de tu terreno y a tus necesidades habitacionales.</p>
             <ul class="medida-lista">
-                <li>✓ Adaptación geométrica total</li>
+                <li>✓ Adaptación geométrica y de ambientes total</li>
                 <li>✓ Elección de aberturas y paneles customizados</li>
                 <li>✓ Presupuestos dinámicos llave en mano</li>
             </ul>
@@ -138,15 +191,15 @@
         <div class="grid-materiales">
             <div class="material-card">
                 <h3>Aberturas</h3>
-                <p>Ventanas y cerramientos de alta prestación acústica y térmica.</p>
+                <p>Ventanas y cerramientos de alta prestación acústica y térmica ideales para climas exigentes.</p>
             </div>
             <div class="material-card">
                 <h3>Puertas</h3>
-                <p>Puertas principales e internas de madera maciza seleccionada.</p>
+                <p>Puertas principales e internas fabricadas en madera maciza seleccionada de primera calidad.</p>
             </div>
             <div class="material-card">
                 <h3>Paneles</h3>
-                <p>Estructuras modulares Woodframe con capas de aislamiento climático avanzado.</p>
+                <p>Estructuras modulares eficientes con capas de aislamiento climático avanzado.</p>
             </div>
         </div>
     </section>
@@ -154,13 +207,12 @@
     <!-- Sección 5: Contacto -->
     <section id="contacto" class="contacto fade-in-section">
         <h2>Iniciá tu proyecto con nosotros</h2>
-        <p>Estamos en Bariloche, consultanos desde cualquier punto del país.</p>
+        <p>Escribinos para recibir asesoramiento personalizado en tu obra.</p>
         
         <div class="contacto-canales">
             <a href="https://wa.me/542944898755" target="_blank" class="contacto-link wsp">
                 💬 WhatsApp: +54 2944 898755
             </a>
-            <!-- Reemplazar el '#' de abajo por tu enlace real de Instagram corporativo -->
             <a href="https://instagram.com" target="_blank" class="contacto-link ig">
                 📸 Síguenos en Instagram
             </a>
