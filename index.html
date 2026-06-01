@@ -4,19 +4,493 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Maderera La Herradura - Cabañas Woodframe</title>
-    <link rel="stylesheet" href="style.css">
     <!-- Tipografías de marca: Playfair Display y Montserrat -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        /* ==========================================================================
+           ESTILOS GENERALES Y BASE
+           ========================================================================== */
+        :root {
+            --roble-oscuro: #3B2210;       /* Color Principal / Fondos oscuros / Títulos */
+            --pino-miel: #C8833A;          /* Acento Cálido / Botones / Destacados */
+            --cedro-calido: #A05C2C;       /* Secundario / Subtítulos / Detalles */
+            --arena-patagonica: #D9C4A0;   /* Neutro Cálido / Fondos alternativos */
+            --crema-mdera: #F2EAD8;        /* Base Clara / Fondo principal */
+            --carbon: #1C1C1B;             /* Tipografía principal sobre fondo claro */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--crema-mdera);
+            color: var(--carbon);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .panel-precio-big {
+            font-family: 'Playfair Display', serif;
+            color: var(--roble-oscuro);
+        }
+
+        /* Navegación */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            background-color: var(--roble-oscuro);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            color: var(--crema-mdera);
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+        }
+
+        .nav-links a {
+            color: var(--crema-mdera);
+            text-decoration: none;
+            margin-left: 25px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--pino-miel);
+        }
+
+        /* Sección de Inicio (Hero) */
+        .hero {
+            background-color: var(--roble-oscuro);
+            color: var(--crema-mdera);
+            height: 70vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            margin-top: 60px;
+        }
+
+        .hero h1 {
+            color: var(--crema-mdera);
+            font-size: 4rem;
+            margin-bottom: 5px;
+        }
+
+        .hero-subtitle {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 2.2rem;
+            color: var(--pino-miel);
+            margin-bottom: 25px;
+        }
+
+        .hero-tagline {
+            max-width: 600px;
+            font-size: 1.1rem;
+            font-weight: 300;
+            line-height: 1.6;
+            margin: 0 auto;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 35px;
+            background-color: var(--pino-miel);
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 600;
+            margin-top: 30px;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .btn:hover {
+            background-color: var(--cedro-calido);
+            transform: translateY(-2px);
+        }
+
+        /* ==========================================================================
+           ESTILO SECCIÓN MODELOS (ESTILO INTERACTIVO DISNEY UI)
+           ========================================================================== */
+        .modelos-section {
+            padding: 100px 0;
+            background-color: var(--crema-mdera);
+        }
+
+        .modelos-intro {
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        h2 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: var(--cedro-calido);
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 30px;
+        }
+
+        /* Contenedor de Tarjetas Horizontales (Una al lado de la otra) */
+        .cards-container-disney {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            gap: 35px;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 90px auto 40px;
+            padding: 0 20px;
+        }
+
+        /* Estructura Base de cada Tarjeta */
+        .card-disney {
+            position: relative;
+            width: 230px;
+            height: 270px;
+            border-radius: 28px;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            cursor: pointer;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s ease;
+        }
+
+        /* Efecto Flotante del PNG / Render */
+        .png-popout {
+            position: absolute;
+            top: -55px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            height: 170px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            z-index: 2;
+        }
+
+        .png-popout img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        /* Caja contenedora provisoria para cuando no hay imagen cargada */
+        .placeholder-text-png {
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.9);
+            background: rgba(0,0,0,0.22);
+            padding: 12px;
+            border-radius: 16px;
+            border: 1px dashed rgba(255,255,255,0.3);
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Textos inferiores de la Tarjeta */
+        .card-disney-info {
+            color: white;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            position: relative;
+            z-index: 3;
+        }
+
+        .card-disney-info h3 {
+            color: white;
+            font-size: 1.6rem;
+            margin-bottom: 4px;
+        }
+
+        .card-precio {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        /* ANIMACIÓN HOVER: Incrementa el tamaño al pasar el cursor */
+        .card-disney:hover {
+            transform: translateY(-10px) scale(1.04);
+            box-shadow: 0 20px 40px rgba(59, 34, 16, 0.25);
+        }
+
+        .card-disney:hover .png-popout {
+            transform: translateX(-50%) scale(1.15) translateY(-8px);
+        }
+
+        /* Colores de Degradados Corporativos para Fondos de Tarjeta */
+        .color-18 { background: linear-gradient(135deg, #A05C2C, #3B2210); }
+        .color-28 { background: linear-gradient(135deg, #C8833A, #A05C2C); }
+        .color-36 { background: linear-gradient(135deg, #D9C4A0, #3B2210); }
+        .color-48 { background: linear-gradient(135deg, #3B2210, #1C1C1B); }
+
+        /* ==========================================================================
+           PANELES DE DETALLES DESPLEGABLES (Bajo los modelos)
+           ========================================================================== */
+        .panel-detail-disney {
+            display: none; /* Inician ocultos */
+            max-width: 1140px;
+            margin: 40px auto;
+            border-radius: 24px;
+            padding: 40px;
+            position: relative;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.06);
+            animation: slideDown 0.4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        }
+
+        /* Fondos claros con bordes de color del modelo */
+        .color-18-bg { background-color: #fcf9f5; border: 2px solid #A05C2C; }
+        .color-28-bg { background-color: #fefcf9; border: 2px solid #C8833A; }
+        .color-36-bg { background-color: #f7f4ee; border: 2px solid #D9C4A0; }
+        .color-48-bg { background-color: #f5f2ed; border: 2px solid #3B2210; }
+
+        .panel-grid-layout {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .panel-text {
+            flex: 1;
+        }
+
+        .panel-text h3 {
+            font-size: 2.4rem;
+            margin-bottom: 5px;
+        }
+
+        .panel-precio-big {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--cedro-calido);
+            margin-bottom: 20px;
+        }
+
+        .panel-text p {
+            line-height: 1.7;
+            color: var(--carbon);
+            font-size: 0.95rem;
+        }
+
+        /* Galería de fotos e interiores del panel */
+        .panel-galeria {
+            flex: 1.2;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .img-box-disney {
+            background-color: #e6dfd3;
+            border: 1px dashed var(--cedro-calido);
+            height: 130px;
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--roble-oscuro);
+        }
+
+        .img-box-disney.plano-img {
+            grid-column: span 2;
+            height: 170px;
+            background-color: white;
+            border: 2px solid var(--arena-patagonica);
+        }
+
+        /* Botón de Cierre */
+        .panel-close {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            color: #999;
+            transition: color 0.2s;
+        }
+
+        .panel-close:hover { color: var(--roble-oscuro); }
+
+        .btn-wsp-panel {
+            display: inline-block;
+            padding: 12px 28px;
+            background-color: #25D366;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            margin-top: 25px;
+            font-size: 0.9rem;
+            transition: transform 0.2s;
+        }
+        .btn-wsp-panel:hover { transform: translateY(-2px); }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ==========================================================================
+           OTRAS SECCIONES
+           ========================================================================== */
+        .a-medida {
+            background-color: var(--arena-patagonica);
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+        .medida-p {
+            max-width: 700px;
+            margin: 0 auto 25px;
+            line-height: 1.7;
+        }
+
+        .medida-lista {
+            list-style: none;
+            max-width: 520px;
+            margin: 30px auto 0;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            font-weight: 500;
+        }
+
+        .materiales {
+            background-color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+        .grid-materiales {
+            display: flex;
+            gap: 30px;
+            max-width: 1100px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 40px auto 0;
+        }
+
+        .material-card {
+            flex: 1;
+            min-width: 280px;
+            padding: 35px 30px;
+            background: var(--crema-mdera);
+            border-radius: 8px;
+            border-left: 5px solid var(--pino-miel);
+            text-align: left;
+        }
+
+        .material-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 12px;
+        }
+
+        .material-card p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #444;
+        }
+
+        .contacto {
+            background-color: var(--roble-oscuro);
+            color: var(--crema-mdera);
+            text-align: center;
+            padding: 100px 20px;
+        }
+
+        .contacto h2 { color: var(--crema-mdera); }
+
+        .contacto-canales {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            margin-top: 40px;
+        }
+
+        .contacto-link {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            max-width: 355px;
+            padding: 16px;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 8px;
+            transition: transform 0.2s;
+        }
+
+        .contacto-link.wsp { background-color: #25D366; color: white; }
+        .contacto-link.ig { background-color: transparent; color: var(--crema-mdera); border: 2px solid var(--pino-miel); }
+        .contacto-link:hover { transform: scale(1.03); }
+
+        /* Animación suave estructural general */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInSimple 0.8s ease-out forwards;
+        }
+
+        @keyframes fadeInSimple {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Adaptabilidad Móvil */
+        @media (max-width: 768px) {
+            .cards-container-disney { gap: 70px; margin-top: 100px; }
+            .panel-grid-layout { flex-direction: column; }
+            .panel-galeria { grid-template-columns: 1fr; width: 100%; }
+            .img-box-disney.plano-img { grid-column: span 1; }
+            .hero h1 { font-size: 2.5rem; }
+            .hero-subtitle { font-size: 1.5rem; }
+            .navbar { padding: 15px 5%; }
+            .nav-links { display: none; }
+            h2 { font-size: 2.2rem; }
+        }
+    </style>
 </head>
 <body>
 
-    <!-- Navegación -->
+    <!-- Barra de Navegación -->
     <nav class="navbar">
-        <div class="logo">
-            <!-- Cuando subas tu logo en PNG transparente, descomentá la línea de abajo borrando los caracteres <!-- y -->
-            <!-- <img src="logo.png" alt="La Herradura Logo" class="logo-img"> -->
-            MADERERA LA HERRADURA
-        </div>
+        <div class="logo">MADERERA LA HERRADURA</div>
         <div class="nav-links">
             <a href="#modelos">Modelos</a>
             <a href="#medida">A Medida</a>
@@ -25,30 +499,30 @@
         </div>
     </nav>
 
-    <!-- Sección 1: Hero / Inicio -->
+    <!-- Sección Hero de Presentación -->
     <section class="hero fade-in-section">
         <div class="hero-content">
             <h1>Maderera La Herradura</h1>
             <p class="hero-subtitle">Cabañas Woodframe</p>
-            <p class="hero-tagline">Diseñamos y construimos cabañas con estándares superiores de calidad, diseño y confort.</p>
+            <p class="hero-tagline">Diseñamos y construimos cabañas con estándares superiores de calidad, diseño y confort estructural.</p>
             <a href="#modelos" class="btn">Ver Modelos Estándar</a>
         </div>
     </section>
 
-    <!-- Sección 2: Modelos Estándar Interactivos (Estilo Disney UI) -->
+    <!-- Sección de Modelos Estándar Interactivos -->
     <section id="modelos" class="modelos-section">
         <div class="modelos-intro fade-in-section">
             <h2>Modelos Estándar</h2>
             <p class="subtitle">Hacé clic en un modelo para desplegar planos y galerías de fotos</p>
         </div>
 
-        <!-- CONTENEDOR DE TARJETAS (Una al lado de la otra) -->
+        <!-- CONTENEDOR DE TARJETAS HORIZONTALES (Disney Pop-out Layout) -->
         <div class="cards-container-disney fade-in-section">
             
-            <!-- Tarjeta 18m2 -->
+            <!-- Modelo 18mt2 -->
             <div class="card-disney color-18" onclick="selectModel('18')">
                 <div class="png-popout">
-                    <!-- Cuando tengas el render en PNG transparente lo ponés acá, ej: <img src="cabana18.png"> -->
+                    <!-- Cuando tengas el render en PNG transparente lo pones acá: <img src="cabana18.png"> -->
                     <p class="placeholder-text-png">PNG Cabaña<br>18 mt²</p>
                 </div>
                 <div class="card-disney-info">
@@ -57,7 +531,7 @@
                 </div>
             </div>
 
-            <!-- Tarjeta 28m2 -->
+            <!-- Modelo 28mt2 -->
             <div class="card-disney color-28" onclick="selectModel('28')">
                 <div class="png-popout">
                     <p class="placeholder-text-png">PNG Cabaña<br>28 mt²</p>
@@ -68,7 +542,7 @@
                 </div>
             </div>
 
-            <!-- Tarjeta 36m2 -->
+            <!-- Modelo 36mt2 -->
             <div class="card-disney color-36" onclick="selectModel('36')">
                 <div class="png-popout">
                     <p class="placeholder-text-png">PNG Cabaña<br>36 mt²</p>
@@ -79,7 +553,7 @@
                 </div>
             </div>
 
-            <!-- Tarjeta 48m2 -->
+            <!-- Modelo 48mt2 -->
             <div class="card-disney color-48" onclick="selectModel('48')">
                 <div class="png-popout">
                     <p class="placeholder-text-png">PNG Cabaña<br>48 mt²</p>
@@ -92,7 +566,7 @@
 
         </div>
 
-        <!-- CONTENEDOR DE DETALLES DINÁMICOS (Se abren justo abajo) -->
+        <!-- PANELES DESPLEGABLES DE INFORMACIÓN DETALLADA (Se abren justo debajo) -->
         <div class="panels-container-disney">
 
             <!-- Detalle 18m2 -->
@@ -170,11 +644,11 @@
         </div>
     </section>
 
-    <!-- Sección 3: A Medida -->
+    <!-- Sección A Medida -->
     <section id="medida" class="a-medida fade-in-section">
         <div class="medida-content">
             <h2>Proyectos Personalizados</h2>
-            <p class="subtitle">Construimos la cabaña de tus dreams a medida</p>
+            <p class="subtitle">Construimos la cabaña de tus sueños a medida</p>
             <p class="medida-p">Si las medidas estándar no se adaptan a lo que buscás, desarrollamos planos desde cero adaptados completamente a la topografía de tu terreno y a tus necesidades habitacionales.</p>
             <ul class="medida-lista">
                 <li>✓ Adaptación geométrica y de ambientes total</li>
@@ -184,9 +658,9 @@
         </div>
     </section>
 
-    <!-- Sección 4: Materiales -->
+    <!-- Sección Materiales -->
     <section id="materiales" class="materiales fade-in-section">
-        <h2>Materiales que se sienten</h2>
+        <h2>Materiales de Alta Gama</h2>
         <p class="subtitle">Estructuras sólidas, terminaciones impecables.</p>
         <div class="grid-materiales">
             <div class="material-card">
@@ -204,7 +678,7 @@
         </div>
     </section>
 
-    <!-- Sección 5: Contacto -->
+    <!-- Sección Contacto -->
     <section id="contacto" class="contacto fade-in-section">
         <h2>Iniciá tu proyecto con nosotros</h2>
         <p>Escribinos para recibir asesoramiento personalizado en tu obra.</p>
@@ -219,6 +693,33 @@
         </div>
     </section>
 
-    <script src="script.js"></script>
+    <!-- LÓGICA DE INTERACCIÓN INTEGRADA -->
+    <script>
+        function selectModel(modelSize) {
+            // Oculta todos los paneles abiertos actualmente
+            const allPanels = document.querySelectorAll('.panel-detail-disney');
+            allPanels.forEach(panel => {
+                panel.style.display = 'none';
+            });
+
+            // Apunta y muestra el bloque seleccionado
+            const targetPanel = document.getElementById('panel-' + modelSize);
+            if (targetPanel) {
+                targetPanel.style.display = 'block';
+                
+                // Centra la vista de la pantalla suavemente sobre el panel abierto
+                setTimeout(() => {
+                    targetPanel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 100);
+            }
+        }
+
+        function closeAllPanels() {
+            const allPanels = document.querySelectorAll('.panel-detail-disney');
+            allPanels.forEach(panel => {
+                panel.style.display = 'none';
+            });
+        }
+    </script>
 </body>
 </html>
