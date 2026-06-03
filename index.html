@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Maderera La Herradura - Cabañas Woodframe</title>
+    <!-- Tipografías de marca: Playfair Display y Montserrat -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
     <style>
@@ -330,117 +331,26 @@
         }
 
         /* ==========================================================================
-           SECCIÓN A MEDIDA REESTRUCTURADA (DOS COLUMNAS + SLIDER AUTOMÁTICO)
+           SECCIÓN A MEDIDA Y MATERIALES
            ========================================================================== */
         .a-medida {
             background-color: var(--arena-patagonica);
-            padding: 100px 0;
+            padding: 100px 20px;
+            text-align: center;
         }
 
-        .medida-container {
-            display: flex;
-            align-items: center;
-            gap: 50px;
-            max-width: 1140px;
-            margin: 0 auto;
-            padding: 0 25px;
-        }
-
-        .medida-text-side {
-            flex: 1;
-            text-align: left;
-        }
-
-        .medida-p { 
-            margin-bottom: 25px; 
-            line-height: 1.7; 
-            font-size: 0.95rem;
-        }
-        
+        .medida-p { max-width: 700px; margin: 0 auto 25px; line-height: 1.7; }
         .medida-lista {
             list-style: none;
+            max-width: 520px;
+            margin: 30px auto 0;
+            text-align: left;
             display: flex;
             flex-direction: column;
             gap: 14px;
             font-weight: 500;
         }
 
-        .medida-gallery-side {
-            flex: 1;
-            width: 100%;
-        }
-
-        .slider-wrapper {
-            position: relative;
-            height: 380px;
-            background: rgba(255, 255, 255, 0.4);
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 15px 30px rgba(59, 34, 16, 0.08);
-        }
-
-        .medida-slide {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            transition: opacity 0.8s ease-in-out;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .medida-slide.active {
-            opacity: 1;
-            z-index: 2;
-        }
-
-        .slider-placeholder-img {
-            width: 100%;
-            height: 100%;
-            border: 2px dashed var(--cedro-calido);
-            border-radius: 20px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 20px;
-            color: var(--roble-oscuro);
-            font-weight: 500;
-        }
-
-        .slider-placeholder-img small {
-            opacity: 0.7;
-            margin-top: 6px;
-            font-weight: 400;
-        }
-
-        .slider-dots {
-            display: flex;
-            justify-content: center;
-            gap: 8px;
-            margin-top: 15px;
-        }
-
-        .dot {
-            width: 8px;
-            height: 8px;
-            background: rgba(59, 34, 16, 0.3);
-            border-radius: 50%;
-            transition: background 0.3s, transform 0.3s;
-        }
-
-        .dot.active {
-            background: var(--roble-oscuro);
-            transform: scale(1.2);
-        }
-
-        /* ==========================================================================
-           SECCIÓN MATERIALES
-           ========================================================================== */
         .materiales {
             background-color: white;
             padding: 100px 20px;
@@ -591,4 +501,309 @@
         }
 
         /* Animación para cabecera */
-        .
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInSimple 0.8s ease-out forwards;
+        }
+
+        @keyframes fadeInSimple {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Adaptabilidad Móvil */
+        @media (max-width: 768px) {
+            .cards-container-disney { gap: 70px; margin-top: 100px; }
+            .panel-grid-layout { flex-direction: column; }
+            .panel-galeria { grid-template-columns: 1fr; width: 100%; }
+            .img-box-disney.plano-img { grid-column: span 1; }
+            .hero h1 { font-size: 2.5rem; }
+            .hero-subtitle { font-size: 1.5rem; }
+            .navbar { padding: 15px 5%; }
+            .nav-links { display: none; }
+            h2 { font-size: 2.2rem; }
+            
+            .contacto-grid { flex-direction: column; gap: 40px; }
+            .contacto h2, .contacto .subtitle { text-align: center; }
+            .contacto-info { width: 100%; }
+            .contacto-castor-box { order: -1; }
+            .castor-img, .castor-placeholder { max-width: 240px; height: auto; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Barra de Navegación -->
+    <nav class="navbar">
+        <div class="logo">MADERERA LA HERRADURA</div>
+        <div class="nav-links">
+            <a href="#modelos">Modelos</a>
+            <a href="#medida">A Medida</a>
+            <a href="#materiales">Materiales</a>
+            <a href="#contacto">Contacto</a>
+        </div>
+    </nav>
+
+    <!-- Sección Hero de Presentación -->
+    <section class="hero fade-in-section">
+        <div class="hero-content">
+            <h1>Maderera La Herradura</h1>
+            <p class="hero-subtitle">Cabañas Woodframe</p>
+            <p class="hero-tagline">Diseñamos y construimos cabañas con estándares superiores de calidad, design y confort estructural.</p>
+            <a href="#modelos" class="btn">Ver Modelos Estándar</a>
+        </div>
+    </section>
+
+    <!-- Sección de Modelos Estándar Interactivos -->
+    <section id="modelos" class="modelos-section">
+        <div class="modelos-intro fade-in-section">
+            <h2>Modelos Estándar</h2>
+            <p class="subtitle">Hacé clic en un modelo para desplegar planos y galerías de fotos</p>
+        </div>
+
+        <div class="cards-container-disney fade-in-section">
+            
+            <!-- Modelo 18mt2 -->
+            <div class="card-disney color-18" onclick="selectModel('18')">
+                <div class="png-popout">
+                    <p class="placeholder-text-png">PNG Cabaña<br>18 mt²</p>
+                </div>
+                <div class="card-disney-info">
+                    <h3>18 mt²</h3>
+                    <p class="card-precio">$7.100.000</p>
+                </div>
+            </div>
+
+            <!-- Modelo 28mt2 -->
+            <div class="card-disney color-28" onclick="selectModel('28')">
+                <div class="png-popout">
+                    <p class="placeholder-text-png">PNG Cabaña<br>28 mt²</p>
+                </div>
+                <div class="card-disney-info">
+                    <h3>28 mt²</h3>
+                    <p class="card-precio">$11.000.000</p>
+                </div>
+            </div>
+
+            <!-- Modelo 36mt2 -->
+            <div class="card-disney color-36" onclick="selectModel('36')">
+                <div class="png-popout">
+                    <p class="placeholder-text-png">PNG Cabaña<br>36 mt²</p>
+                </div>
+                <div class="card-disney-info">
+                    <h3>36 mt²</h3>
+                    <p class="card-precio">$14.100.000</p>
+                </div>
+            </div>
+
+            <!-- Modelo 48mt2 -->
+            <div class="card-disney color-48" onclick="selectModel('48')">
+                <div class="png-popout">
+                    <p class="placeholder-text-png">PNG Cabaña<br>48 mt²</p>
+                </div>
+                <div class="card-disney-info">
+                    <h3>48 mt²</h3>
+                    <p class="card-precio">$18.750.000</p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- PANELES DESPLEGABLES -->
+        <div class="panels-container-disney">
+
+            <!-- Detalle 18m2 -->
+            <div id="panel-18" class="panel-detail-disney color-18-bg">
+                <div class="panel-close" onclick="closeAllPanels()">✕ Cerrar</div>
+                <div class="panel-grid-layout">
+                    <div class="panel-text">
+                        <h3>Modelo 18 mt²</h3>
+                        <p class="panel-precio-big">$7.100.000</p>
+                        <p>Un diseño compacto, eficiente y optimizado bajo el sistema Woodframe. Ideal para anexos, oficinas de jardín o complejos turísticos de alta rotación en la Patagonia.</p>
+                        <a href="https://wa.me/542944898755?text=Hola!%20Quiero%20consultar%20por%20el%20Modelo%2018m2" target="_blank" class="btn-wsp-panel">Consultar por WhatsApp</a>
+                    </div>
+                    <div class="panel-galeria">
+                        <div class="img-box-disney"><p>Foto Interior 1</p></div>
+                        <div class="img-box-disney"><p>Foto Interior 2</p></div>
+                        <div class="img-box-disney plano-img"><p>Plano Técnico de Distribución</p></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Detalle 28m2 -->
+            <div id="panel-28" class="panel-detail-disney color-28-bg">
+                <div class="panel-close" onclick="closeAllPanels()">✕ Cerrar</div>
+                <div class="panel-grid-layout">
+                    <div class="panel-text">
+                        <h3>Modelo 28 mt²</h3>
+                        <p class="panel-precio-big">$11.000.000</p>
+                        <p>Perfecto equilibrio entre confort y funcionalidad. Cuenta con una distribución inteligente que maximiza la iluminación natural y los espacios comunes del hogar.</p>
+                        <a href="https://wa.me/542944898755?text=Hola!%20Quiero%20consultar%20por%20el%20Modelo%2028m2" target="_blank" class="btn-wsp-panel">Consultar por WhatsApp</a>
+                    </div>
+                    <div class="panel-galeria">
+                        <div class="img-box-disney"><p>Foto Interior 1</p></div>
+                        <div class="img-box-disney"><p>Foto Interior 2</p></div>
+                        <div class="img-box-disney plano-img"><p>Plano Técnico de Distribución</p></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Detalle 36m2 -->
+            <div id="panel-36" class="panel-detail-disney color-36-bg">
+                <div class="panel-close" onclick="closeAllPanels()">✕ Cerrar</div>
+                <div class="panel-grid-layout">
+                    <div class="panel-text">
+                        <h3>Modelo 36 mt²</h3>
+                        <p class="panel-precio-big">$14.100.000</p>
+                        <p>Pensada para estancias prolongadas o vivienda permanente de tamaño moderado. Excelente aislamiento térmico estructural que caracteriza nuestras calidades de construcción.</p>
+                        <a href="https://wa.me/542944898755?text=Hola!%20Quiero%20consultar%20por%20el%20Modelo%2036m2" target="_blank" class="btn-wsp-panel">Consultar por WhatsApp</a>
+                    </div>
+                    <div class="panel-galeria">
+                        <div class="img-box-disney"><p>Foto Interior 1</p></div>
+                        <div class="img-box-disney"><p>Foto Interior 2</p></div>
+                        <div class="img-box-disney plano-img"><p>Plano Técnico de Distribución</p></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Detalle 48m2 -->
+            <div id="panel-48" class="panel-detail-disney color-48-bg">
+                <div class="panel-close" onclick="closeAllPanels()">✕ Cerrar</div>
+                <div class="panel-grid-layout">
+                    <div class="panel-text">
+                        <h3>Modelo 48 mt²</h3>
+                        <p class="panel-precio-big">$18.750.000</p>
+                        <p>Nuestra propuesta estándar más amplia. Comodidad familiar completa con ambientes definidos, terminaciones premium y toda la solidez estructural de la madera seleccionada.</p>
+                        <a href="https://wa.me/542944898755?text=Hola!%20Quiero%20consultar%20por%20el%20Modelo%2048m2" target="_blank" class="btn-wsp-panel">Consultar por WhatsApp</a>
+                    </div>
+                    <div class="panel-galeria">
+                        <div class="img-box-disney"><p>Foto Interior 1</p></div>
+                        <div class="img-box-disney"><p>Foto Interior 2</p></div>
+                        <div class="img-box-disney plano-img"><p>Plano Técnico de Distribución</p></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Sección A Medida -->
+    <section id="medida" class="a-medida">
+        <div class="medida-content">
+            <h2>Proyectos Personalizados</h2>
+            <p class="subtitle">Construimos la cabaña de tus sueños a medida</p>
+            <p class="medida-p">Si las medidas estándar no se adaptan a lo que buscás, desarrollamos planos desde cero adaptados completamente a la topografía de tu terreno y a tus necesidades habitacionales.</p>
+            <ul class="medida-lista">
+                <li>✓ Adaptación geométrica y de ambientes total</li>
+                <li>✓ Elección de aberturas y paneles customizados</li>
+                <li>✓ Presupuestos dinámicos llave en mano</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Sección Materiales -->
+    <section id="materiales" class="materiales">
+        <h2>Materiales de Alta Gama</h2>
+        <p class="subtitle">Estructuras sólidas, terminaciones impecables.</p>
+        <div class="grid-materiales">
+            <div class="material-card">
+                <h3>Aberturas</h3>
+                <p>Ventanas y cerramientos de alta prestación acústica y térmica ideales para climas exigentes.</p>
+            </div>
+            <div class="material-card">
+                <h3>Puertas</h3>
+                <p>Puertas principales e internas fabricadas en madera maciza seleccionada de primera calidad.</p>
+            </div>
+            <div class="material-card">
+                <h3>Paneles</h3>
+                <p>Estructuras modulares eficientes con capas de aislamiento climático avanzado.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Contacto -->
+    <section id="contacto" class="contacto">
+        <div class="contacto-grid">
+            
+            <div class="contacto-info">
+                <h2>Iniciá tu proyecto con nosotros</h2>
+                <p class="subtitle">Escribinos o visitanos para recibir asesoramiento personalizado</p>
+                
+                <div class="contacto-list">
+                    <a href="https://wa.me/542944898755?text=Hola!%20Me%20interesa%20recibir%20información%20sobre%20las%20cabañas." target="_blank" class="contacto-item wsp-destacado">
+                        <div class="contacto-icono">💬</div>
+                        <div class="contacto-texto">
+                            <h4>WhatsApp (Link Directo)</h4>
+                            <p>+54 2944 898755</p>
+                        </div>
+                    </a>
+
+                    <a href="https://instagram.com/maderea_la_herradura" target="_blank" class="contacto-item">
+                        <div class="contacto-icono">📸</div>
+                        <div class="contacto-texto">
+                            <h4>Instagram</h4>
+                            <p>@maderea_la_herradura</p>
+                        </div>
+                    </a>
+
+                    <a href="mailto:Laherradurabrc@gmail.com" class="contacto-item">
+                        <div class="contacto-icono">✉️</div>
+                        <div class="contacto-texto">
+                            <h4>Correo Electrónico</h4>
+                            <p>Laherradurabrc@gmail.com</p>
+                        </div>
+                    </a>
+
+                    <a href="https://maps.google.com/?q=San+Jose+150,+Ñireco,+San+carlos+de+Bariloche" target="_blank" class="contacto-item">
+                        <div class="contacto-icono">📍</div>
+                        <div class="contacto-texto">
+                            <h4>Ubicación</h4>
+                            <p>San Jose 150, Ñireco, Bariloche</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Contenedor del Castor Seguro -->
+            <div class="contacto-castor-box">
+                <!-- El cartel provisorio ahora está visible por defecto -->
+                <div id="placeholder-castor" class="castor-placeholder">
+                    <div style="font-size: 2.5rem; margin-bottom: 10px;">🪵 🦫</div>
+                    <strong>¡Espacio del Castor!</strong>
+                    <span style="font-size: 0.8rem; opacity: 0.7; margin-top: 5px;">Cuando subas 'castor.png' a tu GitHub, aparecerá tu mascota aquí.</span>
+                </div>
+                
+                <!-- La imagen intenta cargar de fondo; si lo logra, se muestra y oculta el cartel anterior sin romper el código -->
+                <img src="castor.png" alt="Castor Maderera La Herradura" class="castor-img" style="display: none;" onerror="this.style.display='none';" onload="this.style.display='block'; document.getElementById('placeholder-castor').style.display='none';">
+            </div>
+
+        </div>
+    </section>
+
+    <!-- LÓGICA DE INTERACCIÓN INTEGRADA -->
+    <script>
+        function selectModel(modelSize) {
+            const allPanels = document.querySelectorAll('.panel-detail-disney');
+            allPanels.forEach(panel => {
+                panel.style.display = 'none';
+            });
+
+            const targetPanel = document.getElementById('panel-' + modelSize);
+            if (targetPanel) {
+                targetPanel.style.display = 'block';
+                setTimeout(() => {
+                    targetPanel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 100);
+            }
+        }
+
+        // Cierra los paneles abiertos
+        function closeAllPanels() {
+            const allPanels = document.querySelectorAll('.panel-detail-disney');
+            allPanels.forEach(panel => {
+                panel.style.display = 'none';
+            });
+        }
+    </script>
+</body>
+</html>
