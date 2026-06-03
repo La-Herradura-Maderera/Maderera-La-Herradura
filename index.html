@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Maderera La Herradura - Cabañas Woodframe</title>
-    <!-- Tipografías de marca: Playfair Display y Montserrat -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
     <style>
@@ -331,26 +330,121 @@
         }
 
         /* ==========================================================================
-           SECCIÓN A MEDIDA Y MATERIALES
+           ESTILO SECCIÓN A MEDIDA (MODIFICADO: RESPONSIVE SPLIT CON GALERÍA AUTÓNOMA)
            ========================================================================== */
         .a-medida {
             background-color: var(--arena-patagonica);
-            padding: 100px 20px;
-            text-align: center;
+            padding: 100px 8%;
         }
 
-        .medida-p { max-width: 700px; margin: 0 auto 25px; line-height: 1.7; }
+        .medida-container {
+            display: flex;
+            max-width: 1140px;
+            margin: 0 auto;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .medida-text {
+            flex: 1;
+            text-align: left;
+        }
+
+        .medida-text h2 {
+            text-align: left;
+        }
+
+        .medida-text .subtitle {
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+        .medida-p { 
+            margin: 0 0 25px 0; 
+            line-height: 1.7; 
+        }
+
         .medida-lista {
             list-style: none;
             max-width: 520px;
-            margin: 30px auto 0;
             text-align: left;
             display: flex;
             flex-direction: column;
             gap: 14px;
             font-weight: 500;
+            margin: 30px 0 0 0;
         }
 
+        /* Galería de Protagonista Cambiante */
+        .medida-gallery-wrapper {
+            flex: 1.1;
+            position: relative;
+            width: 100%;
+            height: 380px;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(59, 34, 16, 0.15);
+            background-color: #e6dfd3;
+        }
+
+        .gallery-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 2px dashed var(--cedro-calido);
+            border-radius: 24px;
+            padding: 20px;
+        }
+
+        /* Clase activa controlada por JS */
+        .gallery-slide.active {
+            opacity: 1;
+            z-index: 2;
+        }
+
+        .placeholder-gallery-text {
+            font-size: 1rem;
+            font-weight: 600;
+            text-align: center;
+            color: var(--roble-oscuro);
+            line-height: 1.5;
+        }
+
+        /* Pequeños puntos indicadores */
+        .gallery-dots {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 10;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            background-color: rgba(255, 255, 255, 0.4);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .dot.active {
+            background-color: var(--pino-miel);
+            width: 22px;
+            border-radius: 4px;
+        }
+
+        /* ==========================================================================
+           MATERIALES
+           ========================================================================== */
         .materiales {
             background-color: white;
             padding: 100px 20px;
@@ -511,18 +605,32 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Adaptabilidad Móvil */
+        /* ==========================================================================
+           ADAPTABILIDAD MÓVIL (RESPONSIVE)
+           ========================================================================== */
         @media (max-width: 768px) {
+            .navbar { padding: 15px 5%; }
+            .nav-links { display: none; }
+            
+            .hero h1 { font-size: 2.5rem; }
+            .hero-subtitle { font-size: 1.5rem; }
+            
+            h2 { font-size: 2.2rem; }
+            
+            /* Ajustes tarjetas interactivos */
             .cards-container-disney { gap: 70px; margin-top: 100px; }
             .panel-grid-layout { flex-direction: column; }
             .panel-galeria { grid-template-columns: 1fr; width: 100%; }
             .img-box-disney.plano-img { grid-column: span 1; }
-            .hero h1 { font-size: 2.5rem; }
-            .hero-subtitle { font-size: 1.5rem; }
-            .navbar { padding: 15px 5%; }
-            .nav-links { display: none; }
-            h2 { font-size: 2.2rem; }
             
+            /* NUEVO: Comportamiento Móvil de Proyectos Personalizados */
+            .a-medida { padding: 80px 24px; }
+            .medida-container { flex-direction: column; gap: 40px; }
+            .medida-text, .medida-text h2, .medida-text .subtitle { text-align: center; }
+            .medida-lista { margin: 30px auto 0; }
+            .medida-gallery-wrapper { height: 280px; width: 100%; }
+            
+            /* Ajustes Contacto */
             .contacto-grid { flex-direction: column; gap: 40px; }
             .contacto h2, .contacto .subtitle { text-align: center; }
             .contacto-info { width: 100%; }
@@ -533,7 +641,6 @@
 </head>
 <body>
 
-    <!-- Barra de Navegación -->
     <nav class="navbar">
         <div class="logo">MADERERA LA HERRADURA</div>
         <div class="nav-links">
@@ -544,17 +651,15 @@
         </div>
     </nav>
 
-    <!-- Sección Hero de Presentación -->
     <section class="hero fade-in-section">
         <div class="hero-content">
             <h1>Maderera La Herradura</h1>
             <p class="hero-subtitle">Cabañas Woodframe</p>
-            <p class="hero-tagline">Diseñamos y construimos cabañas con estándares superiores de calidad, design y confort estructural.</p>
+            <p class="hero-tagline">Diseñamos y construimos cabañas con estándares superiores de calidad, diseño y confort estructural.</p>
             <a href="#modelos" class="btn">Ver Modelos Estándar</a>
         </div>
     </section>
 
-    <!-- Sección de Modelos Estándar Interactivos -->
     <section id="modelos" class="modelos-section">
         <div class="modelos-intro fade-in-section">
             <h2>Modelos Estándar</h2>
@@ -563,7 +668,6 @@
 
         <div class="cards-container-disney fade-in-section">
             
-            <!-- Modelo 18mt2 -->
             <div class="card-disney color-18" onclick="selectModel('18')">
                 <div class="png-popout">
                     <p class="placeholder-text-png">PNG Cabaña<br>18 mt²</p>
@@ -574,7 +678,6 @@
                 </div>
             </div>
 
-            <!-- Modelo 28mt2 -->
             <div class="card-disney color-28" onclick="selectModel('28')">
                 <div class="png-popout">
                     <p class="placeholder-text-png">PNG Cabaña<br>28 mt²</p>
@@ -585,7 +688,6 @@
                 </div>
             </div>
 
-            <!-- Modelo 36mt2 -->
             <div class="card-disney color-36" onclick="selectModel('36')">
                 <div class="png-popout">
                     <p class="placeholder-text-png">PNG Cabaña<br>36 mt²</p>
@@ -596,7 +698,6 @@
                 </div>
             </div>
 
-            <!-- Modelo 48mt2 -->
             <div class="card-disney color-48" onclick="selectModel('48')">
                 <div class="png-popout">
                     <p class="placeholder-text-png">PNG Cabaña<br>48 mt²</p>
@@ -609,10 +710,8 @@
 
         </div>
 
-        <!-- PANELES DESPLEGABLES -->
         <div class="panels-container-disney">
 
-            <!-- Detalle 18m2 -->
             <div id="panel-18" class="panel-detail-disney color-18-bg">
                 <div class="panel-close" onclick="closeAllPanels()">✕ Cerrar</div>
                 <div class="panel-grid-layout">
@@ -630,7 +729,6 @@
                 </div>
             </div>
 
-            <!-- Detalle 28m2 -->
             <div id="panel-28" class="panel-detail-disney color-28-bg">
                 <div class="panel-close" onclick="closeAllPanels()">✕ Cerrar</div>
                 <div class="panel-grid-layout">
@@ -648,7 +746,6 @@
                 </div>
             </div>
 
-            <!-- Detalle 36m2 -->
             <div id="panel-36" class="panel-detail-disney color-36-bg">
                 <div class="panel-close" onclick="closeAllPanels()">✕ Cerrar</div>
                 <div class="panel-grid-layout">
@@ -666,7 +763,6 @@
                 </div>
             </div>
 
-            <!-- Detalle 48m2 -->
             <div id="panel-48" class="panel-detail-disney color-48-bg">
                 <div class="panel-close" onclick="closeAllPanels()">✕ Cerrar</div>
                 <div class="panel-grid-layout">
@@ -687,21 +783,45 @@
         </div>
     </section>
 
-    <!-- Sección A Medida -->
     <section id="medida" class="a-medida">
-        <div class="medida-content">
-            <h2>Proyectos Personalizados</h2>
-            <p class="subtitle">Construimos la cabaña de tus sueños a medida</p>
-            <p class="medida-p">Si las medidas estándar no se adaptan a lo que buscás, desarrollamos planos desde cero adaptados completamente a la topografía de tu terreno y a tus necesidades habitacionales.</p>
-            <ul class="medida-lista">
-                <li>✓ Adaptación geométrica y de ambientes total</li>
-                <li>✓ Elección de aberturas y paneles customizados</li>
-                <li>✓ Presupuestos dinámicos llave en mano</li>
-            </ul>
+        <div class="medida-container">
+            
+            <div class="medida-text">
+                <h2>Proyectos Personalizados</h2>
+                <p class="subtitle">Construimos la cabaña de tus sueños a medida</p>
+                <p class="medida-p">Si las medidas estándar no se adaptan a lo que buscás, desarrollamos planos desde cero adaptados completamente a la topografía de tu terreno y a tus necesidades habitacionales.</p>
+                <ul class="medida-lista">
+                    <li>✓ Adaptación geométrica y de ambientes total</li>
+                    <li>✓ Elección de aberturas y paneles customizados</li>
+                    <li>✓ Presupuestos dinámicos llave en mano</li>
+                </ul>
+            </div>
+
+            <div class="medida-gallery-wrapper">
+                
+                <div class="gallery-slide active">
+                    <p class="placeholder-gallery-text">📸 Foto Proyecto Custom 1<br><span style="font-size:0.8rem; opacity:0.75; font-weight:400;">(Vista Fachada Principal)</span></p>
+                    </div>
+
+                <div class="gallery-slide">
+                    <p class="placeholder-gallery-text">📸 Foto Proyecto Custom 2<br><span style="font-size:0.8rem; opacity:0.75; font-weight:400;">(Diseño de Interiores Custom)</span></p>
+                </div>
+
+                <div class="gallery-slide">
+                    <p class="placeholder-gallery-text">📸 Foto Proyecto Custom 3<br><span style="font-size:0.8rem; opacity:0.75; font-weight:400;">(Montaje Woodframe en Terreno)</span></p>
+                </div>
+
+                <div class="gallery-dots">
+                    <span class="dot active"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                </div>
+
+            </div>
+
         </div>
     </section>
 
-    <!-- Sección Materiales -->
     <section id="materiales" class="materiales">
         <h2>Materiales de Alta Gama</h2>
         <p class="subtitle">Estructuras sólidas, terminaciones impecables.</p>
@@ -721,7 +841,6 @@
         </div>
     </section>
 
-    <!-- Sección Contacto -->
     <section id="contacto" class="contacto">
         <div class="contacto-grid">
             
@@ -764,24 +883,21 @@
                 </div>
             </div>
 
-            <!-- Contenedor del Castor Seguro -->
             <div class="contacto-castor-box">
-                <!-- El cartel provisorio ahora está visible por defecto -->
                 <div id="placeholder-castor" class="castor-placeholder">
                     <div style="font-size: 2.5rem; margin-bottom: 10px;">🪵 🦫</div>
                     <strong>¡Espacio del Castor!</strong>
                     <span style="font-size: 0.8rem; opacity: 0.7; margin-top: 5px;">Cuando subas 'castor.png' a tu GitHub, aparecerá tu mascota aquí.</span>
                 </div>
                 
-                <!-- La imagen intenta cargar de fondo; si lo logra, se muestra y oculta el cartel anterior sin romper el código -->
                 <img src="castor.png" alt="Castor Maderera La Herradura" class="castor-img" style="display: none;" onerror="this.style.display='none';" onload="this.style.display='block'; document.getElementById('placeholder-castor').style.display='none';">
             </div>
 
         </div>
     </section>
 
-    <!-- LÓGICA DE INTERACCIÓN INTEGRADA -->
     <script>
+        // Control de los Paneles de Cabañas Estándar
         function selectModel(modelSize) {
             const allPanels = document.querySelectorAll('.panel-detail-disney');
             allPanels.forEach(panel => {
@@ -797,13 +913,33 @@
             }
         }
 
-        // Cierra los paneles abiertos
         function closeAllPanels() {
             const allPanels = document.querySelectorAll('.panel-detail-disney');
             allPanels.forEach(panel => {
                 panel.style.display = 'none';
             });
         }
+
+        // NUEVO: Lógica del Carrusel Autónomo para Proyectos Custom
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.gallery-slide');
+        const dots = document.querySelectorAll('.dot');
+
+        function autoNextSlide() {
+            // Quitamos la clase activa de la imagen y del punto actual
+            slides[currentSlide].classList.remove('active');
+            dots[currentSlide].classList.remove('active');
+            
+            // Avanzamos al siguiente (vuelve a cero si llega al final)
+            currentSlide = (currentSlide + 1) % slides.length;
+            
+            // Agregamos la clase activa al nuevo elemento seleccionado
+            slides[currentSlide].classList.add('active');
+            dots[currentSlide].classList.add('active');
+        }
+
+        // Configurado para cambiar automáticamente cada 3.5 segundos (3500 milisegundos)
+        setInterval(autoNextSlide, 3500);
     </script>
 </body>
 </html>
