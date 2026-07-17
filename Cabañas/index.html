@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maderera La Herradura - Cabañas Woodframe</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        /* ==========================================================================
+           ESTILOS GENERALES Y BASE
+           ========================================================================== */
+        :root {
+            --roble-oscuro: #3B2210;       /* Color Principal / Fondos oscuros / Títulos */
+            --pino-miel: #C8833A;          /* Acento Cálido / Botones / Destacados */
+            --cedro-calido: #A05C2C;       /* Secundario / Subtítulos / Detalles */
+            --arena-patagonica: #D9C4A0;   /* Neutro Cálido / Fondos alternativos */
+            --crema-mdera: #F2EAD8;        /* Base Clara / Fondo principal */
+            --carbon: #1C1C1B;             /* Tipografía principal sobre fondo claro */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--crema-mdera);
+            color: var(--carbon);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .panel-precio-big {
+            font-family: 'Playfair Display', serif;
+            color: var(--roble-oscuro);
+        }
+
+        /* Navegación */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            background-color: var(--roble-oscuro);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            color: var(--crema-mdera);
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+            text-decoration: none; /* Añadido para que actúe como link */
+        }
+
+        .nav-links a {
+            color: var(--crema-mdera);
+            text-decoration: none;
+            margin-left: 25px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--pino-miel);
+        }
+
+        /* Sección de Inicio (Hero) */
+        .hero {
+            background-color: var(--roble-oscuro);
+            color: var(--crema-mdera);
+            height: 70vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            margin-top: 60px;
+        }
+
+        .hero h1 {
+            color: var(--crema-mdera);
+            font-size: 4rem;
+            margin-bottom: 5px;
+        }
+
+        .hero-subtitle {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 2.2rem;
+            color: var(--pino-miel);
+            margin-bottom: 25px;
+        }
+
+        .hero-tagline {
+            max-width: 600px;
+            font-size: 1.1rem;
+            font-weight: 300;
+            line-height: 1.6;
+            margin: 0 auto;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 35px;
+            background-color: var(--pino-miel);
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 600;
+            margin-top: 30px;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .btn:hover {
+            background-color: var(--cedro-calido);
+            transform: translateY(-2px);
+        }
+
+        /* ==========================================================================
+           ESTILO SECCIÓN MODELOS (ESTILO INTERACTIVO DISNEY UI)
+           ========================================================================== */
+        .modelos-section {
+            padding: 100px 0;
+            background-color: var(--crema-mdera);
+        }
+
+        .modelos-intro {
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        h2 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: var(--cedro-calido);
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 30px;
+        }
+
+        /* Contenedor de Tarjetas Horizontales */
+        .cards-container-disney {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            gap: 35px;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 90px auto 40px;
+            padding: 0 20px;
+        }
+
+        .card-disney {
+            position: relative;
+            width: 230px;
+            height: 270px;
+            border-radius: 28px;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            cursor: pointer;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s ease;
+        }
+
+        .png-popout {
+            position: absolute;
+            top: -55px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            height: 170px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            z-index: 2;
+        }
+
+        .placeholder-text-png {
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.9);
+            background: rgba(0,0,0,0.22);
+            padding: 12px;
+            border-radius: 16px;
+            border: 1px dashed rgba(255,255,255,0.3);
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card-disney-info {
+            color: white;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            position: relative;
+            z-index: 3;
+        }
+
+        .card-disney-info h3 {
+            color: white;
+            font-size: 1.6rem;
+            margin-bottom: 4px;
+        }
+
+        .card-precio {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        .card-disney:hover {
+            transform: translateY(-10px) scale(1.04);
+            box-shadow: 0 20px 40px rgba(59, 34, 16, 0.25);
+        }
+
+        .card-disney:hover .png-popout {
+            transform: translateX(-50%) scale(1.15) translateY(-8px);
+        }
+
+        .color-18 { background: linear-gradient(135deg, #A05C2C, #3B2210); }
+        .color-28 { background: linear-gradient(135deg, #C8833A, #A05C2C); }
+        .color-36 { background: linear-gradient(135deg, #D9C4A0, #3B2210); }
+        .color-48 { background: linear-gradient(135deg, #3B2210, #1C1C1B); }
+
+        /* Paneles Desplegables de Información */
+        .panel-detail-disney {
+            display: none;
+            max-width: 1140px;
+            margin: 40px auto;
+            border-radius: 24px;
+            padding: 40px;
+            position: relative;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.06);
+            animation: slideDown 0.4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        }
+
+        .color-18-bg { background-color: #fcf9f5; border: 2px solid #A05C2C; }
+        .color-28-bg { background-color: #fefcf9; border: 2px solid #C8833A; }
+        .color-36-bg { background-color: #f7f4ee; border: 2px solid #D9C4A0; }
+        .color-48-bg { background-color: #f5f2ed; border: 2px solid #3B2210; }
+
+        .panel-grid-layout {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .panel-text { flex: 1; }
+        .panel-text h3 { font-size: 2.4rem; margin-bottom: 5px; }
+        .panel-precio-big { font-size: 2rem; font-weight: 700; color: var(--cedro-calido); margin-bottom: 20px; }
+        .panel-text p { line-height: 1.7; color: var(--carbon); font-size: 0.95rem; }
+
+        .panel-galeria {
+            flex: 1.2;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .img-box-disney {
+            background-color: #e6dfd3;
+            border: 1px dashed var(--cedro-calido);
+            height: 130px;
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--roble-oscuro);
+        }
+
+        .img-box-disney.plano-img {
+            grid-column: span 2;
+            height: 170px;
+            background-color: white;
+            border: 2px solid var(--arena-patagonica);
+        }
+
+        .panel-close {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            color: #999;
+            transition: color 0.2s;
+        }
+        .panel-close:hover { color: var(--roble-oscuro); }
+
+        .btn-wsp-panel {
+            display: inline-block;
+            padding: 12px 28px;
+            background-color: #25D366;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            margin-top: 25px;
+            font-size: 0.9rem;
+            transition: transform 0.2s;
+        }
+        .btn-wsp-panel:hover { transform: translateY(-2px); }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ==========================================================================
+           ESTILO SECCIÓN A MEDIDA (MODIFICADO: RESPONSIVE SPLIT CON GALERÍA AUTÓNOMA)
+           ========================================================================== */
+        .a-medida {
+            background-color: var(--arena-patagonica);
+            padding: 100px 8%;
+        }
+
+        .medida-container {
+            display: flex;
+            max-width: 1140px;
+            margin: 0 auto;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .medida-text {
+            flex: 1;
+            text-align: left;
+        }
+
+        .medida-text h2 {
+            text-align: left;
+        }
+
+        .medida-text .subtitle {
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+        .medida-p { 
+            margin: 0 0 25px 0; 
+            line-height: 1.7; 
+        }
+
+        .medida-lista {
+            list-style: none;
+            max-width: 520px;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            font-weight: 500;
+            margin: 30px 0 0 0;
+        }
+
+        /* Galería de Protagonista Cambiante */
+        .medida-gallery-wrapper {
+            flex: 1.1;
+            position: relative;
+            width: 100%;
+            height: 380px;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(59, 34, 16, 0.15);
+            background-color: #e6dfd3;
+        }
+
+        .gallery-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 2px dashed var(--cedro-calido);
+            border-radius: 24px;
+            padding: 20px;
+        }
+
+        /* Clase activa controlada por JS */
+        .gallery-slide.active {
+            opacity: 1;
+            z-index: 2;
+        }
+
+        .placeholder-gallery-text {
+            font-size: 1rem;
+            font-weight: 600;
+            text-align: center;
+            color: var(--roble-oscuro);
+            line-height: 1.5;
+        }
+
+        /* Pequeños puntos indicadores */
+        .gallery-dots {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 10;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            background-color: rgba(255, 255, 255, 0.4);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .dot.active {
+            background-color: var(--pino-miel);
+            width: 22px;
+            border-radius: 4px;
+        }
+
+        /* ==========================================================================
+           MATERIALES
+           ========================================================================== */
+        .materiales {
+            background-color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+        .grid-materiales {
+            display: flex;
+            gap: 30px;
+            max-width: 1100px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 40px auto 0;
+        }
+
+        .material-card {
+            flex: 1;
+            min-width: 280px;
+            padding: 35px 30px;
+            background: var(--crema-mdera);
+            border-radius: 8px;
+            border-left: 5px solid var(--pino-miel);
+            text-align: left;
+        }
+
+        .material-card h3 { font-size: 1.4rem; margin-bottom: 12px; }
+        .material-card p { font-size: 0.95rem; line-height: 1.6; color: #444; }
+
+        /* ==========================================================================
+           SECCIÓN CONTACTO CON MASCOTA (CASTOR)
+           ========================================================================== */
+        .contacto {
+            background-color: var(--roble-oscuro);
+            color: var(--crema-mdera);
+            padding: 100px 20px;
+        }
+
+        .contacto h2 {
+            color: var(--crema-mdera);
+            text-align: left;
+        }
+
+        .contacto .subtitle {
+            color: var(--pino-miel);
+            text-align: left;
+            margin-bottom: 35px;
+        }
+
+        .contacto-grid {
+            display: flex;
+            max-width: 1100px;
+            margin: 0 auto;
+            gap: 60px;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .contacto-info {
+            flex: 1.2;
+        }
+
+        .contacto-list {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .contacto-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: rgba(255, 255, 255, 0.04);
+            padding: 18px 24px;
+            border-radius: 16px;
+            border: 1px solid rgba(200, 131, 58, 0.2);
+            text-decoration: none;
+            color: var(--crema-mdera);
+            transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), background 0.3s, border-color 0.3s;
+        }
+
+        .contacto-item.wsp-destacado {
+            border: 1px solid #25D366;
+            background: rgba(37, 211, 102, 0.06);
+        }
+
+        .contacto-item:hover {
+            transform: translateX(8px);
+            background: rgba(200, 131, 58, 0.12);
+            border-color: var(--pino-miel);
+        }
+
+        .contacto-item.wsp-destacado:hover {
+            background: rgba(37, 211, 102, 0.15);
+            border-color: #25D366;
+        }
+
+        .contacto-icono { font-size: 1.6rem; }
+
+        .contacto-texto h4 {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--arena-patagonica);
+            margin-bottom: 2px;
+            font-weight: 500;
+        }
+
+        .contacto-item.wsp-destacado .contacto-texto h4 { color: #25D366; }
+        .contacto-texto p { font-size: 1.05rem; font-weight: 600; }
+
+        .contacto-castor-box {
+            flex: 0.8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .castor-img {
+            max-width: 340px;
+            width: 100%;
+            height: auto;
+            filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.4));
+            animation: flotarCastor 4s ease-in-out infinite;
+        }
+
+        .castor-placeholder {
+            width: 280px;
+            height: 280px;
+            border: 2px dashed var(--pino-miel);
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: var(--arena-patagonica);
+            text-align: center;
+            padding: 20px;
+            background: rgba(255,255,255,0.02);
+            font-size: 0.9rem;
+            animation: flotarCastor 4s ease-in-out infinite;
+        }
+
+        @keyframes flotarCastor {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* Animación para cabecera */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInSimple 0.8s ease-out forwards;
+        }
+
+        @keyframes fadeInSimple {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ==========================================================================
+           ADAPTABILIDAD MÓVIL (RESPONSIVE)
+           ========================================================================== */
+        @media (max-width: 768px) {
+            .navbar { padding: 15px 5%; }
+            .nav-links { display: none; }
+            
+            .hero h1 { font-size: 2.5rem; }
+            .hero-subtitle { font-size: 1.5rem; }
+            
+            h2 { font-size: 2.2rem; }
+            
+            /* Ajustes tarjetas interactivos */
+            .cards-container-disney { gap: 70px; margin-top: 100px; }
+            .panel-grid-layout { flex-direction: column; }
+            .panel-galeria { grid-template-columns: 1fr; width: 100%; }
+            .img-box-disney.plano-img { grid-column: span 1; }
+            
+            /* NUEVO: Comportamiento Móvil de Proyectos Personalizados */
+            .a-medida { padding: 80px 24px; }
+            .medida-container { flex-direction: column; gap: 40px; }
+            .medida-text, .medida-text h2, .medida-text .subtitle { text-align: center; }
+            .medida-lista { margin: 30px auto 0; }
+            .medida-gallery-wrapper { height: 280px; width: 100%; }
+            
+            /* Ajustes Contacto */
+            .contacto-grid { flex-direction: column; gap: 40px; }
+            .contacto h2, .contacto .subtitle { text-align: center; }
+            .contacto-info { width: 100%; }
+            .contacto-castor-box { order: -1; }
+            .castor-img, .castor-placeholder { max-width: 240px; height: auto; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="../index.html" class="logo">MADERERA LA HERRADURA</a>
+        <div class="nav-links">
+            <a href="#modelos">Modelos</a>
+            <a href="#medida">A Medida</a>
+            <a href="#materiales">Materiales</a>
+            <a href="#contacto">Contacto</a>
+        </div>
+    </nav>
+
+    <section class="hero fade-in-section">
+        <div class="hero-content">
+            <h1>Maderera La Herradura</h1>
+            <p class="hero-subtitle">Cabañas Woodframe</p>
+            <p class="hero-tagline">Diseñamos y construimos cabañas con estándares superiores de calidad, diseño y confort estructural.</p>
+            <a href="#modelos" class="btn">Ver Modelos Estándar</a>
+        </div>
+    </section>
+
+    <section id="modelos" class="modelos-section">
+        <div class="modelos-intro fade-in-section">
+            <h2>Modelos Estándar</h2>
+            <p class="subtitle">Hacé clic en un modelo para desplegar planos y galerías de fotos</p>
+        </div>
+
+        <div class="cards-container-disney fade-in-section">
+            
+            <div class="card-disney color-18" onclick="selectModel('18')">
+                <div class="png-popout">
+                    <p class="placeholder-text-png">PNG Cabaña<br>18 mt²</p>
+                </div>
+                <div class="card-disney-info">
+                    <h3>18 mt²</h3>
+                    <p class="card-precio">$7.100.000</p>
+                </div>
+            </div>
+
+            <div class="card-disney color-28" onclick="selectModel('28')">
+                <div class="png-popout">
+                    <p class="placeholder-text-png">PNG Cabaña<br>28 mt²</p>
+                </div>
+                <div class="card-disney-info">
+                    <h3>28 mt²</h3>
+                    <p class="card-precio">$11.000.000</p>
+                </div>
+            </div>
+
+            <div class="card-disney color-36" onclick="selectModel('36')">
+                <div class="png-popout">
+                    <p class="placeholder-text-png">PNG Cabaña<br>36 mt²</p>
+                </div>
+                <div class="card-disney-info">
+                    <h3>36 mt²</h3>
+                    <p class="card-precio">$14.100.000</p>
+                </div>
+            </div>
+
+            <div class="card-disney color-48" onclick="selectModel('48')">
+                <div class="png-popout">
+                    <p class="placeholder-text-png">PNG Cabaña<br>48 mt²</p>
+                </div>
+                <div class="card-disney-info">
+                    <h3>48 mt²</h3>
+                    <p class="card-precio">$18.750.000</p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="panels-container-disney">
+
+            <div id="panel-18" class="panel-detail-disney color-18-bg">
+                <div class="panel-close" onclick="closeAllPanels()">✕ Cerrar</div>
+                <div class="panel-grid-layout">
+                    <div class="panel-text">
+                        <h3>Modelo 18 mt²</h3>
+                        <p class="panel-precio-big">$7.100.000</p>
+                        <p>Un diseño compacto, eficiente y optimizado bajo el sistema Woodframe. Ideal para anexos, oficinas de jardín o complejos turísticos de alta rotación en la Patagonia.</p>
+                        <a href="https://wa.me/542944898755?text=Hola!%20Quiero%20consultar%20por%20el%20Modelo%2018m2" target="_blank" class="btn-wsp-panel">Consultar por WhatsApp</a>
+                    </div>
+                    <div class="panel-galeria">
+                        <div class="img-box-disney"><p>Foto Interior 1</p></div>
+                        <div class="img-box-disney"><p>Foto Interior 2</p></div>
+                        <div class="img-box-disney plano-img"><p>Plano Técnico de Distribución</p></div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="panel-28" class="panel-detail-disney color-28-bg">
+                <div class="panel-close" onclick="closeAllPanels()">✕ Cerrar</div>
+                <div class="panel-grid-layout">
+                    <div class="panel-text">
+                        <h3>Modelo 28 mt²</h3>
+                        <p class="panel-precio-big">$11.000.000</p>
+                        <p>Perfecto equilibrio entre confort y funcionalidad. Cuenta con una distribución inteligente que maximiza la iluminación natural y los espacios comunes del hogar.</p>
+                        <a href="https://wa.me/542944898755?text=Hola!%20Quiero%20consultar%20por%20el%20Modelo%2028m2" target="_blank" class="btn-wsp-panel">Consultar por WhatsApp</a>
+                    </div>
+                    <div class="panel-galeria">
+                        <div class="img-box-disney"><p>Foto Interior 1</p></div>
+                        <div class="img-box-disney"><p>Foto Interior 2</p></div>
+                        <div class="img-box-disney plano-img"><p>Plano Técnico de Distribución</p></div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="panel-36" class="panel-detail-disney color-36-bg">
+                <div class="panel-close" onclick="closeAllPanels()">✕ Cerrar</div>
+                <div class="panel-grid-layout">
+                    <div class="panel-text">
+                        <h3>Modelo 36 mt²</h3>
+                        <p class="panel-precio-big">$14.100.000</p>
+                        <p>Pensada para estancias prolongadas o vivienda permanente de tamaño moderado. Excelente aislamiento térmico estructural que caracteriza nuestras calidades de construcción.</p>
+                        <a href="https://wa.me/542944898755?text=Hola!%20Quiero%20consultar%20por%20el%20Modelo%2036m2" target="_blank" class="btn-wsp-panel">Consultar por WhatsApp</a>
+                    </div>
+                    <div class="panel-galeria">
+                        <div class="img-box-disney"><p>Foto Interior 1</p></div>
+                        <div class="img-box-disney"><p>Foto Interior 2</p></div>
+                        <div class="img-box-disney plano-img"><p>Plano Técnico de Distribución</p></div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="panel-48" class="panel-detail-disney color-48-bg">
+                <div class="panel-close" onclick="closeAllPanels()">✕ Cerrar</div>
+                <div class="panel-grid-layout">
+                    <div class="panel-text">
+                        <h3>Modelo 48 mt²</h3>
+                        <p class="panel-precio-big">$18.750.000</p>
+                        <p>Nuestra propuesta estándar más amplia. Comodidad familiar completa con ambientes definidos, terminaciones premium y toda la solidez estructural de la madera seleccionada.</p>
+                        <a href="https://wa.me/542944898755?text=Hola!%20Quiero%20consultar%20por%20el%20Modelo%2048m2" target="_blank" class="btn-wsp-panel">Consultar por WhatsApp</a>
+                    </div>
+                    <div class="panel-galeria">
+                        <div class="img-box-disney"><p>Foto Interior 1</p></div>
+                        <div class="img-box-disney"><p>Foto Interior 2</p></div>
+                        <div class="img-box-disney plano-img"><p>Plano Técnico de Distribución</p></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="medida" class="a-medida">
+        <div class="medida-container">
+            
+            <div class="medida-text">
+                <h2>Proyectos Personalizados</h2>
+                <p class="subtitle">Construimos la cabaña de tus sueños a medida</p>
+                <p class="medida-p">Si las medidas estándar no se adaptan a lo que buscás, desarrollamos planos desde cero adaptados completamente a la topografía de tu terreno y a tus necesidades habitacionales.</p>
+                <ul class="medida-lista">
+                    <li>✓ Adaptación geométrica y de ambientes total</li>
+                    <li>✓ Elección de aberturas y paneles customizados</li>
+                    <li>✓ Presupuestos dinámicos llave en mano</li>
+                </ul>
+            </div>
+
+            <div class="medida-gallery-wrapper">
+                
+                <div class="gallery-slide active">
+                    <p class="placeholder-gallery-text">📸 Foto Proyecto Custom 1<br><span style="font-size:0.8rem; opacity:0.75; font-weight:400;">(Vista Fachada Principal)</span></p>
+                    </div>
+
+                <div class="gallery-slide">
+                    <p class="placeholder-gallery-text">📸 Foto Proyecto Custom 2<br><span style="font-size:0.8rem; opacity:0.75; font-weight:400;">(Diseño de Interiores Custom)</span></p>
+                </div>
+
+                <div class="gallery-slide">
+                    <p class="placeholder-gallery-text">📸 Foto Proyecto Custom 3<br><span style="font-size:0.8rem; opacity:0.75; font-weight:400;">(Montaje Woodframe en Terreno)</span></p>
+                </div>
+
+                <div class="gallery-dots">
+                    <span class="dot active"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <section id="materiales" class="materiales">
+        <h2>Materiales de Alta Gama</h2>
+        <p class="subtitle">Estructuras sólidas, terminaciones impecables.</p>
+        <div class="grid-materiales">
+            <div class="material-card">
+                <h3>Aberturas</h3>
+                <p>Ventanas y cerramientos de alta prestación acústica y térmica ideales para climas exigentes.</p>
+            </div>
+            <div class="material-card">
+                <h3>Puertas</h3>
+                <p>Puertas principales e internas fabricadas en madera maciza seleccionada de primera calidad.</p>
+            </div>
+            <div class="material-card">
+                <h3>Paneles</h3>
+                <p>Estructuras modulares eficientes con capas de aislamiento climático avanzado.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contacto" class="contacto">
+        <div class="contacto-grid">
+            
+            <div class="contacto-info">
+                <h2>Iniciá tu proyecto con nosotros</h2>
+                <p class="subtitle">Escribinos o visitanos para recibir asesoramiento personalizado</p>
+                
+                <div class="contacto-list">
+                    <a href="https://wa.me/542944898755?text=Hola!%20Me%20interesa%20recibir%20información%20sobre%20las%20cabañas." target="_blank" class="contacto-item wsp-destacado">
+                        <div class="contacto-icono">💬</div>
+                        <div class="contacto-texto">
+                            <h4>WhatsApp (Link Directo)</h4>
+                            <p>+54 2944 898755</p>
+                        </div>
+                    </a>
+
+                    <a href="https://instagram.com/maderera_la_herradura" target="_blank" class="contacto-item">
+                        <div class="contacto-icono">📸</div>
+                        <div class="contacto-texto">
+                            <h4>Instagram</h4>
+                            <p>@maderera_la_herradura</p>
+                        </div>
+                    </a>
+
+                    <a href="mailto:Laherradurabrc@gmail.com" class="contacto-item">
+                        <div class="contacto-icono">✉️</div>
+                        <div class="contacto-texto">
+                            <h4>Correo Electrónico</h4>
+                            <p>Laherradurabrc@gmail.com</p>
+                        </div>
+                    </a>
+
+                    <a href="https://maps.app.goo.gl/jrZp5MVb9dFV7VEs9" target="_blank" class="contacto-item">
+                        <div class="contacto-icono">📍</div>
+                        <div class="contacto-texto">
+                            <h4>Ubicación</h4>
+                            <p>San Jose 150, Ñireco, Bariloche</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="contacto-castor-box">
+                <div id="placeholder-castor" class="castor-placeholder">
+                    <div style="font-size: 2.5rem; margin-bottom: 10px;">🪵 🦫</div>
+                    <strong>¡Espacio del Castor!</strong>
+                    <span style="font-size: 0.8rem; opacity: 0.7; margin-top: 5px;">Cuando subas 'castor.png' a tu GitHub, aparecerá tu mascota aquí.</span>
+                </div>
+                
+                <img src="../castor.png" alt="Castor Maderera La Herradura" class="castor-img" style="display: none;" onerror="this.style.display='none';" onload="this.style.display='block'; document.getElementById('placeholder-castor').style.display='none';">
+            </div>
+
+        </div>
+    </section>
+
+    <script>
+        // Control de los Paneles de Cabañas Estándar
+        function selectModel(modelSize) {
+            const allPanels = document.querySelectorAll('.panel-detail-disney');
+            allPanels.forEach(panel => {
+                panel.style.display = 'none';
+            });
+
+            const targetPanel = document.getElementById('panel-' + modelSize);
+            if (targetPanel) {
+                targetPanel.style.display = 'block';
+                setTimeout(() => {
+                    targetPanel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 100);
+            }
+        }
+
+        function closeAllPanels() {
+            const allPanels = document.querySelectorAll('.panel-detail-disney');
+            allPanels.forEach(panel => {
+                panel.style.display = 'none';
+            });
+        }
+
+        // NUEVO: Lógica del Carrusel Autónomo para Proyectos Custom
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.gallery-slide');
+        const dots = document.querySelectorAll('.dot');
+
+        function autoNextSlide() {
+            // Quitamos la clase activa de la imagen y del punto actual
+            slides[currentSlide].classList.remove('active');
+            dots[currentSlide].classList.remove('active');
+            
+            // Avanzamos al siguiente (vuelve a cero si llega al final)
+            currentSlide = (currentSlide + 1) % slides.length;
+            
+            // Agregamos la clase activa al nuevo elemento seleccionado
+            slides[currentSlide].classList.add('active');
+            dots[currentSlide].classList.add('active');
+        }
+
+        // Configurado para cambiar automáticamente cada 3.5 segundos (3500 milisegundos)
+        setInterval(autoNextSlide, 3500);
+    </script>
+</body>
+</html>
