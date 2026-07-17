@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Maderas | La Herradura</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root { --roble-oscuro: #3B2210; --pino-miel: #C8833A; --crema-mdera: #F2EAD8; }
+        body { font-family: 'Montserrat', sans-serif; background: var(--crema-mdera); margin: 0; color: #333; }
+        h1, h2, h3 { font-family: 'Playfair Display', serif; }
+
+        /* Cabecera y Nombre */
+        .hero { height: 400px; background: url('aserradero.jpg') center/cover; display: flex; align-items: center; justify-content: center; position: relative; }
+        .hero-title { background: var(--roble-oscuro); color: var(--crema-mdera); padding: 20px 40px; border-radius: 10px; border: 2px solid var(--crema-mdera); }
+
+        /* Grid Productos */
+        .productos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; padding: 50px 20px; max-width: 1200px; margin: auto; }
+        .producto-card { background: white; border-radius: 20px; padding: 20px; text-align: center; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .producto-img { width: 100%; height: 250px; object-fit: cover; border-radius: 15px; margin-bottom: 15px; }
+
+        /* Contacto (Copiado de Cabañas) */
+        .contacto { background-color: var(--roble-oscuro); color: var(--crema-mdera); padding: 100px 20px; }
+        .contacto-grid { display: flex; max-width: 1100px; margin: 0 auto; gap: 60px; align-items: center; justify-content: space-between; flex-wrap: wrap; }
+        .contacto-info { flex: 1.2; min-width: 300px; }
+        .contacto-list { display: flex; flex-direction: column; gap: 18px; }
+        .contacto-item { display: flex; align-items: center; gap: 20px; background: rgba(255, 255, 255, 0.04); padding: 18px 24px; border-radius: 16px; border: 1px solid rgba(200, 131, 58, 0.2); text-decoration: none; color: var(--crema-mdera); transition: 0.3s; }
+        .wsp-destacado { border: 1px solid #25D366; background: rgba(37, 211, 102, 0.06); }
+        .contacto-castor-box { flex: 0.8; display: flex; justify-content: center; }
+        .castor-img { max-width: 300px; animation: flotar 4s infinite ease-in-out; }
+        @keyframes flotar { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+        @media (max-width: 768px) { .contacto-grid { flex-direction: column; text-align: center; } .contacto-castor-box { order: -1; } }
+    </style>
+</head>
+<body>
+
+<header class="hero">
+    <h1 class="hero-title">Maderera La Herradura</h1>
+</header>
+
+<section class="productos-grid">
+    <!-- Producto 1 -->
+    <div class="producto-card">
+        <img src="machimbre.jpg" class="producto-img" alt="Machimbre">
+        <h3>Machimbres</h3>
+    </div>
+    <!-- Producto 2 -->
+    <div class="producto-card">
+        <img src="puertas.jpg" class="producto-img" alt="Puertas">
+        <h3>Puertas</h3>
+    </div>
+    <!-- Producto 3 -->
+    <div class="producto-card">
+        <img src="fenolicos.jpg" class="producto-img" alt="Fenólicos">
+        <h3>Fenólicos</h3>
+    </div>
+    <!-- Producto 4 -->
+    <div class="producto-card">
+        <img src="tirantes.jpg" class="producto-img" alt="Tirantes">
+        <h3>Tirantes</h3>
+    </div>
+    <!-- Producto 5 -->
+    <div class="producto-card">
+        <img src="tablas.jpg" class="producto-img" alt="Tablas">
+        <h3>Tablas</h3>
+    </div>
+</section>
+
+<!-- SECCIÓN CONTACTO -->
+<section id="contacto" class="contacto">
+    <div class="contacto-grid">
+        <div class="contacto-info">
+            <h2>Iniciá tu proyecto con nosotros</h2>
+            <p>Escribinos o visitanos para recibir asesoramiento personalizado</p>
+            <div class="contacto-list">
+                <a href="https://wa.me/542944898755" class="contacto-item wsp-destacado">
+                    <div class="contacto-icono">💬</div>
+                    <div class="contacto-texto"><h4>WhatsApp</h4><p>+54 2944 898755</p></div>
+                </a>
+                <a href="#" class="contacto-item">
+                    <div class="contacto-icono">📸</div>
+                    <div class="contacto-texto"><h4>Instagram</h4><p>@maderera_la_herradura</p></div>
+                </a>
+                <a href="mailto:Laherradurabrc@gmail.com" class="contacto-item">
+                    <div class="contacto-icono">✉️</div>
+                    <div class="contacto-texto"><h4>Correo Electrónico</h4><p>Laherradurabrc@gmail.com</p></div>
+                </a>
+                <a href="#" class="contacto-item">
+                    <div class="contacto-icono">📍</div>
+                    <div class="contacto-texto"><h4>Ubicación</h4><p>San Jose 150, Ñireco, Bariloche</p></div>
+                </a>
+            </div>
+        </div>
+        <div class="contacto-castor-box">
+            <img src="castor.png" alt="Castor" class="castor-img">
+        </div>
+    </div>
+</section>
+
+</body>
+</html>
