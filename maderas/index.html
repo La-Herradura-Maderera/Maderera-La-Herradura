@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Maderas | La Herradura</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <style>
         :root { 
             --roble-oscuro: #3B2210; 
@@ -15,40 +15,107 @@
             --carbon: #1C1C1B;
         }
         
-        * { box-sizing: border-box; }
-        body { font-family: 'Montserrat', sans-serif; background: var(--crema-mdera); margin: 0; color: #333; }
-        h1, h2, h3 { font-family: 'Playfair Display', serif; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Montserrat', sans-serif; background: var(--crema-mdera); color: var(--carbon); overflow-x: hidden; }
+        h1, h2, h3 { font-family: 'Playfair Display', serif; color: var(--roble-oscuro); }
 
-        /* Cabecera */
+        /* Navegación */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            background-color: var(--roble-oscuro);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            color: var(--crema-mdera);
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+            text-decoration: none;
+        }
+
+        .nav-links a {
+            color: var(--crema-mdera);
+            text-decoration: none;
+            margin-left: 25px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--pino-miel);
+        }
+
+        /* Cabecera / Hero con soporte para imagen del aserradero */
         .hero { 
-            height: 400px; 
-            background: linear-gradient(rgba(59, 34, 16, 0.6), rgba(59, 34, 16, 0.6)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400"><rect fill="%233B2210" width="1200" height="400"/><rect fill="%23C8833A" opacity="0.1" width="1200" height="400"/></svg>');
+            height: 70vh; 
+            /* REEMPLAZA 'aserradero.jpg' por el nombre de tu archivo de imagen en GitHub */
+            background: linear-gradient(rgba(59, 34, 16, 0.65), rgba(59, 34, 16, 0.65)), url('aserradero.jpg');
             background-size: cover;
+            background-position: center;
             display: flex; 
             align-items: center; 
             justify-content: center; 
             position: relative; 
-        }
-        .hero-title { 
-            background: var(--roble-oscuro); 
-            color: var(--crema-mdera); 
-            padding: 20px 40px; 
-            border-radius: 10px; 
-            border: 2px solid var(--crema-mdera);
+            margin-top: 60px;
+            padding: 0 20px;
             text-align: center;
         }
-        .hero-title h1 { margin: 0; font-size: 3em; }
+        .hero-title { 
+            background: rgba(59, 34, 16, 0.88); 
+            color: var(--crema-mdera); 
+            padding: 35px 40px; 
+            border-radius: 20px; 
+            border: 2px solid var(--pino-miel);
+            max-width: 700px;
+            width: 100%;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+        }
+        .hero-title h1 { 
+            margin: 0 0 10px 0; 
+            font-size: 3rem; 
+            color: var(--crema-mdera);
+        }
+        .hero-title p {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.3rem;
+            color: var(--arena-patag);
+            margin-bottom: 12px;
+        }
+        .hero-tagline {
+            font-size: 0.95rem;
+            font-weight: 300;
+            color: #eee;
+        }
 
         /* Sección Catálogo Horizontal */
         .catalogo-section {
-            padding: 60px 20px;
+            padding: 100px 20px;
             background: var(--crema-mdera);
         }
         .catalogo-title {
             text-align: center;
-            font-size: 2.5em;
-            margin-bottom: 40px;
+            font-size: 2.8rem;
+            margin-bottom: 10px;
             color: var(--roble-oscuro);
+        }
+        .catalogo-subtitle {
+            text-align: center;
+            color: var(--cedro-calido);
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 40px;
         }
 
         /* Carrusel Horizontal */
@@ -176,23 +243,6 @@
             border-radius: 15px;
             object-fit: cover;
             background: #f5f5f5;
-        }
-        .detalle-imgs-secundarias {
-            display: flex;
-            gap: 10px;
-        }
-        .detalle-img-secundaria {
-            width: 70px;
-            height: 70px;
-            border-radius: 10px;
-            cursor: pointer;
-            border: 2px solid transparent;
-            object-fit: cover;
-            transition: border-color 0.3s;
-        }
-        .detalle-img-secundaria:hover,
-        .detalle-img-secundaria.active {
-            border-color: var(--pino-miel);
         }
 
         /* Información del Producto */
@@ -470,77 +520,127 @@
             background: #e0e0e0;
             color: #333;
         }
-        .btn-cerrar-carrito:hover {
-            background: #ccc;
+
+        /* SECCIÓN CONTACTO (Igual a la página de Cabañas con el Castor) */
+        .contacto {
+            background-color: var(--roble-oscuro);
+            color: var(--crema-mdera);
+            padding: 100px 20px;
         }
 
-        /* Sección Contacto (SIN CAMBIOS) */
-        .contacto { 
-            background-color: var(--roble-oscuro); 
-            color: var(--crema-mdera); 
-            padding: 100px 20px; 
+        .contacto h2 {
+            color: var(--crema-mdera);
+            text-align: left;
+            font-size: 2.8rem;
         }
-        .contacto-grid { 
-            display: flex; 
-            max-width: 1100px; 
-            margin: 0 auto; 
-            gap: 60px; 
-            align-items: center; 
-            justify-content: space-between; 
-            flex-wrap: wrap; 
+
+        .contacto .subtitle {
+            color: var(--pino-miel);
+            text-align: left;
+            margin-bottom: 35px;
+            font-size: 1.1rem;
+            font-weight: 500;
         }
-        .contacto-info { 
-            flex: 1.2; 
-            min-width: 300px; 
+
+        .contacto-grid {
+            display: flex;
+            max-width: 1100px;
+            margin: 0 auto;
+            gap: 60px;
+            align-items: center;
+            justify-content: space-between;
         }
-        .contacto-list { 
-            display: flex; 
-            flex-direction: column; 
-            gap: 18px; 
+
+        .contacto-info {
+            flex: 1.2;
         }
-        .contacto-item { 
-            display: flex; 
-            align-items: center; 
-            gap: 20px; 
-            background: rgba(255, 255, 255, 0.04); 
-            padding: 18px 24px; 
-            border-radius: 16px; 
-            border: 1px solid rgba(200, 131, 58, 0.2); 
-            text-decoration: none; 
-            color: var(--crema-mdera); 
-            transition: 0.3s; 
+
+        .contacto-list {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
         }
+
+        .contacto-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: rgba(255, 255, 255, 0.04);
+            padding: 18px 24px;
+            border-radius: 16px;
+            border: 1px solid rgba(200, 131, 58, 0.2);
+            text-decoration: none;
+            color: var(--crema-mdera);
+            transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), background 0.3s, border-color 0.3s;
+        }
+
+        .contacto-item.wsp-destacado {
+            border: 1px solid #25D366;
+            background: rgba(37, 211, 102, 0.06);
+        }
+
         .contacto-item:hover {
-            background: rgba(200, 131, 58, 0.1);
-            border-color: rgba(200, 131, 58, 0.5);
+            transform: translateX(8px);
+            background: rgba(200, 131, 58, 0.12);
+            border-color: var(--pino-miel);
         }
-        .wsp-destacado { 
-            border: 1px solid #25D366; 
-            background: rgba(37, 211, 102, 0.06); 
+
+        .contacto-item.wsp-destacado:hover {
+            background: rgba(37, 211, 102, 0.15);
+            border-color: #25D366;
         }
-        .contacto-castor-box { 
-            flex: 0.8; 
-            display: flex; 
-            justify-content: center; 
+
+        .contacto-icono { font-size: 1.6rem; }
+
+        .contacto-texto h4 {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--arena-patag);
+            margin-bottom: 2px;
+            font-weight: 500;
         }
-        .castor-img { 
-            max-width: 300px; 
-            animation: flotar 4s infinite ease-in-out; 
+
+        .contacto-item.wsp-destacado .contacto-texto h4 { color: #25D366; }
+        .contacto-texto p { font-size: 1.05rem; font-weight: 600; }
+
+        .contacto-castor-box {
+            flex: 0.8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
         }
-        @keyframes flotar { 
-            0%, 100% { transform: translateY(0); } 
-            50% { transform: translateY(-15px); } 
+
+        .castor-img {
+            max-width: 340px;
+            width: 100%;
+            height: auto;
+            filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.4));
+            animation: flotarCastor 4s ease-in-out infinite;
         }
-        @media (max-width: 768px) { 
-            .contacto-grid { flex-direction: column; text-align: center; } 
-            .contacto-castor-box { order: -1; } 
-            .carousel-track { 
-                padding-left: 10px;
-                padding-right: 10px;
-            }
-            .producto-card {
-                flex: 0 0 240px;
-            }
+
+        .castor-placeholder {
+            width: 280px;
+            height: 280px;
+            border: 2px dashed var(--pino-miel);
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: var(--arena-patag);
+            text-align: center;
+            padding: 20px;
+            background: rgba(255,255,255,0.02);
+            font-size: 0.9rem;
+            animation: flotarCastor 4s ease-in-out infinite;
+        }
+
+        @keyframes flotarCastor {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
+            100% { transform: translateY(0px); }
         }
 
         /* Notificación */
@@ -563,21 +663,46 @@
             from { transform: translateX(400px); }
             to { transform: translateX(0); }
         }
+
+        @media (max-width: 768px) {
+            .navbar { padding: 15px 5%; }
+            .nav-links { display: none; }
+            .hero-title { padding: 25px 20px; }
+            .hero-title h1 { font-size: 2.2rem; }
+            .contacto-grid { flex-direction: column; gap: 40px; }
+            .contacto h2, .contacto .subtitle { text-align: center; }
+            .contacto-info { width: 100%; }
+            .contacto-castor-box { order: -1; }
+            .castor-img, .castor-placeholder { max-width: 240px; }
+            .carousel-track { padding-left: 10px; padding-right: 10px; }
+            .producto-card { flex: 0 0 240px; }
+        }
     </style>
 </head>
 <body>
 
-<!-- HÉROE -->
+<!-- NAVEGACIÓN -->
+<nav class="navbar">
+    <a href="index.html" class="logo">MADERERA LA HERRADURA</a>
+    <div class="nav-links">
+        <a href="#catalogo">Productos</a>
+        <a href="#contacto">Contacto</a>
+    </div>
+</nav>
+
+<!-- HÉROE CON FONDO Y CAJA ADAPTADA -->
 <header class="hero">
     <div class="hero-title">
-        <h1>🪵 Maderas La Herradura</h1>
-        <p style="margin: 10px 0 0 0; font-size: 1.1em;">Mayorista • Minorista • Calidad Patagónica</p>
+        <h1>Maderas La Herradura</h1>
+        <p>Calidad Patagónica</p>
+        <p class="hero-tagline">Mayorista • Minorista • Seleccionados de Primera</p>
     </div>
 </header>
 
 <!-- CATÁLOGO DE MADERAS -->
-<section class="catalogo-section">
+<section id="catalogo" class="catalogo-section">
     <h2 class="catalogo-title">Nuestros Productos</h2>
+    <p class="catalogo-subtitle">Explorá las opciones y armá tu pedido a medida</p>
     
     <div class="carousel-container">
         <div class="carousel-track" id="carouselTrack">
@@ -589,7 +714,6 @@
     <div class="detalle-panel" id="detallePanel">
         <div class="detalle-galeria">
             <img src="" id="detalleImgPrincipal" class="detalle-img-principal" alt="Producto">
-            <div class="detalle-imgs-secundarias" id="detalleImgsSecundarias"></div>
         </div>
 
         <div class="detalle-info">
@@ -627,41 +751,56 @@
     </div>
 </section>
 
-<!-- SECCIÓN CONTACTO (SIN CAMBIOS) -->
+<!-- SECCIÓN CONTACTO (IGUAL A CABAÑAS CON EL CASTOR Y EL NÚMERO CORRECTO) -->
 <section id="contacto" class="contacto">
     <div class="contacto-grid">
         <div class="contacto-info">
             <h2>Iniciá tu proyecto con nosotros</h2>
-            <p>Escribinos o visitanos para recibir asesoramiento personalizado</p>
+            <p class="subtitle">Escribinos o visitanos para recibir asesoramiento personalizado</p>
+            
             <div class="contacto-list">
-                <a href="https://wa.me/542944589885" class="contacto-item wsp-destacado">
+                <a href="https://wa.me/542944898755?text=Hola!%20Me%20interesa%20recibir%20información%20sobre%20las%20maderas." target="_blank" class="contacto-item wsp-destacado">
                     <div class="contacto-icono">💬</div>
-                    <div class="contacto-texto"><h4>WhatsApp</h4><p>+54 2944 589885</p></div>
+                    <div class="contacto-texto">
+                        <h4>WhatsApp (Link Directo)</h4>
+                        <p>+54 2944 898755</p>
+                    </div>
                 </a>
-                <a href="https://instagram.com/maderera_la_herradura" class="contacto-item">
+
+                <a href="https://instagram.com/maderera_la_herradura" target="_blank" class="contacto-item">
                     <div class="contacto-icono">📸</div>
-                    <div class="contacto-texto"><h4>Instagram</h4><p>@maderera_la_herradura</p></div>
+                    <div class="contacto-texto">
+                        <h4>Instagram</h4>
+                        <p>@maderera_la_herradura</p>
+                    </div>
                 </a>
+
                 <a href="mailto:Laherradurabrc@gmail.com" class="contacto-item">
                     <div class="contacto-icono">✉️</div>
-                    <div class="contacto-texto"><h4>Correo Electrónico</h4><p>Laherradurabrc@gmail.com</p></div>
+                    <div class="contacto-texto">
+                        <h4>Correo Electrónico</h4>
+                        <p>Laherradurabrc@gmail.com</p>
+                    </div>
                 </a>
-                <a href="#" class="contacto-item">
+
+                <a href="https://maps.app.goo.gl/jrZp5MVb9dFV7VEs9" target="_blank" class="contacto-item">
                     <div class="contacto-icono">📍</div>
-                    <div class="contacto-texto"><h4>Ubicación</h4><p>San Jose 150, Zona Ñireco, Bariloche</p></div>
+                    <div class="contacto-texto">
+                        <h4>Ubicación</h4>
+                        <p>San Jose 150, Ñireco, Bariloche</p>
+                    </div>
                 </a>
             </div>
         </div>
+
         <div class="contacto-castor-box">
-            <svg class="castor-img" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="50" cy="30" r="20" fill="#8B6F47"/>
-                <circle cx="35" cy="25" r="6" fill="#2C2C2C"/>
-                <circle cx="65" cy="25" r="6" fill="#2C2C2C"/>
-                <ellipse cx="50" cy="35" rx="8" ry="5" fill="#D4A574"/>
-                <path d="M 30 50 Q 20 55 15 65" stroke="#8B6F47" stroke-width="3" fill="none" stroke-linecap="round"/>
-                <path d="M 70 50 Q 80 55 85 65" stroke="#8B6F47" stroke-width="3" fill="none" stroke-linecap="round"/>
-                <ellipse cx="50" cy="65" rx="25" ry="20" fill="#A0825C"/>
-            </svg>
+            <div id="placeholder-castor" class="castor-placeholder">
+                <div style="font-size: 2.5rem; margin-bottom: 10px;">🪵 🦫</div>
+                <strong>¡Espacio del Castor!</strong>
+                <span style="font-size: 0.8rem; opacity: 0.7; margin-top: 5px;">Cuando subas 'castor.png' a tu GitHub, aparecerá tu mascota aquí.</span>
+            </div>
+            
+            <img src="castor.png" alt="Castor Maderera La Herradura" class="castor-img" style="display: none;" onerror="this.style.display='none';" onload="this.style.display='block'; document.getElementById('placeholder-castor').style.display='none';">
         </div>
     </div>
 </section>
@@ -702,7 +841,6 @@ const productos = [
         nombre: 'Machimbre',
         descripcion: 'Tablero machimbrado de alta calidad para revestimientos interiores y exteriores. Proporciona acabado limpio y profesional.',
         imagen: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300"><rect fill="%23C8833A" width="300" height="300"/><rect fill="%23A05C2C" x="20" y="20" width="260" height="260" rx="10"/><line x1="30" y1="70" x2="270" y2="70" stroke="%23F2EAD8" stroke-width="2"/><line x1="30" y1="110" x2="270" y2="110" stroke="%23F2EAD8" stroke-width="2"/><line x1="30" y1="150" x2="270" y2="150" stroke="%23F2EAD8" stroke-width="2"/><line x1="30" y1="190" x2="270" y2="190" stroke="%23F2EAD8" stroke-width="2"/><line x1="30" y1="230" x2="270" y2="230" stroke="%23F2EAD8" stroke-width="2"/></svg>',
-        imagenes: ['data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300"><rect fill="%23C8833A" width="300" height="300"/><rect fill="%23A05C2C" x="20" y="20" width="260" height="260" rx="10"/><line x1="30" y1="70" x2="270" y2="70" stroke="%23F2EAD8" stroke-width="2"/><line x1="30" y1="110" x2="270" y2="110" stroke="%23F2EAD8" stroke-width="2"/><line x1="30" y1="150" x2="270" y2="150" stroke="%23F2EAD8" stroke-width="2"/><line x1="30" y1="190" x2="270" y2="190" stroke="%23F2EAD8" stroke-width="2"/><line x1="30" y1="230" x2="270" y2="230" stroke="%23F2EAD8" stroke-width="2"/></svg>'],
         especificaciones: [
             { label: 'Material', valor: 'Pino Argentino' },
             { label: 'Espesor', valor: '18mm' },
@@ -718,7 +856,6 @@ const productos = [
         nombre: 'Puertas',
         descripcion: 'Puertas de madera maciza fabricadas a medida. Disponemos de diseños clásicos y modernos según tus necesidades.',
         imagen: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300"><rect fill="%238B6F47" width="300" height="300"/><rect fill="%23A05C2C" x="40" y="30" width="220" height="240" rx="5"/><circle cx="240" cy="150" r="8" fill="%23FFD700"/><line x1="160" y1="50" x2="160" y2="250" stroke="%23D4A574" stroke-width="2" opacity="0.5"/></svg>',
-        imagenes: ['data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300"><rect fill="%238B6F47" width="300" height="300"/><rect fill="%23A05C2C" x="40" y="30" width="220" height="240" rx="5"/><circle cx="240" cy="150" r="8" fill="%23FFD700"/><line x1="160" y1="50" x2="160" y2="250" stroke="%23D4A574" stroke-width="2" opacity="0.5"/></svg>'],
         especificaciones: [
             { label: 'Espesor', valor: '35 - 45mm' },
             { label: 'Tipo de Madera', valor: 'A medida' },
@@ -734,7 +871,6 @@ const productos = [
         nombre: 'Fenólicos',
         descripcion: 'Tableros fenólicos de alta resistencia. Ideales para construcción de cabañas y estructuras exteriores. Disponibles en dos espesores.',
         imagen: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300"><rect fill="%233B2210" width="300" height="300"/><rect fill="%235A3A1F" x="30" y="30" width="240" height="240" rx="8"/><rect fill="%23D9C4A0" x="50" y="50" width="50" height="50" rx="3"/><rect fill="%23D9C4A0" x="120" y="50" width="50" height="50" rx="3"/><rect fill="%23D9C4A0" x="190" y="50" width="50" height="50" rx="3"/><rect fill="%23D9C4A0" x="50" y="120" width="50" height="50" rx="3"/><rect fill="%23D9C4A0" x="120" y="120" width="50" height="50" rx="3"/><rect fill="%23D9C4A0" x="190" y="120" width="50" height="50" rx="3"/></svg>',
-        imagenes: ['data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300"><rect fill="%233B2210" width="300" height="300"/><rect fill="%235A3A1F" x="30" y="30" width="240" height="240" rx="8"/><rect fill="%23D9C4A0" x="50" y="50" width="50" height="50" rx="3"/><rect fill="%23D9C4A0" x="120" y="50" width="50" height="50" rx="3"/><rect fill="%23D9C4A0" x="190" y="50" width="50" height="50" rx="3"/><rect fill="%23D9C4A0" x="50" y="120" width="50" height="50" rx="3"/><rect fill="%23D9C4A0" x="120" y="120" width="50" height="50" rx="3"/><rect fill="%23D9C4A0" x="190" y="120" width="50" height="50" rx="3"/></svg>'],
         especificaciones: [
             { label: 'Material', valor: 'Tablero Fenólico' },
             { label: 'Resistencia', valor: 'Alta' },
@@ -750,7 +886,6 @@ const productos = [
         nombre: 'Tirantes',
         descripcion: 'Vigas y tirantes de madera dimensionada. Resistentes y duraderos para proyectos de construcción.',
         imagen: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300"><rect fill="%23C8833A" width="300" height="300"/><rect fill="%23A05C2C" x="50" y="75" width="200" height="150" rx="5"/><line x1="60" y1="100" x2="240" y2="100" stroke="%23D4A574" stroke-width="1" opacity="0.6"/><line x1="60" y1="130" x2="240" y2="130" stroke="%23D4A574" stroke-width="1" opacity="0.6"/><line x1="60" y1="160" x2="240" y2="160" stroke="%23D4A574" stroke-width="1" opacity="0.6"/><line x1="60" y1="190" x2="240" y2="190" stroke="%23D4A574" stroke-width="1" opacity="0.6"/></svg>',
-        imagenes: ['data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300"><rect fill="%23C8833A" width="300" height="300"/><rect fill="%23A05C2C" x="50" y="75" width="200" height="150" rx="5"/><line x1="60" y1="100" x2="240" y2="100" stroke="%23D4A574" stroke-width="1" opacity="0.6"/><line x1="60" y1="130" x2="240" y2="130" stroke="%23D4A574" stroke-width="1" opacity="0.6"/><line x1="60" y1="160" x2="240" y2="160" stroke="%23D4A574" stroke-width="1" opacity="0.6"/><line x1="60" y1="190" x2="240" y2="190" stroke="%23D4A574" stroke-width="1" opacity="0.6"/></svg>'],
         especificaciones: [
             { label: 'Secciones', valor: '5x7 a 7x9 cm' },
             { label: 'Largo', valor: 'Hasta 6 metros' },
@@ -766,7 +901,6 @@ const productos = [
         nombre: 'Tablas',
         descripcion: 'Tablas de madera cepilladas y dimensionadas. Perfectas para revestimientos, pisos y proyectos diversos.',
         imagen: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300"><rect fill="%23D4A574" width="300" height="300"/><rect fill="%23A05C2C" x="20" y="60" width="260" height="30" rx="3"/><rect fill="%23A05C2C" x="20" y="110" width="260" height="30" rx="3"/><rect fill="%23A05C2C" x="20" y="160" width="260" height="30" rx="3"/><rect fill="%23A05C2C" x="20" y="210" width="260" height="30" rx="3"/></svg>',
-        imagenes: ['data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300"><rect fill="%23D4A574" width="300" height="300"/><rect fill="%23A05C2C" x="20" y="60" width="260" height="30" rx="3"/><rect fill="%23A05C2C" x="20" y="110" width="260" height="30" rx="3"/><rect fill="%23A05C2C" x="20" y="160" width="260" height="30" rx="3"/><rect fill="%23A05C2C" x="20" y="210" width="260" height="30" rx="3"/></svg>'],
         especificaciones: [
             { label: 'Espesor', valor: '12 - 25mm' },
             { label: 'Ancho', valor: '10 - 30cm' },
@@ -792,13 +926,11 @@ const app = {
     cantidadActual: 1,
     precioActual: 0,
 
-    // Inicializar
     init() {
         this.renderizarProductos();
         this.actualizarCarrito();
     },
 
-    // Renderizar tarjetas de productos
     renderizarProductos() {
         const track = document.getElementById('carouselTrack');
         track.innerHTML = productos.map(prod => `
@@ -815,7 +947,6 @@ const app = {
         `).join('');
     },
 
-    // Abrir detalles del producto
     abrirDetalle(productoId) {
         this.productoActual = productos.find(p => p.id === productoId);
         if (!this.productoActual) return;
@@ -824,18 +955,15 @@ const app = {
         this.cantidadActual = 1;
         this.precioActual = this.productoActual.precio;
 
-        // Actualizar contenido
         document.getElementById('detalleTitulo').textContent = this.productoActual.nombre;
         document.getElementById('detalleDesc').textContent = this.productoActual.descripcion;
         document.getElementById('detalleImgPrincipal').src = this.productoActual.imagen;
 
-        // Especificaciones
         const specsHtml = this.productoActual.especificaciones
             .map(spec => `<div class="spec-item"><span class="spec-label">${spec.label}:</span> ${spec.valor}</div>`)
             .join('');
         document.getElementById('detalleSpecs').innerHTML = specsHtml;
 
-        // Variantes de tamaño (solo fenólicos)
         const seccionTamanios = document.getElementById('seccionTamanios');
         if (this.productoActual.tamanios && this.productoActual.tamanios.length > 0) {
             seccionTamanios.style.display = 'block';
@@ -846,16 +974,13 @@ const app = {
             seccionTamanios.style.display = 'none';
         }
 
-        // Variantes de calidad
         document.getElementById('botonesCalidad').innerHTML = this.productoActual.calidades
             .map(cal => `<button class="variante-btn" onclick="app.seleccionarCalidad('${cal}')">${cal}</button>`)
             .join('');
 
-        // Actualizar precio
         this.actualizarPrecioDisplay();
-
-        // Mostrar panel
         document.getElementById('detallePanel').classList.add('active');
+        document.getElementById('detallePanel').scrollIntoView({ behavior: 'smooth', block: 'center' });
     },
 
     seleccionarTamanio(tamanio) {
@@ -903,7 +1028,6 @@ const app = {
         document.getElementById('precioTotal').textContent = `$${this.precioActual.toLocaleString('es-AR')}`;
     },
 
-    // Agregar al carrito
     agregarAlCarrito() {
         if (this.productoActual.tamanios && !this.variantesSeleccionadas.tamanio) {
             this.mostrarNotificacion('⚠️ Selecciona un espesor');
@@ -931,7 +1055,6 @@ const app = {
         this.cerrarDetalle();
     },
 
-    // Carrito
     abrirCarrito() {
         document.getElementById('carritoModal').classList.add('active');
         this.renderizarCarrito();
@@ -985,7 +1108,6 @@ const app = {
         badge.textContent = this.carrito.reduce((total, item) => total + item.cantidad, 0);
     },
 
-    // WhatsApp
     enviarPorWhatsApp() {
         if (this.carrito.length === 0) {
             alert('El carrito está vacío');
@@ -1008,7 +1130,7 @@ const app = {
         mensaje += `Por favor, confirmar disponibilidad de stock y precio final.\n\n`;
         mensaje += `📍 *Zona Ñireco, Bariloche*`;
 
-        const numeroWhatsApp = '542944589885';
+        const numeroWhatsApp = '542944898755';
         const urlWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`;
 
         window.open(urlWhatsApp, '_blank');
@@ -1023,7 +1145,6 @@ const app = {
     }
 };
 
-// Inicializar al cargar
 window.addEventListener('DOMContentLoaded', () => app.init());
 </script>
 
