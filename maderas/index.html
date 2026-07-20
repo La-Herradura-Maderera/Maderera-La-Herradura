@@ -2,81 +2,643 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Maderas | La Herradura</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <style>
-        :root { --roble-oscuro: #3B2210; --pino-miel: #C8833A; --crema-mdera: #F2EAD8; }
+        :root { 
+            --roble-oscuro: #3B2210; 
+            --pino-miel: #C8833A; 
+            --cedro-calido: #A05C2C;
+            --arena-patag: #D9C4A0;
+            --crema-mdera: #F2EAD8;
+            --carbon: #1C1C1B;
+        }
+        
+        * { box-sizing: border-box; }
         body { font-family: 'Montserrat', sans-serif; background: var(--crema-mdera); margin: 0; color: #333; }
         h1, h2, h3 { font-family: 'Playfair Display', serif; }
 
-        /* Cabecera y Nombre */
-        .hero { height: 400px; background: url('aserradero.jpg') center/cover; display: flex; align-items: center; justify-content: center; position: relative; }
-        .hero-title { background: var(--roble-oscuro); color: var(--crema-mdera); padding: 20px 40px; border-radius: 10px; border: 2px solid var(--crema-mdera); }
+        /* Cabecera */
+        .hero { 
+            height: 400px; 
+            background: linear-gradient(rgba(59, 34, 16, 0.6), rgba(59, 34, 16, 0.6)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400"><rect fill="%233B2210" width="1200" height="400"/><rect fill="%23C8833A" opacity="0.1" width="1200" height="400"/></svg>');
+            background-size: cover;
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            position: relative; 
+        }
+        .hero-title { 
+            background: var(--roble-oscuro); 
+            color: var(--crema-mdera); 
+            padding: 20px 40px; 
+            border-radius: 10px; 
+            border: 2px solid var(--crema-mdera);
+            text-align: center;
+        }
+        .hero-title h1 { margin: 0; font-size: 3em; }
 
-        /* Grid Productos */
-        .productos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; padding: 50px 20px; max-width: 1200px; margin: auto; }
-        .producto-card { background: white; border-radius: 20px; padding: 20px; text-align: center; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
-        .producto-img { width: 100%; height: 250px; object-fit: cover; border-radius: 15px; margin-bottom: 15px; }
+        /* Sección Catálogo Horizontal */
+        .catalogo-section {
+            padding: 60px 20px;
+            background: var(--crema-mdera);
+        }
+        .catalogo-title {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 40px;
+            color: var(--roble-oscuro);
+        }
 
-        /* Contacto (Copiado de Cabañas) */
-        .contacto { background-color: var(--roble-oscuro); color: var(--crema-mdera); padding: 100px 20px; }
-        .contacto-grid { display: flex; max-width: 1100px; margin: 0 auto; gap: 60px; align-items: center; justify-content: space-between; flex-wrap: wrap; }
-        .contacto-info { flex: 1.2; min-width: 300px; }
-        .contacto-list { display: flex; flex-direction: column; gap: 18px; }
-        .contacto-item { display: flex; align-items: center; gap: 20px; background: rgba(255, 255, 255, 0.04); padding: 18px 24px; border-radius: 16px; border: 1px solid rgba(200, 131, 58, 0.2); text-decoration: none; color: var(--crema-mdera); transition: 0.3s; }
-        .wsp-destacado { border: 1px solid #25D366; background: rgba(37, 211, 102, 0.06); }
-        .contacto-castor-box { flex: 0.8; display: flex; justify-content: center; }
-        .castor-img { max-width: 300px; animation: flotar 4s infinite ease-in-out; }
-        @keyframes flotar { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
-        @media (max-width: 768px) { .contacto-grid { flex-direction: column; text-align: center; } .contacto-castor-box { order: -1; } }
+        /* Carrusel Horizontal */
+        .carousel-container {
+            position: relative;
+            max-width: 1400px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+        .carousel-track {
+            display: flex;
+            gap: 30px;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            padding: 20px 0;
+            scroll-padding: 20px;
+            -webkit-overflow-scrolling: touch;
+        }
+        .carousel-track::-webkit-scrollbar {
+            height: 8px;
+        }
+        .carousel-track::-webkit-scrollbar-track {
+            background: #ddd;
+            border-radius: 10px;
+        }
+        .carousel-track::-webkit-scrollbar-thumb {
+            background: var(--pino-miel);
+            border-radius: 10px;
+        }
+
+        /* Tarjeta de Producto */
+        .producto-card {
+            flex: 0 0 280px;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+        }
+        .producto-card:hover {
+            transform: scale(1.08);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+        }
+        .producto-img-wrapper {
+            position: relative;
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+            background: #f5f5f5;
+        }
+        .producto-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .producto-info {
+            padding: 20px;
+            text-align: center;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .producto-info h3 {
+            margin: 0 0 10px 0;
+            font-size: 1.3em;
+            color: var(--roble-oscuro);
+        }
+        .producto-precio {
+            color: var(--pino-miel);
+            font-weight: 700;
+            font-size: 1.1em;
+        }
+        .producto-badge {
+            display: inline-block;
+            background: var(--pino-miel);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            margin-top: 10px;
+        }
+
+        /* Panel de Detalles */
+        .detalle-panel {
+            display: none;
+            background: white;
+            padding: 40px 20px;
+            margin-top: 40px;
+            border-radius: 20px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            animation: slideDown 0.3s ease-out;
+        }
+        .detalle-panel.active {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @media (max-width: 768px) {
+            .detalle-panel.active {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Galería de Detalles */
+        .detalle-galeria {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .detalle-img-principal {
+            width: 100%;
+            height: 300px;
+            border-radius: 15px;
+            object-fit: cover;
+            background: #f5f5f5;
+        }
+        .detalle-imgs-secundarias {
+            display: flex;
+            gap: 10px;
+        }
+        .detalle-img-secundaria {
+            width: 70px;
+            height: 70px;
+            border-radius: 10px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            object-fit: cover;
+            transition: border-color 0.3s;
+        }
+        .detalle-img-secundaria:hover,
+        .detalle-img-secundaria.active {
+            border-color: var(--pino-miel);
+        }
+
+        /* Información del Producto */
+        .detalle-info h2 {
+            color: var(--roble-oscuro);
+            font-size: 2em;
+            margin: 0 0 20px 0;
+        }
+        .detalle-desc {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        .detalle-specs {
+            background: var(--crema-mdera);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .spec-item {
+            padding: 8px 0;
+            border-bottom: 1px solid #ddd;
+            font-size: 0.95em;
+        }
+        .spec-item:last-child {
+            border-bottom: none;
+        }
+        .spec-label {
+            color: var(--pino-miel);
+            font-weight: 700;
+        }
+
+        /* Selector de Variantes */
+        .variantes-section {
+            margin-bottom: 25px;
+        }
+        .variante-label {
+            font-weight: 700;
+            color: var(--roble-oscuro);
+            margin-bottom: 10px;
+            display: block;
+            font-size: 1em;
+        }
+        .variante-opciones {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .variante-btn {
+            padding: 10px 20px;
+            border: 2px solid #ddd;
+            background: white;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            font-size: 0.95em;
+        }
+        .variante-btn:hover {
+            border-color: var(--pino-miel);
+            color: var(--pino-miel);
+        }
+        .variante-btn.active {
+            background: var(--pino-miel);
+            color: white;
+            border-color: var(--pino-miel);
+        }
+
+        /* Cantidad y Precio */
+        .cantidad-precio {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+        .cantidad-control {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .cantidad-btn {
+            background: var(--crema-mdera);
+            border: none;
+            width: 35px;
+            height: 35px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 700;
+            color: var(--roble-oscuro);
+            transition: 0.3s;
+        }
+        .cantidad-btn:hover {
+            background: var(--pino-miel);
+            color: white;
+        }
+        .cantidad-input {
+            width: 50px;
+            text-align: center;
+            border: 2px solid #ddd;
+            padding: 8px;
+            border-radius: 5px;
+            font-weight: 700;
+            font-size: 1em;
+        }
+        .precio-total {
+            font-size: 1.3em;
+            color: var(--pino-miel);
+            font-weight: 700;
+        }
+
+        /* Botones */
+        .btn-agregar-carrito {
+            width: 100%;
+            padding: 15px;
+            background: var(--pino-miel);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.05em;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-bottom: 10px;
+        }
+        .btn-agregar-carrito:hover {
+            background: var(--cedro-calido);
+        }
+        .btn-cerrar-detalle {
+            width: 100%;
+            padding: 10px;
+            background: #e0e0e0;
+            color: #333;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+        .btn-cerrar-detalle:hover {
+            background: #ccc;
+        }
+
+        /* Carrito */
+        .carrito-flotante {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--pino-miel);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.5em;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            transition: transform 0.3s;
+            z-index: 100;
+        }
+        .carrito-flotante:hover {
+            transform: scale(1.1);
+        }
+        .carrito-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--cedro-calido);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8em;
+            font-weight: 700;
+        }
+
+        /* Modal del Carrito */
+        .carrito-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 200;
+            align-items: center;
+            justify-content: center;
+        }
+        .carrito-modal.active {
+            display: flex;
+        }
+        .carrito-contenido {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            width: 90%;
+        }
+        .carrito-titulo {
+            font-size: 1.8em;
+            color: var(--roble-oscuro);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .carrito-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #ddd;
+        }
+        .carrito-item-info h4 {
+            margin: 0 0 5px 0;
+            color: var(--roble-oscuro);
+        }
+        .carrito-item-detalle {
+            font-size: 0.9em;
+            color: #666;
+        }
+        .carrito-item-precio {
+            color: var(--pino-miel);
+            font-weight: 700;
+        }
+        .carrito-item-eliminar {
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+        .carrito-vacio {
+            text-align: center;
+            padding: 30px;
+            color: #999;
+        }
+        .carrito-total {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px solid var(--pino-miel);
+            font-size: 1.3em;
+            font-weight: 700;
+            text-align: right;
+        }
+        .carrito-acciones {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .btn-carrito-accion {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .btn-confirmar {
+            background: var(--pino-miel);
+            color: white;
+        }
+        .btn-confirmar:hover {
+            background: var(--cedro-calido);
+        }
+        .btn-cerrar-carrito {
+            background: #e0e0e0;
+            color: #333;
+        }
+        .btn-cerrar-carrito:hover {
+            background: #ccc;
+        }
+
+        /* Sección Contacto (SIN CAMBIOS) */
+        .contacto { 
+            background-color: var(--roble-oscuro); 
+            color: var(--crema-mdera); 
+            padding: 100px 20px; 
+        }
+        .contacto-grid { 
+            display: flex; 
+            max-width: 1100px; 
+            margin: 0 auto; 
+            gap: 60px; 
+            align-items: center; 
+            justify-content: space-between; 
+            flex-wrap: wrap; 
+        }
+        .contacto-info { 
+            flex: 1.2; 
+            min-width: 300px; 
+        }
+        .contacto-list { 
+            display: flex; 
+            flex-direction: column; 
+            gap: 18px; 
+        }
+        .contacto-item { 
+            display: flex; 
+            align-items: center; 
+            gap: 20px; 
+            background: rgba(255, 255, 255, 0.04); 
+            padding: 18px 24px; 
+            border-radius: 16px; 
+            border: 1px solid rgba(200, 131, 58, 0.2); 
+            text-decoration: none; 
+            color: var(--crema-mdera); 
+            transition: 0.3s; 
+        }
+        .contacto-item:hover {
+            background: rgba(200, 131, 58, 0.1);
+            border-color: rgba(200, 131, 58, 0.5);
+        }
+        .wsp-destacado { 
+            border: 1px solid #25D366; 
+            background: rgba(37, 211, 102, 0.06); 
+        }
+        .contacto-castor-box { 
+            flex: 0.8; 
+            display: flex; 
+            justify-content: center; 
+        }
+        .castor-img { 
+            max-width: 300px; 
+            animation: flotar 4s infinite ease-in-out; 
+        }
+        @keyframes flotar { 
+            0%, 100% { transform: translateY(0); } 
+            50% { transform: translateY(-15px); } 
+        }
+        @media (max-width: 768px) { 
+            .contacto-grid { flex-direction: column; text-align: center; } 
+            .contacto-castor-box { order: -1; } 
+            .carousel-track { 
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+            .producto-card {
+                flex: 0 0 240px;
+            }
+        }
+
+        /* Notificación */
+        .notificacion {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            background: var(--pino-miel);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            display: none;
+            z-index: 150;
+            animation: slideIn 0.3s ease-out;
+        }
+        .notificacion.show {
+            display: block;
+        }
+        @keyframes slideIn {
+            from { transform: translateX(400px); }
+            to { transform: translateX(0); }
+        }
     </style>
 </head>
 <body>
 
+<!-- HÉROE -->
 <header class="hero">
-    <h1 class="hero-title">Maderera La Herradura</h1>
+    <div class="hero-title">
+        <h1>🪵 Maderas La Herradura</h1>
+        <p style="margin: 10px 0 0 0; font-size: 1.1em;">Mayorista • Minorista • Calidad Patagónica</p>
+    </div>
 </header>
 
-<section class="productos-grid">
-    <!-- Producto 1 -->
-    <div class="producto-card">
-        <img src="machimbre.jpg" class="producto-img" alt="Machimbre">
-        <h3>Machimbres</h3>
+<!-- CATÁLOGO DE MADERAS -->
+<section class="catalogo-section">
+    <h2 class="catalogo-title">Nuestros Productos</h2>
+    
+    <div class="carousel-container">
+        <div class="carousel-track" id="carouselTrack">
+            <!-- Los productos se generan con JavaScript -->
+        </div>
     </div>
-    <!-- Producto 2 -->
-    <div class="producto-card">
-        <img src="puertas.jpg" class="producto-img" alt="Puertas">
-        <h3>Puertas</h3>
-    </div>
-    <!-- Producto 3 -->
-    <div class="producto-card">
-        <img src="fenolicos.jpg" class="producto-img" alt="Fenólicos">
-        <h3>Fenólicos</h3>
-    </div>
-    <!-- Producto 4 -->
-    <div class="producto-card">
-        <img src="tirantes.jpg" class="producto-img" alt="Tirantes">
-        <h3>Tirantes</h3>
-    </div>
-    <!-- Producto 5 -->
-    <div class="producto-card">
-        <img src="tablas.jpg" class="producto-img" alt="Tablas">
-        <h3>Tablas</h3>
+
+    <!-- PANEL DE DETALLES DEL PRODUCTO -->
+    <div class="detalle-panel" id="detallePanel">
+        <div class="detalle-galeria">
+            <img src="" id="detalleImgPrincipal" class="detalle-img-principal" alt="Producto">
+            <div class="detalle-imgs-secundarias" id="detalleImgsSecundarias"></div>
+        </div>
+
+        <div class="detalle-info">
+            <h2 id="detalleTitulo"></h2>
+            <p class="detalle-desc" id="detalleDesc"></p>
+            
+            <div class="detalle-specs" id="detalleSpecs"></div>
+
+            <!-- VARIANTES DE TAMAÑO (solo para fenólicos) -->
+            <div class="variantes-section" id="seccionTamanios" style="display: none;">
+                <label class="variante-label">📏 Espesor</label>
+                <div class="variante-opciones" id="botonesSize"></div>
+            </div>
+
+            <!-- VARIANTES DE CALIDAD -->
+            <div class="variantes-section">
+                <label class="variante-label">⭐ Calidad</label>
+                <div class="variante-opciones" id="botonesCalidad"></div>
+            </div>
+
+            <!-- CANTIDAD Y PRECIO -->
+            <div class="cantidad-precio">
+                <div class="cantidad-control">
+                    <button class="cantidad-btn" onclick="app.decrementarCantidad()">−</button>
+                    <input type="number" id="cantidadInput" class="cantidad-input" value="1" min="1">
+                    <button class="cantidad-btn" onclick="app.incrementarCantidad()">+</button>
+                </div>
+                <div class="precio-total" id="precioTotal">$0</div>
+            </div>
+
+            <!-- ACCIONES -->
+            <button class="btn-agregar-carrito" onclick="app.agregarAlCarrito()">🛒 Agregar al Carrito</button>
+            <button class="btn-cerrar-detalle" onclick="app.cerrarDetalle()">Cerrar</button>
+        </div>
     </div>
 </section>
 
-<!-- SECCIÓN CONTACTO -->
+<!-- SECCIÓN CONTACTO (SIN CAMBIOS) -->
 <section id="contacto" class="contacto">
     <div class="contacto-grid">
         <div class="contacto-info">
             <h2>Iniciá tu proyecto con nosotros</h2>
             <p>Escribinos o visitanos para recibir asesoramiento personalizado</p>
             <div class="contacto-list">
-                <a href="https://wa.me/542944898755" class="contacto-item wsp-destacado">
+                <a href="https://wa.me/542944589885" class="contacto-item wsp-destacado">
                     <div class="contacto-icono">💬</div>
-                    <div class="contacto-texto"><h4>WhatsApp</h4><p>+54 2944 898755</p></div>
+                    <div class="contacto-texto"><h4>WhatsApp</h4><p>+54 2944 589885</p></div>
                 </a>
-                <a href="#" class="contacto-item">
+                <a href="https://instagram.com/maderera_la_herradura" class="contacto-item">
                     <div class="contacto-icono">📸</div>
                     <div class="contacto-texto"><h4>Instagram</h4><p>@maderera_la_herradura</p></div>
                 </a>
@@ -86,15 +648,384 @@
                 </a>
                 <a href="#" class="contacto-item">
                     <div class="contacto-icono">📍</div>
-                    <div class="contacto-texto"><h4>Ubicación</h4><p>San Jose 150, Ñireco, Bariloche</p></div>
+                    <div class="contacto-texto"><h4>Ubicación</h4><p>San Jose 150, Zona Ñireco, Bariloche</p></div>
                 </a>
             </div>
         </div>
         <div class="contacto-castor-box">
-            <img src="castor.png" alt="Castor" class="castor-img">
+            <svg class="castor-img" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="50" cy="30" r="20" fill="#8B6F47"/>
+                <circle cx="35" cy="25" r="6" fill="#2C2C2C"/>
+                <circle cx="65" cy="25" r="6" fill="#2C2C2C"/>
+                <ellipse cx="50" cy="35" rx="8" ry="5" fill="#D4A574"/>
+                <path d="M 30 50 Q 20 55 15 65" stroke="#8B6F47" stroke-width="3" fill="none" stroke-linecap="round"/>
+                <path d="M 70 50 Q 80 55 85 65" stroke="#8B6F47" stroke-width="3" fill="none" stroke-linecap="round"/>
+                <ellipse cx="50" cy="65" rx="25" ry="20" fill="#A0825C"/>
+            </svg>
         </div>
     </div>
 </section>
+
+<!-- CARRITO FLOTANTE -->
+<div class="carrito-flotante" onclick="app.abrirCarrito()">
+    🛒
+    <div class="carrito-badge" id="carrioBadge">0</div>
+</div>
+
+<!-- MODAL DEL CARRITO -->
+<div class="carrito-modal" id="carritoModal">
+    <div class="carrito-contenido">
+        <h2 class="carrito-titulo">Tu Pedido</h2>
+        <div id="carritoItems"></div>
+        <div class="carrito-total">Total: <span id="carritoTotalPrecio">$0</span></div>
+        <div class="carrito-acciones">
+            <button class="btn-carrito-accion btn-confirmar" onclick="app.enviarPorWhatsApp()">
+                ✓ Enviar por WhatsApp
+            </button>
+            <button class="btn-carrito-accion btn-cerrar-carrito" onclick="app.cerrarCarrito()">
+                Cerrar
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- NOTIFICACIÓN -->
+<div class="notificacion" id="notificacion"></div>
+
+<script>
+// ============================================
+// DATOS DE PRODUCTOS
+// ============================================
+const productos = [
+    {
+        id: 'machimbre',
+        nombre: 'Machimbre',
+        descripcion: 'Tablero machimbrado de alta calidad para revestimientos interiores y exteriores. Proporciona acabado limpio y profesional.',
+        imagen: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300"><rect fill="%23C8833A" width="300" height="300"/><rect fill="%23A05C2C" x="20" y="20" width="260" height="260" rx="10"/><line x1="30" y1="70" x2="270" y2="70" stroke="%23F2EAD8" stroke-width="2"/><line x1="30" y1="110" x2="270" y2="110" stroke="%23F2EAD8" stroke-width="2"/><line x1="30" y1="150" x2="270" y2="150" stroke="%23F2EAD8" stroke-width="2"/><line x1="30" y1="190" x2="270" y2="190" stroke="%23F2EAD8" stroke-width="2"/><line x1="30" y1="230" x2="270" y2="230" stroke="%23F2EAD8" stroke-width="2"/></svg>',
+        imagenes: ['data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300"><rect fill="%23C8833A" width="300" height="300"/><rect fill="%23A05C2C" x="20" y="20" width="260" height="260" rx="10"/><line x1="30" y1="70" x2="270" y2="70" stroke="%23F2EAD8" stroke-width="2"/><line x1="30" y1="110" x2="270" y2="110" stroke="%23F2EAD8" stroke-width="2"/><line x1="30" y1="150" x2="270" y2="150" stroke="%23F2EAD8" stroke-width="2"/><line x1="30" y1="190" x2="270" y2="190" stroke="%23F2EAD8" stroke-width="2"/><line x1="30" y1="230" x2="270" y2="230" stroke="%23F2EAD8" stroke-width="2"/></svg>'],
+        especificaciones: [
+            { label: 'Material', valor: 'Pino Argentino' },
+            { label: 'Espesor', valor: '18mm' },
+            { label: 'Ancho', valor: 'Variado' },
+            { label: 'Acabado', valor: 'Cepillado' }
+        ],
+        tamanios: null,
+        calidades: ['Calidad 3', 'Calidad 4', 'Scrap'],
+        precio: 1200
+    },
+    {
+        id: 'puertas',
+        nombre: 'Puertas',
+        descripcion: 'Puertas de madera maciza fabricadas a medida. Disponemos de diseños clásicos y modernos según tus necesidades.',
+        imagen: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300"><rect fill="%238B6F47" width="300" height="300"/><rect fill="%23A05C2C" x="40" y="30" width="220" height="240" rx="5"/><circle cx="240" cy="150" r="8" fill="%23FFD700"/><line x1="160" y1="50" x2="160" y2="250" stroke="%23D4A574" stroke-width="2" opacity="0.5"/></svg>',
+        imagenes: ['data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300"><rect fill="%238B6F47" width="300" height="300"/><rect fill="%23A05C2C" x="40" y="30" width="220" height="240" rx="5"/><circle cx="240" cy="150" r="8" fill="%23FFD700"/><line x1="160" y1="50" x2="160" y2="250" stroke="%23D4A574" stroke-width="2" opacity="0.5"/></svg>'],
+        especificaciones: [
+            { label: 'Espesor', valor: '35 - 45mm' },
+            { label: 'Tipo de Madera', valor: 'A medida' },
+            { label: 'Acabado', valor: 'Barniz/Pintura' },
+            { label: 'Herraje', valor: 'Incluido' }
+        ],
+        tamanios: null,
+        calidades: ['Calidad 3', 'Calidad 4', 'Scrap'],
+        precio: 3500
+    },
+    {
+        id: 'fenolicos',
+        nombre: 'Fenólicos',
+        descripcion: 'Tableros fenólicos de alta resistencia. Ideales para construcción de cabañas y estructuras exteriores. Disponibles en dos espesores.',
+        imagen: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300"><rect fill="%233B2210" width="300" height="300"/><rect fill="%235A3A1F" x="30" y="30" width="240" height="240" rx="8"/><rect fill="%23D9C4A0" x="50" y="50" width="50" height="50" rx="3"/><rect fill="%23D9C4A0" x="120" y="50" width="50" height="50" rx="3"/><rect fill="%23D9C4A0" x="190" y="50" width="50" height="50" rx="3"/><rect fill="%23D9C4A0" x="50" y="120" width="50" height="50" rx="3"/><rect fill="%23D9C4A0" x="120" y="120" width="50" height="50" rx="3"/><rect fill="%23D9C4A0" x="190" y="120" width="50" height="50" rx="3"/></svg>',
+        imagenes: ['data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300"><rect fill="%233B2210" width="300" height="300"/><rect fill="%235A3A1F" x="30" y="30" width="240" height="240" rx="8"/><rect fill="%23D9C4A0" x="50" y="50" width="50" height="50" rx="3"/><rect fill="%23D9C4A0" x="120" y="50" width="50" height="50" rx="3"/><rect fill="%23D9C4A0" x="190" y="50" width="50" height="50" rx="3"/><rect fill="%23D9C4A0" x="50" y="120" width="50" height="50" rx="3"/><rect fill="%23D9C4A0" x="120" y="120" width="50" height="50" rx="3"/><rect fill="%23D9C4A0" x="190" y="120" width="50" height="50" rx="3"/></svg>'],
+        especificaciones: [
+            { label: 'Material', valor: 'Tablero Fenólico' },
+            { label: 'Resistencia', valor: 'Alta' },
+            { label: 'Aplicación', valor: 'Estructuras exteriores' },
+            { label: 'Durabilidad', valor: '20+ años' }
+        ],
+        tamanios: ['12mm', '18mm'],
+        calidades: ['Calidad 3', 'Calidad 4', 'Scrap'],
+        precio: 2800
+    },
+    {
+        id: 'tirantes',
+        nombre: 'Tirantes',
+        descripcion: 'Vigas y tirantes de madera dimensionada. Resistentes y duraderos para proyectos de construcción.',
+        imagen: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300"><rect fill="%23C8833A" width="300" height="300"/><rect fill="%23A05C2C" x="50" y="75" width="200" height="150" rx="5"/><line x1="60" y1="100" x2="240" y2="100" stroke="%23D4A574" stroke-width="1" opacity="0.6"/><line x1="60" y1="130" x2="240" y2="130" stroke="%23D4A574" stroke-width="1" opacity="0.6"/><line x1="60" y1="160" x2="240" y2="160" stroke="%23D4A574" stroke-width="1" opacity="0.6"/><line x1="60" y1="190" x2="240" y2="190" stroke="%23D4A574" stroke-width="1" opacity="0.6"/></svg>',
+        imagenes: ['data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300"><rect fill="%23C8833A" width="300" height="300"/><rect fill="%23A05C2C" x="50" y="75" width="200" height="150" rx="5"/><line x1="60" y1="100" x2="240" y2="100" stroke="%23D4A574" stroke-width="1" opacity="0.6"/><line x1="60" y1="130" x2="240" y2="130" stroke="%23D4A574" stroke-width="1" opacity="0.6"/><line x1="60" y1="160" x2="240" y2="160" stroke="%23D4A574" stroke-width="1" opacity="0.6"/><line x1="60" y1="190" x2="240" y2="190" stroke="%23D4A574" stroke-width="1" opacity="0.6"/></svg>'],
+        especificaciones: [
+            { label: 'Secciones', valor: '5x7 a 7x9 cm' },
+            { label: 'Largo', valor: 'Hasta 6 metros' },
+            { label: 'Material', valor: 'Pino/Ciprés' },
+            { label: 'Clasificación', valor: 'Estructural' }
+        ],
+        tamanios: null,
+        calidades: ['Calidad 3', 'Calidad 4', 'Scrap'],
+        precio: 1800
+    },
+    {
+        id: 'tablas',
+        nombre: 'Tablas',
+        descripcion: 'Tablas de madera cepilladas y dimensionadas. Perfectas para revestimientos, pisos y proyectos diversos.',
+        imagen: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300"><rect fill="%23D4A574" width="300" height="300"/><rect fill="%23A05C2C" x="20" y="60" width="260" height="30" rx="3"/><rect fill="%23A05C2C" x="20" y="110" width="260" height="30" rx="3"/><rect fill="%23A05C2C" x="20" y="160" width="260" height="30" rx="3"/><rect fill="%23A05C2C" x="20" y="210" width="260" height="30" rx="3"/></svg>',
+        imagenes: ['data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300"><rect fill="%23D4A574" width="300" height="300"/><rect fill="%23A05C2C" x="20" y="60" width="260" height="30" rx="3"/><rect fill="%23A05C2C" x="20" y="110" width="260" height="30" rx="3"/><rect fill="%23A05C2C" x="20" y="160" width="260" height="30" rx="3"/><rect fill="%23A05C2C" x="20" y="210" width="260" height="30" rx="3"/></svg>'],
+        especificaciones: [
+            { label: 'Espesor', valor: '12 - 25mm' },
+            { label: 'Ancho', valor: '10 - 30cm' },
+            { label: 'Largo', valor: 'Hasta 6 metros' },
+            { label: 'Acabado', valor: 'Cepillado' }
+        ],
+        tamanios: null,
+        calidades: ['Calidad 3', 'Calidad 4', 'Scrap'],
+        precio: 900
+    }
+];
+
+// ============================================
+// APLICACIÓN
+// ============================================
+const app = {
+    carrito: [],
+    productoActual: null,
+    variantesSeleccionadas: {
+        tamanio: null,
+        calidad: null
+    },
+    cantidadActual: 1,
+    precioActual: 0,
+
+    // Inicializar
+    init() {
+        this.renderizarProductos();
+        this.actualizarCarrito();
+    },
+
+    // Renderizar tarjetas de productos
+    renderizarProductos() {
+        const track = document.getElementById('carouselTrack');
+        track.innerHTML = productos.map(prod => `
+            <div class="producto-card" onclick="app.abrirDetalle('${prod.id}')">
+                <div class="producto-img-wrapper">
+                    <img src="${prod.imagen}" class="producto-img" alt="${prod.nombre}">
+                </div>
+                <div class="producto-info">
+                    <h3>${prod.nombre}</h3>
+                    <div class="producto-precio">$${prod.precio}</div>
+                    <div class="producto-badge">Ver detalles →</div>
+                </div>
+            </div>
+        `).join('');
+    },
+
+    // Abrir detalles del producto
+    abrirDetalle(productoId) {
+        this.productoActual = productos.find(p => p.id === productoId);
+        if (!this.productoActual) return;
+
+        this.variantesSeleccionadas = { tamanio: null, calidad: null };
+        this.cantidadActual = 1;
+        this.precioActual = this.productoActual.precio;
+
+        // Actualizar contenido
+        document.getElementById('detalleTitulo').textContent = this.productoActual.nombre;
+        document.getElementById('detalleDesc').textContent = this.productoActual.descripcion;
+        document.getElementById('detalleImgPrincipal').src = this.productoActual.imagen;
+
+        // Especificaciones
+        const specsHtml = this.productoActual.especificaciones
+            .map(spec => `<div class="spec-item"><span class="spec-label">${spec.label}:</span> ${spec.valor}</div>`)
+            .join('');
+        document.getElementById('detalleSpecs').innerHTML = specsHtml;
+
+        // Variantes de tamaño (solo fenólicos)
+        const seccionTamanios = document.getElementById('seccionTamanios');
+        if (this.productoActual.tamanios && this.productoActual.tamanios.length > 0) {
+            seccionTamanios.style.display = 'block';
+            document.getElementById('botonesSize').innerHTML = this.productoActual.tamanios
+                .map(tam => `<button class="variante-btn" onclick="app.seleccionarTamanio('${tam}')">${tam}</button>`)
+                .join('');
+        } else {
+            seccionTamanios.style.display = 'none';
+        }
+
+        // Variantes de calidad
+        document.getElementById('botonesCalidad').innerHTML = this.productoActual.calidades
+            .map(cal => `<button class="variante-btn" onclick="app.seleccionarCalidad('${cal}')">${cal}</button>`)
+            .join('');
+
+        // Actualizar precio
+        this.actualizarPrecioDisplay();
+
+        // Mostrar panel
+        document.getElementById('detallePanel').classList.add('active');
+    },
+
+    seleccionarTamanio(tamanio) {
+        this.variantesSeleccionadas.tamanio = tamanio;
+        this.actualizarBotonesVariante('botonesSize', tamanio);
+        this.actualizarPrecioDisplay();
+    },
+
+    seleccionarCalidad(calidad) {
+        this.variantesSeleccionadas.calidad = calidad;
+        this.actualizarBotonesVariante('botonesCalidad', calidad);
+        this.actualizarPrecioDisplay();
+    },
+
+    actualizarBotonesVariante(elementId, seleccionado) {
+        document.querySelectorAll(`#${elementId} .variante-btn`).forEach(btn => {
+            if (btn.textContent === seleccionado) {
+                btn.classList.add('active');
+            } else {
+                btn.classList.remove('active');
+            }
+        });
+    },
+
+    cerrarDetalle() {
+        document.getElementById('detallePanel').classList.remove('active');
+    },
+
+    incrementarCantidad() {
+        this.cantidadActual++;
+        document.getElementById('cantidadInput').value = this.cantidadActual;
+        this.actualizarPrecioDisplay();
+    },
+
+    decrementarCantidad() {
+        if (this.cantidadActual > 1) {
+            this.cantidadActual--;
+            document.getElementById('cantidadInput').value = this.cantidadActual;
+            this.actualizarPrecioDisplay();
+        }
+    },
+
+    actualizarPrecioDisplay() {
+        this.precioActual = this.productoActual.precio * this.cantidadActual;
+        document.getElementById('precioTotal').textContent = `$${this.precioActual.toLocaleString('es-AR')}`;
+    },
+
+    // Agregar al carrito
+    agregarAlCarrito() {
+        if (this.productoActual.tamanios && !this.variantesSeleccionadas.tamanio) {
+            this.mostrarNotificacion('⚠️ Selecciona un espesor');
+            return;
+        }
+        if (!this.variantesSeleccionadas.calidad) {
+            this.mostrarNotificacion('⚠️ Selecciona una calidad');
+            return;
+        }
+
+        const item = {
+            id: this.productoActual.id,
+            nombre: this.productoActual.nombre,
+            cantidad: this.cantidadActual,
+            tamanio: this.variantesSeleccionadas.tamanio,
+            calidad: this.variantesSeleccionadas.calidad,
+            precioUnitario: this.productoActual.precio,
+            precioTotal: this.precioActual,
+            timestamp: Date.now()
+        };
+
+        this.carrito.push(item);
+        this.actualizarCarrito();
+        this.mostrarNotificacion('✅ Agregado al carrito');
+        this.cerrarDetalle();
+    },
+
+    // Carrito
+    abrirCarrito() {
+        document.getElementById('carritoModal').classList.add('active');
+        this.renderizarCarrito();
+    },
+
+    cerrarCarrito() {
+        document.getElementById('carritoModal').classList.remove('active');
+    },
+
+    renderizarCarrito() {
+        const carritoItems = document.getElementById('carritoItems');
+
+        if (this.carrito.length === 0) {
+            carritoItems.innerHTML = '<div class="carrito-vacio">Tu carrito está vacío 🛒</div>';
+            document.getElementById('carritoTotalPrecio').textContent = '$0';
+            return;
+        }
+
+        let totalCarrito = 0;
+        carritoItems.innerHTML = this.carrito.map((item, idx) => {
+            totalCarrito += item.precioTotal;
+            const detalleVariante = [item.tamanio, item.calidad].filter(Boolean).join(' • ');
+            return `
+                <div class="carrito-item">
+                    <div class="carrito-item-info">
+                        <h4>${item.nombre}</h4>
+                        <div class="carrito-item-detalle">
+                            Cantidad: ${item.cantidad} • ${detalleVariante}
+                        </div>
+                    </div>
+                    <div>
+                        <span class="carrito-item-precio">$${item.precioTotal.toLocaleString('es-AR')}</span>
+                        <button class="carrito-item-eliminar" onclick="app.eliminarDelCarrito(${idx})">×</button>
+                    </div>
+                </div>
+            `;
+        }).join('');
+
+        document.getElementById('carritoTotalPrecio').textContent = `$${totalCarrito.toLocaleString('es-AR')}`;
+    },
+
+    eliminarDelCarrito(indice) {
+        this.carrito.splice(indice, 1);
+        this.actualizarCarrito();
+        this.renderizarCarrito();
+        this.mostrarNotificacion('❌ Eliminado del carrito');
+    },
+
+    actualizarCarrito() {
+        const badge = document.getElementById('carrioBadge');
+        badge.textContent = this.carrito.reduce((total, item) => total + item.cantidad, 0);
+    },
+
+    // WhatsApp
+    enviarPorWhatsApp() {
+        if (this.carrito.length === 0) {
+            alert('El carrito está vacío');
+            return;
+        }
+
+        let mensaje = '🛒 *PEDIDO DE MADERAS* 🛒\n\n';
+        let total = 0;
+
+        this.carrito.forEach(item => {
+            total += item.precioTotal;
+            const detalleVariante = [item.tamanio, item.calidad].filter(Boolean).join(' • ');
+            mensaje += `📦 *${item.nombre}*\n`;
+            mensaje += `  Cantidad: ${item.cantidad}\n`;
+            mensaje += `  Variante: ${detalleVariante}\n`;
+            mensaje += `  Precio: $${item.precioTotal.toLocaleString('es-AR')}\n\n`;
+        });
+
+        mensaje += `💰 *TOTAL: $${total.toLocaleString('es-AR')}*\n\n`;
+        mensaje += `Por favor, confirmar disponibilidad de stock y precio final.\n\n`;
+        mensaje += `📍 *Zona Ñireco, Bariloche*`;
+
+        const numeroWhatsApp = '542944589885';
+        const urlWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`;
+
+        window.open(urlWhatsApp, '_blank');
+        this.mostrarNotificacion('📱 Abriendo WhatsApp...');
+    },
+
+    mostrarNotificacion(mensaje) {
+        const notif = document.getElementById('notificacion');
+        notif.textContent = mensaje;
+        notif.classList.add('show');
+        setTimeout(() => notif.classList.remove('show'), 3000);
+    }
+};
+
+// Inicializar al cargar
+window.addEventListener('DOMContentLoaded', () => app.init());
+</script>
 
 </body>
 </html>
