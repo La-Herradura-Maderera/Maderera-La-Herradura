@@ -548,7 +548,15 @@ const app = {
         `).join('');
     },
 
-    abrirDetalle(productoId) {
+   abrirDetalle(productoId) {
+        const panel = document.getElementById('detallePanel');
+        
+        // Si ya está abierto el mismo producto, lo cerramos (efecto toggle)
+        if (this.productoActual && this.productoActual.id === productoId && panel.classList.contains('active')) {
+            this.cerrarDetalle();
+            return;
+        }
+
         this.productoActual = productos.find(p => p.id === productoId);
         if (!this.productoActual) return;
 
