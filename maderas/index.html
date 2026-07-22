@@ -726,7 +726,9 @@ const app = {
         document.getElementById('precioTotal').textContent = `$${this.precioActual.toLocaleString('es-AR')}`;
     },
 
-    agregarAlCarrito() {
+agregarAlCarrito(event) {
+        if (event) event.preventDefault();
+
         if (this.productoActual.tamanios && this.productoActual.tamanios.length > 0 && !this.variantesSeleccionadas.tamanio) {
             this.mostrarNotificacion('⚠️ Selecciona una medida o espesor');
             return;
@@ -758,7 +760,12 @@ const app = {
         this.carrito.push(item);
         this.actualizarCarrito();
         this.mostrarNotificacion('✅ Agregado al carrito');
+
+        // Capturamos la posición actual exacta antes de cerrar el panel
+        const posicionActual = window.scrollY;
         this.cerrarDetalle();
+        // Forzamos al navegador a mantener la misma posición sin saltos
+        window.scrollTo({ top: posicionActual, behavior: 'instant' });
     },
 
     abrirCarrito() {
