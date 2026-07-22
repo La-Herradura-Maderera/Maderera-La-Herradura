@@ -56,10 +56,9 @@
             color: var(--pino-miel);
         }
 
-        /* Cabecera / Hero con soporte para imagen del aserradero */
+        /* Cabecera / Hero */
         .hero { 
             height: 70vh; 
-            /* REEMPLAZA 'aserradero.jpg' por el nombre de tu archivo de imagen en GitHub */
             background: linear-gradient(rgba(59, 34, 16, 0.65), rgba(59, 34, 16, 0.65)), url('aserradero.jpg');
             background-size: cover;
             background-position: center;
@@ -231,7 +230,7 @@
             }
         }
 
-        /* Galería de Detalles */
+        /* Galería de Detalles con Múltiples Imágenes */
         .detalle-galeria {
             display: flex;
             flex-direction: column;
@@ -239,10 +238,36 @@
         }
         .detalle-img-principal {
             width: 100%;
-            height: 300px;
+            height: 320px;
             border-radius: 15px;
             object-fit: cover;
             background: #f5f5f5;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        .detalle-minis-container {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding-bottom: 5px;
+        }
+        .miniatura-img {
+            width: 70px;
+            height: 70px;
+            border-radius: 8px;
+            object-fit: cover;
+            cursor: pointer;
+            border: 2px solid transparent;
+            opacity: 0.6;
+            transition: all 0.2s ease;
+            background: #f5f5f5;
+        }
+        .miniatura-img:hover {
+            opacity: 0.9;
+        }
+        .miniatura-img.active {
+            border-color: var(--pino-miel);
+            opacity: 1;
+            transform: scale(1.05);
         }
 
         /* Información del Producto */
@@ -521,7 +546,7 @@
             color: #333;
         }
 
-        /* SECCIÓN CONTACTO (Igual a la página de Cabañas con el Castor) */
+        /* SECCIÓN CONTACTO */
         .contacto {
             background-color: var(--roble-oscuro);
             color: var(--crema-mdera);
@@ -714,6 +739,8 @@
     <div class="detalle-panel" id="detallePanel">
         <div class="detalle-galeria">
             <img src="" id="detalleImgPrincipal" class="detalle-img-principal" alt="Producto">
+            <!-- Contenedor de miniaturas para múltiples imágenes -->
+            <div class="detalle-minis-container" id="detalleMinisContainer"></div>
         </div>
 
         <div class="detalle-info">
@@ -722,14 +749,14 @@
             
             <div class="detalle-specs" id="detalleSpecs"></div>
 
-            <!-- VARIANTES DE TAMAÑO (solo para fenólicos) -->
+            <!-- VARIANTES DE TAMAÑO -->
             <div class="variantes-section" id="seccionTamanios" style="display: none;">
-                <label class="variante-label">📏 Espesor</label>
+                <label class="variante-label" id="labelTamanioStyle">📏 Medida / Espesor</label>
                 <div class="variante-opciones" id="botonesSize"></div>
             </div>
 
             <!-- VARIANTES DE CALIDAD -->
-            <div class="variantes-section">
+            <div class="variantes-section" id="seccionCalidades">
                 <label class="variante-label">⭐ Calidad</label>
                 <div class="variante-opciones" id="botonesCalidad"></div>
             </div>
@@ -751,7 +778,7 @@
     </div>
 </section>
 
-<!-- SECCIÓN CONTACTO (IGUAL A CABAÑAS CON EL CASTOR Y EL NÚMERO CORRECTO) -->
+<!-- SECCIÓN CONTACTO -->
 <section id="contacto" class="contacto">
     <div class="contacto-grid">
         <div class="contacto-info">
@@ -833,83 +860,101 @@
 
 <script>
 // ============================================
-// DATOS DE PRODUCTOS
+// DATOS DE PRODUCTOS (SOPORTE MULTI-IMAGEN)
 // ============================================
 const productos = [
     {
         id: 'machimbre',
         nombre: 'Machimbre',
-        descripcion: 'Tablero machimbrado de alta calidad para revestimientos interiores y exteriores. Proporciona acabado limpio y profesional.',
-        imagen: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300"><rect fill="%23C8833A" width="300" height="300"/><rect fill="%23A05C2C" x="20" y="20" width="260" height="260" rx="10"/><line x1="30" y1="70" x2="270" y2="70" stroke="%23F2EAD8" stroke-width="2"/><line x1="30" y1="110" x2="270" y2="110" stroke="%23F2EAD8" stroke-width="2"/><line x1="30" y1="150" x2="270" y2="150" stroke="%23F2EAD8" stroke-width="2"/><line x1="30" y1="190" x2="270" y2="190" stroke="%23F2EAD8" stroke-width="2"/><line x1="30" y1="230" x2="270" y2="230" stroke="%23F2EAD8" stroke-width="2"/></svg>',
+        descripcion: 'Tablero machimbrado de alta calidad para revestimientos interiores y exteriores. Precios por metro cuadrado ($/m²).',
+        // Puedes agregar más rutas de imágenes aquí, ej: ['machimbre1.jpg', 'machimbre2.jpg', 'machimbre3.jpg']
+        imagenes: [
+            'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300"><rect fill="%23C8833A" width="300" height="300"/><rect fill="%23A05C2C" x="20" y="20" width="260" height="260" rx="10"/><line x1="30" y1="70" x2="270" y2="70" stroke="%23F2EAD8" stroke-width="2"/><line x1="30" y1="110" x2="270" y2="110" stroke="%23F2EAD8" stroke-width="2"/><line x1="30" y1="150" x2="270" y2="150" stroke="%23F2EAD8" stroke-width="2"/><line x1="30" y1="190" x2="270" y2="190" stroke="%23F2EAD8" stroke-width="2"/><line x1="30" y1="230" x2="270" y2="230" stroke="%23F2EAD8" stroke-width="2"/></svg>',
+            'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300"><rect fill="%23A05C2C" width="300" height="300"/><circle cx="150" cy="150" r="80" fill="%23C8833A"/><text x="150" y="155" fill="%23FFF" font-size="20" text-anchor="middle">Detalle Veta</text></svg>'
+        ],
         especificaciones: [
             { label: 'Material', valor: 'Pino Argentino' },
-            { label: 'Espesor', valor: '18mm' },
-            { label: 'Ancho', valor: 'Variado' },
+            { label: 'Unidad', valor: 'Metro Cuadrado (m²)' },
             { label: 'Acabado', valor: 'Cepillado' }
         ],
-        tamanios: null,
-        calidades: ['Calidad 3', 'Calidad 4', 'Scrap'],
-        precio: 1200
+        tamanios: ['1/2 x 5"', '2/4 x 5"', '1 x 6"'],
+        preciosPorVariante: {
+            '1/2 x 5"': { '1era Calidad': 8000, '2da Calidad (Oferta)': 5000 },
+            '2/4 x 5"': { '1era Calidad': 12500 },
+            '1 x 6"': { '1era Calidad': 17000 }
+        },
+        precioBase: 8000
+    },
+    {
+        id: 'fenolicos',
+        nombre: 'Fenólicos',
+        descripcion: 'Tableros fenólicos de alta resistencia. Ideales para construcción de cabañas y estructuras exteriores.',
+        imagenes: [
+            'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300"><rect fill="%233B2210" width="300" height="300"/><rect fill="%235A3A1F" x="30" y="30" width="240" height="240" rx="8"/><rect fill="%23D9C4A0" x="50" y="50" width="50" height="50" rx="3"/><rect fill="%23D9C4A0" x="120" y="50" width="50" height="50" rx="3"/><rect fill="%23D9C4A0" x="190" y="50" width="50" height="50" rx="3"/></svg>'
+        ],
+        especificaciones: [
+            { label: 'Material', valor: 'Tablero Fenólico' },
+            { label: 'Medida', valor: '1.22 x 2.44 m' },
+            { label: 'Aplicación', valor: 'Estructuras exteriores' }
+        ],
+        tamanios: ['12mm', '18mm'],
+        preciosPorVariante: {
+            '12mm': { 'Industrial': 34500 },
+            '18mm': { 'Industrial': 37500, 'Escrap': 35500, 'C3': 42500 }
+        },
+        precioBase: 37500
     },
     {
         id: 'puertas',
         nombre: 'Puertas',
         descripcion: 'Puertas de madera maciza fabricadas a medida. Disponemos de diseños clásicos y modernos según tus necesidades.',
-        imagen: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300"><rect fill="%238B6F47" width="300" height="300"/><rect fill="%23A05C2C" x="40" y="30" width="220" height="240" rx="5"/><circle cx="240" cy="150" r="8" fill="%23FFD700"/><line x1="160" y1="50" x2="160" y2="250" stroke="%23D4A574" stroke-width="2" opacity="0.5"/></svg>',
+        imagenes: [
+            'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300"><rect fill="%238B6F47" width="300" height="300"/><rect fill="%23A05C2C" x="40" y="30" width="220" height="240" rx="5"/><circle cx="240" cy="150" r="8" fill="%23FFD700"/></svg>'
+        ],
         especificaciones: [
             { label: 'Espesor', valor: '35 - 45mm' },
             { label: 'Tipo de Madera', valor: 'A medida' },
-            { label: 'Acabado', valor: 'Barniz/Pintura' },
-            { label: 'Herraje', valor: 'Incluido' }
+            { label: 'Acabado', valor: 'Barniz/Pintura' }
         ],
         tamanios: null,
-        calidades: ['Calidad 3', 'Calidad 4', 'Scrap'],
-        precio: 3500
-    },
-    {
-        id: 'fenolicos',
-        nombre: 'Fenólicos',
-        descripcion: 'Tableros fenólicos de alta resistencia. Ideales para construcción de cabañas y estructuras exteriores. Disponibles en dos espesores.',
-        imagen: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300"><rect fill="%233B2210" width="300" height="300"/><rect fill="%235A3A1F" x="30" y="30" width="240" height="240" rx="8"/><rect fill="%23D9C4A0" x="50" y="50" width="50" height="50" rx="3"/><rect fill="%23D9C4A0" x="120" y="50" width="50" height="50" rx="3"/><rect fill="%23D9C4A0" x="190" y="50" width="50" height="50" rx="3"/><rect fill="%23D9C4A0" x="50" y="120" width="50" height="50" rx="3"/><rect fill="%23D9C4A0" x="120" y="120" width="50" height="50" rx="3"/><rect fill="%23D9C4A0" x="190" y="120" width="50" height="50" rx="3"/></svg>',
-        especificaciones: [
-            { label: 'Material', valor: 'Tablero Fenólico' },
-            { label: 'Resistencia', valor: 'Alta' },
-            { label: 'Aplicación', valor: 'Estructuras exteriores' },
-            { label: 'Durabilidad', valor: '20+ años' }
-        ],
-        tamanios: ['12mm', '18mm'],
-        calidades: ['Calidad 3', 'Calidad 4', 'Scrap'],
-        precio: 2800
+        preciosPorVariante: {
+            'Unica': { 'Estándar': 3500 }
+        },
+        precioBase: 3500
     },
     {
         id: 'tirantes',
         nombre: 'Tirantes',
-        descripcion: 'Vigas y tirantes de madera dimensionada. Resistentes y duraderos para proyectos de construcción.',
-        imagen: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300"><rect fill="%23C8833A" width="300" height="300"/><rect fill="%23A05C2C" x="50" y="75" width="200" height="150" rx="5"/><line x1="60" y1="100" x2="240" y2="100" stroke="%23D4A574" stroke-width="1" opacity="0.6"/><line x1="60" y1="130" x2="240" y2="130" stroke="%23D4A574" stroke-width="1" opacity="0.6"/><line x1="60" y1="160" x2="240" y2="160" stroke="%23D4A574" stroke-width="1" opacity="0.6"/><line x1="60" y1="190" x2="240" y2="190" stroke="%23D4A574" stroke-width="1" opacity="0.6"/></svg>',
+        descripcion: 'Vigas y tirantes de madera dimensionada. Precios cotizados por pie.',
+        imagenes: [
+            'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300"><rect fill="%23C8833A" width="300" height="300"/><rect fill="%23A05C2C" x="50" y="75" width="200" height="150" rx="5"/></svg>'
+        ],
         especificaciones: [
-            { label: 'Secciones', valor: '5x7 a 7x9 cm' },
-            { label: 'Largo', valor: 'Hasta 6 metros' },
-            { label: 'Material', valor: 'Pino/Ciprés' },
-            { label: 'Clasificación', valor: 'Estructural' }
+            { label: 'Unidad de Venta', valor: 'Por Pie' },
+            { label: 'Material', valor: 'Pino/Ciprés' }
         ],
         tamanios: null,
-        calidades: ['Calidad 3', 'Calidad 4', 'Scrap'],
-        precio: 1800
+        preciosPorVariante: {
+            'Unica': { 'Seleccionado': 1800 }
+        },
+        precioBase: 1800
     },
     {
         id: 'tablas',
         nombre: 'Tablas',
-        descripcion: 'Tablas de madera cepilladas y dimensionadas. Perfectas para revestimientos, pisos y proyectos diversos.',
-        imagen: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300"><rect fill="%23D4A574" width="300" height="300"/><rect fill="%23A05C2C" x="20" y="60" width="260" height="30" rx="3"/><rect fill="%23A05C2C" x="20" y="110" width="260" height="30" rx="3"/><rect fill="%23A05C2C" x="20" y="160" width="260" height="30" rx="3"/><rect fill="%23A05C2C" x="20" y="210" width="260" height="30" rx="3"/></svg>',
+        descripcion: 'Tablas de madera cepilladas y dimensionadas. Perfectas para revestimientos y pisos.',
+        imagenes: [
+            'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300"><rect fill="%23D4A574" width="300" height="300"/><rect fill="%23A05C2C" x="20" y="60" width="260" height="30" rx="3"/></svg>'
+        ],
         especificaciones: [
             { label: 'Espesor', valor: '12 - 25mm' },
-            { label: 'Ancho', valor: '10 - 30cm' },
-            { label: 'Largo', valor: 'Hasta 6 metros' },
             { label: 'Acabado', valor: 'Cepillado' }
         ],
         tamanios: null,
-        calidades: ['Calidad 3', 'Calidad 4', 'Scrap'],
-        precio: 900
+        preciosPorVariante: {
+            'Unica': { 'Estándar': 900 }
+        },
+        precioBase: 900
     }
 ];
 
@@ -936,11 +981,11 @@ const app = {
         track.innerHTML = productos.map(prod => `
             <div class="producto-card" onclick="app.abrirDetalle('${prod.id}')">
                 <div class="producto-img-wrapper">
-                    <img src="${prod.imagen}" class="producto-img" alt="${prod.nombre}">
+                    <img src="${prod.imagenes[0]}" class="producto-img" alt="${prod.nombre}">
                 </div>
                 <div class="producto-info">
                     <h3>${prod.nombre}</h3>
-                    <div class="producto-precio">$${prod.precio}</div>
+                    <div class="producto-precio">Desde $${prod.precioBase}</div>
                     <div class="producto-badge">Ver detalles →</div>
                 </div>
             </div>
@@ -953,11 +998,22 @@ const app = {
 
         this.variantesSeleccionadas = { tamanio: null, calidad: null };
         this.cantidadActual = 1;
-        this.precioActual = this.productoActual.precio;
 
         document.getElementById('detalleTitulo').textContent = this.productoActual.nombre;
         document.getElementById('detalleDesc').textContent = this.productoActual.descripcion;
-        document.getElementById('detalleImgPrincipal').src = this.productoActual.imagen;
+
+        // Renderizar la galería de imágenes (Principal + Miniaturas)
+        this.cambiarImagenPrincipal(this.productoActual.imagenes[0], 0);
+        
+        const minisContainer = document.getElementById('detalleMinisContainer');
+        if (this.productoActual.imagenes.length > 1) {
+            minisContainer.style.display = 'flex';
+            minisContainer.innerHTML = this.productoActual.imagenes.map((img, index) => `
+                <img src="${img}" class="miniatura-img ${index === 0 ? 'active' : ''}" onclick="app.cambiarImagenPrincipal('${img}', ${index})" alt="Miniatura">
+            `).join('');
+        } else {
+            minisContainer.style.display = 'none';
+        }
 
         const specsHtml = this.productoActual.especificaciones
             .map(spec => `<div class="spec-item"><span class="spec-label">${spec.label}:</span> ${spec.valor}</div>`)
@@ -965,27 +1021,67 @@ const app = {
         document.getElementById('detalleSpecs').innerHTML = specsHtml;
 
         const seccionTamanios = document.getElementById('seccionTamanios');
+        const labelTamanio = document.getElementById('labelTamanioStyle');
+
+        if (this.productoActual.id === 'machimbre') {
+            labelTamanio.textContent = '📏 Medida / Ancho';
+        } else if (this.productoActual.id === 'fenolicos') {
+            labelTamanio.textContent = '📏 Espesor';
+        } else {
+            labelTamanio.textContent = '📏 Medida';
+        }
+
         if (this.productoActual.tamanios && this.productoActual.tamanios.length > 0) {
             seccionTamanios.style.display = 'block';
             document.getElementById('botonesSize').innerHTML = this.productoActual.tamanios
                 .map(tam => `<button class="variante-btn" onclick="app.seleccionarTamanio('${tam}')">${tam}</button>`)
                 .join('');
+            
+            this.seleccionarTamanio(this.productoActual.tamanios[0]);
         } else {
             seccionTamanios.style.display = 'none';
+            const calidadesDisponibles = Object.keys(this.productoActual.preciosPorVariante['Unica'] || {});
+            document.getElementById('botonesCalidad').innerHTML = calidadesDisponibles
+                .map(cal => `<button class="variante-btn" onclick="app.seleccionarCalidad('${cal}')">${cal}</button>`)
+                .join('');
+            if (calidadesDisponibles.length > 0) {
+                this.seleccionarCalidad(calidadesDisponibles[0]);
+            }
         }
-
-        document.getElementById('botonesCalidad').innerHTML = this.productoActual.calidades
-            .map(cal => `<button class="variante-btn" onclick="app.seleccionarCalidad('${cal}')">${cal}</button>`)
-            .join('');
 
         this.actualizarPrecioDisplay();
         document.getElementById('detallePanel').classList.add('active');
         document.getElementById('detallePanel').scrollIntoView({ behavior: 'smooth', block: 'center' });
     },
 
+    cambiarImagenPrincipal(urlImagen, index) {
+        document.getElementById('detalleImgPrincipal').src = urlImagen;
+        document.querySelectorAll('.miniatura-img').forEach((img, i) => {
+            if (i === index) {
+                img.classList.add('active');
+            } else {
+                img.classList.remove('active');
+            }
+        });
+    },
+
     seleccionarTamanio(tamanio) {
         this.variantesSeleccionadas.tamanio = tamanio;
         this.actualizarBotonesVariante('botonesSize', tamanio);
+
+        if (this.productoActual.preciosPorVariante && this.productoActual.preciosPorVariante[tamanio]) {
+            const calidadesDisponibles = Object.keys(this.productoActual.preciosPorVariante[tamanio]);
+            document.getElementById('botonesCalidad').innerHTML = calidadesDisponibles
+                .map(cal => `<button class="variante-btn" onclick="app.seleccionarCalidad('${cal}')">${cal}</button>`)
+                .join('');
+            
+            if (calidadesDisponibles.length > 0) {
+                this.seleccionarCalidad(calidadesDisponibles[0]);
+            } else {
+                this.variantesSeleccionadas.calidad = null;
+            }
+        }
+        
         this.actualizarPrecioDisplay();
     },
 
@@ -1024,13 +1120,29 @@ const app = {
     },
 
     actualizarPrecioDisplay() {
-        this.precioActual = this.productoActual.precio * this.cantidadActual;
+        let precioUnitario = this.productoActual.precioBase;
+        const tam = this.variantesSeleccionadas.tamanio;
+        const cal = this.variantesSeleccionadas.calidad;
+
+        if (this.productoActual.preciosPorVariante) {
+            if (tam && this.productoActual.preciosPorVariante[tam]) {
+                if (cal && this.productoActual.preciosPorVariante[tam][cal]) {
+                    precioUnitario = this.productoActual.preciosPorVariante[tam][cal];
+                }
+            } else if (this.productoActual.preciosPorVariante['Unica']) {
+                if (cal && this.productoActual.preciosPorVariante['Unica'][cal]) {
+                    precioUnitario = this.productoActual.preciosPorVariante['Unica'][cal];
+                }
+            }
+        }
+
+        this.precioActual = precioUnitario * this.cantidadActual;
         document.getElementById('precioTotal').textContent = `$${this.precioActual.toLocaleString('es-AR')}`;
     },
 
     agregarAlCarrito() {
-        if (this.productoActual.tamanios && !this.variantesSeleccionadas.tamanio) {
-            this.mostrarNotificacion('⚠️ Selecciona un espesor');
+        if (this.productoActual.tamanios && this.productoActual.tamanios.length > 0 && !this.variantesSeleccionadas.tamanio) {
+            this.mostrarNotificacion('⚠️ Selecciona una medida o espesor');
             return;
         }
         if (!this.variantesSeleccionadas.calidad) {
@@ -1038,14 +1150,25 @@ const app = {
             return;
         }
 
+        let precioUnitario = this.productoActual.precioBase;
+        const tam = this.variantesSeleccionadas.tamanio;
+        const cal = this.variantesSeleccionadas.calidad;
+        if (this.productoActual.preciosPorVariante) {
+            if (tam && this.productoActual.preciosPorVariante[tam] && this.productoActual.preciosPorVariante[tam][cal]) {
+                precioUnitario = this.productoActual.preciosPorVariante[tam][cal];
+            } else if (this.productoActual.preciosPorVariante['Unica'] && this.productoActual.preciosPorVariante['Unica'][cal]) {
+                precioUnitario = this.productoActual.preciosPorVariante['Unica'][cal];
+            }
+        }
+
         const item = {
             id: this.productoActual.id,
             nombre: this.productoActual.nombre,
             cantidad: this.cantidadActual,
-            tamanio: this.variantesSeleccionadas.tamanio,
+            tamanio: this.productoActual.tamanios && this.productoActual.tamanios.length > 0 ? this.variantesSeleccionadas.tamanio : null,
             calidad: this.variantesSeleccionadas.calidad,
-            precioUnitario: this.productoActual.precio,
-            precioTotal: this.precioActual,
+            precioUnitario: precioUnitario,
+            precioTotal: precioUnitario * this.cantidadActual,
             timestamp: Date.now()
         };
 
