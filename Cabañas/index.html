@@ -11,12 +11,12 @@
            ESTILOS GENERALES Y BASE
            ========================================================================== */
         :root {
-            --roble-oscuro: #3B2210;       /* Color Principal / Fondos oscuros / Títulos */
-            --pino-miel: #C8833A;          /* Acento Cálido / Botones / Destacados */
-            --cedro-calido: #A05C2C;       /* Secundario / Subtítulos / Detalles */
-            --arena-patagonica: #D9C4A0;   /* Neutro Cálido / Fondos alternativos */
-            --crema-mdera: #F2EAD8;        /* Base Clara / Fondo principal */
-            --carbon: #1C1C1B;             /* Tipografía principal sobre fondo claro */
+            --roble-oscuro: #3B2210;       
+            --pino-miel: #C8833A;          
+            --cedro-calido: #A05C2C;       
+            --arena-patagonica: #D9C4A0;   
+            --crema-mdera: #F2EAD8;        
+            --carbon: #1C1C1B;             
         }
 
         * {
@@ -59,7 +59,7 @@
             font-weight: 700;
             font-size: 1.2rem;
             letter-spacing: 1px;
-            text-decoration: none; /* Añadido para que actúe como link */
+            text-decoration: none;
         }
 
         .nav-links a {
@@ -130,7 +130,7 @@
         }
 
         /* ==========================================================================
-           ESTILO SECCIÓN MODELOS (ESTILO INTERACTIVO DISNEY UI)
+           ESTILO SECCIÓN MODELOS (GRILLA DINÁMICA ESTILO REFERENCIA)
            ========================================================================== */
         .modelos-section {
             padding: 100px 0;
@@ -140,6 +140,7 @@
         .modelos-intro {
             text-align: center;
             padding: 0 20px;
+            margin-bottom: 60px;
         }
 
         h2 {
@@ -151,152 +152,195 @@
             color: var(--cedro-calido);
             font-size: 1.1rem;
             font-weight: 500;
-            margin-bottom: 30px;
         }
 
-        /* Contenedor de Tarjetas Horizontales */
-        .cards-container-disney {
-            display: flex;
-            justify-content: center;
-            align-items: flex-end;
-            gap: 35px;
-            flex-wrap: wrap;
-            max-width: 1200px;
-            margin: 90px auto 40px;
+        /* Contenedor Grid Principal (PC: 4 columnas lado a lado / Celular: 1 columna) */
+        .modelos-grid-container {
+            max-width: 1250px;
+            margin: 0 auto;
             padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
         }
 
+        .modelo-item-wrap {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        /* Tarjeta Estilo Cabaña Grande con espacio superior para PNG */
         .card-disney {
             position: relative;
-            width: 230px;
-            height: 270px;
-            border-radius: 28px;
-            padding: 25px;
+            width: 100%;
+            height: 380px;
+            border-radius: 24px;
+            padding: 25px 20px;
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
             cursor: pointer;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
-            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s ease;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-bottom: 15px;
+            overflow: visible;
         }
 
-        .png-popout {
+        /* Contenedor para imagen PNG flotante arriba */
+        .card-img-png {
             position: absolute;
-            top: -55px;
+            top: -35px;
             left: 50%;
             transform: translateX(-50%);
-            width: 90%;
-            height: 170px;
+            width: 85%;
+            height: 160px;
             display: flex;
             justify-content: center;
             align-items: center;
-            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-            z-index: 2;
+            border: 2px dashed rgba(255, 255, 255, 0.4);
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(4px);
         }
 
-        .placeholder-text-png {
+        .card-img-png img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .card-img-png .placeholder-txt {
             font-size: 0.8rem;
+            color: white;
             font-weight: 600;
             text-align: center;
-            color: rgba(255, 255, 255, 0.9);
-            background: rgba(0,0,0,0.22);
-            padding: 12px;
-            border-radius: 16px;
-            border: 1px dashed rgba(255,255,255,0.3);
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.4);
         }
 
         .card-disney-info {
             color: white;
             text-shadow: 0 2px 4px rgba(0,0,0,0.2);
-            position: relative;
             z-index: 3;
+            text-align: left;
+            margin-top: 130px;
         }
 
         .card-disney-info h3 {
             color: white;
-            font-size: 1.6rem;
-            margin-bottom: 4px;
+            font-size: 2rem;
+            margin-bottom: 2px;
         }
 
         .card-precio {
             font-family: 'Montserrat', sans-serif;
-            font-weight: 500;
-            font-size: 0.95rem;
-            opacity: 0.9;
+            font-weight: 600;
+            font-size: 1.1rem;
+            opacity: 0.95;
+            margin-bottom: 12px;
+        }
+
+        .card-badge-ver {
+            background: rgba(255, 255, 255, 0.25);
+            padding: 8px 16px;
+            border-radius: 50px;
+            color: white;
+            font-weight: 600;
+            font-size: 0.8rem;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255,255,255,0.4);
+            text-align: center;
+            transition: background 0.3s;
+            display: inline-block;
         }
 
         .card-disney:hover {
-            transform: translateY(-10px) scale(1.04);
-            box-shadow: 0 20px 40px rgba(59, 34, 16, 0.25);
+            transform: translateY(-6px);
+            box-shadow: 0 18px 35px rgba(59, 34, 16, 0.2);
         }
 
-        .card-disney:hover .png-popout {
-            transform: translateX(-50%) scale(1.15) translateY(-8px);
+        .card-disney:hover .card-badge-ver {
+            background: rgba(255, 255, 255, 0.4);
         }
 
         .color-18 { background: linear-gradient(135deg, #A05C2C, #3B2210); }
         .color-28 { background: linear-gradient(135deg, #C8833A, #A05C2C); }
-        .color-36 { background: linear-gradient(135deg, #D9C4A0, #3B2210); }
+        .color-36 { background: linear-gradient(135deg, #8C7853, #3B2210); }
         .color-48 { background: linear-gradient(135deg, #3B2210, #1C1C1B); }
 
-        /* Paneles Desplegables de Información */
+        /* Panel Desplegable Global (Ocupa todo el ancho de la sección de modelos abajo de las tarjetas) */
         .panel-detail-disney {
             display: none;
-            max-width: 1140px;
-            margin: 40px auto;
-            border-radius: 24px;
+            grid-column: 1 / -1; /* Ocupa todas las columnas de la grilla principal en PC */
+            width: 100%;
+            border-radius: 20px;
             padding: 40px;
             position: relative;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.06);
-            animation: slideDown 0.4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+            margin-bottom: 25px;
+            animation: slideDown 0.35s cubic-bezier(0.25, 1, 0.5, 1) forwards;
         }
 
         .color-18-bg { background-color: #fcf9f5; border: 2px solid #A05C2C; }
         .color-28-bg { background-color: #fefcf9; border: 2px solid #C8833A; }
-        .color-36-bg { background-color: #f7f4ee; border: 2px solid #D9C4A0; }
+        .color-36-bg { background-color: #f7f4ee; border: 2px solid #8C7853; }
         .color-48-bg { background-color: #f5f2ed; border: 2px solid #3B2210; }
 
         .panel-grid-layout {
             display: flex;
             gap: 40px;
-            align-items: center;
+            align-items: flex-start;
         }
 
         .panel-text { flex: 1; }
-        .panel-text h3 { font-size: 2.4rem; margin-bottom: 5px; }
-        .panel-precio-big { font-size: 2rem; font-weight: 700; color: var(--cedro-calido); margin-bottom: 20px; }
-        .panel-text p { line-height: 1.7; color: var(--carbon); font-size: 0.95rem; }
+        .panel-text h3 { font-size: 2.2rem; margin-bottom: 5px; }
+        .panel-precio-big { font-size: 1.8rem; font-weight: 700; color: var(--cedro-calido); margin-bottom: 15px; }
+        .panel-text p { line-height: 1.7; color: var(--carbon); font-size: 1rem; }
 
+        /* GRILLA DE 6 ESPACIOS PARA FOTOS + PLANO */
         .panel-galeria {
-            flex: 1.2;
+            flex: 1.3;
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
+            gap: 12px;
         }
 
         .img-box-disney {
             background-color: #e6dfd3;
             border: 1px dashed var(--cedro-calido);
-            height: 130px;
+            height: 120px;
             border-radius: 12px;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-weight: 500;
             color: var(--roble-oscuro);
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.2s, opacity 0.2s;
+        }
+
+        .img-box-disney:hover {
+            transform: scale(1.02);
+            opacity: 0.9;
+        }
+
+        .img-box-disney img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .img-box-disney.plano-img {
             grid-column: span 2;
-            height: 170px;
+            height: 150px;
             background-color: white;
             border: 2px solid var(--arena-patagonica);
+        }
+
+        .img-box-disney.plano-img img {
+            object-fit: contain;
         }
 
         .panel-close {
@@ -306,10 +350,13 @@
             font-size: 0.85rem;
             font-weight: 600;
             cursor: pointer;
-            color: #999;
-            transition: color 0.2s;
+            color: #777;
+            background: rgba(0,0,0,0.05);
+            padding: 6px 14px;
+            border-radius: 20px;
+            transition: background 0.2s, color 0.2s;
         }
-        .panel-close:hover { color: var(--roble-oscuro); }
+        .panel-close:hover { background: rgba(0,0,0,0.1); color: var(--roble-oscuro); }
 
         .btn-wsp-panel {
             display: inline-block;
@@ -319,19 +366,56 @@
             text-decoration: none;
             border-radius: 6px;
             font-weight: 600;
-            margin-top: 25px;
+            margin-top: 20px;
             font-size: 0.9rem;
             transition: transform 0.2s;
         }
         .btn-wsp-panel:hover { transform: translateY(-2px); }
 
         @keyframes slideDown {
-            from { opacity: 0; transform: translateY(-15px); }
+            from { opacity: 0; transform: translateY(-10px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
         /* ==========================================================================
-           ESTILO SECCIÓN A MEDIDA (MODIFICADO: RESPONSIVE SPLIT CON GALERÍA AUTÓNOMA)
+           LIGHTBOX / VISUALIZADOR DE IMAGEN EN GRANDE
+           ========================================================================== */
+        .lightbox-modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90vh;
+            border-radius: 12px;
+            object-fit: contain;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.5);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 25px;
+            right: 35px;
+            color: white;
+            font-size: 2.5rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        .lightbox-close:hover { color: var(--pino-miel); }
+
+        /* ==========================================================================
+           ESTILO SECCIÓN A MEDIDA
            ========================================================================== */
         .a-medida {
             background-color: var(--arena-patagonica);
@@ -351,19 +435,9 @@
             text-align: left;
         }
 
-        .medida-text h2 {
-            text-align: left;
-        }
-
-        .medida-text .subtitle {
-            text-align: left;
-            margin-bottom: 20px;
-        }
-
-        .medida-p { 
-            margin: 0 0 25px 0; 
-            line-height: 1.7; 
-        }
+        .medida-text h2 { text-align: left; }
+        .medida-text .subtitle { text-align: left; margin-bottom: 20px; color: var(--roble-oscuro); }
+        .medida-p { margin: 0 0 25px 0; line-height: 1.7; }
 
         .medida-lista {
             list-style: none;
@@ -376,7 +450,6 @@
             margin: 30px 0 0 0;
         }
 
-        /* Galería de Protagonista Cambiante */
         .medida-gallery-wrapper {
             flex: 1.1;
             position: relative;
@@ -404,21 +477,9 @@
             padding: 20px;
         }
 
-        /* Clase activa controlada por JS */
-        .gallery-slide.active {
-            opacity: 1;
-            z-index: 2;
-        }
+        .gallery-slide.active { opacity: 1; z-index: 2; }
+        .placeholder-gallery-text { font-size: 1rem; font-weight: 600; text-align: center; color: var(--roble-oscuro); line-height: 1.5; }
 
-        .placeholder-gallery-text {
-            font-size: 1rem;
-            font-weight: 600;
-            text-align: center;
-            color: var(--roble-oscuro);
-            line-height: 1.5;
-        }
-
-        /* Pequeños puntos indicadores */
         .gallery-dots {
             position: absolute;
             bottom: 20px;
@@ -436,12 +497,7 @@
             border-radius: 50%;
             transition: all 0.3s ease;
         }
-
-        .dot.active {
-            background-color: var(--pino-miel);
-            width: 22px;
-            border-radius: 4px;
-        }
+        .dot.active { background-color: var(--pino-miel); width: 22px; border-radius: 4px; }
 
         /* ==========================================================================
            MATERIALES
@@ -475,7 +531,7 @@
         .material-card p { font-size: 0.95rem; line-height: 1.6; color: #444; }
 
         /* ==========================================================================
-           SECCIÓN CONTACTO CON MASCOTA (CASTOR)
+           CONTACTO
            ========================================================================== */
         .contacto {
             background-color: var(--roble-oscuro);
@@ -483,16 +539,8 @@
             padding: 100px 20px;
         }
 
-        .contacto h2 {
-            color: var(--crema-mdera);
-            text-align: left;
-        }
-
-        .contacto .subtitle {
-            color: var(--pino-miel);
-            text-align: left;
-            margin-bottom: 35px;
-        }
+        .contacto h2 { color: var(--crema-mdera); text-align: left; }
+        .contacto .subtitle { color: var(--pino-miel); text-align: left; margin-bottom: 35px; }
 
         .contacto-grid {
             display: flex;
@@ -503,15 +551,8 @@
             justify-content: space-between;
         }
 
-        .contacto-info {
-            flex: 1.2;
-        }
-
-        .contacto-list {
-            display: flex;
-            flex-direction: column;
-            gap: 18px;
-        }
+        .contacto-info { flex: 1.2; }
+        .contacto-list { display: flex; flex-direction: column; gap: 18px; }
 
         .contacto-item {
             display: flex;
@@ -523,36 +564,15 @@
             border: 1px solid rgba(200, 131, 58, 0.2);
             text-decoration: none;
             color: var(--crema-mdera);
-            transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), background 0.3s, border-color 0.3s;
+            transition: transform 0.3s ease, background 0.3s, border-color 0.3s;
         }
 
-        .contacto-item.wsp-destacado {
-            border: 1px solid #25D366;
-            background: rgba(37, 211, 102, 0.06);
-        }
-
-        .contacto-item:hover {
-            transform: translateX(8px);
-            background: rgba(200, 131, 58, 0.12);
-            border-color: var(--pino-miel);
-        }
-
-        .contacto-item.wsp-destacado:hover {
-            background: rgba(37, 211, 102, 0.15);
-            border-color: #25D366;
-        }
+        .contacto-item.wsp-destacado { border: 1px solid #25D366; background: rgba(37, 211, 102, 0.06); }
+        .contacto-item:hover { transform: translateX(8px); background: rgba(200, 131, 58, 0.12); border-color: var(--pino-miel); }
+        .contacto-item.wsp-destacado:hover { background: rgba(37, 211, 102, 0.15); border-color: #25D366; }
 
         .contacto-icono { font-size: 1.6rem; }
-
-        .contacto-texto h4 {
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--arena-patagonica);
-            margin-bottom: 2px;
-            font-weight: 500;
-        }
-
+        .contacto-texto h4 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; color: var(--arena-patagonica); margin-bottom: 2px; font-weight: 500; }
         .contacto-item.wsp-destacado .contacto-texto h4 { color: #25D366; }
         .contacto-texto p { font-size: 1.05rem; font-weight: 600; }
 
@@ -595,7 +615,6 @@
             100% { transform: translateY(0px); }
         }
 
-        /* Animación para cabecera */
         .fade-in-section {
             opacity: 0;
             transform: translateY(20px);
@@ -607,8 +626,15 @@
         }
 
         /* ==========================================================================
-           ADAPTABILIDAD MÓVIL (RESPONSIVE)
+           ADAPTABILIDAD MÓVIL (Celular: 1 columna vertical / PC: 4 columnas lado a lado)
            ========================================================================== */
+        @media (max-width: 950px) {
+            .modelos-grid-container {
+                grid-template-columns: 1fr;
+                max-width: 500px;
+            }
+        }
+
         @media (max-width: 768px) {
             .navbar { padding: 15px 5%; }
             .nav-links { display: none; }
@@ -618,20 +644,23 @@
             
             h2 { font-size: 2.2rem; }
             
-            /* Ajustes tarjetas interactivos */
-            .cards-container-disney { gap: 70px; margin-top: 100px; }
-            .panel-grid-layout { flex-direction: column; }
-            .panel-galeria { grid-template-columns: 1fr; width: 100%; }
-            .img-box-disney.plano-img { grid-column: span 1; }
+            .card-disney { height: 350px; margin-top: 25px; }
+            .card-img-png { height: 140px; top: -30px; }
+            .card-disney-info { margin-top: 110px; }
+            .card-disney-info h3 { font-size: 1.8rem; }
             
-            /* NUEVO: Comportamiento Móvil de Proyectos Personalizados */
+            .panel-detail-disney { padding: 25px 20px; }
+            .panel-grid-layout { flex-direction: column; gap: 20px; }
+            .panel-galeria { grid-template-columns: repeat(2, 1fr); width: 100%; }
+            .img-box-disney { height: 100px; }
+            .img-box-disney.plano-img { grid-column: span 2; height: 130px; }
+            
             .a-medida { padding: 80px 24px; }
             .medida-container { flex-direction: column; gap: 40px; }
             .medida-text, .medida-text h2, .medida-text .subtitle { text-align: center; }
             .medida-lista { margin: 30px auto 0; }
             .medida-gallery-wrapper { height: 280px; width: 100%; }
             
-            /* Ajustes Contacto */
             .contacto-grid { flex-direction: column; gap: 40px; }
             .contacto h2, .contacto .subtitle { text-align: center; }
             .contacto-info { width: 100%; }
@@ -667,54 +696,27 @@
             <p class="subtitle">Hacé clic en un modelo para desplegar planos y galerías de fotos</p>
         </div>
 
-        <div class="cards-container-disney fade-in-section">
+        <!-- GRILLA PRINCIPAL DE 4 TARJETAS -->
+        <div class="modelos-grid-container fade-in-section">
             
-            <div class="card-disney color-18" onclick="selectModel('18')">
-                <div class="png-popout">
-                    <p class="placeholder-text-png">PNG Cabaña<br>18 mt²</p>
-                </div>
-                <div class="card-disney-info">
-                    <h3>18 mt²</h3>
-                    <p class="card-precio">$7.100.000</p>
-                </div>
-            </div>
-
-            <div class="card-disney color-28" onclick="selectModel('28')">
-                <div class="png-popout">
-                    <p class="placeholder-text-png">PNG Cabaña<br>28 mt²</p>
-                </div>
-                <div class="card-disney-info">
-                    <h3>28 mt²</h3>
-                    <p class="card-precio">$11.000.000</p>
+            <!-- MODELO 18 mt² -->
+            <div class="modelo-item-wrap">
+                <div class="card-disney color-18" onclick="toggleModel('18')">
+                    <div class="card-img-png">
+                        <!-- Reemplazar src por tu imagen PNG de la cabaña, ej: src="../images/cabaña18.png" -->
+                        <p class="placeholder-txt">PNG Cabaña 18 mt²</p>
+                    </div>
+                    <div class="card-disney-info">
+                        <h3>18 mt²</h3>
+                        <p class="card-precio">$7.100.000</p>
+                        <div class="card-badge-ver" id="badge-18">Ver más +</div>
+                    </div>
                 </div>
             </div>
 
-            <div class="card-disney color-36" onclick="selectModel('36')">
-                <div class="png-popout">
-                    <p class="placeholder-text-png">PNG Cabaña<br>36 mt²</p>
-                </div>
-                <div class="card-disney-info">
-                    <h3>36 mt²</h3>
-                    <p class="card-precio">$14.100.000</p>
-                </div>
-            </div>
-
-            <div class="card-disney color-48" onclick="selectModel('48')">
-                <div class="png-popout">
-                    <p class="placeholder-text-png">PNG Cabaña<br>48 mt²</p>
-                </div>
-                <div class="card-disney-info">
-                    <h3>48 mt²</h3>
-                    <p class="card-precio">$18.750.000</p>
-                </div>
-            </div>
-
-        </div>
-
-        <div class="panels-container-disney">
-
+            <!-- PANEL DESPLEGABLE 18 mt² (Aparece debajo de la fila completa en PC, o debajo de su tarjeta en Celular) -->
             <div id="panel-18" class="panel-detail-disney color-18-bg">
-                <div class="panel-close" onclick="closeAllPanels()">✕ Cerrar</div>
+                <div class="panel-close" onclick="toggleModel('18')">✕ Cerrar</div>
                 <div class="panel-grid-layout">
                     <div class="panel-text">
                         <h3>Modelo 18 mt²</h3>
@@ -723,15 +725,34 @@
                         <a href="https://wa.me/542944898755?text=Hola!%20Quiero%20consultar%20por%20el%20Modelo%2018m2" target="_blank" class="btn-wsp-panel">Consultar por WhatsApp</a>
                     </div>
                     <div class="panel-galeria">
-                        <div class="img-box-disney"><p>Foto Interior 1</p></div>
-                        <div class="img-box-disney"><p>Foto Interior 2</p></div>
-                        <div class="img-box-disney plano-img"><p>Plano Técnico de Distribución</p></div>
+                        <div class="img-box-disney" onclick="openLightbox(this)"><p>Foto 1</p></div>
+                        <div class="img-box-disney" onclick="openLightbox(this)"><p>Foto 2</p></div>
+                        <div class="img-box-disney" onclick="openLightbox(this)"><p>Foto 3</p></div>
+                        <div class="img-box-disney" onclick="openLightbox(this)"><p>Foto 4</p></div>
+                        <div class="img-box-disney" onclick="openLightbox(this)"><p>Foto 5</p></div>
+                        <div class="img-box-disney plano-img" onclick="openLightbox(this)"><p>Plano Técnico de Distribución</p></div>
                     </div>
                 </div>
             </div>
 
+            <!-- MODELO 28 mt² -->
+            <div class="modelo-item-wrap">
+                <div class="card-disney color-28" onclick="toggleModel('28')">
+                    <div class="card-img-png">
+                        <!-- Reemplazar src por tu imagen PNG de la cabaña -->
+                        <p class="placeholder-txt">PNG Cabaña 28 mt²</p>
+                    </div>
+                    <div class="card-disney-info">
+                        <h3>28 mt²</h3>
+                        <p class="card-precio">$11.000.000</p>
+                        <div class="card-badge-ver" id="badge-28">Ver más +</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PANEL DESPLEGABLE 28 mt² -->
             <div id="panel-28" class="panel-detail-disney color-28-bg">
-                <div class="panel-close" onclick="closeAllPanels()">✕ Cerrar</div>
+                <div class="panel-close" onclick="toggleModel('28')">✕ Cerrar</div>
                 <div class="panel-grid-layout">
                     <div class="panel-text">
                         <h3>Modelo 28 mt²</h3>
@@ -739,18 +760,35 @@
                         <p>Perfecto equilibrio entre confort y funcionalidad. Cuenta con una distribución inteligente que maximiza la iluminación natural y los espacios comunes del hogar.</p>
                         <a href="https://wa.me/542944898755?text=Hola!%20Quiero%20consultar%20por%20el%20Modelo%2028m2" target="_blank" class="btn-wsp-panel">Consultar por WhatsApp</a>
                     </div>
-                   <div class="panel-galeria" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;">
-                        <img src="images/28mt1.png" alt="Cabaña 28m2 Vista 1" style="width: 100%; height: 130px; object-fit: cover; border-radius: 12px;">
-                        <img src="./images/28mt2.jpeg" alt="Cabaña 28m2 Vista 2" style="width: 100%; height: 130px; object-fit: cover; border-radius: 12px;">
-                        <img src="../images/28mt3.jpeg" alt="Cabaña 28m2 Vista 3" style="width: 100%; height: 130px; object-fit: cover; border-radius: 12px;">
-                        <img src="../images/28mt4.jpeg" alt="Cabaña 28m2 Vista 4" style="width: 100%; height: 130px; object-fit: cover; border-radius: 12px;">
-                        <div class="img-box-disney plano-img" style="grid-column: span 2; padding: 0; overflow: hidden;">
-                            <img src="../images/28mt5.jpeg" alt="Plano Técnico Cabaña 28m2" style="width: 100%; height: 170px; object-fit: contain;">
-                        </div>
+                    <div class="panel-galeria">
+                        <div class="img-box-disney" onclick="openLightbox(this)"><img src="../images/28mt1.png" alt="Vista 1"></div>
+                        <div class="img-box-disney" onclick="openLightbox(this)"><img src="../images/28mt2.jpeg" alt="Vista 2"></div>
+                        <div class="img-box-disney" onclick="openLightbox(this)"><img src="../images/28mt3.jpeg" alt="Vista 3"></div>
+                        <div class="img-box-disney" onclick="openLightbox(this)"><p>Foto 4</p></div>
+                        <div class="img-box-disney" onclick="openLightbox(this)"><p>Foto 5</p></div>
+                        <div class="img-box-disney plano-img" onclick="openLightbox(this)"><img src="../images/28mt5.jpeg" alt="Plano Técnico"></div>
                     </div>
+                </div>
+            </div>
 
+            <!-- MODELO 36 mt² -->
+            <div class="modelo-item-wrap">
+                <div class="card-disney color-36" onclick="toggleModel('36')">
+                    <div class="card-img-png">
+                        <!-- Reemplazar src por tu imagen PNG de la cabaña -->
+                        <p class="placeholder-txt">PNG Cabaña 36 mt²</p>
+                    </div>
+                    <div class="card-disney-info">
+                        <h3>36 mt²</h3>
+                        <p class="card-precio">$14.100.000</p>
+                        <div class="card-badge-ver" id="badge-36">Ver más +</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PANEL DESPLEGABLE 36 mt² -->
             <div id="panel-36" class="panel-detail-disney color-36-bg">
-                <div class="panel-close" onclick="closeAllPanels()">✕ Cerrar</div>
+                <div class="panel-close" onclick="toggleModel('36')">✕ Cerrar</div>
                 <div class="panel-grid-layout">
                     <div class="panel-text">
                         <h3>Modelo 36 mt²</h3>
@@ -759,15 +797,34 @@
                         <a href="https://wa.me/542944898755?text=Hola!%20Quiero%20consultar%20por%20el%20Modelo%2036m2" target="_blank" class="btn-wsp-panel">Consultar por WhatsApp</a>
                     </div>
                     <div class="panel-galeria">
-                        <div class="img-box-disney"><p>Foto Interior 1</p></div>
-                        <div class="img-box-disney"><p>Foto Interior 2</p></div>
-                        <div class="img-box-disney plano-img"><p>Plano Técnico de Distribución</p></div>
+                        <div class="img-box-disney" onclick="openLightbox(this)"><p>Foto 1</p></div>
+                        <div class="img-box-disney" onclick="openLightbox(this)"><p>Foto 2</p></div>
+                        <div class="img-box-disney" onclick="openLightbox(this)"><p>Foto 3</p></div>
+                        <div class="img-box-disney" onclick="openLightbox(this)"><p>Foto 4</p></div>
+                        <div class="img-box-disney" onclick="openLightbox(this)"><p>Foto 5</p></div>
+                        <div class="img-box-disney plano-img" onclick="openLightbox(this)"><p>Plano Técnico de Distribución</p></div>
                     </div>
                 </div>
             </div>
 
+            <!-- MODELO 48 mt² -->
+            <div class="modelo-item-wrap">
+                <div class="card-disney color-48" onclick="toggleModel('48')">
+                    <div class="card-img-png">
+                        <!-- Reemplazar src por tu imagen PNG de la cabaña -->
+                        <p class="placeholder-txt">PNG Cabaña 48 mt²</p>
+                    </div>
+                    <div class="card-disney-info">
+                        <h3>48 mt²</h3>
+                        <p class="card-precio">$18.750.000</p>
+                        <div class="card-badge-ver" id="badge-48">Ver más +</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PANEL DESPLEGABLE 48 mt² -->
             <div id="panel-48" class="panel-detail-disney color-48-bg">
-                <div class="panel-close" onclick="closeAllPanels()">✕ Cerrar</div>
+                <div class="panel-close" onclick="toggleModel('48')">✕ Cerrar</div>
                 <div class="panel-grid-layout">
                     <div class="panel-text">
                         <h3>Modelo 48 mt²</h3>
@@ -776,15 +833,24 @@
                         <a href="https://wa.me/542944898755?text=Hola!%20Quiero%20consultar%20por%20el%20Modelo%2048m2" target="_blank" class="btn-wsp-panel">Consultar por WhatsApp</a>
                     </div>
                     <div class="panel-galeria">
-                        <div class="img-box-disney"><p>Foto Interior 1</p></div>
-                        <div class="img-box-disney"><p>Foto Interior 2</p></div>
-                        <div class="img-box-disney plano-img"><p>Plano Técnico de Distribución</p></div>
+                        <div class="img-box-disney" onclick="openLightbox(this)"><p>Foto 1</p></div>
+                        <div class="img-box-disney" onclick="openLightbox(this)"><p>Foto 2</p></div>
+                        <div class="img-box-disney" onclick="openLightbox(this)"><p>Foto 3</p></div>
+                        <div class="img-box-disney" onclick="openLightbox(this)"><p>Foto 4</p></div>
+                        <div class="img-box-disney" onclick="openLightbox(this)"><p>Foto 5</p></div>
+                        <div class="img-box-disney plano-img" onclick="openLightbox(this)"><p>Plano Técnico de Distribución</p></div>
                     </div>
                 </div>
             </div>
 
         </div>
     </section>
+
+    <!-- LIGHTBOX MODAL PARA VER IMAGEN EN GRANDE -->
+    <div id="lightbox" class="lightbox-modal" onclick="closeLightbox()">
+        <span class="lightbox-close">&times;</span>
+        <img class="lightbox-content" id="lightbox-img">
+    </div>
 
     <section id="medida" class="a-medida">
         <div class="medida-container">
@@ -801,25 +867,20 @@
             </div>
 
             <div class="medida-gallery-wrapper">
-                
                 <div class="gallery-slide active">
                     <p class="placeholder-gallery-text">📸 Foto Proyecto Custom 1<br><span style="font-size:0.8rem; opacity:0.75; font-weight:400;">(Vista Fachada Principal)</span></p>
-                    </div>
-
+                </div>
                 <div class="gallery-slide">
                     <p class="placeholder-gallery-text">📸 Foto Proyecto Custom 2<br><span style="font-size:0.8rem; opacity:0.75; font-weight:400;">(Diseño de Interiores Custom)</span></p>
                 </div>
-
                 <div class="gallery-slide">
                     <p class="placeholder-gallery-text">📸 Foto Proyecto Custom 3<br><span style="font-size:0.8rem; opacity:0.75; font-weight:400;">(Montaje Woodframe en Terreno)</span></p>
                 </div>
-
                 <div class="gallery-dots">
                     <span class="dot active"></span>
                     <span class="dot"></span>
                     <span class="dot"></span>
                 </div>
-
             </div>
 
         </div>
@@ -892,7 +953,6 @@
                     <strong>¡Espacio del Castor!</strong>
                     <span style="font-size: 0.8rem; opacity: 0.7; margin-top: 5px;">Cuando subas 'castor.png' a tu GitHub, aparecerá tu mascota aquí.</span>
                 </div>
-                
                 <img src="../images/castor.png" alt="Castor Maderera La Herradura" class="castor-img" style="display: none;" onerror="this.style.display='none';" onload="this.style.display='block'; document.getElementById('placeholder-castor').style.display='none';">
             </div>
 
@@ -900,48 +960,60 @@
     </section>
 
     <script>
-        // Control de los Paneles de Cabañas Estándar
-        function selectModel(modelSize) {
-            const allPanels = document.querySelectorAll('.panel-detail-disney');
-            allPanels.forEach(panel => {
-                panel.style.display = 'none';
-            });
-
+        // Función Toggle: Abre si está cerrado, o lo oculta (cierra) si se vuelve a tocar
+        function toggleModel(modelSize) {
             const targetPanel = document.getElementById('panel-' + modelSize);
-            if (targetPanel) {
+            const targetBadge = document.getElementById('badge-' + modelSize);
+            const isOpen = targetPanel.style.display === 'block';
+
+            // Cerrar todos los paneles primero
+            const allPanels = document.querySelectorAll('.panel-detail-disney');
+            const allBadges = document.querySelectorAll('.card-badge-ver');
+            allPanels.forEach(panel => panel.style.display = 'none');
+            allBadges.forEach(badge => badge.innerText = 'Ver más +');
+
+            // Si no estaba abierto, lo abrimos
+            if (!isOpen) {
                 targetPanel.style.display = 'block';
+                targetBadge.innerText = 'Cerrar -';
                 setTimeout(() => {
-                    targetPanel.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }, 100);
+                    targetPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }, 150);
             }
         }
 
-        function closeAllPanels() {
-            const allPanels = document.querySelectorAll('.panel-detail-disney');
-            allPanels.forEach(panel => {
-                panel.style.display = 'none';
-            });
+        // Funciones para Lightbox (Ver imagen en grande)
+        function openLightbox(element) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const imgInside = element.querySelector('img');
+            
+            if (imgInside) {
+                lightboxImg.src = imgInside.src;
+                lightbox.style.display = 'flex';
+            } else {
+                alert("Acá se mostrará la foto en grande cuando cargues la imagen real.");
+            }
         }
 
-        // NUEVO: Lógica del Carrusel Autónomo para Proyectos Custom
+        function closeLightbox() {
+            document.getElementById('lightbox').style.display = 'none';
+        }
+
+        // Carrusel de sección A Medida
         let currentSlide = 0;
         const slides = document.querySelectorAll('.gallery-slide');
         const dots = document.querySelectorAll('.dot');
 
         function autoNextSlide() {
-            // Quitamos la clase activa de la imagen y del punto actual
+            if(slides.length === 0) return;
             slides[currentSlide].classList.remove('active');
             dots[currentSlide].classList.remove('active');
-            
-            // Avanzamos al siguiente (vuelve a cero si llega al final)
             currentSlide = (currentSlide + 1) % slides.length;
-            
-            // Agregamos la clase activa al nuevo elemento seleccionado
             slides[currentSlide].classList.add('active');
             dots[currentSlide].classList.add('active');
         }
 
-        // Configurado para cambiar automáticamente cada 3.5 segundos (3500 milisegundos)
         setInterval(autoNextSlide, 3500);
     </script>
 </body>
