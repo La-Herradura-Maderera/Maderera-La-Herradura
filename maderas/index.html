@@ -361,15 +361,15 @@
 
             <div class="cantidad-precio">
                 <div class="cantidad-control">
-                    <button class="cantidad-btn" onclick="app.decrementarCantidad()">−</button>
+                    <button type="button" class="cantidad-btn" onclick="app.decrementarCantidad()">−</button>
                     <input type="number" id="cantidadInput" class="cantidad-input" value="1" min="1">
-                    <button class="cantidad-btn" onclick="app.incrementarCantidad()">+</button>
+                    <button type="button" class="cantidad-btn" onclick="app.incrementarCantidad()">+</button>
                 </div>
                 <div class="precio-total" id="precioTotal">$0</div>
             </div>
 
-            <button class="btn-agregar-carrito" onclick="app.agregarAlCarrito()">🛒 Agregar al Carrito</button>
-            <button class="btn-cerrar-detalle" onclick="app.cerrarDetalle()">Cerrar</button>
+            <button type="button" class="btn-agregar-carrito" onclick="app.agregarAlCarrito(event)">🛒 Agregar al Carrito</button>
+            <button type="button" class="btn-cerrar-detalle" onclick="app.cerrarDetalle()">Cerrar</button>
         </div>
     </div>
 </section>
@@ -433,8 +433,8 @@
         <div id="carritoItems"></div>
         <div class="carrito-total">Total: <span id="carritoTotalPrecio">$0</span></div>
         <div class="carrito-acciones">
-            <button class="btn-carrito-accion btn-confirmar" onclick="app.enviarPorWhatsApp()">✓ Enviar por WhatsApp</button>
-            <button class="btn-carrito-accion btn-cerrar-carrito" onclick="app.cerrarCarrito()">Cerrar</button>
+            <button type="button" class="btn-carrito-accion btn-confirmar" onclick="app.enviarPorWhatsApp()">✓ Enviar por WhatsApp</button>
+            <button type="button" class="btn-carrito-accion btn-cerrar-carrito" onclick="app.cerrarCarrito()">Cerrar</button>
         </div>
     </div>
 </div>
@@ -521,7 +521,8 @@ const productos = [
 ];
 
 const app = {
-    carrito: [],
+    // Carga el carrito guardado en la memoria del navegador (localStorage) si existe
+    carrito: JSON.parse(localStorage.getItem('maderera_carrito')) || [],
     productoActual: null,
     variantesSeleccionadas: { tamanio: null, calidad: null },
     cantidadActual: 1,
@@ -530,6 +531,10 @@ const app = {
     init() {
         this.renderizarProductos();
         this.actualizarCarrito();
+    },
+
+    guardarEnMemoria() {
+        localStorage.setItem('maderera_carrito', JSON.stringify(this.carrito));
     },
 
     renderizarProductos() {
@@ -548,10 +553,10 @@ const app = {
         `).join('');
     },
 
-   abrirDetalle(productoId) {
+    abrirDetalle(productoId) {
         const panel = document.getElementById('detallePanel');
         
-        // Si ya está abierto el mismo producto, lo cerramos (efecto toggle)
+        // Efecto toggle: Si ya está abierto el mismo producto, lo cerramos
         if (this.productoActual && this.productoActual.id === productoId && panel.classList.contains('active')) {
             this.cerrarDetalle();
             return;
@@ -566,7 +571,6 @@ const app = {
         document.getElementById('detalleTitulo').textContent = this.productoActual.nombre;
         document.getElementById('detalleDesc').textContent = this.productoActual.descripcion;
 
-        // Renderizar vistas con manejo seguro de elementos
         this.cambiarVista(this.productoActual.vistas[0], 0);
         
         const minisContainer = document.getElementById('detalleMinisContainer');
@@ -597,7 +601,6 @@ const app = {
 
         if (this.productoActual.tamanios && this.productoActual.tamanios.length > 0) {
             seccionTamanios.style.display = 'block';
-            // Renderizado seguro usando data-attributes para evitar conflictos con comillas en medidas (ej: 1/2 x 5")
             document.getElementById('botonesSize').innerHTML = this.productoActual.tamanios
                 .map((tam, index) => `<button type="button" class="variante-btn" data-tamanio-idx="${index}" onclick="app.seleccionarTamanioPorIndice(${index})">${tam}</button>`)
                 .join('');
@@ -616,7 +619,8 @@ const app = {
 
         this.actualizarPrecioDisplay();
         document.getElementById('detallePanel').classList.add('active');
-   },
+        // Se quitó el scrollIntoView automático para que la pantalla no salte
+    },
 
     cambiarVista(nombreVista, index) {
         const imgPrincipal = document.getElementById('detalleImgPrincipal');
@@ -688,6 +692,7 @@ const app = {
 
     cerrarDetalle() {
         document.getElementById('detallePanel').classList.remove('active');
+        this.productoActual = null;
     },
 
     incrementarCantidad() {
@@ -725,7 +730,7 @@ const app = {
         document.getElementById('precioTotal').textContent = `$${this.precioActual.toLocaleString('es-AR')}`;
     },
 
-agregarAlCarrito(event) {
+    agregarAlCarrito(event) {
         if (event) event.preventDefault();
 
         if (this.productoActual.tamanios && this.productoActual.tamanios.length > 0 && !this.variantesSeleccionadas.tamanio) {
@@ -757,14 +762,10 @@ agregarAlCarrito(event) {
         };
 
         this.carrito.push(item);
+        this.guardarEnMemoria(); // Guarda el carrito permanentemente en el navegador
         this.actualizarCarrito();
         this.mostrarNotificacion('✅ Agregado al carrito');
-
-        // Capturamos la posición actual exacta antes de cerrar el panel
-        const posicionActual = window.scrollY;
-        this.cerrarDetalle();
-        // Forzamos al navegador a mantener la misma posición sin saltos
-        window.scrollTo({ top: posicionActual, behavior: 'instant' });
+        // Se mantiene el panel abierto en el mismo lugar sin cerrar de golpe ni mover la pantalla
     },
 
     abrirCarrito() {
@@ -807,6 +808,7 @@ agregarAlCarrito(event) {
 
     eliminarDelCarrito(indice) {
         this.carrito.splice(indice, 1);
+        this.guardarEnMemoria(); // Actualiza la memoria tras eliminar
         this.actualizarCarrito();
         this.renderizarCarrito();
         this.mostrarNotificacion('❌ Eliminado del carrito');
