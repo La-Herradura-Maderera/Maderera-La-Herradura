@@ -10,6 +10,16 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
 
+    <!-- SCRIPT DE RESPALDO PARA EL LOGO (SE EJECUTA ANTES DE CARGAR LA IMAGEN) -->
+    <script>
+        function mostrarFallbackLogo() {
+            const img = document.getElementById('logo-img');
+            const txt = document.getElementById('logo-text');
+            if (img) img.style.display = 'none';
+            if (txt) txt.style.display = 'inline-block';
+        }
+    </script>
+
     <style>
         /* ==========================================
            PALETA DE COLORES OFICIAL DE LA MARCA
@@ -337,7 +347,6 @@
 
         /* 
            RUTAS DE FOTOS DE MADERAS
-           (Modifica o suma más según las vayas subiendo a GitHub)
         */
         const fotosMaderas = [
             "images/maderasindex1.jpeg",
@@ -345,20 +354,14 @@
             "images/maderasindex3.jpeg"
         ];
 
-        // Función de resguardo si la foto del logo no carga o no existe
-        function mostrarFallbackLogo() {
-            const img = document.getElementById('logo-img');
-            const txt = document.getElementById('logo-text');
-            if (img) img.style.display = 'none';
-            if (txt) txt.style.display = 'inline-block';
-        }
-
         // Ocultar pantalla de bienvenida (Splash) a los 2 segundos
         window.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => {
                 const splash = document.getElementById('splash');
-                splash.style.opacity = '0';
-                splash.style.visibility = 'hidden';
+                if (splash) {
+                    splash.style.opacity = '0';
+                    splash.style.visibility = 'hidden';
+                }
             }, 2000);
 
             // Inicializar sliders de imágenes
@@ -369,7 +372,7 @@
         // Función encargada de cargar las fotos, elegir un inicio aleatorio y rotar
         function crearSlider(contenedorId, listaImagenes) {
             const contenedor = document.getElementById(contenedorId);
-            if (!listaImagenes || listaImagenes.length === 0) return;
+            if (!contenedor || !listaImagenes || listaImagenes.length === 0) return;
 
             // 1. Selecciona un número al azar para el inicio
             let indiceActual = Math.floor(Math.random() * listaImagenes.length);
