@@ -332,9 +332,6 @@
        6. CONFIGURACIÓN DE IMÁGENES Y LÓGICA (JS)
     ========================================== -->
     <script>
-        /* 
-           RUTAS DE FOTOS DE CABAÑAS
-        */
         const fotosCabanas = [
             "images/cabañasindex1.jpeg",
             "images/cabañasindex2.jpeg",
@@ -345,17 +342,18 @@
             "images/cabañasindex7.jpeg"
         ];
 
-        /* 
-           RUTAS DE FOTOS DE MADERAS
-        */
         const fotosMaderas = [
             "images/maderasindex1.jpeg",
             "images/maderasindex2.jpeg",
-            "images/maderasindex3.jpeg"
+            "images/maderasindex3.jpeg",
+            "images/maderasindex4.jpeg",
+            "images/maderasindex5.jpeg",
+            "images/maderasindex6.jpeg",
+            "images/maderasindex7.jpeg",
         ];
 
-        // Ocultar pantalla de bienvenida (Splash) a los 2 segundos
         window.addEventListener('DOMContentLoaded', () => {
+            // Oculta la pantalla de bienvenida a los 2 segundos
             setTimeout(() => {
                 const splash = document.getElementById('splash');
                 if (splash) {
@@ -364,24 +362,27 @@
                 }
             }, 2000);
 
-            // Inicializar sliders de imágenes
-            crearSlider('slider-cabanas', fotosCabanas);
-            crearSlider('slider-maderas', fotosMaderas);
+            const duracionFoto = 4000; // Cada foto se mantiene 4 segundos
+            const desfase = 2000;      // Maderas espera 2 segundos antes de arrancar su ciclo
+
+            // Cabañas cambia a los 0s, 4s, 8s...
+            crearSlider('slider-cabanas', fotosCabanas, duracionFoto, 0);
+
+            // Maderas cambia a los 2s, 6s, 10s...
+            crearSlider('slider-maderas', fotosMaderas, duracionFoto, desfase);
         });
 
-        // Función encargada de cargar las fotos, elegir un inicio aleatorio y rotar
-        function crearSlider(contenedorId, listaImagenes) {
+        function crearSlider(contenedorId, listaImagenes, intervalo, tiempoEsperaInicial) {
             const contenedor = document.getElementById(contenedorId);
             if (!contenedor || !listaImagenes || listaImagenes.length === 0) return;
 
-            // 1. Selecciona un número al azar para el inicio
+            // Selección aleatoria independiente para cada lado
             let indiceActual = Math.floor(Math.random() * listaImagenes.length);
 
             listaImagenes.forEach((ruta, index) => {
                 const divSlide = document.createElement('div');
                 divSlide.classList.add('bg-slide');
                 
-                // 2. Activa únicamente la foto seleccionada al azar
                 if (index === indiceActual) divSlide.classList.add('activa');
                 
                 divSlide.style.backgroundImage = `url('${ruta}')`;
@@ -392,12 +393,14 @@
 
             const slides = contenedor.querySelectorAll('.bg-slide');
 
-            // 3. Continúa la rotación desde la foto elegida al azar
-            setInterval(() => {
-                slides[indiceActual].classList.remove('activa');
-                indiceActual = (indiceActual + 1) % slides.length;
-                slides[indiceActual].classList.add('activa');
-            }, 4500);
+            // Aplica el desfase inicial antes de arrancar el ciclo continuo
+            setTimeout(() => {
+                setInterval(() => {
+                    slides[indiceActual].classList.remove('activa');
+                    indiceActual = (indiceActual + 1) % slides.length;
+                    slides[indiceActual].classList.add('activa');
+                }, intervalo);
+            }, tiempoEsperaInicial);
         }
     </script>
 </body>
