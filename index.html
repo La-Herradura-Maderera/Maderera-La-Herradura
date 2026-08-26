@@ -173,7 +173,7 @@
         }
 
         .titulo {
-            font-family: 'Playfair Display', serif; /* <--- AGREGÁ ESTA LÍNEA */
+            font-family: 'Playfair Display', serif;
             font-size: 2.2rem;
             font-weight: 700;
             text-transform: uppercase;
@@ -285,7 +285,6 @@
 
     <!-- Pantalla de bienvenida / Splash Logo -->
     <div id="splash">
-        <!-- Si la imagen falla, ejecuta onerror y muestra el texto alternativo -->
         <img id="logo-img" src="images/logo.png" alt="Maderera La Herradura Logo" onerror="mostrarFallbackLogo()">
         <span id="logo-text" class="logo-fallback">La Herradura</span>
     </div>
@@ -324,8 +323,7 @@
     ========================================== -->
     <script>
         /* 
-           AGREGA TUS FOTOS AQUÍ:
-           Escribe las rutas de tus imágenes entre las comillas.
+           RUTAS DE FOTOS DE CABAÑAS
         */
         const fotosCabanas = [
             "images/cabañasindex1.jpeg",
@@ -337,10 +335,14 @@
             "images/cabañasindex7.jpeg"
         ];
 
+        /* 
+           RUTAS DE FOTOS DE MADERAS
+           (Modifica o suma más según las vayas subiendo a GitHub)
+        */
         const fotosMaderas = [
-            "images/madera1.png",
-            "images/madera2.png",
-            "images/madera3.png"
+            "images/maderasindex1.jpeg",
+            "images/maderasindex2.jpeg",
+            "images/maderasindex3.jpeg"
         ];
 
         // Función de resguardo si la foto del logo no carga o no existe
@@ -364,43 +366,30 @@
             crearSlider('slider-maderas', fotosMaderas);
         });
 
-        // Función encargada de cargar las fotos y hacer la transición suave
         // Función encargada de cargar las fotos, elegir un inicio aleatorio y rotar
-function crearSlider(contenedorId, listaImagenes) {
-    const contenedor = document.getElementById(contenedorId);
-    if (!listaImagenes || listaImagenes.length === 0) return;
+        function crearSlider(contenedorId, listaImagenes) {
+            const contenedor = document.getElementById(contenedorId);
+            if (!listaImagenes || listaImagenes.length === 0) return;
 
-    // 1. Selecciona un número al azar para el inicio
-    let indiceActual = Math.floor(Math.random() * listaImagenes.length);
+            // 1. Selecciona un número al azar para el inicio
+            let indiceActual = Math.floor(Math.random() * listaImagenes.length);
 
-    listaImagenes.forEach((ruta, index) => {
-        const divSlide = document.createElement('div');
-        divSlide.classList.add('bg-slide');
-        
-        // 2. Activa únicamente la foto seleccionada al azar
-        if (index === indiceActual) divSlide.classList.add('activa');
-        
-        divSlide.style.backgroundImage = `url('${ruta}')`;
-        contenedor.appendChild(divSlide);
-    });
+            listaImagenes.forEach((ruta, index) => {
+                const divSlide = document.createElement('div');
+                divSlide.classList.add('bg-slide');
+                
+                // 2. Activa únicamente la foto seleccionada al azar
+                if (index === indiceActual) divSlide.classList.add('activa');
+                
+                divSlide.style.backgroundImage = `url('${ruta}')`;
+                contenedor.appendChild(divSlide);
+            });
 
-    if (listaImagenes.length <= 1) return;
-
-    const slides = contenedor.querySelectorAll('.bg-slide');
-
-    // 3. Continúa la rotación desde la foto elegida al azar
-    setInterval(() => {
-        slides[indiceActual].classList.remove('activa');
-        indiceActual = (indiceActual + 1) % slides.length;
-        slides[indiceActual].classList.add('activa');
-    }, 4500);
-}
             if (listaImagenes.length <= 1) return;
 
-            let indiceActual = 0;
             const slides = contenedor.querySelectorAll('.bg-slide');
 
-            // Cambio automático de foto cada 4.5 segundos
+            // 3. Continúa la rotación desde la foto elegida al azar
             setInterval(() => {
                 slides[indiceActual].classList.remove('activa');
                 indiceActual = (indiceActual + 1) % slides.length;
