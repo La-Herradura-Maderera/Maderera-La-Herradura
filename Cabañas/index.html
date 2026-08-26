@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Maderera La Herradura - Cabañas Woodframe</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
     <style>
         /* ==========================================================================
@@ -34,9 +34,24 @@
             overflow-x: hidden;
         }
 
-        h1, h2, h3, .panel-precio-big {
+        /* JERARQUÍA TIPOGRÁFICA UNIFICADA CON INDEX */
+        h1, h2, h3, h4, .panel-precio-big, .logo, .precio-badge {
             font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+
+        h1, h2, h3 {
             color: var(--roble-oscuro);
+        }
+
+        /* SUBTÍTULOS CON ESTILO INDEX */
+        .subtitle {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--cedro-calido);
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
         }
 
         /* ==========================================================================
@@ -53,14 +68,12 @@
             top: 0;
             left: 0;
             z-index: 1000;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.25);
         }
 
         .logo {
             color: var(--crema-mdera);
-            font-family: 'Playfair Display', serif;
-            font-weight: 700;
-            font-size: 1.25rem;
+            font-size: 1.3rem;
             letter-spacing: 1px;
             text-decoration: none;
         }
@@ -130,14 +143,39 @@
         }
 
         .main-wrapper {
-            margin-top: 70px;
+            margin-top: 65px;
         }
 
         /* ==========================================================================
-           MODELOS ESTÁNDARS (4 Tarjetas Interactivas)
+           HERO BANNER DE SECCIÓN (IGUALACIÓN AL INDEX)
+           ========================================================================== */
+        .hero-section {
+            background: linear-gradient(rgba(59, 34, 16, 0.85), rgba(59, 34, 16, 0.92)), url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+            padding: 90px 8% 70px;
+            text-align: center;
+            color: var(--crema-mdera);
+            border-bottom: 3px solid var(--pino-miel);
+        }
+
+        .hero-section h1 {
+            color: var(--crema-mdera);
+            font-size: 3rem;
+            margin-bottom: 12px;
+        }
+
+        .hero-section p {
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            color: var(--arena-patagonica);
+            line-height: 1.6;
+        }
+
+        /* ==========================================================================
+           MODELOS ESTÁNDARS (Efecto 3D y Hover)
            ========================================================================== */
         .modelos-section {
-            padding: 60px 0 80px 0;
+            padding: 70px 0 80px 0;
             background-color: var(--blanco-puro);
         }
 
@@ -148,41 +186,36 @@
         }
 
         .section-header h2 {
-            font-size: 2.5rem;
+            font-size: 2.6rem;
             margin-bottom: 8px;
-        }
-
-        .section-header .subtitle {
-            color: var(--cedro-calido);
-            font-size: 1rem;
-            font-weight: 600;
         }
 
         .modelos-grid-container {
             max-width: 1250px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 30px 20px 0 20px;
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
+            gap: 25px;
         }
 
         .modelo-card {
             background: var(--crema-mdera);
             border-radius: 18px;
-            padding: 20px;
+            padding: 22px;
             border: 2px solid var(--arena-patagonica);
             text-align: center;
             cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
             position: relative;
+            overflow: visible !important;
+            transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.3s ease, border-color 0.3s;
             box-shadow: 0 4px 12px rgba(0,0,0,0.05);
         }
 
         .modelo-card:hover {
-            transform: scale(1.04);
+            transform: translateY(-6px) scale(1.03);
             border-color: var(--pino-miel);
-            box-shadow: 0 12px 25px rgba(59, 34, 16, 0.18);
+            box-shadow: 0 14px 28px rgba(59, 34, 16, 0.18);
         }
 
         .modelo-png-wrapper {
@@ -192,29 +225,39 @@
             align-items: center;
             justify-content: center;
             margin-bottom: 15px;
+            position: relative;
+            overflow: visible !important;
         }
 
         .modelo-png-wrapper img {
-            max-height: 100%;
-            max-width: 100%;
+            max-height: 110%;
+            max-width: 115%;
             object-fit: contain;
-            filter: drop-shadow(0 8px 10px rgba(0,0,0,0.15));
+            position: relative;
+            z-index: 5;
+            filter: drop-shadow(0 10px 12px rgba(0,0,0,0.2));
+            transform: translateY(-10px) scale(1.05);
+            transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .modelo-card:hover .modelo-png-wrapper img {
+            transform: translateY(-22px) scale(1.18);
         }
 
         .modelo-card h3 {
             font-size: 1.8rem;
-            margin-bottom: 5px;
+            margin-bottom: 6px;
         }
 
         .precio-badge {
             background-color: var(--roble-oscuro);
             color: var(--crema-mdera);
-            font-weight: 700;
-            padding: 6px 12px;
+            padding: 6px 14px;
             border-radius: 20px;
             display: inline-block;
-            font-size: 0.95rem;
-            margin-bottom: 12px;
+            font-size: 1rem;
+            margin-bottom: 14px;
+            letter-spacing: 0.5px;
         }
 
         .btn-ver-mas {
@@ -222,9 +265,14 @@
             color: white;
             font-size: 0.85rem;
             font-weight: 600;
-            padding: 8px 16px;
+            padding: 9px 16px;
             border-radius: 6px;
             display: block;
+            transition: background 0.3s;
+        }
+
+        .modelo-card:hover .btn-ver-mas {
+            background-color: var(--cedro-calido);
         }
 
         /* Panel Desplegable */
@@ -234,10 +282,11 @@
             background: var(--crema-mdera);
             border: 2px solid var(--cedro-calido);
             border-radius: 16px;
-            padding: 30px;
+            padding: 35px;
             margin-top: 10px;
             position: relative;
             animation: fadeIn 0.3s ease-in-out;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
         }
 
         .panel-grid {
@@ -250,7 +299,7 @@
         }
 
         .panel-info h3 {
-            font-size: 2rem;
+            font-size: 2.2rem;
             margin-bottom: 10px;
         }
 
@@ -258,7 +307,7 @@
             flex: 1.5;
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
+            gap: 12px;
         }
 
         .galeria-item {
@@ -296,14 +345,14 @@
            ========================================================================== */
         .especificaciones-section {
             background-color: var(--arena-patagonica);
-            padding: 70px 8%;
+            padding: 80px 8%;
             border-top: 1px solid var(--cedro-calido);
             border-bottom: 1px solid var(--cedro-calido);
         }
 
         .especificaciones-grid {
-            max-width: 1100px;
-            margin: 30px auto 0;
+            max-width: 1150px;
+            margin: 40px auto 0;
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 25px;
@@ -311,14 +360,14 @@
 
         .espec-card {
             background-color: var(--crema-mdera);
-            padding: 25px;
-            border-radius: 12px;
+            padding: 30px 25px;
+            border-radius: 14px;
             border-left: 5px solid var(--pino-miel);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.06);
         }
 
         .espec-card h3 {
-            font-size: 1.2rem;
+            font-size: 1.35rem;
             margin-bottom: 15px;
             display: flex;
             align-items: center;
@@ -330,7 +379,7 @@
         }
 
         .espec-card ul li {
-            font-size: 0.9rem;
+            font-size: 0.92rem;
             margin-bottom: 10px;
             line-height: 1.5;
             position: relative;
@@ -348,7 +397,7 @@
         }
 
         /* ==========================================================================
-           SECCIÓN PERSONALIZADOS (Proyectos Realizados)
+           SECCIÓN PERSONALIZADOS (Efecto 3D y Hover)
            ========================================================================== */
         .personalizados-section {
             padding: 80px 8%;
@@ -358,44 +407,67 @@
         .custom-projects-grid {
             max-width: 1200px;
             margin: 40px auto 0;
+            padding-top: 25px;
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
+            gap: 35px;
         }
 
         .custom-card {
             background: var(--crema-mdera);
-            border-radius: 14px;
-            overflow: hidden;
+            border-radius: 16px;
+            overflow: visible !important;
             border: 1px solid var(--arena-patagonica);
             box-shadow: 0 5px 15px rgba(0,0,0,0.06);
             cursor: pointer;
-            transition: transform 0.3s;
+            position: relative;
+            transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.3s ease, border-color 0.3s;
         }
 
         .custom-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-6px) scale(1.03);
             border-color: var(--pino-miel);
+            box-shadow: 0 14px 28px rgba(59, 34, 16, 0.18);
         }
 
         .custom-card-img {
             height: 200px;
             background-color: #d0c2aa;
+            border-top-left-radius: 16px;
+            border-top-right-radius: 16px;
             position: relative;
+            overflow: visible !important;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .custom-card-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+            width: 110%;
+            height: 110%;
+            object-fit: contain;
+            position: relative;
+            z-index: 5;
+            filter: drop-shadow(0 10px 12px rgba(0,0,0,0.2));
+            transform: translateY(-12px) scale(1.08);
+            transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .custom-card:hover .custom-card-img img {
+            transform: translateY(-25px) scale(1.22);
         }
 
         .custom-card-body {
-            padding: 20px;
+            padding: 22px;
+            position: relative;
+            z-index: 6;
+            background: var(--crema-mdera);
+            border-bottom-left-radius: 16px;
+            border-bottom-right-radius: 16px;
         }
 
         .custom-card-body h3 {
-            font-size: 1.3rem;
+            font-size: 1.45rem;
             margin-bottom: 8px;
         }
 
@@ -404,10 +476,12 @@
             background-color: var(--cedro-calido);
             color: white;
             font-size: 0.75rem;
-            padding: 4px 10px;
+            padding: 4px 12px;
             border-radius: 12px;
             margin-bottom: 10px;
             font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         /* ==========================================================================
@@ -416,40 +490,43 @@
         .builder-section {
             background-color: var(--roble-oscuro);
             color: var(--crema-mdera);
-            padding: 80px 8%;
+            padding: 90px 8%;
         }
 
         .builder-section h2 {
             color: var(--crema-mdera);
             text-align: center;
+            font-size: 2.6rem;
         }
 
         .builder-container {
             max-width: 1000px;
             margin: 40px auto 0;
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.04);
             border: 1px solid rgba(200, 131, 58, 0.3);
-            border-radius: 16px;
-            padding: 35px;
+            border-radius: 18px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
 
         .price-display-box {
             background: var(--pino-miel);
             color: white;
             text-align: center;
-            padding: 25px;
-            border-radius: 12px;
-            margin-bottom: 30px;
+            padding: 28px;
+            border-radius: 14px;
+            margin-bottom: 35px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.15);
         }
 
         .price-display-box h3 {
             color: white;
-            font-size: 2.2rem;
+            font-size: 2.4rem;
             margin-bottom: 5px;
         }
 
         .price-subtext {
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             font-weight: 500;
             opacity: 0.95;
         }
@@ -458,21 +535,21 @@
             margin-bottom: 15px;
             font-weight: bold;
             color: var(--arena-patagonica);
-            font-size: 1rem;
+            font-size: 1.05rem;
         }
 
         .builder-options-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-            margin-bottom: 25px;
+            gap: 18px;
+            margin-bottom: 30px;
         }
 
         .option-square {
             background: rgba(255, 255, 255, 0.08);
             border: 2px solid rgba(217, 196, 160, 0.3);
-            border-radius: 10px;
-            padding: 18px;
+            border-radius: 12px;
+            padding: 20px;
             text-align: center;
             cursor: pointer;
             transition: all 0.2s;
@@ -491,12 +568,12 @@
         }
 
         .option-square h4 {
-            font-size: 1rem;
+            font-size: 1.15rem;
             margin-bottom: 5px;
         }
 
         .option-square p {
-            font-size: 0.85rem;
+            font-size: 0.88rem;
             opacity: 0.9;
         }
 
@@ -505,10 +582,10 @@
             align-items: center;
             justify-content: center;
             gap: 15px;
-            margin-bottom: 30px;
+            margin-bottom: 35px;
             background: rgba(255,255,255,0.05);
-            padding: 15px;
-            border-radius: 10px;
+            padding: 18px;
+            border-radius: 12px;
         }
 
         .m2-input-group label {
@@ -516,18 +593,18 @@
         }
 
         .m2-input-group input {
-            width: 90px;
-            padding: 8px 12px;
-            border-radius: 6px;
+            width: 100px;
+            padding: 10px 12px;
+            border-radius: 8px;
             border: 1px solid var(--pino-miel);
             background: var(--crema-mdera);
-            font-size: 1rem;
+            font-size: 1.1rem;
             font-weight: bold;
             text-align: center;
         }
 
         .base-subheading {
-            border-top: 1px solid rgba(255,255,255,0.1);
+            border-top: 1px solid rgba(255,255,255,0.12);
             padding-top: 25px;
             margin-top: 25px;
             font-size: 1.1rem;
@@ -543,12 +620,13 @@
             color: white;
             text-align: center;
             padding: 18px;
-            border-radius: 10px;
+            border-radius: 12px;
             font-weight: bold;
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             text-decoration: none;
-            margin-top: 30px;
+            margin-top: 35px;
             transition: transform 0.2s, background 0.2s;
+            box-shadow: 0 4px 14px rgba(37, 211, 102, 0.3);
         }
 
         .btn-cotizacion-wsp:hover {
@@ -557,16 +635,16 @@
         }
 
         /* ==========================================================================
-           CONTACTO (CONSERVADO IDÉNTICO)
+           CONTACTO
            ========================================================================== */
         .contacto {
             background-color: var(--roble-oscuro);
             color: var(--crema-mdera);
-            padding: 100px 20px;
+            padding: 100px 8%;
             border-top: 1px solid rgba(200, 131, 58, 0.3);
         }
 
-        .contacto h2 { color: var(--crema-mdera); text-align: left; }
+        .contacto h2 { color: var(--crema-mdera); text-align: left; font-size: 2.6rem; }
         .contacto .subtitle { color: var(--pino-miel); text-align: left; margin-bottom: 35px; }
 
         .contacto-grid {
@@ -599,7 +677,7 @@
         .contacto-item.wsp-destacado:hover { background: rgba(37, 211, 102, 0.15); border-color: #25D366; }
 
         .contacto-icono { font-size: 1.6rem; }
-        .contacto-texto h4 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; color: var(--arena-patagonica); margin-bottom: 2px; font-weight: 500; }
+        .contacto-texto h4 { font-size: 0.95rem; text-transform: uppercase; letter-spacing: 1px; color: var(--arena-patagonica); margin-bottom: 2px; }
         .contacto-item.wsp-destacado .contacto-texto h4 { color: #25D366; }
         .contacto-texto p { font-size: 1.05rem; font-weight: 600; }
 
@@ -642,6 +720,18 @@
             100% { transform: translateY(0px); }
         }
 
+        /* ==========================================================================
+           FOOTER INSTITUCIONAL (ESTILO INDEX)
+           ========================================================================== */
+        footer {
+            background-color: #241409;
+            color: var(--arena-patagonica);
+            text-align: center;
+            padding: 25px 20px;
+            font-size: 0.85rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
         /* Lightbox */
         .lightbox-modal {
             display: none;
@@ -668,6 +758,7 @@
                 grid-template-columns: 1fr;
             }
             .contacto-grid { flex-direction: column; }
+            .hero-section h1 { font-size: 2.2rem; }
         }
     </style>
 </head>
@@ -680,7 +771,7 @@
             <div class="dropdown">
                 <span class="dropdown-btn">Modelos ▾</span>
                 <div class="dropdown-content">
-                    <a href="#estandars">Estandars</a>
+                    <a href="#estandars">Estándars</a>
                     <a href="#especificaciones">Especificaciones</a>
                     <a href="#personalizados">Personalizados</a>
                 </div>
@@ -691,6 +782,12 @@
     </nav>
 
     <div class="main-wrapper">
+
+        <!-- HERO BANNER DE ENTRADA -->
+        <section class="hero-section">
+            <h1>Cabañas Woodframe</h1>
+            <p>Estructuras de madera de alta eficiencia térmica y resistencia para el clima patagónico.</p>
+        </section>
 
         <!-- SECCIÓN ESTÁNDARS ($450.000 / m2) -->
         <section id="estandars" class="modelos-section">
@@ -747,7 +844,7 @@
                     <div class="panel-grid">
                         <div class="panel-info">
                             <h3 id="panel-titulo">Modelo 28 m²</h3>
-                            <p id="panel-precio" style="font-weight: bold; color: var(--cedro-calido); font-size: 1.3rem; margin-bottom: 10px;">$12.600.000</p>
+                            <p id="panel-precio" style="font-weight: bold; color: var(--cedro-calido); font-size: 1.3rem; margin-bottom: 10px; font-family: 'Playfair Display', serif;"></p>
                             <p style="font-size: 0.95rem; line-height: 1.6;">Diseño optimizado bajo el sistema Woodframe. Estructura súper resistente ideal para la Patagonia.</p>
                         </div>
                         <div class="panel-galeria-dinamica" id="panel-galeria">
@@ -860,7 +957,7 @@
         <!-- CALCULADORA INTERACTIVA "ARMÁ TU PERSONALIZADO" -->
         <section id="arma-tu-personalizado" class="builder-section">
             <h2>Armá tu Personalizado</h2>
-            <p style="text-align: center; color: var(--arena-patagonica); margin-top: 5px;">Configurá las opciones extra y cotizá tu cabaña al instante</p>
+            <p class="subtitle" style="text-align: center; color: var(--arena-patagonica); margin-top: 6px;">Configurá las opciones extra y cotizá tu cabaña al instante</p>
 
             <div class="builder-container">
                 <div class="price-display-box">
@@ -918,7 +1015,7 @@
             </div>
         </section>
 
-        <!-- SECCIÓN CONTACTO (ORIGINAL) -->
+        <!-- SECCIÓN CONTACTO -->
         <section id="contacto" class="contacto">
             <div class="contacto-grid">
                 <div class="contacto-info">
@@ -973,13 +1070,17 @@
 
     </div>
 
+    <!-- FOOTER INSTITUCIONAL -->
+    <footer>
+        <p>© Maderera La Herradura S.R.L. — San Carlos de Bariloche, Patagonia Argentina.</p>
+    </footer>
+
     <!-- LIGHTBOX -->
     <div id="lightbox" class="lightbox-modal" onclick="this.style.display='none'">
         <img class="lightbox-content" id="lightbox-img">
     </div>
 
     <script>
-        // DATOS MODELOS ESTÁNDARS
         const BASE_M2 = 450000;
 
         const galeriasData = {
@@ -1012,7 +1113,6 @@
             panel.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
 
-        // DATOS Y DESPLEGABLE DE PERSONALIZADOS REALIZADOS
         const customData = {
             'custom-20': {
                 titulo: "Cabaña 4x5 (20 m²)",
@@ -1062,7 +1162,6 @@
             document.getElementById('lightbox').style.display = 'flex';
         }
 
-        // LÓGICA DE CALCULADORA INTELIGENTE
         let selectedBaseCost = 0;
         let selectedBaseName = "Sin Base";
 
@@ -1092,13 +1191,11 @@
             let opcionesM2Nombres = [];
             let opcionesFijasNombres = [];
 
-            // Adicionales que suman al m2
             document.querySelectorAll('.opt-m2.selected').forEach(el => {
                 extraM2 += parseInt(el.getAttribute('data-cost-m2'));
                 opcionesM2Nombres.push(el.querySelector('h4').innerText);
             });
 
-            // Adicionales fijos por proyecto
             document.querySelectorAll('.opt-fijo.selected').forEach(el => {
                 extraFijoSum += parseInt(el.getAttribute('data-cost-fijo'));
                 opcionesFijasNombres.push(el.querySelector('h4').innerText);
@@ -1106,12 +1203,10 @@
 
             const m2 = parseInt(document.getElementById('input-m2').value) || 0;
             
-            // Subtotales
             const precioM2Estructura = BASE_M2 + extraM2;
             const subtotalCabana = (precioM2Estructura * m2) + extraFijoSum;
             const subtotalBase = selectedBaseCost * m2;
             
-            // Total Sumado
             const totalFinal = subtotalCabana + subtotalBase;
 
             document.getElementById('display-precio-m2').innerText = `$${precioM2Estructura.toLocaleString('es-AR')} / m²`;
@@ -1119,7 +1214,6 @@
             let textoTotal = `Total Cabaña (${m2} m²): $${subtotalCabana.toLocaleString('es-AR')}`;
             document.getElementById('display-total-final').innerText = textoTotal;
 
-            // Actualización dinámica de la línea de Base en pantalla
             const displayBaseEl = document.getElementById('display-total-base');
             if (selectedBaseCost > 0) {
                 displayBaseEl.innerText = `+ Total ${selectedBaseName}: $${subtotalBase.toLocaleString('es-AR')} ($${selectedBaseCost.toLocaleString('es-AR')}/m²)`;
@@ -1128,7 +1222,6 @@
                 displayBaseEl.style.display = 'none';
             }
 
-            // Armado del mensaje de WhatsApp según si eligió base o no
             let desgloseFinalWsp = "";
             if (selectedBaseCost > 0) {
                 desgloseFinalWsp = `Cabaña: $${subtotalCabana.toLocaleString('es-AR')}\n` +
@@ -1149,7 +1242,6 @@
             document.getElementById('btn-wsp-cotizacion').href = `https://wa.me/542944898755?text=${encodeURIComponent(mensaje)}`;
         }
 
-        // Inicializar Cálculo
         calcularTotal();
     </script>
 </body>
