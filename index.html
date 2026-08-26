@@ -361,18 +361,36 @@
         });
 
         // Función encargada de cargar las fotos y hacer la transición suave
-        function crearSlider(contenedorId, listaImagenes) {
-            const contenedor = document.getElementById(contenedorId);
-            if (!listaImagenes || listaImagenes.length === 0) return;
+        // Función encargada de cargar las fotos, elegir un inicio aleatorio y rotar
+function crearSlider(contenedorId, listaImagenes) {
+    const contenedor = document.getElementById(contenedorId);
+    if (!listaImagenes || listaImagenes.length === 0) return;
 
-            listaImagenes.forEach((ruta, index) => {
-                const divSlide = document.createElement('div');
-                divSlide.classList.add('bg-slide');
-                if (index === 0) divSlide.classList.add('activa');
-                divSlide.style.backgroundImage = `url('${ruta}')`;
-                contenedor.appendChild(divSlide);
-            });
+    // 1. Selecciona un número al azar para el inicio
+    let indiceActual = Math.floor(Math.random() * listaImagenes.length);
 
+    listaImagenes.forEach((ruta, index) => {
+        const divSlide = document.createElement('div');
+        divSlide.classList.add('bg-slide');
+        
+        // 2. Activa únicamente la foto seleccionada al azar
+        if (index === indiceActual) divSlide.classList.add('activa');
+        
+        divSlide.style.backgroundImage = `url('${ruta}')`;
+        contenedor.appendChild(divSlide);
+    });
+
+    if (listaImagenes.length <= 1) return;
+
+    const slides = contenedor.querySelectorAll('.bg-slide');
+
+    // 3. Continúa la rotación desde la foto elegida al azar
+    setInterval(() => {
+        slides[indiceActual].classList.remove('activa');
+        indiceActual = (indiceActual + 1) % slides.length;
+        slides[indiceActual].classList.add('activa');
+    }, 4500);
+}
             if (listaImagenes.length <= 1) return;
 
             let indiceActual = 0;
