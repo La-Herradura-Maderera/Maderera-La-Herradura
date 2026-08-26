@@ -2,17 +2,388 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Maderera La Herradura - Inicio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maderera La Herradura</title>
+    
+    <!-- IMPORTACIÓN DE PLAYFAIR DISPLAY -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+
     <style>
-        body { font-family: sans-serif; display: flex; height: 100vh; margin: 0; }
-        .opcion { flex: 1; display: flex; justify-content: center; align-items: center; text-decoration: none; color: white; font-size: 2rem; font-weight: bold; transition: 0.3s; }
-        .cabanas { background-color: #3B2210; }
-        .maderas { background-color: #C8833A; }
-        .opcion:hover { flex: 1.2; }
+        /* ==========================================
+           PALETA DE COLORES OFICIAL DE LA MARCA
+        ========================================== */
+        :root {
+            --roble-oscuro: #3B2210;
+            --pino-miel: #C8833A;
+            --cedro-calido: #A05C2C;
+            --arena-patagonica: #D9C4A0;
+            --crema-madera: #F2EAD8;
+            --carbon: #1C1C1B;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        body, html {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: var(--carbon);
+        }
+
+        /* ==========================================
+           1. PANTALLA DE BIENVENIDA (SPLASH LOGO)
+        ========================================== */
+        #splash {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: var(--roble-oscuro);
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 1s ease, visibility 1s ease;
+            padding: 20px;
+        }
+
+        #splash img {
+            max-width: 260px;
+            width: 70%;
+            height: auto;
+            opacity: 0;
+            transform: scale(0.9);
+            animation: logoEntrada 1.2s forwards ease-out;
+        }
+
+        /* RESGUARDO: Texto con Playfair Display si la foto falla */
+        .logo-fallback {
+            display: none;
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--crema-madera);
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            text-align: center;
+            opacity: 0;
+            transform: scale(0.9);
+            animation: logoEntrada 1.2s forwards ease-out;
+        }
+
+        @keyframes logoEntrada {
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* ==========================================
+           2. CONTENEDOR PRINCIPAL Y PANTALLA DIVIDIDA
+        ========================================== */
+        .contenedor-principal {
+            display: flex;
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+        }
+
+        .opcion {
+            flex: 1;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            overflow: hidden;
+            transition: flex 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .opcion:hover {
+            flex: 1.25;
+        }
+
+        /* ==========================================
+           3. ROTACIÓN Y SLIDER DE FOTOS (CROSSFADE)
+        ========================================== */
+        .slider-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .bg-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out, transform 0.8s ease;
+            transform: scale(1);
+        }
+
+        .bg-slide.activa {
+            opacity: 1;
+        }
+
+        .opcion:hover .bg-slide.activa {
+            transform: scale(1.06);
+        }
+
+        /* Capa oscura de contraste sobre la foto */
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(28,28,27,0.45) 0%, rgba(28,28,27,0.75) 100%);
+            z-index: 2;
+            transition: background 0.4s ease;
+        }
+
+        .opcion:hover .overlay {
+            background: linear-gradient(180deg, rgba(28,28,27,0.3) 0%, rgba(28,28,27,0.65) 100%);
+        }
+
+        /* ==========================================
+           4. CONTENIDOS Y TEXTOS
+        ========================================== */
+        .contenido {
+            position: relative;
+            z-index: 3;
+            text-align: center;
+            padding: 30px;
+            color: var(--crema-madera);
+            max-width: 480px;
+        }
+
+        .titulo {
+            font-size: 2.2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+            color: var(--crema-madera);
+        }
+
+        .subtitulo {
+            font-size: 1rem;
+            color: var(--arena-patagonica);
+            margin-bottom: 25px;
+            line-height: 1.4;
+            opacity: 0.9;
+            transition: transform 0.3s ease;
+        }
+
+        .boton {
+            display: inline-block;
+            padding: 12px 28px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--carbon);
+            background-color: var(--pino-miel);
+            border: 2px solid var(--pino-miel);
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+
+        .opcion:hover .boton {
+            background-color: var(--crema-madera);
+            border-color: var(--crema-madera);
+            color: var(--roble-oscuro);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+        }
+
+        /* Línea separadora vertical sutil */
+        .opcion-cabanas {
+            border-right: 1px solid rgba(217, 196, 160, 0.2);
+        }
+
+        /* Pie de página con ubicación */
+        .footer-ubicacion {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            color: var(--arena-patagonica);
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            background: rgba(59, 34, 16, 0.6);
+            padding: 6px 16px;
+            border-radius: 20px;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(200, 131, 58, 0.3);
+            pointer-events: none;
+        }
+
+        /* ==========================================
+           5. ADAPTACIÓN PARA CELULARES (RESPONSIVE)
+        ========================================== */
+        @media (max-width: 768px) {
+            .contenedor-principal {
+                flex-direction: column;
+            }
+
+            .opcion-cabanas {
+                border-right: none;
+                border-bottom: 1px solid rgba(217, 196, 160, 0.2);
+            }
+
+            .opcion:hover {
+                flex: 1;
+            }
+
+            .titulo {
+                font-size: 1.6rem;
+            }
+
+            .subtitulo {
+                font-size: 0.9rem;
+                margin-bottom: 18px;
+            }
+
+            .boton {
+                padding: 10px 22px;
+                font-size: 0.85rem;
+            }
+
+            .logo-fallback {
+                font-size: 2.2rem;
+            }
+
+            .footer-ubicacion {
+                bottom: 10px;
+                font-size: 0.7rem;
+            }
+        }
     </style>
 </head>
 <body>
-    <a href="Cabañas/index.html" class="opcion cabanas">Cabañas Woodframe</a>
-    <a href="maderas/index.html" class="opcion maderas">Venta de Maderas</a>
+
+    <!-- Pantalla de bienvenida / Splash Logo -->
+    <div id="splash">
+        <!-- Si la imagen falla, ejecuta onerror y muestra el texto alternativo -->
+        <img id="logo-img" src="images/logo.png" alt="Maderera La Herradura Logo" onerror="mostrarFallbackLogo()">
+        <span id="logo-text" class="logo-fallback">La Herradura</span>
+    </div>
+
+    <!-- Sección de Elección -->
+    <div class="contenedor-principal">
+
+        <!-- Opción 1: Cabañas -->
+        <a href="Cabañas/index.html" class="opcion opcion-cabanas">
+            <div class="slider-bg" id="slider-cabanas"></div>
+            <div class="overlay"></div>
+            <div class="contenido">
+                <h2 class="titulo">Cabañas Woodframe</h2>
+                <p class="subtitulo">Estructuras eficientes, diseño sustentable y materiales de primera calidad.</p>
+                <span class="boton">Ver Proyectos</span>
+            </div>
+        </a>
+
+        <!-- Opción 2: Maderas -->
+        <a href="maderas/index.html" class="opcion opcion-maderas">
+            <div class="slider-bg" id="slider-maderas"></div>
+            <div class="overlay"></div>
+            <div class="contenido">
+                <h2 class="titulo">Venta de Maderas</h2>
+                <p class="subtitulo">Tirantes, insumos, protecciones y soluciones para todos tus proyectos.</p>
+                <span class="boton">Ver Catálogo</span>
+            </div>
+        </a>
+
+        <!-- Leyenda local inferior -->
+        <div class="footer-ubicacion">San Carlos de Bariloche • Patagonia</div>
+    </div>
+
+    <!-- ==========================================
+       6. CONFIGURACIÓN DE IMÁGENES Y LÓGICA (JS)
+    ========================================== -->
+    <script>
+        /* 
+           AGREGA TUS FOTOS AQUÍ:
+           Escribe las rutas de tus imágenes entre las comillas.
+        */
+        const fotosCabanas = [
+            "images/cabana1.png",
+            "images/cabana2.png",
+            "images/cabana3.png"
+        ];
+
+        const fotosMaderas = [
+            "images/madera1.png",
+            "images/madera2.png",
+            "images/madera3.png"
+        ];
+
+        // Función de resguardo si la foto del logo no carga o no existe
+        function mostrarFallbackLogo() {
+            const img = document.getElementById('logo-img');
+            const txt = document.getElementById('logo-text');
+            if (img) img.style.display = 'none';
+            if (txt) txt.style.display = 'inline-block';
+        }
+
+        // Ocultar pantalla de bienvenida (Splash) a los 2 segundos
+        window.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                const splash = document.getElementById('splash');
+                splash.style.opacity = '0';
+                splash.style.visibility = 'hidden';
+            }, 2000);
+
+            // Inicializar sliders de imágenes
+            crearSlider('slider-cabanas', fotosCabanas);
+            crearSlider('slider-maderas', fotosMaderas);
+        });
+
+        // Función encargada de cargar las fotos y hacer la transición suave
+        function crearSlider(contenedorId, listaImagenes) {
+            const contenedor = document.getElementById(contenedorId);
+            if (!listaImagenes || listaImagenes.length === 0) return;
+
+            listaImagenes.forEach((ruta, index) => {
+                const divSlide = document.createElement('div');
+                divSlide.classList.add('bg-slide');
+                if (index === 0) divSlide.classList.add('activa');
+                divSlide.style.backgroundImage = `url('${ruta}')`;
+                contenedor.appendChild(divSlide);
+            });
+
+            if (listaImagenes.length <= 1) return;
+
+            let indiceActual = 0;
+            const slides = contenedor.querySelectorAll('.bg-slide');
+
+            // Cambio automático de foto cada 4.5 segundos
+            setInterval(() => {
+                slides[indiceActual].classList.remove('activa');
+                indiceActual = (indiceActual + 1) % slides.length;
+                slides[indiceActual].classList.add('activa');
+            }, 4500);
+        }
+    </script>
 </body>
 </html>
