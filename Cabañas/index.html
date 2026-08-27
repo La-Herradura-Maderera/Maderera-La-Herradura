@@ -4,20 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Maderera La Herradura - Cabañas Woodframe</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+    <!-- IMPORTACIÓN DE FUENTES INSTITUCIONALES -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
 
     <style>
-        /* ==========================================================================
-           VARIABLES DE PALETA OFICIAL
-           ========================================================================== */
+        /* ==========================================
+           PALETA DE COLORES OFICIAL DE LA MARCA
+        ========================================== */
         :root {
-            --roble-oscuro: #3B2210;       
-            --pino-miel: #C8833A;          
-            --cedro-calido: #A05C2C;       
-            --arena-patagonica: #D9C4A0;   
-            --crema-mdera: #F2EAD8;        
+            --roble-oscuro: #3B2210;
+            --pino-miel: #C8833A;
+            --cedro-calido: #A05C2C;
+            --arena-patagonica: #D9C4A0;
+            --crema-madera: #F2EAD8;
             --carbon: #1C1C1B;
-            --blanco-puro: #FFFFFF;
+            --blanco-suave: #FAF6EE;
+            --sombra-calida: rgba(59, 34, 16, 0.18);
         }
 
         * {
@@ -28,14 +33,15 @@
         }
 
         body {
-            font-family: 'Montserrat', sans-serif;
-            background-color: var(--crema-mdera);
+            font-family: 'Segoe UI', 'Montserrat', system-ui, -apple-system, sans-serif;
+            background-color: var(--blanco-suave);
             color: var(--carbon);
             overflow-x: hidden;
+            line-height: 1.5;
         }
 
-        /* JERARQUÍA TIPOGRÁFICA UNIFICADA CON INDEX */
-        h1, h2, h3, h4, .panel-precio-big, .logo, .precio-badge {
+        /* TIPOGRAFÍA INSTITUCIONAL */
+        h1, h2, h3, h4, .logo, .precio-badge, .panel-precio-big {
             font-family: 'Playfair Display', serif;
             font-weight: 700;
         }
@@ -44,52 +50,59 @@
             color: var(--roble-oscuro);
         }
 
-        /* SUBTÍTULOS CON ESTILO INDEX */
         .subtitle {
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Segoe UI', 'Montserrat', sans-serif;
             color: var(--cedro-calido);
             font-size: 0.95rem;
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
+            letter-spacing: 2px;
         }
 
-        /* ==========================================================================
-           NAVBAR FIXA E INMÓVIL
-           ========================================================================== */
+        /* ==========================================
+           1. NAVBAR FIXA E INMÓVIL ELEGANTE
+        ========================================== */
         .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 8%;
+            padding: 16px 8%;
             background-color: var(--roble-oscuro);
             position: fixed;
             width: 100%;
             top: 0;
             left: 0;
             z-index: 1000;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            border-bottom: 1px solid rgba(200, 131, 58, 0.3);
         }
 
         .logo {
-            color: var(--crema-mdera);
-            font-size: 1.3rem;
-            letter-spacing: 1px;
+            color: var(--crema-madera);
+            font-size: 1.35rem;
+            letter-spacing: 1.5px;
             text-decoration: none;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+
+        .logo:hover {
+            color: var(--arena-patagonica);
         }
 
         .nav-links {
             display: flex;
             align-items: center;
-            gap: 25px;
+            gap: 28px;
         }
 
         .nav-links a {
-            color: var(--crema-mdera);
+            color: var(--crema-madera);
             text-decoration: none;
             font-size: 0.9rem;
             font-weight: 500;
-            transition: color 0.3s;
+            letter-spacing: 0.5px;
+            transition: color 0.3s ease;
         }
 
         .nav-links a:hover {
@@ -102,12 +115,13 @@
         }
 
         .dropdown-btn {
-            color: var(--crema-mdera);
+            color: var(--crema-madera);
             text-decoration: none;
             font-size: 0.9rem;
             font-weight: 600;
             cursor: pointer;
-            padding: 5px 0;
+            padding: 6px 0;
+            letter-spacing: 0.5px;
         }
 
         .dropdown-content {
@@ -116,21 +130,21 @@
             top: 100%;
             left: 0;
             background-color: var(--roble-oscuro);
-            min-width: 170px;
-            box-shadow: 0px 8px 16px rgba(0,0,0,0.3);
-            border-radius: 6px;
+            min-width: 180px;
+            box-shadow: 0px 10px 20px rgba(0,0,0,0.35);
+            border-radius: 8px;
             overflow: hidden;
             z-index: 1001;
             border: 1px solid var(--cedro-calido);
         }
 
         .dropdown-content a {
-            color: var(--crema-mdera);
-            padding: 12px 16px;
+            color: var(--crema-madera);
+            padding: 12px 18px;
             text-decoration: none;
             display: block;
-            margin-left: 0;
             font-size: 0.85rem;
+            transition: background 0.3s;
         }
 
         .dropdown-content a:hover {
@@ -146,117 +160,271 @@
             margin-top: 65px;
         }
 
-        /* ==========================================================================
-           HERO BANNER DE SECCIÓN (IGUALACIÓN AL INDEX)
-           ========================================================================== */
+        /* ==========================================
+           2. HERO BANNER ROTATIVO (CROSSFADE SLIDER)
+        ========================================== */
         .hero-section {
-            background: linear-gradient(rgba(59, 34, 16, 0.85), rgba(59, 34, 16, 0.92)), url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
-            padding: 90px 8% 70px;
+            position: relative;
+            height: 380px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             text-align: center;
-            color: var(--crema-mdera);
+            color: var(--crema-madera);
+            overflow: hidden;
             border-bottom: 3px solid var(--pino-miel);
         }
 
-        .hero-section h1 {
-            color: var(--crema-mdera);
-            font-size: 3rem;
-            margin-bottom: 12px;
+        .hero-slider-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
         }
 
-        .hero-section p {
-            max-width: 700px;
+        .hero-bg-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1.8s ease-in-out, transform 8s ease;
+            transform: scale(1);
+        }
+
+        .hero-bg-slide.activa {
+            opacity: 1;
+            transform: scale(1.05);
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(36,20,9,0.78) 0%, rgba(28,28,27,0.88) 100%);
+            z-index: 2;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            max-width: 800px;
+            padding: 20px;
+        }
+
+        .hero-content h1 {
+            color: var(--crema-madera);
+            font-size: 3.2rem;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+            text-shadow: 0 3px 10px rgba(0,0,0,0.7);
+        }
+
+        .hero-content p {
+            max-width: 680px;
             margin: 0 auto;
-            font-size: 1.1rem;
+            font-size: 1.12rem;
             color: var(--arena-patagonica);
             line-height: 1.6;
+            text-shadow: 0 2px 6px rgba(0,0,0,0.6);
         }
 
-        /* ==========================================================================
-           MODELOS ESTÁNDARS (Efecto 3D y Hover)
-           ========================================================================== */
-        .modelos-section {
-            padding: 70px 0 80px 0;
-            background-color: var(--blanco-puro);
+        /* ==========================================
+           3. ESTRUCTURA DE CARRUSEL / FILA ÚNICA
+        ========================================== */
+        .modelos-section, .personalizados-section {
+            padding: 80px 0;
+            background-color: var(--blanco-suave);
+            position: relative;
+        }
+
+        .personalizados-section {
+            background-color: var(--crema-madera);
+            border-top: 1px solid rgba(160, 92, 44, 0.2);
+            border-bottom: 1px solid rgba(160, 92, 44, 0.2);
         }
 
         .section-header {
             text-align: center;
             padding: 0 20px;
-            margin-bottom: 50px;
+            margin-bottom: 30px;
         }
 
         .section-header h2 {
             font-size: 2.6rem;
+            letter-spacing: 1px;
             margin-bottom: 8px;
         }
 
-        .modelos-grid-container {
-            max-width: 1250px;
+        .carousel-wrapper {
+            position: relative;
+            max-width: 1350px;
             margin: 0 auto;
-            padding: 30px 20px 0 20px;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 25px;
+            padding: 0 50px;
         }
 
-        .modelo-card {
-            background: var(--crema-mdera);
-            border-radius: 18px;
-            padding: 22px;
+        .carousel-track {
+            display: flex;
+            gap: 30px;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            padding: 55px 20px 35px 20px; /* Espacio superior amplio para que el PNG sobresalga */
+            scrollbar-width: thin;
+            scrollbar-color: var(--pino-miel) transparent;
+        }
+
+        .carousel-track::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .carousel-track::-webkit-scrollbar-thumb {
+            background-color: var(--pino-miel);
+            border-radius: 10px;
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: calc(50% + 10px);
+            transform: translateY(-50%);
+            width: 48px;
+            height: 48px;
+            background-color: var(--roble-oscuro);
+            color: var(--crema-madera);
+            border: 2px solid var(--pino-miel);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 40;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+        }
+
+        .carousel-btn:hover {
+            background-color: var(--pino-miel);
+            color: white;
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .carousel-btn.prev { left: 5px; }
+        .carousel-btn.next { right: 5px; }
+
+        /* ==========================================
+           4. TARJETAS CON PNG 3D Y EFECTO HOVER ENFOCADO
+        ========================================== */
+
+        .modelo-card, .custom-card {
+            flex: 0 0 280px; /* Ancho fijo para mantener una fila única fluida */
+            background: #FFFFFF;
+            border-radius: 20px;
+            padding: 22px 20px 24px;
             border: 2px solid var(--arena-patagonica);
             text-align: center;
             cursor: pointer;
             position: relative;
-            overflow: visible !important;
-            transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.3s ease, border-color 0.3s;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            overflow: visible !important; /* Esencial para que el PNG sobresalga */
+            box-shadow: 0 8px 20px var(--sombra-calida);
+            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), 
+                        opacity 0.4s ease, 
+                        filter 0.4s ease, 
+                        border-color 0.3s ease, 
+                        box-shadow 0.4s ease;
         }
 
-        .modelo-card:hover {
-            transform: translateY(-6px) scale(1.03);
+        .custom-card {
+            background: var(--blanco-suave);
+        }
+
+        /* --- EFECTO HOVER ENFOCADO: LA TARJETA SELECCIONADA CRECE, LAS DEMÁS SE ACHICAN --- */
+        .carousel-track:hover .modelo-card:not(:hover),
+        .carousel-track:hover .custom-card:not(:hover) {
+            transform: scale(0.93);
+            opacity: 0.6;
+            filter: blur(0.5px);
+        }
+
+        .modelo-card:hover, .custom-card:hover {
+            transform: translateY(-12px) scale(1.08) !important;
+            opacity: 1 !important;
+            filter: none !important;
+            z-index: 30;
             border-color: var(--pino-miel);
-            box-shadow: 0 14px 28px rgba(59, 34, 16, 0.18);
+            box-shadow: 0 20px 40px rgba(59, 34, 16, 0.28);
         }
 
-        .modelo-png-wrapper {
-            height: 180px;
+        /* --- CONTENEDOR DE PNG 3D SOBRESALIENTE --- */
+        .modelo-png-wrapper, .custom-card-img {
+            height: 160px;
             width: 100%;
             display: flex;
-            align-items: center;
+            align-items: flex-end;
             justify-content: center;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             position: relative;
             overflow: visible !important;
         }
 
-        .modelo-png-wrapper img {
-            max-height: 110%;
-            max-width: 115%;
+        /* La imagen PNG flota hacia arriba fuera de la tarjeta */
+        .modelo-png-wrapper img, .custom-card-img img {
+            max-width: 125%;
+            height: auto;
+            max-height: 200px;
             object-fit: contain;
             position: relative;
-            z-index: 5;
-            filter: drop-shadow(0 10px 12px rgba(0,0,0,0.2));
-            transform: translateY(-10px) scale(1.05);
-            transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+            z-index: 10;
+            transform: translateY(-38px) scale(1.12);
+            filter: drop-shadow(0 14px 14px rgba(0,0,0,0.32));
+            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), filter 0.4s ease;
         }
 
-        .modelo-card:hover .modelo-png-wrapper img {
-            transform: translateY(-22px) scale(1.18);
+        /* Al hacer hover, el PNG sobresale aún más */
+        .modelo-card:hover .modelo-png-wrapper img,
+        .custom-card:hover .custom-card-img img {
+            transform: translateY(-50px) scale(1.25);
+            filter: drop-shadow(0 22px 20px rgba(0,0,0,0.42));
         }
 
-        .modelo-card h3 {
-            font-size: 1.8rem;
+        .modelo-card h3, .custom-card-body h3 {
+            font-size: 1.7rem;
             margin-bottom: 6px;
+            color: var(--roble-oscuro);
+        }
+
+        .custom-card-body h3 {
+            font-size: 1.35rem;
         }
 
         .precio-badge {
             background-color: var(--roble-oscuro);
-            color: var(--crema-mdera);
-            padding: 6px 14px;
+            color: var(--crema-madera);
+            padding: 6px 16px;
             border-radius: 20px;
             display: inline-block;
-            font-size: 1rem;
+            font-size: 1.05rem;
             margin-bottom: 14px;
+            letter-spacing: 0.5px;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+        }
+
+        .extra-badge {
+            display: inline-block;
+            background-color: var(--cedro-calido);
+            color: white;
+            font-size: 0.75rem;
+            padding: 4px 12px;
+            border-radius: 12px;
+            margin-bottom: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
             letter-spacing: 0.5px;
         }
 
@@ -265,28 +433,36 @@
             color: white;
             font-size: 0.85rem;
             font-weight: 600;
-            padding: 9px 16px;
-            border-radius: 6px;
+            padding: 10px 18px;
+            border-radius: 8px;
             display: block;
-            transition: background 0.3s;
+            transition: background 0.3s, transform 0.2s;
+            box-shadow: 0 4px 10px rgba(200, 131, 58, 0.3);
         }
 
-        .modelo-card:hover .btn-ver-mas {
+        .modelo-card:hover .btn-ver-mas, .custom-card:hover .btn-ver-mas {
             background-color: var(--cedro-calido);
         }
 
-        /* Panel Desplegable */
+        /* ==========================================
+           5. PANEL DESPLEGABLE DE INFORMACIÓN
+        ========================================== */
         .panel-detail {
             display: none;
-            grid-column: 1 / -1;
-            background: var(--crema-mdera);
+            max-width: 1250px;
+            margin: 25px auto 0;
+            background: var(--crema-madera);
             border: 2px solid var(--cedro-calido);
-            border-radius: 16px;
+            border-radius: 18px;
             padding: 35px;
-            margin-top: 10px;
             position: relative;
-            animation: fadeIn 0.3s ease-in-out;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            animation: fadeIn 0.4s ease-in-out;
+            box-shadow: 0 12px 30px rgba(59, 34, 16, 0.15);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .panel-grid {
@@ -313,21 +489,21 @@
         .galeria-item {
             height: 110px;
             background: #e2d7c3;
-            border-radius: 8px;
+            border-radius: 10px;
             overflow: hidden;
             cursor: pointer;
             border: 1px solid var(--arena-patagonica);
+            transition: transform 0.3s ease;
+        }
+
+        .galeria-item:hover {
+            transform: scale(1.05);
         }
 
         .galeria-item img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.3s;
-        }
-
-        .galeria-item img:hover {
-            transform: scale(1.08);
         }
 
         .panel-close-btn {
@@ -337,12 +513,21 @@
             cursor: pointer;
             font-weight: bold;
             color: var(--cedro-calido);
-            font-size: 1.2rem;
+            font-size: 1.1rem;
+            background: rgba(255,255,255,0.6);
+            padding: 4px 12px;
+            border-radius: 20px;
+            transition: all 0.2s;
         }
 
-        /* ==========================================================================
-           ESPECIFICACIONES DE CABAÑAS ESTÁNDARS
-           ========================================================================== */
+        .panel-close-btn:hover {
+            background: var(--cedro-calido);
+            color: white;
+        }
+
+        /* ==========================================
+           6. ESPECIFICACIONES DE CABAÑAS
+        ========================================== */
         .especificaciones-section {
             background-color: var(--arena-patagonica);
             padding: 80px 8%;
@@ -359,11 +544,11 @@
         }
 
         .espec-card {
-            background-color: var(--crema-mdera);
+            background-color: var(--blanco-suave);
             padding: 30px 25px;
-            border-radius: 14px;
-            border-left: 5px solid var(--pino-miel);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.06);
+            border-radius: 16px;
+            border-left: 6px solid var(--pino-miel);
+            box-shadow: 0 6px 18px rgba(0,0,0,0.06);
         }
 
         .espec-card h3 {
@@ -379,134 +564,46 @@
         }
 
         .espec-card ul li {
-            font-size: 0.92rem;
+            font-size: 0.93rem;
             margin-bottom: 10px;
             line-height: 1.5;
             position: relative;
-            padding-left: 18px;
+            padding-left: 20px;
         }
 
         .espec-card ul li::before {
             content: "•";
             color: var(--cedro-calido);
             font-weight: bold;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             position: absolute;
             left: 0;
             top: -2px;
         }
 
-        /* ==========================================================================
-           SECCIÓN PERSONALIZADOS (Efecto 3D y Hover)
-           ========================================================================== */
-        .personalizados-section {
-            padding: 80px 8%;
-            background-color: var(--blanco-puro);
-        }
-
-        .custom-projects-grid {
-            max-width: 1200px;
-            margin: 40px auto 0;
-            padding-top: 25px;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 35px;
-        }
-
-        .custom-card {
-            background: var(--crema-mdera);
-            border-radius: 16px;
-            overflow: visible !important;
-            border: 1px solid var(--arena-patagonica);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.06);
-            cursor: pointer;
-            position: relative;
-            transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.3s ease, border-color 0.3s;
-        }
-
-        .custom-card:hover {
-            transform: translateY(-6px) scale(1.03);
-            border-color: var(--pino-miel);
-            box-shadow: 0 14px 28px rgba(59, 34, 16, 0.18);
-        }
-
-        .custom-card-img {
-            height: 200px;
-            background-color: #d0c2aa;
-            border-top-left-radius: 16px;
-            border-top-right-radius: 16px;
-            position: relative;
-            overflow: visible !important;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .custom-card-img img {
-            width: 110%;
-            height: 110%;
-            object-fit: contain;
-            position: relative;
-            z-index: 5;
-            filter: drop-shadow(0 10px 12px rgba(0,0,0,0.2));
-            transform: translateY(-12px) scale(1.08);
-            transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
-        }
-
-        .custom-card:hover .custom-card-img img {
-            transform: translateY(-25px) scale(1.22);
-        }
-
-        .custom-card-body {
-            padding: 22px;
-            position: relative;
-            z-index: 6;
-            background: var(--crema-mdera);
-            border-bottom-left-radius: 16px;
-            border-bottom-right-radius: 16px;
-        }
-
-        .custom-card-body h3 {
-            font-size: 1.45rem;
-            margin-bottom: 8px;
-        }
-
-        .extra-badge {
-            display: inline-block;
-            background-color: var(--cedro-calido);
-            color: white;
-            font-size: 0.75rem;
-            padding: 4px 12px;
-            border-radius: 12px;
-            margin-bottom: 10px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        /* ==========================================================================
-           CALCULADORA: ARMA TU PERSONALIZADO
-           ========================================================================== */
+        /* ==========================================
+           7. CALCULADORA: ARMA TU PERSONALIZADO
+        ========================================== */
         .builder-section {
             background-color: var(--roble-oscuro);
-            color: var(--crema-mdera);
+            color: var(--crema-madera);
             padding: 90px 8%;
         }
 
         .builder-section h2 {
-            color: var(--crema-mdera);
+            color: var(--crema-madera);
             text-align: center;
-            font-size: 2.6rem;
+            font-size: 2.7rem;
         }
 
         .builder-container {
             max-width: 1000px;
             margin: 40px auto 0;
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(200, 131, 58, 0.3);
-            border-radius: 18px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(200, 131, 58, 0.35);
+            border-radius: 20px;
             padding: 40px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.35);
         }
 
         .price-display-box {
@@ -514,9 +611,9 @@
             color: white;
             text-align: center;
             padding: 28px;
-            border-radius: 14px;
+            border-radius: 16px;
             margin-bottom: 35px;
-            box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
         }
 
         .price-display-box h3 {
@@ -552,13 +649,13 @@
             padding: 20px;
             text-align: center;
             cursor: pointer;
-            transition: all 0.2s;
+            transition: all 0.25s ease;
             user-select: none;
         }
 
         .option-square:hover {
             border-color: var(--pino-miel);
-            background: rgba(200, 131, 58, 0.15);
+            background: rgba(200, 131, 58, 0.18);
         }
 
         .option-square.selected {
@@ -583,9 +680,9 @@
             justify-content: center;
             gap: 15px;
             margin-bottom: 35px;
-            background: rgba(255,255,255,0.05);
+            background: rgba(255,255,255,0.06);
             padding: 18px;
-            border-radius: 12px;
+            border-radius: 14px;
         }
 
         .m2-input-group label {
@@ -597,10 +694,11 @@
             padding: 10px 12px;
             border-radius: 8px;
             border: 1px solid var(--pino-miel);
-            background: var(--crema-mdera);
+            background: var(--crema-madera);
             font-size: 1.1rem;
             font-weight: bold;
             text-align: center;
+            color: var(--carbon);
         }
 
         .base-subheading {
@@ -626,7 +724,7 @@
             text-decoration: none;
             margin-top: 35px;
             transition: transform 0.2s, background 0.2s;
-            box-shadow: 0 4px 14px rgba(37, 211, 102, 0.3);
+            box-shadow: 0 6px 18px rgba(37, 211, 102, 0.35);
         }
 
         .btn-cotizacion-wsp:hover {
@@ -634,17 +732,17 @@
             background-color: #20ba5a;
         }
 
-        /* ==========================================================================
-           CONTACTO
-           ========================================================================== */
+        /* ==========================================
+           8. CONTACTO CON CASTOR
+        ========================================== */
         .contacto {
             background-color: var(--roble-oscuro);
-            color: var(--crema-mdera);
+            color: var(--crema-madera);
             padding: 100px 8%;
             border-top: 1px solid rgba(200, 131, 58, 0.3);
         }
 
-        .contacto h2 { color: var(--crema-mdera); text-align: left; font-size: 2.6rem; }
+        .contacto h2 { color: var(--crema-madera); text-align: left; font-size: 2.6rem; }
         .contacto .subtitle { color: var(--pino-miel); text-align: left; margin-bottom: 35px; }
 
         .contacto-grid {
@@ -663,18 +761,18 @@
             display: flex;
             align-items: center;
             gap: 20px;
-            background: rgba(255, 255, 255, 0.04);
+            background: rgba(255, 255, 255, 0.05);
             padding: 18px 24px;
             border-radius: 16px;
             border: 1px solid rgba(200, 131, 58, 0.2);
             text-decoration: none;
-            color: var(--crema-mdera);
+            color: var(--crema-madera);
             transition: transform 0.3s ease, background 0.3s, border-color 0.3s;
         }
 
-        .contacto-item.wsp-destacado { border: 1px solid #25D366; background: rgba(37, 211, 102, 0.06); }
-        .contacto-item:hover { transform: translateX(8px); background: rgba(200, 131, 58, 0.12); border-color: var(--pino-miel); }
-        .contacto-item.wsp-destacado:hover { background: rgba(37, 211, 102, 0.15); border-color: #25D366; }
+        .contacto-item.wsp-destacado { border: 1px solid #25D366; background: rgba(37, 211, 102, 0.08); }
+        .contacto-item:hover { transform: translateX(8px); background: rgba(200, 131, 58, 0.15); border-color: var(--pino-miel); }
+        .contacto-item.wsp-destacado:hover { background: rgba(37, 211, 102, 0.18); border-color: #25D366; }
 
         .contacto-icono { font-size: 1.6rem; }
         .contacto-texto h4 { font-size: 0.95rem; text-transform: uppercase; letter-spacing: 1px; color: var(--arena-patagonica); margin-bottom: 2px; }
@@ -693,7 +791,7 @@
             max-width: 340px;
             width: 100%;
             height: auto;
-            filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.4));
+            filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.45));
             animation: flotarCastor 4s ease-in-out infinite;
         }
 
@@ -720,9 +818,9 @@
             100% { transform: translateY(0px); }
         }
 
-        /* ==========================================================================
-           FOOTER INSTITUCIONAL (ESTILO INDEX)
-           ========================================================================== */
+        /* ==========================================
+           9. FOOTER INSTITUCIONAL Y RESPONSIVE
+        ========================================== */
         footer {
             background-color: #241409;
             color: var(--arena-patagonica);
@@ -732,7 +830,6 @@
             border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        /* Lightbox */
         .lightbox-modal {
             display: none;
             position: fixed;
@@ -741,7 +838,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.85);
+            background-color: rgba(0, 0, 0, 0.88);
             justify-content: center;
             align-items: center;
         }
@@ -749,16 +846,17 @@
         .lightbox-content {
             max-width: 90%;
             max-height: 90vh;
-            border-radius: 8px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
-        /* Responsive */
         @media (max-width: 950px) {
-            .modelos-grid-container, .especificaciones-grid, .custom-projects-grid, .builder-options-grid {
-                grid-template-columns: 1fr;
-            }
+            .carousel-wrapper { padding: 0 20px; }
+            .carousel-btn { display: none; } /* En pantallas táctiles se desplaza deslizando el dedo */
+            .especificaciones-grid, .builder-options-grid { grid-template-columns: 1fr; }
             .contacto-grid { flex-direction: column; }
-            .hero-section h1 { font-size: 2.2rem; }
+            .hero-content h1 { font-size: 2.2rem; }
+            .modelo-card, .custom-card { flex: 0 0 250px; }
         }
     </style>
 </head>
@@ -783,75 +881,89 @@
 
     <div class="main-wrapper">
 
-        <!-- HERO BANNER DE ENTRADA -->
+        <!-- HERO BANNER CON ROTACIÓN DE FOTOS DE FONDO -->
         <section class="hero-section">
-            <h1>Cabañas Woodframe</h1>
-            <p>Estructuras de madera de alta eficiencia térmica y resistencia para el clima patagónico.</p>
+            <div class="hero-slider-bg" id="hero-slider"></div>
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <h1>Cabañas Woodframe</h1>
+                <p>Estructuras de madera de alta eficiencia térmica y resistencia para el clima patagónico.</p>
+            </div>
         </section>
 
-        <!-- SECCIÓN ESTÁNDARS ($450.000 / m2) -->
+        <!-- SECCIÓN MODELOS ESTÁNDAR EN CARRUSEL HORIZONTAL -->
         <section id="estandars" class="modelos-section">
             <div class="section-header">
                 <h2>Modelos Estándar</h2>
                 <p class="subtitle">Estructuras prediseñadas a $450.000 x m²</p>
             </div>
 
-            <div class="modelos-grid-container">
+            <div class="carousel-wrapper">
+                <button class="carousel-btn prev" onclick="scrollCarousel('track-estandars', -320)">‹</button>
                 
-                <!-- 18 m2 -->
-                <div class="modelo-card" onclick="toggleDetail('18')">
-                    <div class="modelo-png-wrapper">
-                        <img src="../images/tu-foto-18.png" alt="Cabaña 18m2" onerror="this.src='https://via.placeholder.com/300x200?text=PNG+Caba%C3%B1a+18m2'">
-                    </div>
-                    <h3>18 m²</h3>
-                    <div class="precio-badge">$8.100.000</div>
-                    <span class="btn-ver-mas">Ver Planos y Fotos +</span>
-                </div>
-
-                <!-- 28 m2 -->
-                <div class="modelo-card" onclick="toggleDetail('28')">
-                    <div class="modelo-png-wrapper">
-                        <img src="../images/28mt1.png" alt="Cabaña 28m2" onerror="this.src='https://via.placeholder.com/300x200?text=PNG+Caba%C3%B1a+28m2'">
-                    </div>
-                    <h3>28 m²</h3>
-                    <div class="precio-badge">$12.600.000</div>
-                    <span class="btn-ver-mas">Ver Planos y Fotos +</span>
-                </div>
-
-                <!-- 36 m2 -->
-                <div class="modelo-card" onclick="toggleDetail('36')">
-                    <div class="modelo-png-wrapper">
-                        <img src="../images/tu-foto-36.png" alt="Cabaña 36m2" onerror="this.src='https://via.placeholder.com/300x200?text=PNG+Caba%C3%B1a+36m2'">
-                    </div>
-                    <h3>36 m²</h3>
-                    <div class="precio-badge">$16.200.000</div>
-                    <span class="btn-ver-mas">Ver Planos y Fotos +</span>
-                </div>
-
-                <!-- 48 m2 -->
-                <div class="modelo-card" onclick="toggleDetail('48')">
-                    <div class="modelo-png-wrapper">
-                        <img src="../images/tu-foto-48.png" alt="Cabaña 48m2" onerror="this.src='https://via.placeholder.com/300x200?text=PNG+Caba%C3%B1a+48m2'">
-                    </div>
-                    <h3>48 m²</h3>
-                    <div class="precio-badge">$21.600.000</div>
-                    <span class="btn-ver-mas">Ver Planos y Fotos +</span>
-                </div>
-
-                <!-- PANEL DESPLEGABLE ESTÁNDAR -->
-                <div id="panel-detail" class="panel-detail">
-                    <span class="panel-close-btn" onclick="closeDetail('panel-detail')">✕ Cerrar</span>
-                    <div class="panel-grid">
-                        <div class="panel-info">
-                            <h3 id="panel-titulo">Modelo 28 m²</h3>
-                            <p id="panel-precio" style="font-weight: bold; color: var(--cedro-calido); font-size: 1.3rem; margin-bottom: 10px; font-family: 'Playfair Display', serif;"></p>
-                            <p style="font-size: 0.95rem; line-height: 1.6;">Diseño optimizado bajo el sistema Woodframe. Estructura súper resistente ideal para la Patagonia.</p>
+                <div class="carousel-track" id="track-estandars">
+                    
+                    <!-- 18 m2 -->
+                    <div class="modelo-card" onclick="toggleDetail('18')">
+                        <div class="modelo-png-wrapper">
+                            <!-- RUTA DE LA IMAGEN CABAÑA 18M2 -->
+                            <img src="../images/tu-foto-18.png" alt="Cabaña 18m2" onerror="this.src='https://via.placeholder.com/300x200?text=PNG+Caba%C3%B1a+18m2'">
                         </div>
-                        <div class="panel-galeria-dinamica" id="panel-galeria">
-                        </div>
+                        <h3>18 m²</h3>
+                        <div class="precio-badge">$8.100.000</div>
+                        <span class="btn-ver-mas">Ver Planos y Fotos +</span>
                     </div>
+
+                    <!-- 28 m2 -->
+                    <div class="modelo-card" onclick="toggleDetail('28')">
+                        <div class="modelo-png-wrapper">
+                            <!-- RUTA DE LA IMAGEN CABAÑA 28M2 -->
+                            <img src="../images/28mt1.png" alt="Cabaña 28m2" onerror="this.src='https://via.placeholder.com/300x200?text=PNG+Caba%C3%B1a+28m2'">
+                        </div>
+                        <h3>28 m²</h3>
+                        <div class="precio-badge">$12.600.000</div>
+                        <span class="btn-ver-mas">Ver Planos y Fotos +</span>
+                    </div>
+
+                    <!-- 36 m2 -->
+                    <div class="modelo-card" onclick="toggleDetail('36')">
+                        <div class="modelo-png-wrapper">
+                            <!-- RUTA DE LA IMAGEN CABAÑA 36M2 -->
+                            <img src="../images/tu-foto-36.png" alt="Cabaña 36m2" onerror="this.src='https://via.placeholder.com/300x200?text=PNG+Caba%C3%B1a+36m2'">
+                        </div>
+                        <h3>36 m²</h3>
+                        <div class="precio-badge">$16.200.000</div>
+                        <span class="btn-ver-mas">Ver Planos y Fotos +</span>
+                    </div>
+
+                    <!-- 48 m2 -->
+                    <div class="modelo-card" onclick="toggleDetail('48')">
+                        <div class="modelo-png-wrapper">
+                            <!-- RUTA DE LA IMAGEN CABAÑA 48M2 -->
+                            <img src="../images/tu-foto-48.png" alt="Cabaña 48m2" onerror="this.src='https://via.placeholder.com/300x200?text=PNG+Caba%C3%B1a+48m2'">
+                        </div>
+                        <h3>48 m²</h3>
+                        <div class="precio-badge">$21.600.000</div>
+                        <span class="btn-ver-mas">Ver Planos y Fotos +</span>
+                    </div>
+
                 </div>
 
+                <button class="carousel-btn next" onclick="scrollCarousel('track-estandars', 320)">›</button>
+            </div>
+
+            <!-- PANEL DESPLEGABLE ESTÁNDAR -->
+            <div id="panel-detail" class="panel-detail">
+                <span class="panel-close-btn" onclick="closeDetail('panel-detail')">✕ Cerrar</span>
+                <div class="panel-grid">
+                    <div class="panel-info">
+                        <h3 id="panel-titulo">Modelo 28 m²</h3>
+                        <p id="panel-precio" style="font-weight: bold; color: var(--cedro-calido); font-size: 1.3rem; margin-bottom: 10px; font-family: 'Playfair Display', serif;"></p>
+                        <p style="font-size: 0.95rem; line-height: 1.6;">Diseño optimizado bajo el sistema Woodframe. Estructura súper resistente ideal para la Patagonia.</p>
+                    </div>
+                    <div class="panel-galeria-dinamica" id="panel-galeria">
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -894,63 +1006,73 @@
             </div>
         </section>
 
-        <!-- PERSONALIZADOS (OBRAS REALIZADAS CON PANELES DESPLEGABLES) -->
+        <!-- PERSONALIZADOS (OBRAS REALIZADAS EN CARRUSEL HORIZONTAL) -->
         <section id="personalizados" class="personalizados-section">
             <div class="section-header">
                 <h2>Proyectos Personalizados Realizados</h2>
                 <p class="subtitle">Seleccioná cada proyecto para ver fotos, planos y especificaciones</p>
             </div>
 
-            <div class="custom-projects-grid">
-                <!-- Cabaña 4x5 -->
-                <div class="custom-card" onclick="toggleCustomDetail('custom-20')">
-                    <div class="custom-card-img">
-                        <img src="../images/cabaña4x5.png" alt="Cabaña 20m2" onerror="this.src='https://via.placeholder.com/400x250?text=Caba%C3%B1a+4x5'">
-                    </div>
-                    <div class="custom-card-body">
-                        <span class="extra-badge">Estructura Estándar ($450.000/m²)</span>
-                        <h3>Cabaña 4x5 (20 m²)</h3>
-                        <p style="font-size: 0.85rem; line-height: 1.5; color: #555;">Toca para desplegar fotos y detalles del trabajo realizado.</p>
-                    </div>
-                </div>
+            <div class="carousel-wrapper">
+                <button class="carousel-btn prev" onclick="scrollCarousel('track-custom', -320)">‹</button>
 
-                <!-- Cabaña 2 Plantas Oregón -->
-                <div class="custom-card" onclick="toggleCustomDetail('custom-85')">
-                    <div class="custom-card-img">
-                        <img src="../images/custom2.jpg" alt="Cabaña 85m2" onerror="this.src='https://via.placeholder.com/400x250?text=Caba%C3%B1a+85m2+2+Plantas'">
-                    </div>
-                    <div class="custom-card-body">
-                        <span class="extra-badge">Estructura Oregón Extra</span>
-                        <h3>Cabaña 85 m² (2 Plantas)</h3>
-                        <p style="font-size: 0.85rem; line-height: 1.5; color: #555;">Toca para desplegar fotos y detalles del trabajo realizado.</p>
-                    </div>
-                </div>
+                <div class="carousel-track" id="track-custom">
 
-                <!-- Cabaña 45m2 con Deck -->
-                <div class="custom-card" onclick="toggleCustomDetail('custom-60')">
-                    <div class="custom-card-img">
-                        <img src="../images/custom3.jpg" alt="Cabaña 45m2 + Deck" onerror="this.src='https://via.placeholder.com/400x250?text=Caba%C3%B1a+45m2+%2B+Deck'">
-                    </div>
-                    <div class="custom-card-body">
-                        <span class="extra-badge">+15m² Deck Exterior</span>
-                        <h3>Cabaña 45 m² + 15 m² Deck</h3>
-                        <p style="font-size: 0.85rem; line-height: 1.5; color: #555;">Toca para desplegar fotos y detalles del trabajo realizado.</p>
-                    </div>
-                </div>
-
-                <!-- PANEL DESPLEGABLE GLOBAL PERSONALIZADOS -->
-                <div id="panel-custom-detail" class="panel-detail">
-                    <span class="panel-close-btn" onclick="closeDetail('panel-custom-detail')">✕ Cerrar</span>
-                    <div class="panel-grid">
-                        <div class="panel-info">
-                            <h3 id="custom-panel-titulo">Cabaña Personalizada</h3>
-                            <p id="custom-panel-specs" style="font-size: 0.95rem; line-height: 1.6; margin-top: 10px;"></p>
+                    <!-- Cabaña 4x5 -->
+                    <div class="custom-card" onclick="toggleCustomDetail('custom-20')">
+                        <div class="custom-card-img">
+                            <!-- RUTA DE IMAGEN CABAÑA 4X5 -->
+                            <img src="../images/cabaña4x5.png" alt="Cabaña 20m2" onerror="this.src='https://via.placeholder.com/400x250?text=Caba%C3%B1a+4x5'">
                         </div>
-                        <div class="panel-galeria-dinamica" id="custom-panel-galeria">
+                        <div class="custom-card-body">
+                            <span class="extra-badge">Estructura Estándar ($450.000/m²)</span>
+                            <h3>Cabaña 4x5 (20 m²)</h3>
+                            <p style="font-size: 0.85rem; line-height: 1.5; color: #555;">Toca para desplegar fotos y detalles del trabajo realizado.</p>
                         </div>
                     </div>
+
+                    <!-- Cabaña 2 Plantas Oregón -->
+                    <div class="custom-card" onclick="toggleCustomDetail('custom-85')">
+                        <div class="custom-card-img">
+                            <!-- RUTA DE IMAGEN CABAÑA 85M2 -->
+                            <img src="../images/custom2.jpg" alt="Cabaña 85m2" onerror="this.src='https://via.placeholder.com/400x250?text=Caba%C3%B1a+85m2+2+Plantas'">
+                        </div>
+                        <div class="custom-card-body">
+                            <span class="extra-badge">Estructura Oregón Extra</span>
+                            <h3>Cabaña 85 m² (2 Plantas)</h3>
+                            <p style="font-size: 0.85rem; line-height: 1.5; color: #555;">Toca para desplegar fotos y detalles del trabajo realizado.</p>
+                        </div>
+                    </div>
+
+                    <!-- Cabaña 45m2 con Deck -->
+                    <div class="custom-card" onclick="toggleCustomDetail('custom-60')">
+                        <div class="custom-card-img">
+                            <!-- RUTA DE IMAGEN CABAÑA 45M2 DECK -->
+                            <img src="../images/custom3.jpg" alt="Cabaña 45m2 + Deck" onerror="this.src='https://via.placeholder.com/400x250?text=Caba%C3%B1a+45m2+%2B+Deck'">
+                        </div>
+                        <div class="custom-card-body">
+                            <span class="extra-badge">+15m² Deck Exterior</span>
+                            <h3>Cabaña 45 m² + 15 m² Deck</h3>
+                            <p style="font-size: 0.85rem; line-height: 1.5; color: #555;">Toca para desplegar fotos y detalles del trabajo realizado.</p>
+                        </div>
+                    </div>
+
                 </div>
 
+                <button class="carousel-btn next" onclick="scrollCarousel('track-custom', 320)">›</button>
+            </div>
+
+            <!-- PANEL DESPLEGABLE GLOBAL PERSONALIZADOS -->
+            <div id="panel-custom-detail" class="panel-detail">
+                <span class="panel-close-btn" onclick="closeDetail('panel-custom-detail')">✕ Cerrar</span>
+                <div class="panel-grid">
+                    <div class="panel-info">
+                        <h3 id="custom-panel-titulo">Cabaña Personalizada</h3>
+                        <p id="custom-panel-specs" style="font-size: 0.95rem; line-height: 1.6; margin-top: 10px;"></p>
+                    </div>
+                    <div class="panel-galeria-dinamica" id="custom-panel-galeria">
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -985,7 +1107,7 @@
                     </div>
                 </div>
 
-                <!-- ADICIONALES FIJOS (SUMAN AL TOTAL DIRECTO) -->
+                <!-- ADICIONALES FIJOS -->
                 <div class="group-label">2. Adicionales de Proyecto Fijo (Suman al Total Cabaña):</div>
                 <div class="builder-options-grid">
                     <div class="option-square opt-fijo" data-cost-fijo="200000" onclick="toggleOption(this)">
@@ -1015,7 +1137,7 @@
             </div>
         </section>
 
-        <!-- SECCIÓN CONTACTO -->
+        <!-- SECCIÓN CONTACTO CON CASTOR -->
         <section id="contacto" class="contacto">
             <div class="contacto-grid">
                 <div class="contacto-info">
@@ -1061,8 +1183,9 @@
                     <div id="placeholder-castor" class="castor-placeholder">
                         <div style="font-size: 2.5rem; margin-bottom: 10px;">🪵 🦫</div>
                         <strong>¡Espacio del Castor!</strong>
-                        <span style="font-size: 0.8rem; opacity: 0.7; margin-top: 5px;">Cuando subas 'castor.png' a tu GitHub, aparecerá tu mascota aquí.</span>
+                        <span style="font-size: 0.8rem; opacity: 0.7; margin-top: 5px;">Cuando subas 'castor.png' a tu carpeta images, aparecerá tu mascota aquí.</span>
                     </div>
+                    <!-- RUTA DE LA IMAGEN DEL CASTOR -->
                     <img src="../images/castor.png" alt="Castor Maderera La Herradura" class="castor-img" style="display: none;" onerror="this.style.display='none';" onload="this.style.display='block'; document.getElementById('placeholder-castor').style.display='none';">
                 </div>
             </div>
@@ -1075,12 +1198,55 @@
         <p>© Maderera La Herradura S.R.L. — San Carlos de Bariloche, Patagonia Argentina.</p>
     </footer>
 
-    <!-- LIGHTBOX -->
+    <!-- LIGHTBOX PARA VER IMÁGENES EN GRANDE -->
     <div id="lightbox" class="lightbox-modal" onclick="this.style.display='none'">
         <img class="lightbox-content" id="lightbox-img">
     </div>
 
+    <!-- ==========================================
+       LÓGICA JAVASCRIPT
+    ========================================== -->
     <script>
+        // 1. IMÁGENES ROTATIVAS DE FONDO DEL HERO
+        const fotosHeroBackground = [
+            "../images/cabañasindex1.jpeg",
+            "../images/cabañasindex2.jpeg",
+            "../images/cabañasindex3.jpeg",
+            "../images/cabañasindex4.jpeg",
+            "../images/cabañasindex5.jpeg"
+        ];
+
+        function iniciarHeroSlider() {
+            const container = document.getElementById('hero-slider');
+            if (!container || fotosHeroBackground.length === 0) return;
+
+            fotosHeroBackground.forEach((src, idx) => {
+                const slide = document.createElement('div');
+                slide.className = 'hero-bg-slide' + (idx === 0 ? ' activa' : '');
+                slide.style.backgroundImage = `url('${src}')`;
+                container.appendChild(slide);
+            });
+
+            if (fotosHeroBackground.length <= 1) return;
+
+            let index = 0;
+            const slides = container.querySelectorAll('.hero-bg-slide');
+            setInterval(() => {
+                slides[index].classList.remove('activa');
+                index = (index + 1) % slides.length;
+                slides[index].classList.add('activa');
+            }, 4000);
+        }
+
+        // 2. DESPLAZAMIENTO DEL CARRUSEL EN FILA ÚNICA
+        function scrollCarousel(trackId, distance) {
+            const track = document.getElementById(trackId);
+            if (track) {
+                track.scrollBy({ left: distance, behavior: 'smooth' });
+            }
+        }
+
+        // 3. DATOS DE GALERÍAS DENTRO DE LOS PANELES DESPLEGABLES
         const BASE_M2 = 450000;
 
         const galeriasData = {
@@ -1162,6 +1328,7 @@
             document.getElementById('lightbox').style.display = 'flex';
         }
 
+        // 4. LÓGICA CALCULADORA DE COTIZACIÓN
         let selectedBaseCost = 0;
         let selectedBaseName = "Sin Base";
 
@@ -1242,7 +1409,11 @@
             document.getElementById('btn-wsp-cotizacion').href = `https://wa.me/542944898755?text=${encodeURIComponent(mensaje)}`;
         }
 
-        calcularTotal();
+        // INICIALIZACIÓN AL CARGAR LA PÁGINA
+        window.addEventListener('DOMContentLoaded', () => {
+            iniciarHeroSlider();
+            calcularTotal();
+        });
     </script>
 </body>
 </html>
