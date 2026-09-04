@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maderera La Herradura - Maderas</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <title>Maderera La Herradura - Catálogo de Maderas</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root { 
             --roble-oscuro: #3B2210; 
@@ -30,7 +30,7 @@
             min-height: 100vh;
         }
 
-        /* ----- FONDO ROTATIVO DINÁMICO ----- */
+        /* FONDO DINÁMICO ROTATIVO */
         .page-bg-slider {
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
             z-index: -2; pointer-events: none; overflow: hidden;
@@ -44,29 +44,28 @@
 
         .page-bg-overlay {
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1;
-            background: linear-gradient(180deg, rgba(18, 10, 5, 0.45) 0%, rgba(18, 10, 5, 0.70) 100%);
+            background: linear-gradient(180deg, rgba(18, 10, 5, 0.55) 0%, rgba(18, 10, 5, 0.80) 100%);
             pointer-events: none;
         }
 
-        /* ----- NAVEGACIÓN EN CRISTAL ----- */
+        /* NAVEGACIÓN EN CRISTAL (GLASSMORPHISM) */
         .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 16px 8%;
-            background-color: rgba(28, 18, 10, 0.85);
-            backdrop-filter: blur(10px);
+            background-color: rgba(28, 18, 10, 0.88);
+            backdrop-filter: blur(12px);
             position: fixed;
             width: 100%;
-            top: 0;
-            left: 0;
+            top: 0; left: 0;
             z-index: 1000;
             border-bottom: 1px solid rgba(200, 131, 58, 0.3);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
         }
 
         .logo {
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             font-weight: 700;
             color: var(--crema-mdera);
             text-decoration: none;
@@ -84,7 +83,7 @@
             color: var(--crema-mdera);
             text-decoration: none;
             font-weight: 600;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             transition: color 0.3s;
         }
 
@@ -110,106 +109,162 @@
             background: var(--cedro-calido);
         }
 
-        /* ----- SECCIÓN DE CATÁLOGO ----- */
-        .catalogo-section {
-            padding: 130px 8% 80px 8%;
-            background-color: rgba(28, 18, 10, 0.60);
-            backdrop-filter: blur(6px);
-            min-height: 100vh;
+        /* SECCIONES Y CONTENEDORES */
+        .main-container {
+            padding-top: 100px;
         }
 
-        .catalogo-title {
+        .seccion-bloque {
+            padding: 50px 8%;
+            background-color: rgba(28, 18, 10, 0.55);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid rgba(200, 131, 58, 0.15);
+        }
+
+        .titulo-seccion {
             text-align: center;
             font-size: 2.2rem;
-            margin-bottom: 10px;
             color: var(--crema-mdera);
+            margin-bottom: 10px;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 1.5px;
         }
 
-        .catalogo-subtitle {
+        .subtitulo-seccion {
             text-align: center;
             color: var(--arena-patag);
-            margin-bottom: 40px;
+            margin-bottom: 35px;
             font-weight: 300;
         }
 
-        .carousel-track {
+        /* FILTROS DE CATEGORÍA */
+        .categoria-filtros {
             display: flex;
-            gap: 25px;
-            overflow-x: auto;
-            padding: 20px 10px 40px 10px;
-            scroll-behavior: smooth;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 35px;
+            flex-wrap: wrap;
         }
 
-        .carousel-track::-webkit-scrollbar {
-            height: 8px;
-        }
-        .carousel-track::-webkit-scrollbar-thumb {
-            background: var(--pino-miel);
-            border-radius: 10px;
-        }
-
-        /* TARJETAS GLASSMORPHISM CON EFECTO FOCUS */
-        .producto-card {
-            flex: 0 0 280px;
-            background: rgba(250, 246, 238, 0.94);
+        .btn-filtro {
+            background: rgba(250, 246, 238, 0.1);
+            color: var(--crema-mdera);
+            border: 1px solid var(--pino-miel);
+            padding: 8px 18px;
             border-radius: 20px;
-            border: 2px solid var(--arena-patag);
-            overflow: hidden;
             cursor: pointer;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
-            transition: transform 0.4s ease, opacity 0.4s ease, filter 0.4s ease, border-color 0.3s ease;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-filtro:hover, .btn-filtro.activo {
+            background: var(--pino-miel);
+            color: #fff;
+        }
+
+        /* TÍTULO DE CATEGORÍA */
+        .categoria-header {
+            font-size: 1.5rem;
+            color: var(--pino-miel);
+            margin-bottom: 20px;
+            border-left: 4px solid var(--pino-miel);
+            padding-left: 12px;
+            text-transform: uppercase;
+        }
+
+        /* GRID Y TARJETAS DE PRODUCTO */
+        .grid-productos {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        .producto-card {
+            background: rgba(250, 246, 238, 0.95);
+            border-radius: 18px;
+            border: 2px solid var(--arena-patag);
+            color: var(--carbon);
+            overflow: hidden;
             display: flex;
             flex-direction: column;
-            color: var(--carbon);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+            transition: transform 0.4s ease, opacity 0.4s ease, filter 0.4s ease, border-color 0.3s ease;
         }
 
-        .carousel-track:hover .producto-card:not(:hover) {
-            transform: scale(0.93);
-            opacity: 0.6;
+        /* EFECTO FOCUS AL PASAR SOBRE TARJETAS */
+        .grid-productos:hover .producto-card:not(:hover) {
+            transform: scale(0.95);
+            opacity: 0.65;
             filter: blur(0.5px);
         }
 
         .producto-card:hover {
-            transform: translateY(-8px) scale(1.05) !important;
+            transform: translateY(-6px) scale(1.02) !important;
             opacity: 1 !important;
             filter: none !important;
             border-color: var(--pino-miel);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            box-shadow: 0 18px 35px rgba(0,0,0,0.5);
         }
 
         .producto-img {
             width: 100%;
-            height: 190px;
+            height: 180px;
             object-fit: cover;
         }
 
-        .producto-info {
+        .producto-body {
             padding: 18px;
             display: flex;
             flex-direction: column;
             flex-grow: 1;
-            justify-content: space-between;
         }
 
-        .producto-info h3 {
-            font-size: 1.1rem;
+        .producto-body h3 {
+            font-size: 1.15rem;
             color: var(--roble-oscuro);
             margin-bottom: 8px;
         }
 
-        .producto-info p {
+        .producto-body p {
             font-size: 0.85rem;
             color: #555;
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+
+        /* LISTA DE ESPECIFICACIONES TÉCNICAS */
+        .especificaciones-lista {
+            background: rgba(217, 196, 160, 0.25);
+            border-radius: 10px;
+            padding: 10px 12px;
             margin-bottom: 15px;
+            font-size: 0.8rem;
+            color: #2c2c2c;
+            list-style: none;
+        }
+
+        .especificaciones-lista li {
+            margin-bottom: 4px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .especificaciones-lista li strong {
+            color: var(--roble-oscuro);
+        }
+
+        .producto-footer {
+            margin-top: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
         }
 
         .producto-precio {
-            font-size: 1.2rem;
+            font-size: 1.25rem;
             font-weight: 700;
             color: var(--cedro-calido);
-            margin-bottom: 12px;
         }
 
         .btn-agregar {
@@ -217,7 +272,7 @@
             color: var(--crema-mdera);
             border: none;
             padding: 10px;
-            border-radius: 10px;
+            border-radius: 8px;
             font-weight: 600;
             cursor: pointer;
             transition: background 0.3s;
@@ -227,15 +282,70 @@
             background-color: var(--pino-miel);
         }
 
-        /* ----- PANEL DEL CARRITO (MODAL O DESPLEGABLE) ----- */
+        /* SECCIÓN DE CONTACTO */
+        .contacto-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        @media (max-width: 768px) {
+            .contacto-section { grid-template-columns: 1fr; }
+        }
+
+        .contacto-info h3 {
+            font-size: 1.5rem;
+            color: var(--pino-miel);
+            margin-bottom: 15px;
+        }
+
+        .contacto-info p {
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .form-contacto {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .form-contacto input, .form-contacto textarea {
+            background: rgba(250, 246, 238, 0.92);
+            border: 1px solid var(--arena-patag);
+            border-radius: 8px;
+            padding: 12px;
+            color: var(--carbon);
+            font-family: inherit;
+            font-size: 0.9rem;
+        }
+
+        .form-contacto button {
+            background: var(--pino-miel);
+            color: #fff;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .form-contacto button:hover {
+            background: var(--cedro-calido);
+        }
+
+        /* CARRITO MODAL (PERSISTENTE) */
         .carrito-modal {
             position: fixed;
-            top: 0; right: -400px;
-            width: 380px; height: 100vh;
+            top: 0; right: -420px;
+            width: 390px; height: 100vh;
             background: rgba(250, 246, 238, 0.97);
             color: var(--carbon);
             border-left: 2px solid var(--pino-miel);
-            box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+            box-shadow: -10px 0 30px rgba(0,0,0,0.6);
             z-index: 2000;
             transition: right 0.4s ease;
             padding: 25px;
@@ -263,7 +373,7 @@
         .btn-cerrar {
             background: none;
             border: none;
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             cursor: pointer;
             color: var(--roble-oscuro);
         }
@@ -273,7 +383,7 @@
             overflow-y: auto;
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 12px;
         }
 
         .item-carrito {
@@ -287,7 +397,7 @@
         }
 
         .item-detalles h4 {
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             color: var(--roble-oscuro);
         }
 
@@ -347,7 +457,7 @@
 </head>
 <body>
 
-    <!-- FONDO SLIDER DINÁMICO -->
+    <!-- FONDO ROTATIVO DINÁMICO -->
     <div class="page-bg-slider" id="page-bg-slider"></div>
     <div class="page-bg-overlay"></div>
 
@@ -355,9 +465,10 @@
     <nav class="navbar">
         <a href="#" class="logo">MADERERA LA HERRADURA</a>
         <ul class="nav-links">
-            <li><a href="#">Inicio</a></li>
-            <li><a href="#">Maderas</a></li>
-            <li><a href="#">Contacto</a></li>
+            <li><a href="#estructurales">Estructurales</a></li>
+            <li><a href="#revestimientos">Revestimientos</a></li>
+            <li><a href="#tableros">Tableros y Finas</a></li>
+            <li><a href="#contacto">Contacto</a></li>
             <li>
                 <button class="btn-carrito-nav" onclick="toggleCarrito()">
                     🛒 Carrito (<span id="carrito-count">0</span>)
@@ -366,68 +477,186 @@
         </ul>
     </nav>
 
-    <!-- SECCIÓN CATÁLOGO -->
-    <section class="catalogo-section">
-        <h1 class="catalogo-title">Catálogo de Maderas</h1>
-        <p class="catalogo-subtitle">Selección Premium de Bariloche para Construcción y Carpintería</p>
+    <div class="main-container">
+        <!-- SECCIÓN PRINCIPAL DE CATÁLOGO -->
+        <section class="seccion-bloque">
+            <h1 class="titulo-seccion">Catálogo de Maderas</h1>
+            <p class="subtitulo-seccion">Maderas seleccionadas de la Patagonia para construcción y carpintería de alta calidad</p>
 
-        <div class="carousel-track">
-            <!-- Tarjeta 1 -->
-            <div class="producto-card">
-                <img src="../images/maderasindex1.png" alt="Pino Oregon" class="producto-img">
-                <div class="producto-info">
-                    <h3>Tirante Pino Oregon</h3>
-                    <p>Ideal para tirantería de techos y estructuras pesadas.</p>
-                    <div class="producto-precio">$18.500 /m²</div>
-                    <button class="btn-agregar" onclick="agregarAlCarrito(1, 'Tirante Pino Oregon', 18500)">Agregar al Carrito</button>
+            <!-- FILTROS POR CATEGORÍA -->
+            <div class="categoria-filtros">
+                <button class="btn-filtro activo" onclick="filtrarCategoria('todas')">Todas las Categorías</button>
+                <button class="btn-filtro" onclick="filtrarCategoria('estructurales')">Maderas Estructurales</button>
+                <button class="btn-filtro" onclick="filtrarCategoria('revestimientos')">Revestimientos</button>
+                <button class="btn-filtro" onclick="filtrarCategoria('tableros')">Tableros y Finas</button>
+            </div>
+
+            <!-- CATEGORÍA 1: MADERAS ESTRUCTURALES -->
+            <div class="bloque-categoria" data-categoria="estructurales" id="estructurales">
+                <h2 class="categoria-header">Maderas Estructurales</h2>
+                <div class="grid-productos">
+                    <!-- Producto 1 -->
+                    <div class="producto-card">
+                        <img src="../images/maderasindex1.png" alt="Tirante Pino Oregon" class="producto-img">
+                        <div class="producto-body">
+                            <h3>Tirante Pino Oregon</h3>
+                            <p>Tirantería estructural de gran resistencia mecánica y excelente estacionamiento.</p>
+                            <ul class="especificaciones-lista">
+                                <li><strong>Especie:</strong> <span>Pino Oregon</span></li>
+                                <li><strong>Escuadría:</strong> <span>3" x 6" / 3" x 8"</span></li>
+                                <li><strong>Largo:</strong> <span>4.00 m a 6.00 m</span></li>
+                                <li><strong>Tratamiento:</strong> <span>Secado al aire</span></li>
+                                <li><strong>Uso:</strong> <span>Techos y vigas</span></li>
+                            </ul>
+                            <div class="producto-footer">
+                                <span class="producto-precio">$18.500 /m²</span>
+                                <button class="btn-agregar" onclick="agregarAlCarrito(1, 'Tirante Pino Oregon', 18500)">Agregar al Carrito</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Producto 2 -->
+                    <div class="producto-card">
+                        <img src="../images/maderasindex2.png" alt="Viga Tirante de Pino Eliotis" class="producto-img">
+                        <div class="producto-body">
+                            <h3>Viga Pino Eliotis</h3>
+                            <p>Madera versátil cepillada en 4 caras, ideal para estructuras interiores y pérgolas.</p>
+                            <ul class="especificaciones-lista">
+                                <li><strong>Especie:</strong> <span>Pino Eliotis</span></li>
+                                <li><strong>Escuadría:</strong> <span>2" x 5" / 2" x 6"</span></li>
+                                <li><strong>Largo:</strong> <span>3.65 m a 4.88 m</span></li>
+                                <li><strong>Tratamiento:</strong> <span>Cepillado 4 caras</span></li>
+                                <li><strong>Uso:</strong> <span>Estructuras ligeras</span></li>
+                            </ul>
+                            <div class="producto-footer">
+                                <span class="producto-precio">$14.200 /m²</span>
+                                <button class="btn-agregar" onclick="agregarAlCarrito(2, 'Viga Pino Eliotis', 14200)">Agregar al Carrito</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <!-- Tarjeta 2 -->
-            <div class="producto-card">
-                <img src="../images/maderasindex2.png" alt="Ciprés Patagónico" class="producto-img">
-                <div class="producto-info">
-                    <h3>Tabla de Ciprés</h3>
-                    <p>Excelente resistencia a la intemperie. Para revestimiento exterior.</p>
-                    <div class="producto-precio">$22.000 /m²</div>
-                    <button class="btn-agregar" onclick="agregarAlCarrito(2, 'Tabla de Ciprés', 22000)">Agregar al Carrito</button>
+            <!-- CATEGORÍA 2: REVESTIMIENTOS -->
+            <div class="bloque-categoria" data-categoria="revestimientos" id="revestimientos">
+                <h2 class="categoria-header">Revestimientos y Decks</h2>
+                <div class="grid-productos">
+                    <!-- Producto 3 -->
+                    <div class="producto-card">
+                        <img src="../images/maderasindex2.png" alt="Tabla de Ciprés" class="producto-img">
+                        <div class="producto-body">
+                            <h3>Tabla de Ciprés</h3>
+                            <p>Resistencia natural a la intemperie y la humedad. Veteado único patagónico.</p>
+                            <ul class="especificaciones-lista">
+                                <li><strong>Especie:</strong> <span>Ciprés Cordillerano</span></li>
+                                <li><strong>Espesor:</strong> <span>1" (19mm)</span></li>
+                                <li><strong>Ancho:</strong> <span>5" / 6"</span></li>
+                                <li><strong>Acabado:</strong> <span>Rústico o Cepillado</span></li>
+                                <li><strong>Uso:</strong> <span>Exterior / Decks</span></li>
+                            </ul>
+                            <div class="producto-footer">
+                                <span class="producto-precio">$22.000 /m²</span>
+                                <button class="btn-agregar" onclick="agregarAlCarrito(3, 'Tabla de Ciprés', 22000)">Agregar al Carrito</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Producto 4 -->
+                    <div class="producto-card">
+                        <img src="../images/maderasindex1.png" alt="Machimbre de Pino" class="producto-img">
+                        <div class="producto-body">
+                            <h3>Machimbre Premium 1/2"</h3>
+                            <p>Encastre perfecto libre de nudos saltones para techos y paredes interiores.</p>
+                            <ul class="especificaciones-lista">
+                                <li><strong>Especie:</strong> <span>Pino Insigne</span></li>
+                                <li><strong>Espesor:</strong> <span>1/2" (12mm)</span></li>
+                                <li><strong>Ancho:</strong> <span>4"</span></li>
+                                <li><strong>Secado:</strong> <span>Horno (KD)</span></li>
+                                <li><strong>Uso:</strong> <span>Cielorrasos</span></li>
+                            </ul>
+                            <div class="producto-footer">
+                                <span class="producto-precio">$9.800 /m²</span>
+                                <button class="btn-agregar" onclick="agregarAlCarrito(4, 'Machimbre Premium 1/2', 9800)">Agregar al Carrito</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <!-- Tarjeta 3 -->
-            <div class="producto-card">
-                <img src="../images/maderasindex3.png" alt="Lenga Fueguina" class="producto-img">
-                <div class="producto-info">
-                    <h3>Tableros Lenga</h3>
-                    <p>Madera fina de exportación. Perfecta para muebles y terminaciones.</p>
-                    <div class="producto-precio">$31.000 /m²</div>
-                    <button class="btn-agregar" onclick="agregarAlCarrito(3, 'Tableros Lenga', 31000)">Agregar al Carrito</button>
+            <!-- CATEGORÍA 3: TABLEROS Y FINAS -->
+            <div class="bloque-categoria" data-categoria="tableros" id="tableros">
+                <h2 class="categoria-header">Tableros y Maderas Finas</h2>
+                <div class="grid-productos">
+                    <!-- Producto 5 -->
+                    <div class="producto-card">
+                        <img src="../images/maderasindex3.png" alt="Tablero Lenga Fueguina" class="producto-img">
+                        <div class="producto-body">
+                            <h3>Tablero Lenga Fueguina</h3>
+                            <p>Madera de alta calidad cromática y excelente trabajabilidad para mobiliario.</p>
+                            <ul class="especificaciones-lista">
+                                <li><strong>Especie:</strong> <span>Lenga (Nothofagus)</span></li>
+                                <li><strong>Formato:</strong> <span>Alistonado / Entero</span></li>
+                                <li><strong>Espesor:</strong> <span>20mm / 30mm</span></li>
+                                <li><strong>Humedad:</strong> <span>8% - 10%</span></li>
+                                <li><strong>Uso:</strong> <span>Muebles / Tapas</span></li>
+                            </ul>
+                            <div class="producto-footer">
+                                <span class="producto-precio">$31.000 /m²</span>
+                                <button class="btn-agregar" onclick="agregarAlCarrito(5, 'Tablero Lenga Fueguina', 31000)">Agregar al Carrito</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- PANEL CARRITO PERSISTENTE -->
+        </section>
+
+        <!-- SECCIÓN DE CONTACTO Y UBICACIÓN -->
+        <section class="seccion-bloque" id="contacto">
+            <h2 class="titulo-seccion">Contacto y Consultas</h2>
+            <p class="subtitulo-seccion">Asesoramiento técnico personalizado para tu proyecto</p>
+
+            <div class="contacto-section">
+                <div class="contacto-info">
+                    <h3>Maderera La Herradura S.R.L.</h3>
+                    <p>📍 <strong>Ubicación:</strong> San Carlos de Bariloche, Río Negro, Argentina</p>
+                    <p>📞 <strong>Teléfono / WhatsApp:</strong> +54 (294) 400-0000</p>
+                    <p>✉️ <strong>Email:</strong> ventas@madereralaherradura.com.ar</p>
+                    <p>⏰ <strong>Horarios:</strong> Lunes a Viernes de 08:00 a 18:00 hs. Sábados de 08:30 a 13:00 hs.</p>
+                </div>
+
+                <form class="form-contacto" onsubmit="event.preventDefault(); alert('¡Mensaje enviado con éxito! Nos contactaremos a la brevedad.');">
+                    <input type="text" placeholder="Tu Nombre Completo" required>
+                    <input type="email" placeholder="Correo Electrónico" required>
+                    <input type="tel" placeholder="Teléfono de contacto">
+                    <textarea rows="4" placeholder="Detalla tu consulta o maderas a cotizar..." required></textarea>
+                    <button type="submit">Enviar Consulta</button>
+                </form>
+            </div>
+        </section>
+    </div>
+
+    <!-- CARRITO MODAL PERSISTENTE -->
     <div class="carrito-modal" id="carrito-modal">
         <div class="carrito-header">
             <h2>Tu Carrito</h2>
             <button class="btn-cerrar" onclick="toggleCarrito()">&times;</button>
         </div>
         <div class="carrito-items" id="carrito-items">
-            <!-- Se puebla dinámicamente -->
+            <!-- Se carga dinámicamente -->
         </div>
         <div class="carrito-footer">
             <div class="total-contenedor">
-                <span>Total:</span>
+                <span>Total Estimado:</span>
                 <span id="carrito-total">$0</span>
             </div>
             <button class="btn-vaciar" onclick="vaciarCarrito()">Vaciar Carrito</button>
-            <button class="btn-comprar" onclick="alert('¡Gracias por tu consulta! Redirigiendo...')">Finalizar Compra</button>
+            <button class="btn-comprar" onclick="alert('¡Gracias por tu pedido! Nos pondremos en contacto para coordinar la entrega y el pago.')">Finalizar Pedido</button>
         </div>
     </div>
 
     <script>
-        // --- 1. SLIDER DE FONDO DINÁMICO ---
+        // --- 1. FONDO ROTATIVO DINÁMICO ---
         const fotosFondo = [
             "../images/maderasindex1.png",
             "../images/maderasindex2.png",
@@ -452,19 +681,23 @@
             }, 4500);
         }
 
-        // --- 2. LÓGICA DE CARRITO CON LOCALSTORAGE PERSISTENTE ---
+        // --- 2. CARRITO PERSISTENTE CON LOCALSTORAGE ---
         let carrito = [];
 
-        function cargarCarritoDesdeStorage() {
-            const carritoGuardado = localStorage.getItem('maderera_carrito');
-            if (carritoGuardado) {
-                carrito = JSON.parse(carritoGuardado);
-                actualizarDOMCarrito();
+        function cargarCarritoStorage() {
+            const guardado = localStorage.getItem('maderera_carrito_persistente');
+            if (guardado) {
+                try {
+                    carrito = JSON.parse(guardado);
+                    actualizarDOMCarrito();
+                } catch(e) {
+                    console.error("Error al cargar carrito:", e);
+                }
             }
         }
 
-        function guardarCarritoEnStorage() {
-            localStorage.setItem('maderera_carrito', JSON.stringify(carrito));
+        function guardarCarritoStorage() {
+            localStorage.setItem('maderera_carrito_persistente', JSON.stringify(carrito));
         }
 
         function agregarAlCarrito(id, nombre, precio) {
@@ -474,33 +707,33 @@
             } else {
                 carrito.push({ id, nombre, precio, cantidad: 1 });
             }
-            guardarCarritoEnStorage();
+            guardarCarritoStorage();
             actualizarDOMCarrito();
         }
 
         function eliminarDelCarrito(id) {
             carrito = carrito.filter(item => item.id !== id);
-            guardarCarritoEnStorage();
+            guardarCarritoStorage();
             actualizarDOMCarrito();
         }
 
         function vaciarCarrito() {
             carrito = [];
-            guardarCarritoEnStorage();
+            guardarCarritoStorage();
             actualizarDOMCarrito();
         }
 
         function actualizarDOMCarrito() {
-            const containerItems = document.getElementById('carrito-items');
-            const totalElement = document.getElementById('carrito-total');
-            const countElement = document.getElementById('carrito-count');
+            const container = document.getElementById('carrito-items');
+            const totalEl = document.getElementById('carrito-total');
+            const countEl = document.getElementById('carrito-count');
 
-            containerItems.innerHTML = '';
+            container.innerHTML = '';
             let total = 0;
             let cantidadTotal = 0;
 
             if (carrito.length === 0) {
-                containerItems.innerHTML = '<p style="text-align:center; color:#777; margin-top:20px;">El carrito está vacío</p>';
+                container.innerHTML = '<p style="text-align:center; color:#777; margin-top:30px;">El carrito está vacío</p>';
             } else {
                 carrito.forEach(item => {
                     total += item.precio * item.cantidad;
@@ -515,22 +748,39 @@
                         </div>
                         <button class="btn-eliminar" onclick="eliminarDelCarrito(${item.id})">✕</button>
                     `;
-                    containerItems.appendChild(div);
+                    container.appendChild(div);
                 });
             }
 
-            totalElement.textContent = `$${total.toLocaleString()}`;
-            countElement.textContent = cantidadTotal;
+            totalEl.textContent = `$${total.toLocaleString()}`;
+            countEl.textContent = cantidadTotal;
         }
 
         function toggleCarrito() {
             document.getElementById('carrito-modal').classList.toggle('activo');
         }
 
+        // --- 3. FILTRADO DE CATEGORÍAS ---
+        function filtrarCategoria(categoria) {
+            const bloques = document.querySelectorAll('.bloque-categoria');
+            const botones = document.querySelectorAll('.btn-filtro');
+
+            botones.forEach(btn => btn.classList.remove('activo'));
+            event.target.classList.add('activo');
+
+            bloques.forEach(bloque => {
+                if (categoria === 'todas' || bloque.getAttribute('data-categoria') === categoria) {
+                    bloque.style.display = 'block';
+                } else {
+                    bloque.style.display = 'none';
+                }
+            });
+        }
+
         // --- INICIALIZACIÓN ---
         document.addEventListener('DOMContentLoaded', () => {
             iniciarFondo();
-            cargarCarritoDesdeStorage();
+            cargarCarritoStorage();
         });
     </script>
 </body>
