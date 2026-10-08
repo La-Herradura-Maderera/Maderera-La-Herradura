@@ -3,935 +3,1307 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maderera La Herradura</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <title>Maderera La Herradura - Venta de Maderas</title>
+
+    <!-- IMPORTACIÓN DE FUENTES INSTITUCIONALES -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+
     <style>
-        :root { 
-            --roble-oscuro: #2C180B; 
-            --pino-miel: #C8833A; 
+        /* ==========================================
+           PALETA DE COLORES OFICIAL DE LA MARCA
+        ========================================== */
+        :root {
+            --roble-oscuro: #3B2210;
+            --pino-miel: #C8833A;
             --cedro-calido: #A05C2C;
-            --arena-patag: #D9C4A0;
-            --crema-mdera: #F7F3EA;
-            --carbon: #0E0A07;
-            --glass-bg: rgba(20, 14, 10, 0.85);
-            --glass-border: rgba(200, 131, 58, 0.2);
-            --card-bg: rgba(247, 243, 234, 0.96);
+            --arena-patagonica: #D9C4A0;
+            --crema-madera: #F2EAD8;
+            --carbon: #1C1C1B;
+            --blanco-suave: #FAF6EE;
         }
-        
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        
-        body { 
-            font-family: 'Montserrat', sans-serif; 
-            background-color: var(--carbon); 
-            color: var(--crema-mdera); 
-            overflow-x: hidden; 
-            min-height: 100vh;
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Montserrat', system-ui, -apple-system, sans-serif;
+            background-color: var(--carbon);
+            color: var(--crema-madera);
+            overflow-x: hidden;
             line-height: 1.5;
         }
 
-        h1, h2, h3, .catalogo-title, .hero-title h1, .contacto h2, .carrito-titulo, .logo { 
-            font-family: 'Playfair Display', serif; 
+        /* TIPOGRAFÍA INSTITUCIONAL */
+        h1, h2, h3, h4, .logo, .carrito-titulo {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
         }
 
-        /* Fondo Dinámico Rotativo Tenue */
+        h1, h2, h3 {
+            color: var(--crema-madera);
+        }
+
+        .subtitle {
+            font-family: 'Segoe UI', 'Montserrat', sans-serif;
+            color: var(--pino-miel);
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* ==========================================
+           0. FONDO ROTATIVO GLOBAL
+        ========================================== */
         .page-bg-slider {
-            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            z-index: -2; pointer-events: none; overflow: hidden;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -2;
+            pointer-events: none;
+            overflow: hidden;
         }
+
         .page-bg-slide {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background-size: cover; background-position: center; opacity: 0;
-            transition: opacity 2s ease-in-out, transform 10s ease; transform: scale(1);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1.8s ease-in-out, transform 8s ease;
+            transform: scale(1);
         }
-        .page-bg-slide.activa { opacity: 0.22; transform: scale(1.05); }
+
+        .page-bg-slide.activa {
+            opacity: 1;
+            transform: scale(1.05);
+        }
 
         .page-bg-overlay {
-            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1;
-            background: radial-gradient(circle at center, rgba(14, 10, 7, 0.7) 0%, rgba(8, 5, 3, 0.95) 100%);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            background: linear-gradient(180deg, rgba(18, 10, 5, 0.4) 0%, rgba(18, 10, 5, 0.65) 100%);
             pointer-events: none;
         }
 
-        /* Navegación Exacta */
+        /* ==========================================
+           1. NAVBAR FIJA E INMÓVIL
+        ========================================== */
         .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 22px 8%;
-            background-color: rgba(14, 10, 7, 0.88);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            padding: 16px 8%;
+            background-color: rgba(28, 18, 10, 0.85);
+            backdrop-filter: blur(10px);
             position: fixed;
             width: 100%;
             top: 0;
             left: 0;
             z-index: 1000;
-            border-bottom: 1px solid rgba(200, 131, 58, 0.15);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+            border-bottom: 1px solid rgba(200, 131, 58, 0.3);
         }
+
         .logo {
-            color: #ffffff;
-            font-weight: 700;
+            color: var(--crema-madera);
             font-size: 1.35rem;
-            letter-spacing: 2.5px;
+            letter-spacing: 1.5px;
             text-decoration: none;
             text-transform: uppercase;
             transition: color 0.3s;
         }
-        .logo:hover { color: var(--pino-miel); }
+
+        .logo:hover {
+            color: var(--arena-patagonica);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+        }
+
         .nav-links a {
-            color: #ffffff;
+            color: var(--crema-madera);
             text-decoration: none;
-            margin-left: 32px;
             font-size: 0.9rem;
             font-weight: 500;
             letter-spacing: 0.5px;
-            transition: color 0.3s;
+            transition: color 0.3s ease;
         }
-        .nav-links a:hover { color: var(--pino-miel); }
 
-        /* Hero / Inicio Estilo Cabañas */
-        .hero { 
-            min-height: 60vh; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            position: relative; 
-            margin-top: 70px;
-            padding: 90px 20px 70px;
+        .nav-links a:hover {
+            color: var(--pino-miel);
+        }
+
+        .main-wrapper {
+            margin-top: 65px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ==========================================
+           2. HERO BANNER
+        ========================================== */
+        .hero-section {
+            position: relative;
+            height: 280px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             text-align: center;
-            background: linear-gradient(180deg, rgba(14, 10, 7, 0.4) 0%, rgba(14, 10, 7, 0.85) 100%);
-            border-bottom: 1px solid rgba(200, 131, 58, 0.15);
+            color: var(--crema-madera);
+            background: transparent;
+            border-bottom: 2px solid rgba(200, 131, 58, 0.4);
         }
+
         .hero-content {
-            max-width: 900px;
-            margin: 0 auto;
+            position: relative;
+            z-index: 3;
+            max-width: 800px;
+            padding: 20px;
         }
-        .hero-content h1 { 
-            font-size: 3.8rem; 
-            color: #ffffff; 
-            font-weight: 700; 
-            letter-spacing: 1px;
-            margin-bottom: 16px;
-            text-shadow: 0 4px 15px rgba(0,0,0,0.7);
+
+        .hero-content h1 {
+            color: var(--crema-madera);
+            font-size: 3.2rem;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+            text-shadow: 0 4px 16px rgba(0,0,0,0.9);
         }
-        .hero-content p { 
-            font-family: 'Montserrat', sans-serif; 
-            font-size: 1.15rem; 
-            color: #E2D3B7; 
-            font-weight: 300;
-            max-width: 720px;
+
+        .hero-content p {
+            max-width: 680px;
             margin: 0 auto;
+            font-size: 1.12rem;
+            color: var(--arena-patagonica);
             line-height: 1.6;
-            text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+            text-shadow: 0 2px 10px rgba(0,0,0,0.9);
         }
 
-        /* Catálogo Secciones */
-        .catalogo-section { padding: 70px 20px 80px; max-width: 1400px; margin: 0 auto; }
-        .catalogo-title { text-align: center; font-size: 3.2rem; margin-bottom: 8px; color: #ffffff; font-weight: 700; }
-        .catalogo-subtitle { 
-            text-align: center; 
-            color: var(--pino-miel); 
-            font-size: 0.95rem; 
-            font-weight: 700; 
-            letter-spacing: 2px; 
-            text-transform: uppercase; 
-            margin-bottom: 50px; 
+        /* ==========================================
+           3. SECCIÓN DE CATÁLOGO Y PRODUCTOS
+        ========================================== */
+        .catalogo-section, .contacto {
+            padding: 70px 0;
+            background-color: rgba(28, 18, 10, 0.60);
+            backdrop-filter: blur(6px);
+            position: relative;
+            border-bottom: 1px solid rgba(200, 131, 58, 0.2);
         }
 
-        .carousel-container { position: relative; width: 100%; overflow: hidden; }
+        .section-header {
+            text-align: center;
+            padding: 0 20px;
+            margin-bottom: 30px;
+        }
+
+        .section-header h2 {
+            font-size: 2.6rem;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+        }
+
+        .carousel-wrapper {
+            position: relative;
+            max-width: 1350px;
+            margin: 0 auto;
+            padding: 0 50px;
+        }
+
         .carousel-track {
             display: flex;
-            gap: 24px;
+            gap: 30px;
             overflow-x: auto;
             scroll-behavior: smooth;
-            padding: 15px 5px 25px;
-            -webkit-overflow-scrolling: touch;
+            padding: 30px 25px 40px 25px;
+            scrollbar-width: thin;
+            scrollbar-color: var(--pino-miel) transparent;
         }
-        .carousel-track::-webkit-scrollbar { height: 8px; }
-        .carousel-track::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); border-radius: 10px; }
-        .carousel-track::-webkit-scrollbar-thumb { background: var(--pino-miel); border-radius: 10px; }
 
+        .carousel-track::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .carousel-track::-webkit-scrollbar-thumb {
+            background-color: var(--pino-miel);
+            border-radius: 10px;
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 48px;
+            height: 48px;
+            background-color: rgba(35, 22, 12, 0.9);
+            color: var(--crema-madera);
+            border: 2px solid var(--pino-miel);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 40;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+            transition: all 0.3s ease;
+        }
+
+        .carousel-btn:hover {
+            background-color: var(--pino-miel);
+            color: white;
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .carousel-btn.prev { left: 5px; }
+        .carousel-btn.next { right: 5px; }
+
+        /* Tarjetas de Productos */
         .producto-card {
             flex: 0 0 280px;
-            background: var(--card-bg);
-            border-radius: 18px;
-            overflow: hidden;
+            background: rgba(250, 246, 238, 0.94);
+            border-radius: 20px;
+            padding: 22px 20px 24px;
+            border: 2px solid var(--arena-patagonica);
+            text-align: center;
             cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.45);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.3s ease, box-shadow 0.4s ease;
             display: flex;
             flex-direction: column;
-            border: 1px solid rgba(217, 196, 160, 0.3);
+            justify-content: space-between;
         }
-        .producto-card:hover { transform: translateY(-7px); box-shadow: 0 16px 35px rgba(0,0,0,0.65); border-color: var(--pino-miel); }
-        .producto-img-wrapper { width: 100%; height: 200px; overflow: hidden; background: linear-gradient(135deg, #e2d3b7, #cabb9d); display: flex; align-items: center; justify-content: center; }
-        .producto-img-placeholder { font-size: 3.5rem; color: var(--roble-oscuro); filter: drop-shadow(0 4px 6px rgba(0,0,0,0.15)); }
-        
-        .producto-info { padding: 22px 18px; text-align: center; flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
-        .producto-info h3 { margin: 0 0 8px 0; font-size: 1.4em; color: var(--roble-oscuro); font-weight: 700; }
-        .producto-precio { color: var(--cedro-calido); font-weight: 700; font-size: 1.15em; }
-        .producto-badge { display: inline-block; background: var(--pino-miel); color: white; padding: 8px 16px; border-radius: 20px; font-size: 0.8em; margin-top: 14px; font-weight: 600; letter-spacing: 0.5px; transition: background 0.2s; }
-        .producto-card:hover .producto-badge { background: var(--cedro-calido); }
 
-        /* Panel de Detalles */
+        .producto-card:hover {
+            transform: translateY(-8px) scale(1.04);
+            border-color: var(--pino-miel);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .producto-img-wrapper {
+            height: 140px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+            background: rgba(200, 131, 58, 0.1);
+            border-radius: 12px;
+        }
+
+        .producto-img-placeholder {
+            font-size: 3.5rem;
+        }
+
+        .producto-card h3 {
+            color: var(--roble-oscuro);
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+        }
+
+        .producto-precio {
+            color: var(--cedro-calido);
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+        }
+
+        .producto-badge {
+            background-color: var(--pino-miel);
+            color: white;
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 10px 18px;
+            border-radius: 10px;
+            display: block;
+            transition: background 0.3s;
+            box-shadow: 0 4px 10px rgba(200, 131, 58, 0.3);
+            text-decoration: none;
+        }
+
+        .producto-card:hover .producto-badge {
+            background-color: var(--cedro-calido);
+        }
+
+        /* ==========================================
+           4. PANEL DESPLEGABLE DE SELECCIÓN Y COMPRA
+        ========================================== */
         .detalle-panel {
             display: none;
-            background: var(--card-bg);
-            color: var(--carbon);
-            padding: 40px;
-            margin-top: 40px;
-            border-radius: 20px;
             max-width: 1100px;
-            margin-left: auto;
-            margin-right: auto;
-            box-shadow: 0 20px 45px rgba(0,0,0,0.7);
+            margin: 30px auto 0;
+            background: rgba(250, 246, 238, 0.97);
+            color: var(--carbon);
             border: 2px solid var(--pino-miel);
+            border-radius: 20px;
+            padding: 40px;
+            position: relative;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+            animation: fadeIn 0.4s ease-in-out;
         }
+
         .detalle-panel.active {
             display: grid;
-            grid-template-columns: 1.1fr 1fr;
+            grid-template-columns: 1fr 1.2fr;
             gap: 40px;
             align-items: start;
-            animation: fadeIn 0.3s ease-in-out;
         }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        .detalle-galeria { display: flex; flex-direction: column; gap: 15px; }
-        .detalle-img-principal-wrapper {
-            width: 100%;
-            height: 320px;
-            border-radius: 14px;
-            background: linear-gradient(135deg, #d9c4a0, #b59b70);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--roble-oscuro);
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
-            font-weight: 700;
-            box-shadow: inset 0 2px 8px rgba(0,0,0,0.15);
-            text-align: center;
-            padding: 20px;
-            transition: opacity 0.2s ease;
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-        
-        .detalle-minis-container {
+
+        .detalle-info-izq h2 {
+            color: var(--roble-oscuro);
+            font-size: 2.2rem;
+            margin-bottom: 12px;
+        }
+
+        .detalle-desc {
+            font-size: 0.95rem;
+            color: #444;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .detalle-specs {
+            background: rgba(217, 196, 160, 0.3);
+            padding: 15px 18px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+
+        .spec-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 6px 0;
+            font-size: 0.9rem;
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+        }
+
+        .spec-item:last-child { border-bottom: none; }
+        .spec-label { font-weight: 700; color: var(--cedro-calido); }
+
+        .variantes-section {
+            margin-bottom: 20px;
+        }
+
+        .variante-label {
+            font-weight: 700;
+            color: var(--roble-oscuro);
+            margin-bottom: 8px;
+            display: block;
+            font-size: 0.95rem;
+        }
+
+        .variante-opciones {
             display: flex;
             gap: 10px;
-            overflow-x: auto;
-            padding-bottom: 5px;
+            flex-wrap: wrap;
         }
-        .miniatura-btn {
-            flex: 0 0 85px;
-            height: 65px;
-            border-radius: 8px;
-            background: #f4ecdf;
-            border: 2px solid #d9c4a0;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.75rem;
-            font-weight: 600;
-            color: var(--roble-oscuro);
-            text-align: center;
-            padding: 5px;
-            transition: all 0.2s;
-        }
-        .miniatura-btn:hover { background: #e8dcc4; }
-        .miniatura-btn.active { border-color: var(--pino-miel); background: white; transform: scale(1.03); box-shadow: 0 4px 10px rgba(200, 131, 58, 0.25); }
 
-        .detalle-info h2 { color: var(--roble-oscuro); font-size: 2.2em; margin: 0 0 12px 0; }
-        .detalle-desc { color: #444; line-height: 1.6; margin-bottom: 20px; font-size: 0.95rem; }
-        .detalle-specs { background: rgba(217, 196, 160, 0.25); padding: 16px 20px; border-radius: 12px; margin-bottom: 20px; }
-        .spec-item { padding: 8px 0; border-bottom: 1px solid #e0d4be; font-size: 0.9em; display: flex; justify-content: space-between; }
-        .spec-item:last-child { border-bottom: none; }
-        .spec-label { color: var(--cedro-calido); font-weight: 700; }
-
-        .variantes-section { margin-bottom: 20px; }
-        .variante-label { font-weight: 700; color: var(--roble-oscuro); margin-bottom: 8px; display: block; font-size: 0.95em; }
-        .variante-opciones { display: flex; gap: 8px; flex-wrap: wrap; }
-        
         .variante-btn {
-            padding: 8px 16px;
-            border: 2px solid #ddd;
+            padding: 10px 16px;
+            border: 2px solid #d9c4a0;
             background: white;
             border-radius: 8px;
             cursor: pointer;
             font-weight: 600;
-            transition: all 0.2s;
-            font-size: 0.9em;
+            font-size: 0.9rem;
             color: var(--carbon);
+            transition: all 0.2s;
         }
-        .variante-btn:hover { border-color: var(--pino-miel); color: var(--pino-miel); }
-        .variante-btn.active { background: var(--pino-miel); color: white; border-color: var(--pino-miel); }
 
-        .cantidad-precio { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; background: #faf5ed; padding: 15px 20px; border-radius: 12px; border: 1px solid #e8dcc4; }
-        .cantidad-control { display: flex; align-items: center; gap: 8px; }
-        .cantidad-btn { background: var(--crema-mdera); border: 1px solid #d9c4a0; width: 34px; height: 34px; border-radius: 8px; cursor: pointer; font-weight: 700; color: var(--roble-oscuro); font-size: 1.1rem; }
-        .cantidad-btn:hover { background: var(--pino-miel); color: white; border-color: var(--pino-miel); }
-        .cantidad-input { width: 48px; text-align: center; border: 1px solid #d9c4a0; padding: 6px; border-radius: 8px; font-weight: 700; font-size: 1rem; }
-        .precio-total { font-size: 1.5em; color: var(--cedro-calido); font-weight: 700; }
+        .variante-btn:hover {
+            border-color: var(--pino-miel);
+            color: var(--pino-miel);
+        }
+
+        .variante-btn.active {
+            background: var(--pino-miel);
+            color: white;
+            border-color: var(--pino-miel);
+            box-shadow: 0 4px 10px rgba(200, 131, 58, 0.3);
+        }
+
+        .cantidad-precio-box {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #f7f2ea;
+            padding: 16px 20px;
+            border-radius: 12px;
+            border: 1px solid var(--arena-patagonica);
+            margin-bottom: 25px;
+        }
+
+        .cantidad-control {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .cantidad-btn {
+            width: 36px;
+            height: 36px;
+            background: white;
+            border: 1px solid var(--arena-patagonica);
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            cursor: pointer;
+            color: var(--roble-oscuro);
+            transition: background 0.2s;
+        }
+
+        .cantidad-btn:hover {
+            background: var(--pino-miel);
+            color: white;
+        }
+
+        .cantidad-input {
+            width: 55px;
+            text-align: center;
+            padding: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border: 1px solid var(--arena-patagonica);
+            border-radius: 8px;
+            background: white;
+        }
+
+        .precio-total-detalle {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--cedro-calido);
+            font-family: 'Playfair Display', serif;
+        }
 
         .btn-agregar-carrito {
             width: 100%;
-            padding: 15px;
-            background: var(--pino-miel);
+            padding: 16px;
+            background-color: var(--pino-miel);
             color: white;
             border: none;
-            border-radius: 10px;
-            font-size: 1rem;
-            font-weight: 700;
+            border-radius: 12px;
+            font-size: 1.05rem;
+            font-weight: bold;
             cursor: pointer;
-            transition: background 0.3s, transform 0.1s;
+            box-shadow: 0 6px 18px rgba(200, 131, 58, 0.35);
+            transition: background 0.3s, transform 0.2s;
             margin-bottom: 10px;
-            box-shadow: 0 4px 12px rgba(200, 131, 58, 0.3);
         }
-        .btn-agregar-carrito:hover { background: var(--cedro-calido); }
-        .btn-agregar-carrito:active { transform: scale(0.99); }
-        .btn-cerrar-detalle { width: 100%; padding: 11px; background: #e0e0e0; color: #333; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; transition: background 0.2s; }
-        .btn-cerrar-detalle:hover { background: #d0d0d0; }
 
-        /* Carrito Flotante y Modal */
+        .btn-agregar-carrito:hover {
+            background-color: var(--cedro-calido);
+            transform: translateY(-2px);
+        }
+
+        .btn-cerrar-detalle {
+            width: 100%;
+            padding: 10px;
+            background: #e0d8cc;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            color: #555;
+            transition: background 0.2s;
+        }
+
+        .btn-cerrar-detalle:hover { background: #d0c5b5; }
+
+        /* ==========================================
+           5. CARRITO FLOTANTE Y MODAL
+        ========================================== */
         .carrito-flotante {
-            position: fixed; bottom: 30px; right: 30px; background: var(--pino-miel); color: white;
-            width: 64px; height: 64px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            cursor: pointer; font-size: 1.6em; box-shadow: 0 8px 24px rgba(0,0,0,0.5); z-index: 100; transition: transform 0.3s, background 0.3s;
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--pino-miel);
+            color: white;
+            width: 68px;
+            height: 68px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.8rem;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+            z-index: 1000;
+            transition: transform 0.3s, background 0.3s;
         }
-        .carrito-flotante:hover { transform: scale(1.08); background: var(--cedro-calido); }
+
+        .carrito-flotante:hover {
+            transform: scale(1.1);
+            background: var(--cedro-calido);
+        }
+
         .carrito-badge {
-            position: absolute; top: -4px; right: -4px; background: var(--cedro-calido); color: white;
-            width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75em; font-weight: 700; border: 2px solid white;
+            position: absolute;
+            top: -2px;
+            right: -2px;
+            background: var(--cedro-calido);
+            color: white;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: bold;
+            border: 2px solid white;
         }
 
-        .carrito-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); z-index: 200; align-items: center; justify-content: center; padding: 20px; }
+        .carrito-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(6px);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
         .carrito-modal.active { display: flex; }
-        .carrito-contenido { background: var(--crema-mdera); color: var(--carbon); border-radius: 20px; padding: 32px; max-width: 550px; width: 100%; max-height: 85vh; overflow-y: auto; border: 2px solid var(--pino-miel); box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
-        .carrito-titulo { font-size: 1.9em; color: var(--roble-oscuro); margin-bottom: 20px; text-align: center; }
-        .carrito-item { display: flex; justify-content: space-between; align-items: center; padding: 14px 0; border-bottom: 1px solid var(--arena-patag); }
-        .carrito-item-info h4 { margin: 0 0 4px 0; color: var(--roble-oscuro); font-size: 1.05rem; }
-        .carrito-item-detalle { font-size: 0.85em; color: #555; }
-        .carrito-item-precio { color: var(--cedro-calido); font-weight: 700; font-size: 1.05rem; }
-        .carrito-item-eliminar { background: #ff5252; color: white; border: none; padding: 4px 10px; border-radius: 6px; cursor: pointer; margin-left: 12px; font-weight: 700; transition: background 0.2s; }
-        .carrito-item-eliminar:hover { background: #e03838; }
-        .carrito-vacio { text-align: center; padding: 35px; color: #777; font-size: 1.05rem; }
-        .carrito-total { margin-top: 20px; padding-top: 15px; border-top: 2px solid var(--pino-miel); font-size: 1.3em; font-weight: 700; text-align: right; color: var(--roble-oscuro); }
-        .carrito-acciones { display: flex; gap: 12px; margin-top: 24px; }
-        .btn-carrito-accion { flex: 1; padding: 14px; border: none; border-radius: 10px; font-weight: 700; cursor: pointer; font-size: 0.95rem; transition: background 0.2s; }
-        .btn-confirmar { background: #25D366; color: white; }
-        .btn-confirmar:hover { background: #1ebc57; }
-        .btn-cerrar-carrito { background: #e0e0e0; color: #333; }
-        .btn-cerrar-carrito:hover { background: #d0d0d0; }
 
-        /* Contacto */
-        .contacto { background-color: rgba(14, 10, 7, 0.85); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); color: var(--crema-mdera); padding: 90px 20px; border-top: 1px solid rgba(200, 131, 58, 0.15); }
-        .contacto h2 { color: var(--crema-mdera); font-size: 2.5rem; margin-bottom: 6px; }
-        .contacto .subtitle { color: var(--arena-patag); margin-bottom: 35px; font-size: 1.1rem; }
-        .contacto-grid { display: flex; max-width: 1100px; margin: 0 auto; gap: 50px; align-items: center; justify-content: space-between; }
-        .contacto-info { flex: 1.2; }
-        .contacto-list { display: flex; flex-direction: column; gap: 16px; }
-        .contacto-item {
-            display: flex; align-items: center; gap: 18px; background: rgba(255, 255, 255, 0.04); padding: 18px 22px;
-            border-radius: 16px; border: 1px solid rgba(200, 131, 58, 0.25); text-decoration: none; color: var(--crema-mdera); transition: all 0.3s;
+        .carrito-contenido {
+            background: var(--crema-madera);
+            color: var(--carbon);
+            border-radius: 20px;
+            padding: 35px;
+            max-width: 580px;
+            width: 100%;
+            max-height: 85vh;
+            overflow-y: auto;
+            border: 2px solid var(--pino-miel);
+            box-shadow: 0 20px 45px rgba(0,0,0,0.6);
         }
-        .contacto-item.wsp-destacado { border-color: #25D366; background: rgba(37, 211, 102, 0.08); }
-        .contacto-item:hover { transform: translateX(6px); background: rgba(200, 131, 58, 0.15); }
+
+        .carrito-titulo {
+            font-size: 2rem;
+            color: var(--roble-oscuro);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .carrito-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 0;
+            border-bottom: 1px solid var(--arena-patagonica);
+        }
+
+        .carrito-item-info h4 {
+            color: var(--roble-oscuro);
+            font-size: 1.1rem;
+            margin-bottom: 4px;
+        }
+
+        .carrito-item-detalle {
+            font-size: 0.85rem;
+            color: #555;
+        }
+
+        .carrito-item-precio {
+            color: var(--cedro-calido);
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .carrito-item-eliminar {
+            background: #ff4d4d;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-left: 10px;
+            transition: background 0.2s;
+        }
+
+        .carrito-item-eliminar:hover { background: #e03838; }
+
+        .carrito-vacio {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .carrito-total {
+            margin-top: 25px;
+            padding-top: 15px;
+            border-top: 2px solid var(--pino-miel);
+            font-size: 1.4rem;
+            font-weight: bold;
+            text-align: right;
+            color: var(--roble-oscuro);
+            font-family: 'Playfair Display', serif;
+        }
+
+        .carrito-acciones {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .btn-carrito-accion {
+            flex: 1;
+            padding: 16px;
+            border: none;
+            border-radius: 12px;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: transform 0.2s, background 0.2s;
+        }
+
+        .btn-confirmar {
+            background: #25D366;
+            color: white;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+        }
+
+        .btn-confirmar:hover { background: #20ba5a; transform: translateY(-2px); }
+        .btn-cerrar-carrito { background: #e0d8cc; color: #333; }
+        .btn-cerrar-carrito:hover { background: #d0c5b5; }
+
+        /* ==========================================
+           6. SECCIÓN CONTACTO CON CASTOR
+        ========================================== */
+        .contacto-grid {
+            display: flex;
+            max-width: 1100px;
+            margin: 0 auto;
+            gap: 60px;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+        }
+
+        .contacto-info { flex: 1.2; }
+        .contacto-list { display: flex; flex-direction: column; gap: 18px; }
+
+        .contacto-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: rgba(255, 255, 255, 0.08);
+            padding: 18px 24px;
+            border-radius: 16px;
+            border: 1px solid rgba(200, 131, 58, 0.3);
+            text-decoration: none;
+            color: var(--crema-madera);
+            transition: transform 0.3s ease, background 0.3s, border-color 0.3s;
+        }
+
+        .contacto-item.wsp-destacado { border: 1px solid #25D366; background: rgba(37, 211, 102, 0.12); }
+        .contacto-item:hover { transform: translateX(8px); background: rgba(200, 131, 58, 0.2); border-color: var(--pino-miel); }
+        .contacto-item.wsp-destacado:hover { background: rgba(37, 211, 102, 0.25); border-color: #25D366; }
+
         .contacto-icono { font-size: 1.6rem; }
-        .contacto-texto h4 { font-size: 0.8rem; text-transform: uppercase; color: var(--arena-patag); margin-bottom: 2px; letter-spacing: 0.5px; }
+        .contacto-texto h4 { font-size: 0.95rem; text-transform: uppercase; letter-spacing: 1px; color: var(--arena-patagonica); margin-bottom: 2px; }
         .contacto-item.wsp-destacado .contacto-texto h4 { color: #25D366; }
         .contacto-texto p { font-size: 1.05rem; font-weight: 600; }
-        .contacto-castor-box { flex: 0.8; display: flex; justify-content: center; }
-        .castor-img { max-width: 300px; width: 100%; height: auto; animation: flotarCastor 4s ease-in-out infinite; }
+
+        .contacto-castor-box {
+            flex: 0.8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .castor-img {
+            max-width: 340px;
+            width: 100%;
+            height: auto;
+            filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.5));
+            animation: flotarCastor 4s ease-in-out infinite;
+        }
+
         .castor-placeholder {
-            width: 260px; height: 260px; border: 2px dashed var(--pino-miel); border-radius: 50%;
-            display: flex; flex-direction: column; justify-content: center; align-items: center; color: var(--arena-patag);
-            text-align: center; padding: 20px; background: rgba(255,255,255,0.02); font-size: 0.85rem;
+            width: 280px;
+            height: 280px;
+            border: 2px dashed var(--pino-miel);
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: var(--arena-patagonica);
+            text-align: center;
+            padding: 20px;
+            background: rgba(255,255,255,0.04);
+            font-size: 0.9rem;
+            animation: flotarCastor 4s ease-in-out infinite;
         }
-        @keyframes flotarCastor { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-10px); } }
 
-        /* Notificación */
+        @keyframes flotarCastor {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
+            100% { transform: translateY(0px); }
+        }
+
         .notificacion {
-            position: fixed; bottom: 100px; right: 30px; background: var(--pino-miel); color: white;
-            padding: 14px 22px; border-radius: 10px; display: none; z-index: 150; font-weight: 600;
-            box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+            position: fixed;
+            bottom: 110px;
+            right: 30px;
+            background: var(--pino-miel);
+            color: white;
+            padding: 14px 22px;
+            border-radius: 12px;
+            display: none;
+            z-index: 2500;
+            font-weight: 600;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.4);
         }
-        .notificacion.show { display: block; animation: fadeIn 0.2s ease-in; }
+        .notificacion.show { display: block; animation: fadeIn 0.3s ease; }
 
-        @media (max-width: 768px) {
-            .navbar { padding: 15px 5%; }
+        footer {
+            background-color: rgba(18, 10, 5, 0.92);
+            color: var(--arena-patagonica);
+            text-align: center;
+            padding: 25px 20px;
+            font-size: 0.85rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            position: relative;
+            z-index: 2;
+        }
+
+        @media (max-width: 850px) {
+            .detalle-panel.active { grid-template-columns: 1fr; padding: 25px; }
+            .contacto-grid { flex-direction: column; }
+            .hero-content h1 { font-size: 2.3rem; }
             .nav-links { display: none; }
-            .hero-content h1 { font-size: 2.5rem; }
-            .catalogo-title { font-size: 2.3rem; }
-            .contacto-grid { flex-direction: column; gap: 35px; }
-            .contacto-castor-box { order: -1; }
-            .detalle-panel.active { padding: 25px; gap: 25px; }
         }
     </style>
 </head>
 <body>
 
-<!-- FONDO DINÁMICO ROTATIVO TENUE -->
-<div class="page-bg-slider" id="page-bg-slider"></div>
-<div class="page-bg-overlay"></div>
+    <!-- FONDO FIJO ROTATIVO -->
+    <div class="page-bg-slider" id="page-bg-slider"></div>
+    <div class="page-bg-overlay"></div>
 
-<nav class="navbar">
-    <a href="index.html" class="logo">MADERERA LA HERRADURA</a>
-    <div class="nav-links">
-        <a href="#catalogo">Productos</a>
-        <a href="#contacto">Contacto</a>
-    </div>
-</nav>
-
-<header class="hero">
-    <div class="hero-content">
-        <h1>Maderas Seleccionadas</h1>
-        <p>Estructuras y materiales de madera de alta eficiencia, resistencia y acabado para el clima patagónico.</p>
-    </div>
-</header>
-
-<section id="catalogo" class="catalogo-section">
-    <h2 class="catalogo-title">Productos Destacados</h2>
-    <p class="catalogo-subtitle">SELECCIÓN Y MATERIALES A MEDIDA</p>
-    
-    <div class="carousel-container">
-        <div class="carousel-track" id="carouselTrack"></div>
-    </div>
-
-    <!-- PANEL DE DETALLES -->
-    <div class="detalle-panel" id="detallePanel">
-        <div class="detalle-galeria">
-            <div class="detalle-img-principal-wrapper" id="detalleImgPrincipal">
-                Vista Principal
-            </div>
-            <div class="detalle-minis-container" id="detalleMinisContainer"></div>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <a href="../index.html" class="logo">Maderera La Herradura</a>
+        <div class="nav-links">
+            <a href="#catalogo">Catálogo</a>
+            <a href="#contacto">Contacto</a>
         </div>
+    </nav>
 
-        <div class="detalle-info">
-            <h2 id="detalleTitulo"></h2>
-            <p class="detalle-desc" id="detalleDesc"></p>
-            
-            <div class="detalle-specs" id="detalleSpecs"></div>
+    <div class="main-wrapper">
 
-            <div class="variantes-section" id="seccionTamanios" style="display: none;">
-                <label class="variante-label" id="labelTamanioStyle">📏 Medida / Espesor</label>
-                <div class="variante-opciones" id="botonesSize"></div>
+        <!-- HERO BANNER -->
+        <section class="hero-section">
+            <div class="hero-content">
+                <h1>Venta de Maderas</h1>
+                <p>Fenólicos, tirantes, machimbres y soluciones a medida con envío directo de pedidos por WhatsApp.</p>
+            </div>
+        </section>
+
+        <!-- CATÁLOGO DE PRODUCTOS -->
+        <section id="catalogo" class="catalogo-section">
+            <div class="section-header">
+                <h2>Catálogo y Materiales</h2>
+                <p class="subtitle">Seleccioná un producto para configurar medidas y calidades</p>
             </div>
 
-            <div class="variantes-section" id="seccionCalidades">
-                <label class="variante-label">⭐ Calidad</label>
-                <div class="variante-opciones" id="botonesCalidad"></div>
-            </div>
-
-            <div class="cantidad-precio">
-                <div class="cantidad-control">
-                    <button type="button" class="cantidad-btn" onclick="app.decrementarCantidad()">−</button>
-                    <input type="number" id="cantidadInput" class="cantidad-input" value="1" min="1">
-                    <button type="button" class="cantidad-btn" onclick="app.incrementarCantidad()">+</button>
+            <div class="carousel-wrapper">
+                <button class="carousel-btn prev" onclick="scrollCarousel(-300)">‹</button>
+                <div class="carousel-track" id="carouselTrack">
+                    <!-- Dinámico -->
                 </div>
-                <div class="precio-total" id="precioTotal">$0</div>
+                <button class="carousel-btn next" onclick="scrollCarousel(300)">›</button>
             </div>
 
-            <button type="button" class="btn-agregar-carrito" onclick="app.agregarAlCarrito(event)">🛒 Agregar al Carrito</button>
-            <button type="button" class="btn-cerrar-detalle" onclick="app.cerrarDetalle()">Cerrar</button>
-        </div>
-    </div>
-</section>
-
-<section id="contacto" class="contacto">
-    <div class="contacto-grid">
-        <div class="contacto-info">
-            <h2>Iniciá tu proyecto con nosotros</h2>
-            <p class="subtitle">Escribinos o visitanos para recibir asesoramiento personalizado</p>
-            
-            <div class="contacto-list">
-                <a href="https://wa.me/542944898755?text=Hola!%20Me%20interesa%20recibir%20información%20sobre%20las%20maderas." target="_blank" class="contacto-item wsp-destacado">
-                    <div class="contacto-icono">💬</div>
-                    <div class="contacto-texto">
-                        <h4>WhatsApp (Link Directo)</h4>
-                        <p>+54 2944 898755</p>
-                    </div>
-                </a>
-                <a href="https://instagram.com/maderera_la_herradura" target="_blank" class="contacto-item">
-                    <div class="contacto-icono">📸</div>
-                    <div class="contacto-texto">
-                        <h4>Instagram</h4>
-                        <p>@maderera_la_herradura</p>
-                    </div>
-                </a>
-                <a href="mailto:Laherradurabrc@gmail.com" class="contacto-item">
-                    <div class="contacto-icono">✉️</div>
-                    <div class="contacto-texto">
-                        <h4>Correo Electrónico</h4>
-                        <p>Laherradurabrc@gmail.com</p>
-                    </div>
-                </a>
-                <a href="https://maps.app.goo.gl/jrZp5MVb9dFV7VEs9" target="_blank" class="contacto-item">
-                    <div class="contacto-icono">📍</div>
-                    <div class="contacto-texto">
-                        <h4>Ubicación</h4>
-                        <p>San Jose 150, Ñireco, Bariloche</p>
-                    </div>
-                </a>
-            </div>
-        </div>
-
-        <div class="contacto-castor-box">
-            <div id="placeholder-castor" class="castor-placeholder">
-                <div style="font-size: 2rem; margin-bottom: 8px;">🪵 🦫</div>
-                <strong>¡Espacio del Castor!</strong>
-            </div>
-            <img src="../images/castor.png" alt="Castor Maderera La Herradura" class="castor-img" style="display: none;" onerror="this.style.display='none';" onload="this.style.display='block'; document.getElementById('placeholder-castor').style.display='none';">
-        </div>
-    </div>
-</section>
-
-<div class="carrito-flotante" onclick="app.abrirCarrito()">
-    🛒
-    <div class="carrito-badge" id="carrioBadge">0</div>
-</div>
-
-<div class="carrito-modal" id="carritoModal">
-    <div class="carrito-contenido">
-        <h2 class="carrito-titulo">Tu Pedido</h2>
-        <div id="carritoItems"></div>
-        <div class="carrito-total">Total: <span id="carritoTotalPrecio">$0</span></div>
-        <div class="carrito-acciones">
-            <button type="button" class="btn-carrito-accion btn-confirmar" onclick="app.enviarPorWhatsApp()">✓ Enviar por WhatsApp</button>
-            <button type="button" class="btn-carrito-accion btn-cerrar-carrito" onclick="app.cerrarCarrito()">Cerrar</button>
-        </div>
-    </div>
-</div>
-
-<div class="notificacion" id="notificacion"></div>
-
-<script>
-// --- FONDO ROTATIVO DINÁMICO TENUE ---
-function iniciarFondoDinamico() {
-    const fotosFondo = [
-        "../images/maderasindex1.png",
-        "../images/maderasindex2.png",
-        "../images/maderasindex3.png"
-    ];
-    const container = document.getElementById('page-bg-slider');
-    if (!container) return;
-    
-    fotosFondo.forEach((src, idx) => {
-        const slide = document.createElement('div');
-        slide.className = 'page-bg-slide' + (idx === 0 ? ' activa' : '');
-        slide.style.backgroundImage = `url('${src}')`;
-        container.appendChild(slide);
-    });
-
-    let idx = 0;
-    const slides = container.querySelectorAll('.page-bg-slide');
-    if (slides.length <= 1) return;
-
-    setInterval(() => {
-        slides[idx].classList.remove('activa');
-        idx = (idx + 1) % slides.length;
-        slides[idx].classList.add('activa');
-    }, 6000);
-}
-
-// --- DATOS Y ESPECIFICACIONES EXACTAS ---
-const productos = [
-    {
-        id: 'machimbre',
-        nombre: 'Machimbre',
-        descripcion: 'Tablero machimbrado de alta calidad para revestimientos interiores y exteriores. Precios por metro cuadrado ($/m²).',
-        vistas: ['Vista Principal', 'Detalle Veta', 'Aplicado en Obra'],
-        especificaciones: [
-            { label: 'Material', valor: 'Pino Argentino' },
-            { label: 'Unidad', valor: 'Metro Cuadrado (m²)' },
-            { label: 'Acabado', valor: 'Cepillado' }
-        ],
-        tamanios: ['1/2 x 5"', '3/4 x 5"', '1 x 6"'],
-        preciosPorVariante: {
-            '1/2 x 5"': { '1era Calidad': 8000, '2da Calidad (Oferta)': 5000 },
-            '3/4 x 5"': { '1era Calidad': 12500 },
-            '1 x 6"': { '1era Calidad': 17000 }
-        },
-        precioBase: 8000
-    },
-    {
-        id: 'fenolicos',
-        nombre: 'Fenólicos',
-        descripcion: 'Tableros fenólicos de alta resistencia. Ideales para construcción de cabañas y estructuras exteriores.',
-        vistas: ['Tablero Estándar', 'Corte Lateral'],
-        especificaciones: [
-            { label: 'Material', valor: 'Tablero Fenólico' },
-            { label: 'Medida', valor: '1.22 x 2.44 m' },
-            { label: 'Aplicación', valor: 'Estructuras exteriores' }
-        ],
-        tamanios: ['12mm', '18mm'],
-        preciosPorVariante: {
-            '12mm': { 'Industrial': 34500 },
-            '18mm': { 'Industrial': 37500, 'Escrap': 35500, 'C3': 42500 }
-        },
-        precioBase: 37500
-    },
-    {
-        id: 'puertas',
-        nombre: 'Puertas',
-        descripcion: 'Puertas de madera maciza fabricadas a medida. Disponemos de diseños clásicos y modernos.',
-        vistas: ['Diseño Clásico', 'Detalle Manija'],
-        especificaciones: [
-            { label: 'Espesor', valor: '35 - 45mm' },
-            { label: 'Tipo de Madera', valor: 'A medida' },
-            { label: 'Acabado', valor: 'Barniz/Pintura' }
-        ],
-        tamanios: null,
-        preciosPorVariante: { 'Unica': { 'Estándar': 3500 } },
-        precioBase: 3500
-    },
-    {
-        id: 'tirantes',
-        nombre: 'Tirantes',
-        descripcion: 'Vigas y tirantes de madera dimensionada. Precios cotizados por pie.',
-        vistas: ['Sección Recta', 'Apio Viga'],
-        especificaciones: [
-            { label: 'Unidad de Venta', valor: 'Por Pie' },
-            { label: 'Material', valor: 'Pino/Ciprés' }
-        ],
-        tamanios: null,
-        preciosPorVariante: { 'Unica': { 'Seleccionado': 1800 } },
-        precioBase: 1800
-    },
-    {
-        id: 'tablas',
-        nombre: 'Tablas',
-        descripcion: 'Tablas de madera cepilladas y dimensionadas. Perfectas para revestimientos y pisos.',
-        vistas: ['Tabla Cepillada'],
-        especificaciones: [
-            { label: 'Espesor', valor: '12 - 25mm' },
-            { label: 'Acabado', valor: 'Cepillado' }
-        ],
-        tamanios: null,
-        preciosPorVariante: { 'Unica': { 'Estándar': 900 } },
-        precioBase: 900
-    }
-];
-
-// --- LÓGICA DE APLICACIÓN ---
-const app = {
-    carrito: JSON.parse(localStorage.getItem('maderera_carrito')) || [],
-    productoActual: null,
-    variantesSeleccionadas: { tamanio: null, calidad: null },
-    cantidadActual: 1,
-    precioActual: 0,
-
-    init() {
-        iniciarFondoDinamico();
-        this.renderizarProductos();
-        this.actualizarCarrito();
-    },
-
-    guardarEnMemoria() {
-        localStorage.setItem('maderera_carrito', JSON.stringify(this.carrito));
-    },
-
-    renderizarProductos() {
-        const track = document.getElementById('carouselTrack');
-        track.innerHTML = productos.map(prod => `
-            <div class="producto-card" onclick="app.abrirDetalle('${prod.id}')">
-                <div class="producto-img-wrapper">
-                    <span class="producto-img-placeholder">🪵</span>
+            <!-- PANEL DESPLEGABLE DE COMPRA -->
+            <div class="detalle-panel" id="detallePanel">
+                <div class="detalle-info-izq">
+                    <h2 id="detalleTitulo">Producto</h2>
+                    <p class="detalle-desc" id="detalleDesc"></p>
+                    <div class="detalle-specs" id="detalleSpecs"></div>
                 </div>
-                <div class="producto-info">
-                    <h3>${prod.nombre}</h3>
-                    <div class="producto-precio">Desde $${prod.precioBase.toLocaleString('es-AR')}</div>
-                    <div class="producto-badge">Ver detalles →</div>
+
+                <div class="detalle-info-der">
+                    <div class="variantes-section" id="seccionTamanios">
+                        <label class="variante-label" id="labelTamanioStyle">📏 Medida / Espesor</label>
+                        <div class="variante-opciones" id="botonesSize"></div>
+                    </div>
+
+                    <div class="variantes-section" id="seccionCalidades">
+                        <label class="variante-label">⭐ Calidad</label>
+                        <div class="variante-opciones" id="botonesCalidad"></div>
+                    </div>
+
+                    <div class="cantidad-precio-box">
+                        <div class="cantidad-control">
+                            <button type="button" class="cantidad-btn" onclick="app.decrementarCantidad()">−</button>
+                            <input type="number" id="cantidadInput" class="cantidad-input" value="1" min="1">
+                            <button type="button" class="cantidad-btn" onclick="app.incrementarCantidad()">+</button>
+                        </div>
+                        <div class="precio-total-detalle" id="precioTotal">$0</div>
+                    </div>
+
+                    <button type="button" class="btn-agregar-carrito" onclick="app.agregarAlCarrito(event)">🛒 Agregar al Carrito</button>
+                    <button type="button" class="btn-cerrar-detalle" onclick="app.cerrarDetalle()">Cerrar / Volver</button>
                 </div>
             </div>
-        `).join('');
-    },
+        </section>
 
-    abrirDetalle(productoId) {
-        const panel = document.getElementById('detallePanel');
-        
-        if (this.productoActual && this.productoActual.id === productoId && panel.classList.contains('active')) {
-            this.cerrarDetalle();
-            return;
-        }
+        <!-- SECCIÓN CONTACTO CON CASTOR -->
+        <section id="contacto" class="contacto">
+            <div class="section-header" style="text-align: left; max-width: 1100px; margin: 0 auto 30px auto; padding: 0 20px;">
+                <h2>Iniciá tu proyecto con nosotros</h2>
+                <p class="subtitle">Escribinos o visitanos para recibir asesoramiento personalizado</p>
+            </div>
 
-        this.productoActual = productos.find(p => p.id === productoId);
-        if (!this.productoActual) return;
+            <div class="contacto-grid">
+                <div class="contacto-info">
+                    <div class="contacto-list">
+                        <a href="https://wa.me/542944898755?text=Hola!%20Me%20interesa%20recibir%20información%20sobre%20las%20maderas." target="_blank" class="contacto-item wsp-destacado">
+                            <div class="contacto-icono">💬</div>
+                            <div class="contacto-texto">
+                                <h4>WhatsApp (Link Directo)</h4>
+                                <p>+54 2944 898755</p>
+                            </div>
+                        </a>
 
-        this.variantesSeleccionadas = { tamanio: null, calidad: null };
-        this.cantidadActual = 1;
+                        <a href="https://instagram.com/maderera_la_herradura" target="_blank" class="contacto-item">
+                            <div class="contacto-icono">📸</div>
+                            <div class="contacto-texto">
+                                <h4>Instagram</h4>
+                                <p>@maderera_la_herradura</p>
+                            </div>
+                        </a>
 
-        document.getElementById('detalleTitulo').textContent = this.productoActual.nombre;
-        document.getElementById('detalleDesc').textContent = this.productoActual.descripcion;
+                        <a href="mailto:Laherradurabrc@gmail.com" class="contacto-item">
+                            <div class="contacto-icono">✉️</div>
+                            <div class="contacto-texto">
+                                <h4>Correo Electrónico</h4>
+                                <p>Laherradurabrc@gmail.com</p>
+                            </div>
+                        </a>
 
-        this.cambiarVista(this.productoActual.vistas[0], 0);
-        
-        const minisContainer = document.getElementById('detalleMinisContainer');
-        if (this.productoActual.vistas.length > 1) {
-            minisContainer.style.display = 'flex';
-            minisContainer.innerHTML = this.productoActual.vistas.map((vista, index) => `
-                <button type="button" class="miniatura-btn ${index === 0 ? 'active' : ''}" data-vista-idx="${index}" onclick="app.seleccionarVistaPorIndice(${index})">${vista}</button>
-            `).join('');
-        } else {
-            minisContainer.style.display = 'none';
-        }
+                        <a href="https://maps.app.goo.gl/jrZp5MVb9dFV7VEs9" target="_blank" class="contacto-item">
+                            <div class="contacto-icono">📍</div>
+                            <div class="contacto-texto">
+                                <h4>Ubicación</h4>
+                                <p>San Jose 150, Ñireco, Bariloche</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
 
-        const specsHtml = this.productoActual.especificaciones
-            .map(spec => `<div class="spec-item"><span class="spec-label">${spec.label}:</span> <span>${spec.valor}</span></div>`)
-            .join('');
-        document.getElementById('detalleSpecs').innerHTML = specsHtml;
+                <div class="contacto-castor-box">
+                    <div id="placeholder-castor" class="castor-placeholder">
+                        <div style="font-size: 2.5rem; margin-bottom: 10px;">🪵 🦫</div>
+                        <strong>¡Espacio del Castor!</strong>
+                    </div>
+                    <img src="../images/castor.png" alt="Castor Maderera La Herradura" class="castor-img" style="display: none;" onerror="this.style.display='none';" onload="this.style.display='block'; document.getElementById('placeholder-castor').style.display='none';">
+                </div>
+            </div>
+        </section>
 
-        const seccionTamanios = document.getElementById('seccionTamanios');
-        const labelTamanio = document.getElementById('labelTamanioStyle');
+    </div>
 
-        if (this.productoActual.id === 'machimbre') {
-            labelTamanio.textContent = '📏 Medida / Ancho';
-        } else if (this.productoActual.id === 'fenolicos') {
-            labelTamanio.textContent = '📏 Espesor';
-        } else {
-            labelTamanio.textContent = '📏 Medida';
-        }
+    <footer>
+        <p>© Maderera La Herradura S.R.L. — San Carlos de Bariloche, Patagonia Argentina.</p>
+    </footer>
 
-        if (this.productoActual.tamanios && this.productoActual.tamanios.length > 0) {
-            seccionTamanios.style.display = 'block';
-            document.getElementById('botonesSize').innerHTML = this.productoActual.tamanios
-                .map((tam, index) => `<button type="button" class="variante-btn" data-tamanio-idx="${index}" onclick="app.seleccionarTamanioPorIndice(${index})">${tam}</button>`)
-                .join('');
+    <!-- CARRITO FLOTANTE -->
+    <div class="carrito-flotante" onclick="app.abrirCarrito()">
+        🛒
+        <div class="carrito-badge" id="carritoBadge">0</div>
+    </div>
+
+    <!-- MODAL DEL CARRITO -->
+    <div class="carrito-modal" id="carritoModal">
+        <div class="carrito-contenido">
+            <h2 class="carrito-titulo">Tu Pedido Web</h2>
+            <div id="carritoItems"></div>
+            <div class="carrito-total">Total: <span id="carritoTotalPrecio">$0</span></div>
+            <div class="carrito-acciones">
+                <button type="button" class="btn-carrito-accion btn-confirmar" onclick="app.enviarPorWhatsApp()">✓ Enviar Pedido por WhatsApp</button>
+                <button type="button" class="btn-carrito-accion btn-cerrar-carrito" onclick="app.cerrarCarrito()">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="notificacion" id="notificacion"></div>
+
+    <!-- SCRIPT DE FUNCIONALIDAD -->
+    <script>
+        function iniciarFondoDinamico() {
+            const fotosFondo = [
+                "../images/maderasindex1.png",
+                "../images/maderasindex2.png",
+                "../images/maderasindex3.png",
+                "../images/maderasindex4.png"
+            ];
+            const container = document.getElementById('page-bg-slider');
+            if (!container) return;
             
-            this.seleccionarTamanioPorIndice(0);
-        } else {
-            seccionTamanios.style.display = 'none';
-            const calidadesDisponibles = Object.keys(this.productoActual.preciosPorVariante['Unica'] || {});
-            document.getElementById('botonesCalidad').innerHTML = calidadesDisponibles
-                .map((cal, index) => `<button type="button" class="variante-btn" data-calidad-idx="${index}" onclick="app.seleccionarCalidadPorIndice(${index})">${cal}</button>`)
-                .join('');
-            if (calidadesDisponibles.length > 0) {
-                this.seleccionarCalidadPorIndice(0);
-            }
+            fotosFondo.forEach((src, idx) => {
+                const slide = document.createElement('div');
+                slide.className = 'page-bg-slide' + (idx === 0 ? ' activa' : '');
+                slide.style.backgroundImage = `url('${src}')`;
+                container.appendChild(slide);
+            });
+
+            let idx = 0;
+            const slides = container.querySelectorAll('.page-bg-slide');
+            if (slides.length <= 1) return;
+
+            setInterval(() => {
+                slides[idx].classList.remove('activa');
+                idx = (idx + 1) % slides.length;
+                slides[idx].classList.add('activa');
+            }, 5000);
         }
 
-        this.actualizarPrecioDisplay();
-        document.getElementById('detallePanel').classList.add('active');
-    },
-
-    cambiarVista(nombreVista, index) {
-        const imgPrincipal = document.getElementById('detalleImgPrincipal');
-        imgPrincipal.style.opacity = '0.3';
-        setTimeout(() => {
-            imgPrincipal.textContent = nombreVista;
-            imgPrincipal.style.opacity = '1';
-        }, 150);
-
-        document.querySelectorAll('.miniatura-btn').forEach((btn, i) => {
-            if (i === index) {
-                btn.classList.add('active');
-            } else {
-                btn.classList.remove('active');
-            }
-        });
-    },
-
-    seleccionarVistaPorIndice(index) {
-        if (this.productoActual && this.productoActual.vistas[index]) {
-            this.cambiarVista(this.productoActual.vistas[index], index);
+        function scrollCarousel(distance) {
+            const track = document.getElementById('carouselTrack');
+            if (track) track.scrollBy({ left: distance, behavior: 'smooth' });
         }
-    },
 
-    seleccionarTamanioPorIndice(index) {
-        if (!this.productoActual || !this.productoActual.tamanios) return;
-        const tamanio = this.productoActual.tamanios[index];
-        this.variantesSeleccionadas.tamanio = tamanio;
-
-        document.querySelectorAll('#botonesSize .variante-btn').forEach((btn, i) => {
-            if (i === index) {
-                btn.classList.add('active');
-            } else {
-                btn.classList.remove('active');
+        const productos = [
+            {
+                id: 'fenolicos',
+                nombre: 'Fenólicos',
+                descripcion: 'Tableros fenólicos de alta resistencia. Disponibles en 12mm (calidad industrial) y 18mm (industrial, scrap y C3). Ideales para encofrados, bases y construcciones.',
+                especificaciones: [
+                    { label: 'Formato', valor: '1.22 x 2.44 m' },
+                    { label: 'Uso', valor: 'Estructural / Cabañas' }
+                ],
+                tamanios: ['12 mm', '18 mm'],
+                preciosPorVariante: {
+                    '12 mm': { 'Industrial': 34500 },
+                    '18 mm': { 'Industrial': 37500, 'Scrap': 35500, 'C3': 42500 }
+                },
+                precioBase: 37500
+            },
+            {
+                id: 'tirantes',
+                nombre: 'Tirantes y Vigas',
+                descripcion: 'Madera dimensionada de excelente escuadría. Incluye opciones en Oregón, pino y pino Eliotis en medidas como 2x6, 2x4 y 2x2 (ideal también como clavadera).',
+                especificaciones: [
+                    { label: 'Unidad', valor: 'Por Pie / Lineal' },
+                    { label: 'Especies', valor: 'Oregón / Pino / Eliotis' }
+                ],
+                tamanios: ['2 x 6"', '2 x 4"', '2 x 2" (Clavadera)'],
+                preciosPorVariante: {
+                    '2 x 6"': { 'Pino Oregón': 5200, 'Pino Nacional': 3800 },
+                    '2 x 4"': { 'Pino Oregón': 3500, 'Pino Nacional': 2600 },
+                    '2 x 2" (Clavadera)': { 'Pino Nacional': 1800 }
+                },
+                precioBase: 3500
+            },
+            {
+                id: 'machimbre',
+                nombre: 'Machimbre',
+                descripcion: 'Tableros machimbrados cepillados de primera calidad. Perfectos para terminaciones de techos, cielorrasos y revestimientos interiores o exteriores.',
+                especificaciones: [
+                    { label: 'Unidad', valor: 'Metro Cuadrado (m²)' },
+                    { label: 'Terminación', valor: 'Cepillado 1° Calidad' }
+                ],
+                tamanios: ['1/2 x 5"', '3/4 x 5"', '1 x 6"'],
+                preciosPorVariante: {
+                    '1/2 x 5"': { '1era Calidad': 8000, '2da Calidad': 5000 },
+                    '3/4 x 5"': { '1era Calidad': 12500 },
+                    '1 x 6"': { '1era Calidad': 17000 }
+                },
+                precioBase: 8000
+            },
+            {
+                id: 'tablas',
+                nombre: 'Tablas y Listones',
+                descripcion: 'Tablas cepilladas y dimensionadas para múltiples aplicaciones en obra, cercos y construcciones auxiliares.',
+                especificaciones: [
+                    { label: 'Unidad', valor: 'Metros Lineales (Ml)' },
+                    { label: 'Selección', valor: 'Pino Seleccionado' }
+                ],
+                tamanios: ['1 x 6"', '1 x 4"', '1 x 2"'],
+                preciosPorVariante: {
+                    '1 x 6"': { 'Estándar': 1845 },
+                    '1 x 4"': { 'Estándar': 595 },
+                    '1 x 2"': { 'Estándar': 300 }
+                },
+                precioBase: 900
             }
-        });
+        ];
 
-        if (this.productoActual.preciosPorVariante && this.productoActual.preciosPorVariante[tamanio]) {
-            const calidadesDisponibles = Object.keys(this.productoActual.preciosPorVariante[tamanio]);
-            document.getElementById('botonesCalidad').innerHTML = calidadesDisponibles
-                .map((cal, i) => `<button type="button" class="variante-btn" data-calidad-idx="${i}" onclick="app.seleccionarCalidadPorIndice(${i})">${cal}</button>`)
-                .join('');
-            
-            if (calidadesDisponibles.length > 0) {
-                this.seleccionarCalidadPorIndice(0);
-            } else {
-                this.variantesSeleccionadas.calidad = null;
-            }
-        }
-        this.actualizarPrecioDisplay();
-    },
+        const app = {
+            carrito: JSON.parse(localStorage.getItem('maderera_carrito_maderas')) || [],
+            productoActualId: null,
+            variantesSeleccionadas: { tamanio: null, calidad: null },
+            cantidadActual: 1,
+            precioActual: 0,
 
-    seleccionarCalidadPorIndice(index) {
-        const calidades = document.querySelectorAll('#botonesCalidad .variante-btn');
-        if (!calidades[index]) return;
+            init() {
+                iniciarFondoDinamico();
+                this.renderizarProductos();
+                this.actualizarCarritoBadge();
+            },
 
-        const calidad = calidades[index].textContent;
-        this.variantesSeleccionadas.calidad = calidad;
+            guardarMemoria() {
+                localStorage.setItem('maderera_carrito_maderas', JSON.stringify(this.carrito));
+            },
 
-        calidades.forEach((btn, i) => {
-            if (i === index) {
-                btn.classList.add('active');
-            } else {
-                btn.classList.remove('active');
-            }
-        });
-        this.actualizarPrecioDisplay();
-    },
+            renderizarProductos() {
+                const track = document.getElementById('carouselTrack');
+                track.innerHTML = productos.map(prod => `
+                    <div class="producto-card" onclick="app.toggleDetalle('${prod.id}')">
+                        <div class="producto-img-wrapper">
+                            <span class="producto-img-placeholder">🪵</span>
+                        </div>
+                        <h3>${prod.nombre}</h3>
+                        <div class="producto-precio">Desde $${prod.precioBase.toLocaleString('es-AR')}</div>
+                        <span class="producto-badge">Configurar y Comprar →</span>
+                    </div>
+                `).join('');
+            },
 
-    cerrarDetalle() {
-        document.getElementById('detallePanel').classList.remove('active');
-        this.productoActual = null;
-    },
-
-    incrementarCantidad() {
-        this.cantidadActual++;
-        document.getElementById('cantidadInput').value = this.cantidadActual;
-        this.actualizarPrecioDisplay();
-    },
-
-    decrementarCantidad() {
-        if (this.cantidadActual > 1) {
-            this.cantidadActual--;
-            document.getElementById('cantidadInput').value = this.cantidadActual;
-            this.actualizarPrecioDisplay();
-        }
-    },
-
-    actualizarPrecioDisplay() {
-        let precioUnitario = this.productoActual.precioBase;
-        const tam = this.variantesSeleccionadas.tamanio;
-        const cal = this.variantesSeleccionadas.calidad;
-
-        if (this.productoActual.preciosPorVariante) {
-            if (tam && this.productoActual.preciosPorVariante[tam]) {
-                if (cal && this.productoActual.preciosPorVariante[tam][cal]) {
-                    precioUnitario = this.productoActual.preciosPorVariante[tam][cal];
+            toggleDetalle(id) {
+                const panel = document.getElementById('detallePanel');
+                
+                // Si ya está abierto el mismo producto, lo cerramos (Toggle)
+                if (this.productoActualId === id && panel.classList.contains('active')) {
+                    this.cerrarDetalle();
+                    return;
                 }
-            } else if (this.productoActual.preciosPorVariante['Unica']) {
-                if (cal && this.productoActual.preciosPorVariante['Unica'][cal]) {
-                    precioUnitario = this.productoActual.preciosPorVariante['Unica'][cal];
+
+                this.productoActualId = id;
+                const prod = productos.find(p => p.id === id);
+                if (!prod) return;
+
+                this.variantesSeleccionadas = { tamanio: null, calidad: null };
+                this.cantidadActual = 1;
+                document.getElementById('cantidadInput').value = 1;
+
+                document.getElementById('detalleTitulo').textContent = prod.nombre;
+                document.getElementById('detalleDesc').textContent = prod.descripcion;
+
+                document.getElementById('detalleSpecs').innerHTML = prod.especificaciones
+                    .map(s => `<div class="spec-item"><span class="spec-label">${s.label}:</span> <span>${s.valor}</span></div>`).join('');
+
+                const seccionTam = document.getElementById('seccionTamanios');
+                if (prod.tamanios && prod.tamanios.length > 0) {
+                    seccionTam.style.display = 'block';
+                    document.getElementById('botonesSize').innerHTML = prod.tamanios
+                        .map(tam => `<button type="button" class="variante-btn" onclick="app.seleccionarTamanio('${prod.id}', '${tam}', this)">${tam}</button>`).join('');
+                    
+                    this.seleccionarTamanio(prod.id, prod.tamanios[0], document.querySelector('#botonesSize .variante-btn'));
+                } else {
+                    seccionTam.style.display = 'none';
+                    this.cargarCalidadesUnicas(prod);
                 }
+
+                panel.classList.add('active');
+                panel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            },
+
+            seleccionarTamanio(prodId, tam, btnElement) {
+                this.variantesSeleccionadas.tamanio = tam;
+                document.querySelectorAll('#botonesSize .variante-btn').forEach(b => b.classList.remove('active'));
+                btnElement.classList.add('active');
+
+                const prod = productos.find(p => p.id === prodId);
+                const calidadesDict = prod.preciosPorVariante[tam] || {};
+                const calidades = Object.keys(calidadesDict);
+
+                document.getElementById('botonesCalidad').innerHTML = calidades
+                    .map(cal => `<button type="button" class="variante-btn" onclick="app.seleccionarCalidad('${cal}', this)">${cal}</button>`).join('');
+
+                if (calidades.length > 0) {
+                    this.seleccionarCalidad(calidades[0], document.querySelector('#botonesCalidad .variante-btn'));
+                }
+            },
+
+            cargarCalidadesUnicas(prod) {
+                const calidadesDict = prod.preciosPorVariante['Unica'] || {};
+                const calidades = Object.keys(calidadesDict);
+                document.getElementById('botonesCalidad').innerHTML = calidades
+                    .map(cal => `<button type="button" class="variante-btn" onclick="app.seleccionarCalidad('${cal}', this)">${cal}</button>`).join('');
+                if (calidades.length > 0) {
+                    this.seleccionarCalidad(calidades[0], document.querySelector('#botonesCalidad .variante-btn'));
+                }
+            },
+
+            seleccionarCalidad(cal, btnElement) {
+                this.variantesSeleccionadas.calidad = cal;
+                document.querySelectorAll('#botonesCalidad .variante-btn').forEach(b => b.classList.remove('active'));
+                btnElement.classList.add('active');
+                this.actualizarPrecioDisplay();
+            },
+
+            incrementarCantidad() {
+                this.cantidadActual++;
+                document.getElementById('cantidadInput').value = this.cantidadActual;
+                this.actualizarPrecioDisplay();
+            },
+
+            decrementarCantidad() {
+                if (this.cantidadActual > 1) {
+                    this.cantidadActual--;
+                    document.getElementById('cantidadInput').value = this.cantidadActual;
+                    this.actualizarPrecioDisplay();
+                }
+            },
+
+            actualizarPrecioDisplay() {
+                const prod = productos.find(p => p.id === this.productoActualId);
+                if (!prod) return;
+                let unitario = prod.precioBase;
+                const tam = this.variantesSeleccionadas.tamanio;
+                const cal = this.variantesSeleccionadas.calidad;
+
+                if (tam && prod.preciosPorVariante[tam] && prod.preciosPorVariante[tam][cal]) {
+                    unitario = prod.preciosPorVariante[tam][cal];
+                }
+
+                this.precioActual = unitario * this.cantidadActual;
+                document.getElementById('precioTotal').textContent = `$${this.precioActual.toLocaleString('es-AR')}`;
+            },
+
+            agregarAlCarrito(e) {
+                e.preventDefault();
+                const prod = productos.find(p => p.id === this.productoActualId);
+                if (!prod) return;
+
+                let unitario = prod.precioBase;
+                const tam = this.variantesSeleccionadas.tamanio;
+                const cal = this.variantesSeleccionadas.calidad;
+
+                if (tam && prod.preciosPorVariante[tam] && prod.preciosPorVariante[tam][cal]) {
+                    unitario = prod.preciosPorVariante[tam][cal];
+                }
+
+                const item = {
+                    nombre: prod.nombre,
+                    tamanio: tam,
+                    calidad: cal,
+                    cantidad: this.cantidadActual,
+                    precioTotal: unitario * this.cantidadActual
+                };
+
+                this.carrito.push(item);
+                this.guardarMemoria();
+                this.actualizarCarritoBadge();
+                this.mostrarNotificacion('✅ Producto agregado al carrito');
+                this.cerrarDetalle();
+            },
+
+            cerrarDetalle() {
+                document.getElementById('detallePanel').classList.remove('active');
+                this.productoActualId = null;
+            },
+
+            abrirCarrito() {
+                document.getElementById('carritoModal').classList.add('active');
+                this.renderizarCarritoModal();
+            },
+
+            cerrarCarrito() {
+                document.getElementById('carritoModal').classList.remove('active');
+            },
+
+            renderizarCarritoModal() {
+                const container = document.getElementById('carritoItems');
+                if (this.carrito.length === 0) {
+                    container.innerHTML = '<div class="carrito-vacio">Tu carrito está vacío 🛒</div>';
+                    document.getElementById('carritoTotalPrecio').textContent = '$0';
+                    return;
+                }
+
+                let totalGeneral = 0;
+                container.innerHTML = this.carrito.map((item, idx) => {
+                    totalGeneral += item.precioTotal;
+                    const detalles = [item.tamanio, item.calidad].filter(Boolean).join(' • ');
+                    return `
+                        <div class="carrito-item">
+                            <div class="carrito-item-info">
+                                <h4>${item.nombre}</h4>
+                                <div class="carrito-item-detalle">Cant: ${item.cantidad} | ${detalles}</div>
+                            </div>
+                            <div>
+                                <span class="carrito-item-precio">$${item.precioTotal.toLocaleString('es-AR')}</span>
+                                <button type="button" class="carrito-item-eliminar" onclick="app.eliminarItem(${idx})">×</button>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+
+                document.getElementById('carritoTotalPrecio').textContent = `$${totalGeneral.toLocaleString('es-AR')}`;
+            },
+
+            eliminarItem(idx) {
+                this.carrito.splice(idx, 1);
+                this.guardarMemoria();
+                this.actualizarCarritoBadge();
+                this.renderizarCarritoModal();
+                this.mostrarNotificacion('❌ Producto eliminado');
+            },
+
+            actualizarCarritoBadge() {
+                const totalItems = this.carrito.reduce((acc, i) => acc + i.cantidad, 0);
+                document.getElementById('carritoBadge').textContent = totalItems;
+            },
+
+            enviarPorWhatsApp() {
+                if (this.carrito.length === 0) return;
+                let mensaje = '🛒 *PEDIDO DE MADERAS - LA HERRADURA* 🛒\n\n';
+                let total = 0;
+
+                this.carrito.forEach(item => {
+                    total += item.precioTotal;
+                    const detalles = [item.tamanio, item.calidad].filter(Boolean).join(' • ');
+                    mensaje += `📦 *${item.nombre}*\n  Cantidad: ${item.cantidad}\n  Opciones: ${detalles}\n  Subtotal: $${item.precioTotal.toLocaleString('es-AR')}\n\n`;
+                });
+
+                mensaje += `💰 *TOTAL GENERAL: $${total.toLocaleString('es-AR')}*\n\n📍 *Retira o envuelve desde Ñireco, Bariloche*`;
+                window.open(`https://wa.me/542944898755?text=${encodeURIComponent(mensaje)}`, '_blank');
+            },
+
+            mostrarNotificacion(msg) {
+                const notif = document.getElementById('notificacion');
+                notif.textContent = msg;
+                notif.classList.add('show');
+                setTimeout(() => notif.classList.remove('show'), 3000);
             }
-        }
-
-        this.precioActual = precioUnitario * this.cantidadActual;
-        document.getElementById('precioTotal').textContent = `$${this.precioActual.toLocaleString('es-AR')}`;
-    },
-
-    agregarAlCarrito(event) {
-        if (event) event.preventDefault();
-
-        if (this.productoActual.tamanios && this.productoActual.tamanios.length > 0 && !this.variantesSeleccionadas.tamanio) {
-            this.mostrarNotificacion('⚠️ Selecciona una medida o espesor');
-            return;
-        }
-        if (!this.variantesSeleccionadas.calidad) {
-            this.mostrarNotificacion('⚠️ Selecciona una calidad');
-            return;
-        }
-
-        let precioUnitario = this.productoActual.precioBase;
-        const tam = this.variantesSeleccionadas.tamanio;
-        const cal = this.variantesSeleccionadas.calidad;
-        if (this.productoActual.preciosPorVariante) {
-            if (tam && this.productoActual.preciosPorVariante[tam] && this.productoActual.preciosPorVariante[tam][cal]) {
-                precioUnitario = this.productoActual.preciosPorVariante[tam][cal];
-            } else if (this.productoActual.preciosPorVariante['Unica'] && this.productoActual.preciosPorVariante['Unica'][cal]) {
-                precioUnitario = this.productoActual.preciosPorVariante['Unica'][cal];
-            }
-        }
-
-        const item = {
-            nombre: this.productoActual.nombre,
-            cantidad: this.cantidadActual,
-            tamanio: this.productoActual.tamanios ? this.variantesSeleccionadas.tamanio : null,
-            calidad: this.variantesSeleccionadas.calidad,
-            precioTotal: precioUnitario * this.cantidadActual
         };
 
-        this.carrito.push(item);
-        this.guardarEnMemoria();
-        this.actualizarCarrito();
-        this.mostrarNotificacion('✅ Agregado al carrito');
-    },
-
-    abrirCarrito() {
-        document.getElementById('carritoModal').classList.add('active');
-        this.renderizarCarrito();
-    },
-
-    cerrarCarrito() {
-        document.getElementById('carritoModal').classList.remove('active');
-    },
-
-    renderizarCarrito() {
-        const carritoItems = document.getElementById('carritoItems');
-        if (this.carrito.length === 0) {
-            carritoItems.innerHTML = '<div class="carrito-vacio">Tu carrito está vacío 🛒</div>';
-            document.getElementById('carritoTotalPrecio').textContent = '$0';
-            return;
-        }
-
-        let totalCarrito = 0;
-        carritoItems.innerHTML = this.carrito.map((item, idx) => {
-            totalCarrito += item.precioTotal;
-            const detalleVariante = [item.tamanio, item.calidad].filter(Boolean).join(' • ');
-            return `
-                <div class="carrito-item">
-                    <div class="carrito-item-info">
-                        <h4>${item.nombre}</h4>
-                        <div class="carrito-item-detalle">Cantidad: ${item.cantidad} • ${detalleVariante}</div>
-                    </div>
-                    <div>
-                        <span class="carrito-item-precio">$${item.precioTotal.toLocaleString('es-AR')}</span>
-                        <button type="button" class="carrito-item-eliminar" onclick="app.eliminarDelCarrito(${idx})">×</button>
-                    </div>
-                </div>
-            `;
-        }).join('');
-
-        document.getElementById('carritoTotalPrecio').textContent = `$${totalCarrito.toLocaleString('es-AR')}`;
-    },
-
-    eliminarDelCarrito(indice) {
-        this.carrito.splice(indice, 1);
-        this.guardarEnMemoria();
-        this.actualizarCarrito();
-        this.renderizarCarrito();
-        this.mostrarNotificacion('❌ Eliminado del carrito');
-    },
-
-    actualizarCarrito() {
-        document.getElementById('carrioBadge').textContent = this.carrito.reduce((t, i) => t + i.cantidad, 0);
-    },
-
-    enviarPorWhatsApp() {
-        if (this.carrito.length === 0) return;
-        let mensaje = '🛒 *PEDIDO DE MADERAS* 🛒\n\n';
-        let total = 0;
-
-        this.carrito.forEach(item => {
-            total += item.precioTotal;
-            const detalleVariante = [item.tamanio, item.calidad].filter(Boolean).join(' • ');
-            mensaje += `📦 *${item.nombre}*\n  Cant: ${item.cantidad} | ${detalleVariante}\n  Subtotal: $${item.precioTotal.toLocaleString('es-AR')}\n\n`;
-        });
-
-        mensaje += `💰 *TOTAL: $${total.toLocaleString('es-AR')}*\n\n📍 *Zona Ñireco, Bariloche*`;
-        window.open(`https://wa.me/542944898755?text=${encodeURIComponent(mensaje)}`, '_blank');
-    },
-
-    mostrarNotificacion(mensaje) {
-        const notif = document.getElementById('notificacion');
-        notif.textContent = mensaje;
-        notif.classList.add('show');
-        setTimeout(() => notif.classList.remove('show'), 3000);
-    }
-};
-
-window.addEventListener('DOMContentLoaded', () => app.init());
-</script>
-
+        window.addEventListener('DOMContentLoaded', () => app.init());
+    </script>
 </body>
 </html>
