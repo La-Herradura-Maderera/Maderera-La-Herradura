@@ -93,7 +93,7 @@
         }
 
         /* ==========================================
-           1. NAVBAR FIJA CON BOTÓN DE RETORNO
+           1. NAVBAR FIJA
         ========================================== */
         .navbar {
             display: flex;
@@ -157,7 +157,7 @@
         .nav-links a:hover { color: var(--pino-miel); }
 
         .main-wrapper {
-            margin-top: 65px;
+            margin-top: 85px;
             position: relative;
             z-index: 1;
         }
@@ -167,7 +167,7 @@
         ========================================== */
         .hero-section {
             position: relative;
-            padding: 40px 8% 30px 8%;
+            padding: 30px 8% 25px 8%;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -180,31 +180,30 @@
             position: relative;
             z-index: 3;
             max-width: 800px;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
 
         .hero-content h1 {
-            font-size: 3.2rem;
+            font-size: 3rem;
             letter-spacing: 2px;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             text-shadow: 0 4px 16px rgba(0,0,0,0.9);
         }
 
         .hero-content p {
             max-width: 680px;
             margin: 0 auto;
-            font-size: 1.12rem;
+            font-size: 1.05rem;
             color: var(--arena-patagonica);
-            line-height: 1.6;
+            line-height: 1.5;
             text-shadow: 0 2px 10px rgba(0,0,0,0.9);
         }
 
-        /* FLYER / BANNER PROMOCIONAL AL INICIO */
         .promo-banner {
             background: linear-gradient(135deg, rgba(200, 131, 58, 0.95), rgba(160, 92, 44, 0.95));
             border: 2px solid var(--arena-patagonica);
             border-radius: 18px;
-            padding: 20px 30px;
+            padding: 18px 25px;
             max-width: 850px;
             width: 100%;
             display: flex;
@@ -218,13 +217,13 @@
 
         .promo-banner-text h3 {
             font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             color: #fff;
             margin-bottom: 4px;
         }
 
         .promo-banner-text p {
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             color: var(--crema-madera);
             margin: 0;
         }
@@ -233,7 +232,7 @@
             background: var(--roble-oscuro);
             color: white;
             border: none;
-            padding: 12px 22px;
+            padding: 10px 20px;
             border-radius: 10px;
             font-weight: bold;
             cursor: pointer;
@@ -247,7 +246,7 @@
            3. CATÁLOGO POR BLOQUES DE SOLUCIONES (GRID)
         ========================================== */
         .catalogo-section, .contacto {
-            padding: 70px 8%;
+            padding: 60px 8%;
             background-color: rgba(28, 18, 10, 0.60);
             backdrop-filter: blur(6px);
             position: relative;
@@ -256,11 +255,11 @@
 
         .section-header {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 35px;
         }
 
         .section-header h2 {
-            font-size: 2.6rem;
+            font-size: 2.4rem;
             letter-spacing: 1px;
             margin-bottom: 8px;
         }
@@ -349,6 +348,7 @@
             z-index: 2000;
             align-items: center; justify-content: center;
             padding: 20px;
+            overflow-y: auto;
         }
 
         .configurador-modal.active { display: flex; }
@@ -357,13 +357,12 @@
             background: rgba(250, 246, 238, 0.98);
             color: var(--carbon);
             border-radius: 22px;
-            padding: 35px;
+            padding: 30px;
             max-width: 650px; width: 100%;
             border: 2px solid var(--pino-miel);
             box-shadow: 0 20px 50px rgba(0,0,0,0.7);
             position: relative;
-            max-height: 90vh;
-            overflow-y: auto;
+            margin: auto;
         }
 
         .modal-close-x {
@@ -380,25 +379,25 @@
         .configurador-titulo {
             color: var(--roble-oscuro);
             font-size: 2rem;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             padding-right: 30px;
         }
 
         .configurador-subdesc {
-            font-size: 0.92rem;
+            font-size: 0.9rem;
             color: #555;
-            margin-bottom: 25px;
-            line-height: 1.5;
+            margin-bottom: 20px;
+            line-height: 1.4;
         }
 
-        .paso-grupo { margin-bottom: 20px; }
+        .paso-grupo { margin-bottom: 18px; }
 
         .paso-label {
             font-weight: 700;
             color: var(--roble-oscuro);
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             display: block;
-            font-size: 0.95rem;
+            font-size: 0.92rem;
         }
 
         .opciones-grid {
@@ -408,7 +407,7 @@
         }
 
         .opcion-btn {
-            padding: 10px 18px;
+            padding: 10px 16px;
             border: 2px solid var(--arena-patagonica);
             background: white;
             border-radius: 10px;
@@ -429,27 +428,27 @@
 
         .configurador-footer {
             background: #f4ecdf;
-            padding: 18px 20px;
+            padding: 15px 20px;
             border-radius: 14px;
             border: 1px solid var(--arena-patagonica);
-            margin-top: 25px;
-            margin-bottom: 20px;
+            margin-top: 20px;
+            margin-bottom: 15px;
         }
 
         .cantidad-precio-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
         }
 
         .cuotas-info-box {
-            font-size: 0.88rem;
+            font-size: 0.85rem;
             color: var(--cedro-calido);
             font-weight: 600;
             text-align: right;
             border-top: 1px dashed var(--arena-patagonica);
-            padding-top: 8px;
+            padding-top: 6px;
         }
 
         .cantidad-control {
@@ -474,7 +473,7 @@
         }
 
         .precio-final-parcial {
-            font-size: 1.6rem;
+            font-size: 1.5rem;
             font-weight: 700;
             color: var(--cedro-calido);
             font-family: 'Playfair Display', serif;
@@ -482,17 +481,17 @@
 
         .btn-accion-modal {
             width: 100%;
-            padding: 16px;
+            padding: 14px;
             background-color: var(--pino-miel);
             color: white;
             border: none;
             border-radius: 12px;
-            font-size: 1.05rem;
+            font-size: 1rem;
             font-weight: bold;
             cursor: pointer;
             box-shadow: 0 6px 18px rgba(200, 131, 58, 0.35);
             transition: background 0.3s;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
         .btn-accion-modal:hover { background-color: var(--cedro-calido); }
 
@@ -506,7 +505,7 @@
         .btn-cerrar-modal:hover { background: #d0c5b5; }
 
         /* ==========================================
-           5. CARRITO FLOTANTE Y MODAL CON ZONAS DE BARILOCHE
+           5. CARRITO FLOTANTE Y MODAL
         ========================================== */
         .carrito-flotante {
             position: fixed; bottom: 30px; right: 30px;
@@ -531,13 +530,15 @@
             width: 100%; height: 100%; background: rgba(0,0,0,0.8);
             backdrop-filter: blur(6px); z-index: 2000;
             align-items: center; justify-content: center; padding: 20px;
+            overflow-y: auto;
         }
         .carrito-modal.active { display: flex; }
         .carrito-contenido {
             background: var(--crema-madera); color: var(--carbon);
-            border-radius: 20px; padding: 35px; max-width: 620px; width: 100%;
+            border-radius: 20px; padding: 30px; max-width: 620px; width: 100%;
             max-height: 90vh; overflow-y: auto; border: 2px solid var(--pino-miel);
             position: relative;
+            margin: auto;
         }
         .carrito-titulo { font-size: 2rem; color: var(--roble-oscuro); margin-bottom: 12px; text-align: center; }
         
@@ -633,7 +634,7 @@
     <div class="page-bg-slider" id="page-bg-slider"></div>
     <div class="page-bg-overlay"></div>
 
-    <!-- NAVBAR CON BOTÓN DE RETORNO A PÁGINA PRINCIPAL -->
+    <!-- NAVBAR -->
     <nav class="navbar">
         <a href="../index.html" class="nav-volver">← Volver al Inicio</a>
         <a href="../index.html" class="logo">Maderera La Herradura</a>
@@ -645,7 +646,7 @@
 
     <div class="main-wrapper">
 
-        <!-- HERO BANNER Y FLYER DE OFERTA DESTACADO -->
+        <!-- HERO BANNER Y FLYER PROMOCIONAL -->
         <section class="hero-section">
             <div class="hero-content">
                 <h1>Venta de Maderas</h1>
@@ -673,31 +674,31 @@
         </section>
 
         <!-- MODAL CONFIGURADOR EN CASCADA -->
-        <div class="configurador-modal" id="configModal">
-            <div class="configurador-contenido">
+        <div class="configurador-modal" id="configModal" onclick="app.cerrarModalPorAfuera(event, 'configModal')">
+            <div class="configurador-contenido" onclick="event.stopPropagation()">
                 <button type="button" class="modal-close-x" onclick="app.cerrarModal()">✕</button>
                 <h2 class="configurador-titulo" id="modalTitulo">Producto</h2>
                 <p class="configurador-subdesc" id="modalDesc"></p>
 
-                <!-- Paso 1: Medidas / Escuadrías -->
+                <!-- Paso 1: Tamaño / Medida -->
                 <div class="paso-grupo" id="grupoMedidas">
-                    <label class="paso-label" id="labelMedidaText">1. Seleccioná Medida / Escuadría</label>
+                    <label class="paso-label" id="labelMedidaText">1. Seleccioná el Tamaño</label>
                     <div class="opciones-grid" id="opcionesMedidas"></div>
                 </div>
 
                 <!-- Paso 1.5: Largo (Específico para Tirantes) -->
                 <div class="paso-grupo" id="grupoLargos" style="display: none;">
-                    <label class="paso-label">Seleccioná el Largo del Tirante</label>
+                    <label class="paso-label">2. Seleccioná el Largo del Tirante</label>
                     <div class="opciones-grid" id="opcionesLargos"></div>
                 </div>
 
-                <!-- Paso 2: Calidades / Tipos -->
+                <!-- Paso 2: Calidad -->
                 <div class="paso-grupo" id="grupoCalidades">
-                    <label class="paso-label" id="labelCalidadText">2. Seleccioná Calidad</label>
+                    <label class="paso-label" id="labelCalidadText">3. Seleccioná Calidad</label>
                     <div class="opciones-grid" id="opcionesCalidades"></div>
                 </div>
 
-                <!-- Paso 3: Cantidad y Precios (Contado vs Cuotas Fijas) -->
+                <!-- Paso 3: Cantidad y Precios -->
                 <div class="configurador-footer">
                     <div class="cantidad-precio-row">
                         <div class="cantidad-control">
@@ -781,9 +782,9 @@
         <div class="carrito-badge" id="carritoBadge">0</div>
     </div>
 
-    <!-- MODAL CARRITO CON ZONAS Y BARRIOS DE BARILOCHE -->
-    <div class="carrito-modal" id="carritoModal">
-        <div class="carrito-contenido">
+    <!-- MODAL CARRITO -->
+    <div class="carrito-modal" id="carritoModal" onclick="app.cerrarModalPorAfuera(event, 'carritoModal')">
+        <div class="carrito-contenido" onclick="event.stopPropagation()">
             <button type="button" class="modal-close-x" onclick="app.cerrarCarrito()">✕</button>
             <h2 class="carrito-titulo">Tu Pedido Web</h2>
             
@@ -859,27 +860,26 @@
             }, 5000);
         }
 
-        // BASE DE DATOS DE PRODUCTOS CON PRECIOS Y OPCIONES EXACTAS
+        // BASE DE DATOS DE PRODUCTOS CON CLAVES INTERNAS SEGURAS
         const productosMaderas = [
             {
                 id: 'fenolicos',
                 nombre: 'Fenólicos',
                 icono: '🪵',
                 descripcion: 'Tableros fenólicos de alta resistencia. 12mm (C4 Industrial) y 18mm (Scrap, C4 Industrial y C3 en Oferta).',
-                medidaLabel: 'Espesor',
+                medidaLabel: 'el Tamaño (Espesor)',
                 esTirante: false,
                 precios: {
                     '12 mm': { 'C4 Industrial': 37500 },
                     '18 mm': { 'Scrap': 40500, 'C4 Industrial': 42500, '⚡ C3 (OFERTA PROMO)': 41500 }
-                },
-                precioBase: 37500
+                }
             },
             {
                 id: 'tirantes',
                 nombre: 'Tirantes y Vigas',
                 icono: '📏',
-                descripcion: 'Madera dimensionada de excelente escuadría. Elegí escuadría (2x2, 2x4) y el largo (2m, 3m, 4m).',
-                medidaLabel: 'Escuadría',
+                descripcion: 'Madera dimensionada de excelente escuadría. Elegí tamaño (2x2, 2x4, 2x6) y el largo (2m, 3m, 4m).',
+                medidaLabel: 'el Tamaño (Escuadría)',
                 esTirante: true,
                 largosDisponibles: ['2 metros', '3 metros', '4 metros'],
                 precios: {
@@ -894,36 +894,33 @@
                         'Pino Oregón': { '2 metros': 5200, '3 metros': 7800, '4 metros': 10400 },
                         'Pino Nacional': { '2 metros': 3800, '3 metros': 5700, '4 metros': 7600 }
                     }
-                },
-                precioBase: 1800
+                }
             },
             {
                 id: 'machimbre',
                 nombre: 'Machimbre',
                 icono: '🏠',
                 descripcion: 'Tableros machimbrados cepillados de primera calidad para techos y revestimientos (Largo estándar: 3m).',
-                medidaLabel: 'Medida',
+                medidaLabel: 'el Tamaño (Ancho / Espesor)',
                 esTirante: false,
                 precios: {
                     '1/2 x 5"': { '1era Calidad': 8000, '2da Calidad': 5000 },
                     '3/4 x 5"': { '1era Calidad': 12500 },
                     '1 x 6"': { '1era Calidad': 17000 }
-                },
-                precioBase: 5000
+                }
             },
             {
                 id: 'tablas',
                 nombre: 'Tablas y Listones',
                 icono: '📋',
                 descripcion: 'Tablas cepilladas para múltiples aplicaciones en obra, cercos y construcciones auxiliares.',
-                medidaLabel: 'Medida',
+                medidaLabel: 'el Tamaño (Medida)',
                 esTirante: false,
                 precios: {
                     '1 x 6"': { 'Estándar': 1845 },
                     '1 x 4"': { 'Estándar': 595 },
                     '1 x 2"': { 'Estándar': 300 }
-                },
-                precioBase: 900
+                }
             }
         ];
 
@@ -948,21 +945,32 @@
 
             renderizarGrid() {
                 const grid = document.getElementById('productosGrid');
-                grid.innerHTML = productosMaderas.map(p => `
-                    <div class="producto-card" onclick="app.abrirModal('${p.id}')">
-                        <div class="producto-icon-box">${p.icono}</div>
-                        <h3>${p.nombre}</h3>
-                        <p class="producto-desc-breve">${p.descripcion}</p>
-                        <div class="producto-precio">Desde $${p.precioBase.toLocaleString('es-AR')}</div>
-                        <span class="producto-btn">Configurar y Comprar →</span>
-                    </div>
-                `).join('');
+                grid.innerHTML = productosMaderas.map(p => {
+                    const primeraMedida = Object.keys(p.precios)[0];
+                    let primerPrecio = 0;
+                    if (p.esTirante) {
+                        const primeraCalidad = Object.keys(p.precios[primeraMedida])[0];
+                        const primerLargo = Object.keys(p.precios[primeraMedida][primeraCalidad])[0];
+                        primerPrecio = p.precios[primeraMedida][primeraCalidad][primerLargo];
+                    } else {
+                        const primeraCalidad = Object.keys(p.precios[primeraMedida])[0];
+                        primerPrecio = p.precios[primeraMedida][primeraCalidad];
+                    }
+
+                    return `
+                        <div class="producto-card" onclick="app.abrirModal('${p.id}')">
+                            <div class="producto-icon-box">${p.icono}</div>
+                            <h3>${p.nombre}</h3>
+                            <p class="producto-desc-breve">${p.descripcion}</p>
+                            <div class="producto-precio">Desde $${primerPrecio.toLocaleString('es-AR')}</div>
+                            <span class="producto-btn">Configurar y Comprar →</span>
+                        </div>
+                    `;
+                }).join('');
             },
 
             abrirModal(id) {
                 this.prodActual = productosMaderas.find(p => p.id === id);
-                if (!this.prodActual) return;
-
                 this.cantidad = 1;
                 document.getElementById('inputCantidad').value = 1;
 
@@ -970,12 +978,13 @@
                 document.getElementById('modalDesc').textContent = this.prodActual.descripcion;
                 document.getElementById('labelMedidaText').textContent = `1. Seleccioná ${this.prodActual.medidaLabel}`;
 
+                // Configurar largos si es tirante
                 const grupoLargos = document.getElementById('grupoLargos');
                 if (this.prodActual.esTirante) {
                     grupoLargos.style.display = 'block';
                     const containerLargos = document.getElementById('opcionesLargos');
                     containerLargos.innerHTML = this.prodActual.largosDisponibles.map(l => `
-                        <button type="button" class="opcion-btn" data-largo="${l}" onclick="app.elegirLargo('${l}')">${l}</button>
+                        <button type="button" class="opcion-btn" data-largo-btn="${l}" onclick="app.elegirLargo('${l}')">${l}</button>
                     `).join('');
                     this.seleccionLargo = this.prodActual.largosDisponibles[0];
                 } else {
@@ -983,50 +992,63 @@
                     this.seleccionLargo = null;
                 }
 
+                // Renderizar medidas usando codificación en atributos data para evitar roturas por caracteres especiales o comillas
                 const medidasDisponibles = Object.keys(this.prodActual.precios);
                 const containerMedidas = document.getElementById('opcionesMedidas');
-                containerMedidas.innerHTML = medidasDisponibles.map(m => `
-                    <button type="button" class="opcion-btn" data-medida="${m}" onclick="app.elegirMedida('${m}')">${m}</button>
-                `).join('');
+                containerMedidas.innerHTML = medidasDisponibles.map(m => {
+                    const encodedMedida = encodeURIComponent(m);
+                    return `<button type="button" class="opcion-btn" data-medida-btn="${encodedMedida}" onclick="app.elegirMedidaFromEncoded('${encodedMedida}')">${m}</button>`;
+                }).join('');
 
+                // Seleccionar por defecto la primera medida
                 this.elegirMedida(medidasDisponibles[0]);
                 document.getElementById('configModal').classList.add('active');
+            },
+
+            elegirMedidaFromEncoded(encodedMedida) {
+                const medida = decodeURIComponent(encodedMedida);
+                this.elegirMedida(medida);
             },
 
             elegirMedida(medida) {
                 this.seleccionMedida = medida;
                 
-                document.querySelectorAll('#opcionesMedidas .opcion-btn').forEach(b => {
-                    if (b.getAttribute('data-medida') === medida) {
+                // Marcar visualmente el botón correcto comparando data-medida-btn
+                const botonesMedida = document.querySelectorAll('#opcionesMedidas .opcion-btn');
+                botonesMedida.forEach(b => {
+                    const btnMedidaDecoded = decodeURIComponent(b.getAttribute('data-medida-btn'));
+                    if (btnMedidaDecoded === medida) {
                         b.classList.add('active');
                     } else {
                         b.classList.remove('active');
                     }
                 });
 
-                if (this.prodActual.esTirante) {
-                    const escuadriaObj = this.prodActual.precios[medida] || {};
-                    const calidades = Object.keys(escuadriaObj);
-                    const containerCalidades = document.getElementById('opcionesCalidades');
-                    containerCalidades.innerHTML = calidades.map(c => `
-                        <button type="button" class="opcion-btn" data-calidad="${c}" onclick="app.elegirCalidad('${c}')">${c}</button>
-                    `).join('');
-                    if (calidades.length > 0) this.elegirCalidad(calidades[0]);
-                } else {
-                    const calidadesObj = this.prodActual.precios[medida] || {};
-                    const calidades = Object.keys(calidadesObj);
-                    const containerCalidades = document.getElementById('opcionesCalidades');
-                    containerCalidades.innerHTML = calidades.map(c => `
-                        <button type="button" class="opcion-btn" data-calidad="${c}" onclick="app.elegirCalidad('${c}')">${c}</button>
-                    `).join('');
-                    if (calidades.length > 0) this.elegirCalidad(calidades[0]);
+                // Cargar calidades asociadas estrictamente a esta medida
+                const calidadesObj = this.prodActual.precios[medida] || {};
+                const calidades = Object.keys(calidadesObj);
+
+                const containerCalidades = document.getElementById('opcionesCalidades');
+                containerCalidades.innerHTML = calidades.map(c => {
+                    const encodedCalidad = encodeURIComponent(c);
+                    return `<button type="button" class="opcion-btn" data-calidad-btn="${encodedCalidad}" onclick="app.elegirCalidadFromEncoded('${encodedCalidad}')">${c}</button>`;
+                }).join('');
+
+                if (calidades.length > 0) {
+                    this.elegirCalidad(calidades[0]);
                 }
+            },
+
+            elegirCalidadFromEncoded(encodedCalidad) {
+                const calidad = decodeURIComponent(encodedCalidad);
+                this.elegirCalidad(calidad);
             },
 
             elegirLargo(largo) {
                 this.seleccionLargo = largo;
-                document.querySelectorAll('#opcionesLargos .opcion-btn').forEach(b => {
-                    if (b.getAttribute('data-largo') === largo) {
+                const botonesLargo = document.querySelectorAll('#opcionesLargos .opcion-btn');
+                botonesLargo.forEach(b => {
+                    if (b.getAttribute('data-largo-btn') === largo) {
                         b.classList.add('active');
                     } else {
                         b.classList.remove('active');
@@ -1037,8 +1059,10 @@
 
             elegirCalidad(calidad) {
                 this.seleccionCalidad = calidad;
-                document.querySelectorAll('#opcionesCalidades .opcion-btn').forEach(b => {
-                    if (b.getAttribute('data-calidad') === calidad) {
+                const botonesCalidad = document.querySelectorAll('#opcionesCalidades .opcion-btn');
+                botonesCalidad.forEach(b => {
+                    const btnCalidadDecoded = decodeURIComponent(b.getAttribute('data-calidad-btn'));
+                    if (btnCalidadDecoded === calidad) {
                         b.classList.add('active');
                     } else {
                         b.classList.remove('active');
@@ -1064,19 +1088,15 @@
 
             calcularPrecioModal() {
                 if (!this.prodActual) return;
-                let unitario = this.prodActual.precioBase;
+                let unitario = 0;
 
                 if (this.prodActual.esTirante) {
                     if (this.seleccionMedida && this.seleccionCalidad && this.seleccionLargo) {
-                        if (this.prodActual.precios[this.seleccionMedida]?.[this.seleccionCalidad]?.[this.seleccionLargo]) {
-                            unitario = this.prodActual.precios[this.seleccionMedida][this.seleccionCalidad][this.seleccionLargo];
-                        }
+                        unitario = this.prodActual.precios?.[this.seleccionMedida]?.[this.seleccionCalidad]?.[this.seleccionLargo] || 0;
                     }
                 } else {
                     if (this.seleccionMedida && this.seleccionCalidad) {
-                        if (this.prodActual.precios[this.seleccionMedida]?.[this.seleccionCalidad]) {
-                            unitario = this.prodActual.precios[this.seleccionMedida][this.seleccionCalidad];
-                        }
+                        unitario = this.prodActual.precios?.[this.seleccionMedida]?.[this.seleccionCalidad] || 0;
                     }
                 }
 
@@ -1090,21 +1110,19 @@
 
             agregarAlCarrito() {
                 if (!this.prodActual) return;
-                let unitario = this.prodActual.precioBase;
+                let unitario = 0;
 
                 if (this.prodActual.esTirante) {
                     if (this.seleccionMedida && this.seleccionCalidad && this.seleccionLargo) {
-                        if (this.prodActual.precios[this.seleccionMedida]?.[this.seleccionCalidad]?.[this.seleccionLargo]) {
-                            unitario = this.prodActual.precios[this.seleccionMedida][this.seleccionCalidad][this.seleccionLargo];
-                        }
+                        unitario = this.prodActual.precios?.[this.seleccionMedida]?.[this.seleccionCalidad]?.[this.seleccionLargo] || 0;
                     }
                 } else {
                     if (this.seleccionMedida && this.seleccionCalidad) {
-                        if (this.prodActual.precios[this.seleccionMedida]?.[this.seleccionCalidad]) {
-                            unitario = this.prodActual.precios[this.seleccionMedida][this.seleccionCalidad];
-                        }
+                        unitario = this.prodActual.precios?.[this.seleccionMedida]?.[this.seleccionCalidad] || 0;
                     }
                 }
+
+                if (unitario === 0) return;
 
                 const totalContado = unitario * this.cantidad;
                 const totalCuotas = totalContado * 1.40;
@@ -1131,13 +1149,20 @@
                 this.prodActual = null;
             },
 
+            cerrarCarrito() {
+                document.getElementById('carritoModal').classList.remove('active');
+            },
+
+            cerrarModalPorAfuera(event, modalId) {
+                if (event.target.id === modalId) {
+                    if (modalId === 'configModal') this.cerrarModal();
+                    if (modalId === 'carritoModal') this.cerrarCarrito();
+                }
+            },
+
             abrirCarrito() {
                 document.getElementById('carritoModal').classList.add('active');
                 this.renderizarCarritoModal();
-            },
-
-            cerrarCarrito() {
-                document.getElementById('carritoModal').classList.remove('active');
             },
 
             actualizarFleteEstimado() {
@@ -1216,7 +1241,7 @@
                     totalContado += item.precioTotal;
                     totalCuotas += item.precioCuotas;
                     const detalles = [item.medida, item.largo, item.calidad].filter(Boolean).join(' • ');
-                    mensaje += `📦 *${item.nombre}*\n  Cantidad: ${item.cantidad}\n  Opciones: ${detalles}\n  Subtotal: $${item.precioTotal.toLocaleString('es-AR')}\n\n`;
+                    mensaje += `📦 *${item.nombre}*\n  Cantidad: ${item.cantidad}\n  Opciones: ${detallas}\n  Subtotal: $${item.precioTotal.toLocaleString('es-AR')}\n\n`;
                 });
 
                 const granTotalContado = totalContado + this.fleteCosto;
